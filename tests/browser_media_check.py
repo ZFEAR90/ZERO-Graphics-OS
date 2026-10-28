@@ -17,6 +17,7 @@ try:
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('assets.avatar && state.stvLoaded')
   assert not page.evaluate('state.renderError');assert not errors,errors
   page.locator('.control-panel').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
+  page.locator('.editor-tab-panel').evaluate_all('(els)=>els.forEach(el=>el.hidden=false)');page.locator('.element-overrides').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
   avatar=page.evaluate('assets.avatar.src');photo='data:image/png;base64,'+base64.b64encode((fixture/'photo.png').read_bytes()).decode()
   payload={'name':'Real Test Author','handle':'author','platform':'Facebook','text':'A public post with independently editable photos and video.','avatar_data':avatar,'status':'partial','attachments':[{'type':'image','data_url':photo},{'type':'video','url':'/fixtures/landscape.mp4'}]}
   page.route('**/api/health',lambda route:route.fulfill(content_type='application/json',body=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.3'})))

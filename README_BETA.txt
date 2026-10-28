@@ -1,4 +1,12 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.4
+ZE OS — Mouwajaha V0.7 / Test Beta 2.5
+
+BETA 2.5 — CURRENT CHANGES
+Main contains Roll & account, Bullet text, Post import, selected post media/audio and composition Up/Down. Advanced options holds the remaining detailed categories. Fold the category titles as needed.
+Roll and bullet widths/text are restored: protection no longer scales down the composition. Tall viewing windows shorten only when necessary to fit above the lower third; content keeps its proportions and scrolls. Disable protection to use the original unrestricted height.
+The logo/profile/name group defaults to 90%, stays consistent for 9:16 and landscape, and is a further 5% smaller on the TV-logo side. It clears both top corners after flipping. Change its group size in Advanced → Detailed layout & selection.
+The current lower-third shaded guide is kept. Top/bottom/side lines from the older guide are restored, with TV/Live corner outlines. Guides are not rendered into exports.
+Undo or Ctrl+Z restores each mouse drag as one step, including multi-group moves. Redo is Ctrl+Shift+Z / Ctrl+Y. Numeric position and Up/Down edits are undoable. Text fields keep native text undo. History lasts for the current session, up to 100 edits.
+Close the previous helper and run START_ZE_OS.bat from this new folder; connection version should be 0.7-beta2.5.
 
 QUICK VISUAL TEST
 Open ZE_OS_Mouwajaha_V07.html in Chrome or Edge for offline editing. Live post import requires the helper; opening the HTML does not start it.

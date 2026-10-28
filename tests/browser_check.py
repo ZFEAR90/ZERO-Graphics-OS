@@ -13,6 +13,7 @@ try:
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html')
   page.wait_for_function('assets.source && assets.avatar && state.stvLoaded')
   page.locator('.control-panel').evaluate_all('(panels)=>panels.forEach(panel=>panel.open=true)')
+  page.locator('.editor-tab-panel').evaluate_all('(els)=>els.forEach(el=>el.hidden=false)');page.locator('.element-overrides').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
   print('FONT',page.evaluate('({loaded:state.stvLoaded,regular:document.fonts.check("400 21px ZEOSSTV"),bold:document.fonts.check("700 21px ZEOSSTV")})'))
   for flipped in [False,True]:
    for text in ['xpos','A much longer source display name','قناة الميادين الإخبارية','A'*200]:

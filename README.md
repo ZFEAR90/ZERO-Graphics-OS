@@ -1,4 +1,4 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.4
+# ZE OS — Mouwajaha V0.7, Test Beta 2.5
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
@@ -34,7 +34,7 @@ The supplied Facebook test URL is `https://www.facebook.com/share/p/1GVmqHPmx5/`
 
 ## Interface categories (Beta 2.2)
 
-The editor sidebar now groups controls into Post import, Source & bulletin, Layout & positioning, Media assets, Arabic typography, Animation, Colors & palette, and Guides & safe areas. Each titled panel has a fold/unfold arrow and supports Enter/Space keyboard toggling. Post import opens by default. The reference sidebar has Project export, AEP reference, Reference timing, and About this reconstruction; export opens by default. Folding preserves edits. Mobile controls wrap within the viewport.
+The editor opens in **Main**, with Post import, Roll & account, Bullet text, Post photos/video/audio, and Composition position. Roll/account and bullet text open initially; replacement pickers are nested under Roll & account. **Advanced options** contains detailed layout/selection, typography, animation, background loop, palette, and guides. Categories still fold without losing edits; both tabs support keyboard navigation. Undo/Redo remain visible above either tab. The reference/export sidebar is unchanged.
 
 Browser validation covered every panel, keyboard toggling without triggering playback, retained edits, layout controls, mobile horizontal overflow, and existing font/name/import behavior. Canvas images matched the preceding beta exactly at 1.2, 2.12, and 4 seconds; this verifies the interface regrouping did not change those rendered frames. The Facebook-access limitations above still apply.
 
@@ -58,7 +58,9 @@ Reference Match is now the default. The nested source frame uses frame-sampled m
 
 The measured source outer-width mean absolute error over frames 17–30 improved from 15.36 proxy pixels in the preceding renderer to 0.14 pixels. This is a single source-geometry metric; it is not a full-scene pixel-match score. Content scale between sampled frames, native AE interpolation, fonts/layout under edited content, original background motion, and full-resolution fidelity are not fully verified. The newly uploaded full reference exceeded the tool's 32 MiB transfer limit, so validation used the existing proxy. Observations and measured results are in `references/motion_observations_25fps.json` and `references/motion_validation.json`.
 
-The user's 1920×1080 on-air guide shows the lower third beginning at approximately y=847. Protection is on by default with a 24 px gap, 152 px top clearance below the channel bug, and symmetric 79 px side margins. **Guides & safe areas** exposes the regular and breaking-news top edges, top clearance, and gap. Both presets initially use the supplied guide boundary; set the breaking-news edge higher if its strap is taller. Foreground groups fit together inside the available area, including when dragged/scaled, flipped, or centered. The safe-area overlay is preview-only and does not burn into exports. Background loops remain full frame.
+The user's 1920×1080 on-air guide shows the lower third beginning at approximately y=847. Protection defaults to a 24 px gap, 152 px top clearance for the TV logo and right-hand Live sign, and symmetric 79 px side margins. **Advanced options → Guides & safe areas** exposes both regular/breaking boundaries and clearance. The current lower-third tint/edge remains; the earlier top, bottom and side outline is restored, with corner reservations added. All guides are preview-only.
+
+Beta 2.5 removes the uniform safety fitter that made the design small. Source and bullet widths and text sizes stay at their requested values. Protection repositions them upward; if a tall source or panel cannot fit between the top exclusion and the lower third, only its viewing height is shortened. Source content keeps its proportions and scrolls inside its window. Disable protection for the original unrestricted height. The account group defaults to 90% of its original size, consistently across media ratios, with a further 5% reduction on the TV-logo side, and clears both top corners after flipping. Its group-size control and per-element controls are under Advanced → Detailed layout & selection. Explicit extreme sizes can exceed a guide; a warning appears rather than silently scaling the composition down.
 
 Changing the loop automatically selects three main colors: Accent, Panel, and Text. These are editable. **Colors & palette → Individual element colors** provides twelve overrides for frame, inner mask, roll border/ribbon, bullet ribbon/panel/text, name strap/text, account strap/text, and identity borders. Changing a color enables its override. Unticking it resumes palette following; reset restores all links. Bright saturated loop colors are included in sampling, and video intros are sampled for up to three seconds if their initial frame has no usable color. Brand logos and imported photos/video retain their original pixels.
 
@@ -82,3 +84,11 @@ Paused frame stepping now seeks the reference on every 25 fps step, and frame bu
 The demonstration uses generated local gradient/video assets and synthetic tone audio, not a successful live Facebook extraction. It shows category panels, loop-driven palette selection, individual overrides, editable text/media, portrait/landscape layouts, fixed header sizing, flip, bullet hiding, mouse grouping, on-air protection, audio controls and an actual WebM export. The MP4 is 1440×900 H.264/AAC; the actual exported preview is 1920×1080 VP9/Opus. Both have non-silent audio. No full-black preview interval was detected in the demonstration.
 
 Developer checks: the editor/importer browser tests require Playwright and Chromium; media checks also use FFmpeg/ffprobe. Motion-calibration checks additionally require NumPy, SciPy and Pillow. These are development checks, not extra requirements for running the standalone HTML.
+
+## Movement history (Beta 2.5)
+
+Drag a group or use Shift-click / Select all for a selection. **Undo / Ctrl+Z** restores a whole drag in one step; **Redo / Ctrl+Shift+Z or Ctrl+Y** reapplies it. Whole-composition Up/Down, numeric offsets, sizes and layout toggles are also undoable. Ctrl+Z in a text input stays the browser's native text undo. History is local to the current editor session (100 edits); it is not a project/media undo system.
+
+The new browser workspace check covers actual tab navigation, unchanged source/bullet widths, the smaller header, both flip directions clearing the TV/Live exclusion, protected upward movement, per-drag and grouped undo/redo, numeric edits, guide visibility and mobile width. Existing animation, imports, media/audio and palette checks remain.
+
+[Beta 2.5 update demonstration](demo/ZE_OS_V07_Beta25_Demo.mp4) shows the current full-width layout, tabs, guides, TV-side header compensation, mouse movements and undo. The earlier Beta 2.4 video and actual WebM/audio recording are retained separately.
