@@ -57,6 +57,27 @@ class ImportTests(unittest.TestCase):
    req=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/api/health',headers={'Origin':'null'})
    with urllib.request.urlopen(req) as response:
     self.assertEqual(response.headers['Access-Control-Allow-Origin'],'null')
-    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2'})
+    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2.1'})
+  finally:server.shutdown();server.server_close()
+ def test_capture_missing_browser_reports_cause(self):
+  with patch.object(m,'launch_capture_browser',side_effect=m.CaptureUnavailable('Capture browser missing')):
+   result=m.screenshot_public_post('https://www.facebook.com/share/p/example/')
+  self.assertEqual(result,{'capture_error':'Capture browser missing'})
+ def test_api_retains_metadata_when_capture_fails(self):
+  self.check_capture_response({'name':'Real author','text':'Actual post text','status':'partial'},None,200)
+ def test_api_combines_platform_and_capture_errors(self):
+  self.check_capture_response(None,RuntimeError('Platform returned HTTP 400'),422)
+ def check_capture_response(self,metadata,failure,code):
+  server=m.ThreadingHTTPServer(('127.0.0.1',0),m.Handler);threading.Thread(target=server.serve_forever,daemon=True).start()
+  try:
+   with patch.object(m,'public_url',side_effect=lambda url,patterns:url),patch.object(m,'fetch_metadata',return_value=metadata,side_effect=failure),patch.object(m,'screenshot_public_post',return_value={'capture_error':'Capture browser missing'}):
+    try:response=urllib.request.urlopen(f'http://127.0.0.1:{server.server_port}/api/post?url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2Fexample%2F')
+    except urllib.error.HTTPError as error:response=error
+    with response:
+     self.assertEqual(response.code,code);data=json.load(response)
+    if code==200:
+     self.assertEqual(data['text'],'Actual post text');self.assertEqual(data['status'],'partial');self.assertEqual(data['capture_warning'],'Capture browser missing');self.assertNotIn('screenshot_data',data)
+    else:
+     self.assertIn('HTTP 400',data['error']);self.assertIn('Capture browser missing',data['error'])
   finally:server.shutdown();server.server_close()
 if __name__=='__main__':unittest.main()

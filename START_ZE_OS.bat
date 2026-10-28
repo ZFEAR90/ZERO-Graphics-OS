@@ -12,6 +12,14 @@ if errorlevel 1 (
     .venv\Scripts\python.exe -m pip install -r requirements.txt
     if errorlevel 1 goto failed
 )
+.venv\Scripts\python.exe ze_local_importer.py --check-browser
+if errorlevel 1 (
+    echo Installing the browser needed to capture public posts...
+    .venv\Scripts\python.exe -m playwright install chromium
+    if errorlevel 1 (
+        echo Browser installation failed. Metadata import may still work, but post screenshots need Chromium.
+    )
+)
 .venv\Scripts\python.exe ze_local_importer.py
 goto end
 :failed

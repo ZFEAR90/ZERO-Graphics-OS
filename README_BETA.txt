@@ -1,4 +1,4 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2
+ZE OS — Mouwajaha V0.7 / Test Beta 2.1
 
 QUICK VISUAL TEST
 Open ZE_OS_Mouwajaha_V07.html in Chrome or Edge for offline editing. Live post import requires the helper; opening the HTML does not start it.
@@ -38,3 +38,6 @@ The unmodified supplied HTML is retained in baseline/ in the development checkou
 
 BETA 2 CONNECTION FIX
 Use Check importer connection before importing. Run START_ZE_OS.bat from the extracted Beta 2 folder, keep the command window open, and use the tab it launches. An unreachable importer and a platform refusal now produce distinct messages. Failed imports keep your previous scene. Eight importer tests and browser checks for disconnected/denied/successful imports passed. The actual Facebook post remains unverified from this cloud.
+
+BETA 2.1 CAPTURE FIX
+Close the previous command window before starting the new helper. The launcher now checks the capture browser and installs Chromium if needed. Browser fallback waits for a visible post/images and reports why it fails. Check importer connection should show version 0.7-beta2.1. Facebook can still refuse public access; try the direct URL reached by clicking the post timestamp. The real Facebook example remains unverified in the cloud.

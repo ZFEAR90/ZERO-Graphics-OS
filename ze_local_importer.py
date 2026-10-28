@@ -196,52 +196,76 @@ def fetch_metadata(url):
     return output
 
 
+class CaptureUnavailable(RuntimeError):
+    pass
+
+
+def launch_capture_browser(playwright):
+    executable = shutil.which('chromium') or shutil.which('google-chrome')
+    candidates = ([{'executable_path': executable}] if executable else []) + [{}, {'channel': 'chrome'}, {'channel': 'msedge'}]
+    for options in candidates:
+        try:
+            return playwright.chromium.launch(headless=True, args=['--no-sandbox'], **options)
+        except Exception:
+            continue
+    raise CaptureUnavailable('No working capture browser. Close the helper and run the updated START_ZE_OS.bat to install Chromium.')
+
+
 def screenshot_public_post(url):
-    # Optional Chromium capture: a visual fallback rather than reconstructing a fake screenshot.
-    # On platforms that force login, report failure rather than capture the login screen.
+    """Capture an actual public post, reporting why capture could not complete."""
     try:
-        from playwright.sync_api import sync_playwright
+        from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
+    except ImportError:
+        return {'capture_error': 'Playwright is missing. Run the updated START_ZE_OS.bat.'}
+    try:
         with sync_playwright() as p:
-            executable = shutil.which('chromium') or shutil.which('google-chrome')
-            browser=None
-            for options in ([{'executable_path':executable}] if executable else [{},{'channel':'chrome'},{'channel':'msedge'}]):
+            browser = launch_capture_browser(p)
+            try:
+                page = browser.new_page(viewport={'width': 1140, 'height': 1380}, device_scale_factor=1)
+                response = page.goto(url, wait_until='domcontentloaded', timeout=18000)
+                final_path = urlparse(page.url).path.rstrip('/')
+                if final_path in ('/login', '/login.php', '/accounts/login'):
+                    return {'capture_error': 'The platform redirected the capture browser to login. Use a post available without signing in or import its screenshot.'}
+                if response and response.status >= 400:
+                    return {'capture_error': f'The platform returned HTTP {response.status} to the capture browser.'}
+                platform = platform_for(url)
+                selectors = {'X': 'article[data-testid="tweet"]', 'Telegram': '.tgme_widget_message_wrap, .tgme_widget_message', 'Facebook': '[role="article"]', 'Instagram': 'article', 'Threads': 'article'}
+                loc = page.locator(selectors[platform]).first
                 try:
-                    browser=p.chromium.launch(headless=True,args=['--no-sandbox'],**options)
-                    break
-                except Exception: pass
-            if browser is None: return None
-            page=browser.new_page(viewport={'width':1140,'height':1380},device_scale_factor=1)
-            page.goto(url,wait_until='domcontentloaded',timeout=13500)
-            page.wait_for_timeout(750)
-            platform=platform_for(url)
-            selectors={'X':['article[data-testid="tweet"]','article'],
-                       'Telegram':['.tgme_widget_message_wrap','.tgme_widget_message'],
-                       'Facebook':['[role="article"]'],
-                       'Instagram':['article'],
-                       'Threads':['article']}
-            pic=None
-            extracted={}
-            for sel in selectors.get(platform,[]):
-                loc=page.locator(sel).first
-                if loc.count()>0:
-                    box=loc.bounding_box()
-                    if box and box['width']>250 and box['height']>85:
-                        pic=loc.screenshot(type='png',timeout=4500,animations='disabled')
-                        author_selectors={'X':'[data-testid="User-Name"] a','Facebook':'h2 a, h3 a, strong a','Instagram':'header a','Telegram':'.tgme_widget_message_author_name','Threads':'header a'}
-                        avatar_selectors={'X':'[data-testid="Tweet-User-Avatar"] img','Facebook':'svg image','Instagram':'header img','Telegram':'.tgme_widget_message_user_photo img','Threads':'header img'}
-                        author=loc.locator(author_selectors[platform]).first
-                        if author.count(): extracted['name']=author.inner_text(timeout=1000).strip()[:100]
-                        avatar=loc.locator(avatar_selectors[platform]).first
-                        if avatar.count():
-                            avatar_url=avatar.evaluate('(el)=>el.currentSrc || el.src || el.getAttribute("href") || el.getAttribute("xlink:href")')
-                            if avatar_url: extracted['avatar_data']=image_data(avatar_url)
-                        break
-            browser.close()
-            if pic and len(pic)<4_000_000:
-                extracted['screenshot_data']='data:image/png;base64,'+base64.b64encode(pic).decode()
+                    loc.wait_for(state='visible', timeout=7000)
+                except BrowserTimeout:
+                    return {'capture_error': 'No visible public post appeared in the capture browser. The page may require login or may use an unsupported layout. For a Facebook share link, open it in your browser, click the post date/time, and try that direct post URL.'}
+                box = loc.bounding_box()
+                if not box or box['width'] <= 250 or box['height'] <= 85:
+                    return {'capture_error': 'The visible post was too small to capture reliably.'}
+                # Wait for actual post images instead of capturing an unfinished loading state.
+                loc.evaluate('(el)=>Promise.all(Array.from(el.querySelectorAll("img")).map(im=>im.complete?Promise.resolve():new Promise(resolve=>{im.addEventListener("load",resolve,{once:true});im.addEventListener("error",resolve,{once:true});setTimeout(resolve,2500)})))')
+                pic = loc.screenshot(type='png', timeout=4500, animations='disabled')
+                if len(pic) >= 4_000_000:
+                    return {'capture_error': 'The post screenshot is too large. Import a cropped screenshot manually.'}
+                extracted = {'screenshot_data': 'data:image/png;base64,'+base64.b64encode(pic).decode()}
+                # Missing author information must not discard an otherwise valid post screenshot.
+                try:
+                    author_selectors = {'X': '[data-testid="User-Name"] a', 'Facebook': 'h2 a, h3 a, strong a', 'Instagram': 'header a', 'Telegram': '.tgme_widget_message_author_name', 'Threads': 'header a'}
+                    avatar_selectors = {'X': '[data-testid="Tweet-User-Avatar"] img', 'Facebook': 'svg image', 'Instagram': 'header img', 'Telegram': '.tgme_widget_message_user_photo img', 'Threads': 'header img'}
+                    author = loc.locator(author_selectors[platform]).first
+                    if author.count(): extracted['name'] = author.inner_text(timeout=1000).strip()[:100]
+                    avatar = loc.locator(avatar_selectors[platform]).first
+                    if avatar.count():
+                        avatar_url = avatar.evaluate('(el)=>el.currentSrc || el.src || el.getAttribute("href") || el.getAttribute("xlink:href")')
+                        if avatar_url: extracted['avatar_data'] = image_data(avatar_url)
+                except Exception:
+                    pass
                 return extracted
-    except Exception:return None
-    return None
+            finally:
+                browser.close()
+    except CaptureUnavailable as ex:
+        return {'capture_error': str(ex)}
+    except BrowserTimeout:
+        return {'capture_error': 'The capture browser timed out while opening the public post.'}
+    except Exception as ex:
+        return {'capture_error': f'Capture browser failed ({type(ex).__name__}). Check the helper window and try a direct public post URL.'}
+
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*a,**kw):super().__init__(*a,directory=str(ROOT),**kw)
@@ -252,7 +276,7 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
     def do_GET(self):
         if urlparse(self.path).path == '/api/health':
-            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2'}).encode()
+            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.1'}).encode()
             self.send_response(200)
             self.send_header('Content-Type','application/json')
             self.send_header('Content-Length',str(len(payload)))
@@ -270,14 +294,18 @@ class Handler(SimpleHTTPRequestHandler):
                 failure=ex
                 data={'url':url,'platform':platform_for(url),'status':'partial'}
             screen=screenshot_public_post(url)
-            if screen:
+            if screen and screen.get('screenshot_data'):
                 data.update({key:value for key,value in screen.items() if value})
                 data['status']='captured'
-            elif failure: raise failure
+            elif failure:
+                detail=(screen or {}).get('capture_error','Capture did not return a screenshot.')
+                raise RuntimeError(str(failure)+' Screenshot capture: '+detail)
+            elif screen and screen.get('capture_error'):
+                data['capture_warning']=screen['capture_error']
             payload=json.dumps(data,ensure_ascii=False).encode('utf-8');code=200
         except Exception as e:
             code=422
-            payload=json.dumps({'error':str(e)[:250]},ensure_ascii=False).encode('utf-8')
+            payload=json.dumps({'error':str(e)[:1200]},ensure_ascii=False).encode('utf-8')
         self.send_response(code)
         self.send_header('Content-Type','application/json; charset=utf-8')
         self.send_header('Content-Length',str(len(payload)))
@@ -294,6 +322,14 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
 if __name__=='__main__':
+    if '--check-browser' in sys.argv:
+        try:
+            from playwright.sync_api import sync_playwright
+            with sync_playwright() as p:
+                browser=launch_capture_browser(p);browser.close()
+            print('Capture browser is ready.');sys.exit(0)
+        except Exception as ex:
+            print('Capture browser is not ready:',str(ex)[:300]);sys.exit(1)
     import webbrowser
     port=int(os.environ.get('ZE_OS_PORT','8765'))
     try:server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
