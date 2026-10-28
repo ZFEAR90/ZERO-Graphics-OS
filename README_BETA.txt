@@ -1,9 +1,9 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.3
+ZE OS — Mouwajaha V0.7 / Test Beta 2.4
 
 QUICK VISUAL TEST
 Open ZE_OS_Mouwajaha_V07.html in Chrome or Edge for offline editing. Live post import requires the helper; opening the HTML does not start it.
 The supplied STV Regular/Bold fonts and sample media are embedded for your local testing.
-Use Enhanced Motion for the revised smooth entrance, or Reference Match for the earlier timing treatment.
+Reference Match now uses proxy-sampled timing and is the default. Enhanced Motion remains an optional treatment.
 Test Flip with short/long English and Arabic names. The straps measure the text, remain attached to the profile, and fit the available header space. Very long names reduce slightly and then truncate with an ellipsis; the original editable field retains the full name.
 
 LIVE POST IMPORT ON WINDOWS
@@ -48,3 +48,13 @@ Click any category title or its arrow to fold/unfold its controls. Post import a
 BETA 2.3 POST MEDIA AND AUDIO
 Open Post photos, video & audio. Choose text + selected media, media only or text only. Include/exclude photos/videos or individual items; unchecking retains an item for restoration. Add originals locally if the platform restricts access. The roll, bullet panel and account header adapt together; bullets off centers the group.
 Include post audio starts OFF. Enable it for preview and WebM recording, and adjust volume. Audio may remain when video is hidden; uncheck an individual item to remove its picture and audio. Flattened screenshots cannot provide removable media or sound. Only public downloadable media can be fetched automatically; remote attachments are limited to 40 MiB each. The real Facebook post is still unverified.
+
+BETA 2.4 MOTION / SAFE AREA / COLORS
+Gray masks grow independently with smooth interpolation. Reference timing was measured from the 25 fps proxy; full-resolution/native-AE exactness is not yet verified.
+Guides & safe areas uses y=847 from your guide, a 24 px lower-third gap, and 152 px channel-logo top clearance. Adjust the breaking-news top edge upward if that strap is taller. Protection is on by default. Guides are preview-only.
+Changing the background loop selects three main colors automatically. Edit Accent, Panel and Text, or unfold Individual element colors for per-element overrides. Overrides remain when the loop changes until unchecked/reset. The full uploaded reference exceeds the 32 MiB transfer limit; the existing proxy was used.
+
+BETA 2.4 GROUP EDITING / PREVIEW / DEMO
+Layout & positioning: drag Account group, Roll + account, or Bullet panel. Shift-click adds a group. Select all moves the full composition. Whole-composition Up/Down moves all groups; Reset restores that offset. Safe protection limits movement to the available on-air area. Header/logo/profile sizes remain stable across 9:16 and landscape sources.
+The last complete preview/background is retained during missing decoded frames. Intentional black video frames remain part of the original media.
+The demo folder contains a 40-second MP4 walkthrough, an actual eight-second WebM export, and original synthetic demo media. Live social extraction is not demonstrated as successful. Exact full-resolution/native-AE fidelity remains unverified.

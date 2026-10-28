@@ -15,7 +15,7 @@ try:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
   page=browser.new_page(viewport={'width':1600,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('assets.avatar && state.stvLoaded')
-  assert not errors,errors
+  assert not page.evaluate('state.renderError');assert not errors,errors
   page.locator('.control-panel').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
   avatar=page.evaluate('assets.avatar.src');photo='data:image/png;base64,'+base64.b64encode((fixture/'photo.png').read_bytes()).decode()
   payload={'name':'Real Test Author','handle':'author','platform':'Facebook','text':'A public post with independently editable photos and video.','avatar_data':avatar,'status':'partial','attachments':[{'type':'image','data_url':photo},{'type':'video','url':'/fixtures/landscape.mp4'}]}
@@ -28,9 +28,9 @@ try:
   for flipped in [False,True]:
    page.evaluate('(v)=>setFlipped(v)',flipped)
    boxes=page.evaluate('zePostBoxes()');src=boxes['source'];bullet=boxes['bullet'];head=boxes['identity']
-   assert src['y']==bullet['y'] and src['h']==bullet['h']
+   assert abs(src['y']-bullet['y'])<.01 and abs(src['h']-bullet['h'])<.01
    assert head['y']+head['h']<src['y']
-   assert src['x']<=head['x'] and head['x']+head['w']<=src['x']+src['w']+.001
+   assert abs(head['x']-src['x'])<.01 if flipped else abs(head['x']+head['w']-src['x']-src['w'])<.01
    assert (bullet['x']>=src['x']+src['w']) if flipped else (bullet['x']+bullet['w']<=src['x'])
   page.locator('#postVideos').uncheck();assert page.evaluate('zeVisualItems().length')==1
   page.locator('#postPhotos').uncheck();assert page.evaluate('zeVisualItems().length')==0
@@ -39,7 +39,7 @@ try:
   page.locator('#showBullets').uncheck();assert page.evaluate('getBBox("bullet").w')==0
   assert abs(page.evaluate('getBBox("source").x+getBBox("source").w/2')-480)<.01
   page.locator('#showBullets').check()
-  page.evaluate('setT(3.12)');page.wait_for_function('Math.abs(zePost.items[1].el.currentTime-1)<.1')
+  page.evaluate('setT(2.88)');page.wait_for_function('Math.abs(zePost.items[1].el.currentTime-1)<.1')
   assert page.evaluate('zePost.items[1].el.paused')
   page.locator('#play').click();page.wait_for_timeout(250);assert page.evaluate('!zePost.items[1].el.paused');page.locator('#play').click();page.wait_for_timeout(100);assert page.evaluate('zePost.items[1].el.paused')
   page.locator('#postAudio').check();page.wait_for_function('zePost.audio && zePost.audio.state==="running"')
@@ -53,7 +53,7 @@ try:
   page.locator('#postFiles').set_input_files([str(fixture/'portrait.png'),str(fixture/'audio.wav')])
   page.wait_for_function('zePost.items.length===4')
   page.locator('#postFiles').set_input_files(str(fixture/'portrait.mp4'));page.wait_for_function('zePost.items.length===5')
-  page.evaluate('zePost.items[0].enabled=false;zePost.items[1].enabled=false;zePost.items[2].enabled=false;zeRefreshMediaList();zeInvalidatePost();setT(3.12)')
+  page.evaluate('zePost.items[0].enabled=false;zePost.items[1].enabled=false;zePost.items[2].enabled=false;zeRefreshMediaList();zeInvalidatePost();setT(2.88)')
   assert page.evaluate('getBBox("source").w')<300
   page.locator('#canvas').screenshot(path='/tmp/ze-media-portrait.png')
   page.locator('#postAudio').check();page.wait_for_function('zePost.items[3].gain && zePost.items[4].gain')
@@ -63,7 +63,7 @@ try:
   page.evaluate('zePost.items[4].enabled=false');page.wait_for_timeout(100);assert page.evaluate('zePost.items[4].gain.gain.value')==0
   assert page.evaluate('zePost.items[3].gain.gain.value')==1
   print('Portrait reflow, multi-file upload, standalone audio, and audio without visible video passed')
-  assert not errors,errors
+  assert not page.evaluate('state.renderError');assert not errors,errors
   print('Import, individual media toggles, linked layout, flip, centering, video seeking/play/pause, local upload, and audio export passed')
   browser.close()
 finally:server.shutdown();server.server_close()

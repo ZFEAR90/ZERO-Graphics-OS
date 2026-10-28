@@ -33,6 +33,7 @@ try:
   page.locator('#canvas').screenshot(path='/tmp/ze-beta-solo.png');page.locator('#showBullets').check()
   page.locator('[data-view="compare"]').click();page.evaluate('setT(1.6)');page.wait_for_timeout(200)
   assert abs(page.evaluate('cmp.currentTime-state.t'))<.001
+  page.locator('#stepFwd').click();page.wait_for_function('Math.abs(cmp.currentTime-state.t)<.001');assert page.evaluate('cmp.paused')
   page.locator('[data-view="rebuild"]').click()
   page.evaluate('window.priorImport={source:assets.source,avatar:assets.avatar,platform:assets.platform,name:document.getElementById("displayname").value,account:document.getElementById("account").value}')
   page.locator('#postUrl').fill('https://www.facebook.com/share/p/1Cuq9SFPGz/')
@@ -60,6 +61,6 @@ try:
   assert page.locator('#account').input_value()=='@real_author'
   print('IMPORT UI name/profile/logo/post replacement passed with fixture; live service separate')
   page.evaluate('setT(4)');page.locator('#canvas').screenshot(path='/tmp/ze-beta-imported.png')
-  assert not errors,errors
+  assert not page.evaluate('state.renderError');assert not errors,errors
   print('BROWSER ERRORS',errors);browser.close()
 finally:server.shutdown();server.server_close()

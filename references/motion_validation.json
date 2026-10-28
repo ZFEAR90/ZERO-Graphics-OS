@@ -1,0 +1,87 @@
+{
+  "before.html": {
+    "widths": [
+      0,
+      0,
+      0,
+      94,
+      181,
+      246,
+      294,
+      325,
+      344,
+      362,
+      368,
+      368,
+      368,
+      374
+    ],
+    "target": [
+      0,
+      20,
+      48,
+      94,
+      157,
+      230,
+      291,
+      334,
+      360,
+      375,
+      383,
+      387,
+      387,
+      387
+    ],
+    "mae": 15.357142857142858
+  },
+  "ZE_OS_Mouwajaha_V07.html": {
+    "widths": [
+      0,
+      20,
+      48,
+      94,
+      157,
+      230,
+      291,
+      334,
+      360,
+      375,
+      383,
+      387,
+      388,
+      388
+    ],
+    "target": [
+      0,
+      20,
+      48,
+      94,
+      157,
+      230,
+      291,
+      334,
+      360,
+      375,
+      383,
+      387,
+      387,
+      387
+    ],
+    "mae": 0.14285714285714285
+  },
+  "measurementScope": {
+    "referenceFile": "references/embedded_reference_proxy.mp4",
+    "referenceSha256": "ee5aa2ee21e168fd1b37b0a53c87bf0e78691d3da4d1270dcedfa52afc79e427",
+    "referenceSize": [
+      960,
+      540
+    ],
+    "fps": 25,
+    "frameRange": [
+      17,
+      30
+    ],
+    "metric": "Source outer-mask width mean absolute error, with safe protection disabled; not full-scene pixel error",
+    "previousCommit": "54a1cc222023a740c3c0ed94d67220ede839d560"
+  }
+}

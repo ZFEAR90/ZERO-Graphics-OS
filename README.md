@@ -1,4 +1,4 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.3
+# ZE OS — Mouwajaha V0.7, Test Beta 2.4
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
@@ -51,3 +51,34 @@ Public MP4/WebM and supported audio downloads are cached locally in ignored `.ze
 Validated with controlled post responses and generated photo/portrait/video/tone fixtures: keep/remove/restore, linked sizing and flip, bullet centering, portrait reflow, multi-file uploads, video playback/pause/seeking, separate audio and hidden-video audio. The recorded WebM contained audible audio with sound enabled and no audio track when disabled. Sixteen importer tests passed, including media caching, file limits and byte-range responses. Existing font/name/import checks passed. The actual Facebook post remains unverified because of the cloud network restriction.
 
 Developer media smoke test: `python tests/browser_media_check.py` (requires Playwright, Chromium and FFmpeg/ffprobe). Fixtures are generated colored frames and synthetic sine tones, not user media.
+
+## Reference motion, safe area, and colors (Beta 2.4)
+
+Reference Match is now the default. The nested source frame uses frame-sampled monotone Hermite curves from the embedded 960×540, 25 fps proxy. Logo/avatar construction and handle timing were recalibrated, and Arabic line-reveal windows were measured from the reference. Every gray/white mask grows independently rather than switching a full rectangle on.
+
+The measured source outer-width mean absolute error over frames 17–30 improved from 15.36 proxy pixels in the preceding renderer to 0.14 pixels. This is a single source-geometry metric; it is not a full-scene pixel-match score. Content scale between sampled frames, native AE interpolation, fonts/layout under edited content, original background motion, and full-resolution fidelity are not fully verified. The newly uploaded full reference exceeded the tool's 32 MiB transfer limit, so validation used the existing proxy. Observations and measured results are in `references/motion_observations_25fps.json` and `references/motion_validation.json`.
+
+The user's 1920×1080 on-air guide shows the lower third beginning at approximately y=847. Protection is on by default with a 24 px gap, 152 px top clearance below the channel bug, and symmetric 79 px side margins. **Guides & safe areas** exposes the regular and breaking-news top edges, top clearance, and gap. Both presets initially use the supplied guide boundary; set the breaking-news edge higher if its strap is taller. Foreground groups fit together inside the available area, including when dragged/scaled, flipped, or centered. The safe-area overlay is preview-only and does not burn into exports. Background loops remain full frame.
+
+Changing the loop automatically selects three main colors: Accent, Panel, and Text. These are editable. **Colors & palette → Individual element colors** provides twelve overrides for frame, inner mask, roll border/ribbon, bullet ribbon/panel/text, name strap/text, account strap/text, and identity borders. Changing a color enables its override. Unticking it resumes palette following; reset restores all links. Bright saturated loop colors are included in sampling, and video intros are sampled for up to three seconds if their initial frame has no usable color. Brand logos and imported photos/video retain their original pixels.
+
+Browser validation covered automatic palette selection from two real file inputs, master edits, persistent overrides, reset, preview-only guides, continuous gray scaling, 151 frames per safety preset, rendered-pixel exclusion of the lower-third band/gap, manual offsets/scales, and the existing font/name/import controls. Media playback, seeking, portrait reflow and audio-enabled/disabled recording checks passed with the revised timing and safe area. The Facebook access limitations remain.
+
+### Mouse editing, fixed header size and preview stability
+
+**Layout & positioning** now includes whole-composition Up/Down/Reset controls and group selection: Account group, Roll + account, Bullet panel, and Select all. Drag a selected group in the preview. Shift-click adds a group; selected subsets move only those groups, and Select all translates the full composition. Roll dragging includes its linked account header. Selection outlines are preview-only and hide during playback/recording. Safe protection clamps movement to the on-air area; switching it off permits unrestricted positioning.
+
+Portrait media no longer scales down the header: the normal identity group remains 432×94 scene units (with its original logo/profile/text sizes) across portrait and landscape sources unless explicitly resized. Within protected layouts, source/bullet content fits the available space separately from the header. Per-group mouse offsets and whole-composition offsets are included in scene JSON.
+
+The renderer retains the last decoded background during decoder starvation and paints a complete scene into a staging canvas before publishing it to the visible/compare canvases. If rendering is interrupted, the prior complete preview is retained with a waiting message. Intentional black frames encoded into a media file are not removed. Tests simulated an unavailable background frame and an interrupted scene render and verified that the visible frame remained unchanged. Layout computation is cached between edits to avoid repeated fitting work during playback.
+
+Paused frame stepping now seeks the reference on every 25 fps step, and frame buttons pause reference playback. This removes the prior multi-frame comparison tolerance while paused.
+
+### Demonstration
+
+- [41-second editor demonstration, with actual post-demo audio (MP4)](demo/ZE_OS_V07_Beta24_Demo.mp4?raw=true)
+- [Actual approximately eight-second editor export, with audio (WebM)](demo/ZE_OS_V07_Beta24_Preview.webm?raw=true)
+
+The demonstration uses generated local gradient/video assets and synthetic tone audio, not a successful live Facebook extraction. It shows category panels, loop-driven palette selection, individual overrides, editable text/media, portrait/landscape layouts, fixed header sizing, flip, bullet hiding, mouse grouping, on-air protection, audio controls and an actual WebM export. The MP4 is 1440×900 H.264/AAC; the actual exported preview is 1920×1080 VP9/Opus. Both have non-silent audio. No full-black preview interval was detected in the demonstration.
+
+Developer checks: the editor/importer browser tests require Playwright and Chromium; media checks also use FFmpeg/ffprobe. Motion-calibration checks additionally require NumPy, SciPy and Pillow. These are development checks, not extra requirements for running the standalone HTML.
