@@ -16,6 +16,7 @@ import socket
 import sys
 import math
 import shutil
+import uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, urljoin
 from html import unescape
@@ -23,6 +24,49 @@ from html import unescape
 ROOT=Path(__file__).resolve().parent
 KNOWN=("x.com","twitter.com","facebook.com","fb.watch","instagram.com","t.me","telegram.me","threads.net")
 IMAGE_HOSTS=("pbs.twimg.com","twimg.com","fbcdn.net","cdninstagram.com","cdninstagram.net","instagram.com","telegram.org","cdn-telegram.org","telesco.pe","telegram-cdn.org","t.me","scontent.cdninstagram.com")
+VIDEO_HOSTS=("video.twimg.com","fbcdn.net","cdninstagram.com","cdninstagram.net","cdn-telegram.org","telegram-cdn.org","telesco.pe")
+MEDIA_ROOT=ROOT/'.ze_media'
+
+
+def video_data(url,kind='video'):
+    """Cache a publicly downloadable MP4/WebM, with bounded size and validated redirects."""
+    import requests
+    url=public_url(url,VIDEO_HOSTS)
+    for _ in range(4):
+        response=requests.get(url,timeout=(8,20),stream=True,allow_redirects=False)
+        if response.status_code in (301,302,303,307,308):
+            location=response.headers.get('Location','');response.close()
+            url=public_url(urljoin(url,location),VIDEO_HOSTS)
+            continue
+        break
+    else: raise RuntimeError('Video redirected too many times')
+    with response:
+        if response.status_code!=200: raise RuntimeError(f'Video returned HTTP {response.status_code}')
+        mime=response.headers.get('content-type','').split(';')[0].lower()
+        extensions={'video/mp4':'.mp4','video/webm':'.webm'} if kind=='video' else {'audio/mpeg':'.mp3','audio/mp4':'.m4a','audio/ogg':'.ogg','audio/webm':'.webm','audio/wav':'.wav','audio/x-wav':'.wav'}
+        if mime not in extensions: raise RuntimeError('No supported public '+kind+' file was provided')
+        limit=40*1024*1024
+        if int(response.headers.get('content-length','0'))>limit: raise RuntimeError('Video exceeds the 40 MiB import limit; add a trimmed file locally')
+        MEDIA_ROOT.mkdir(exist_ok=True)
+        path=MEDIA_ROOT/(uuid.uuid4().hex+extensions[mime])
+        try:
+            size=0
+            with path.open('xb') as output:
+                for chunk in response.iter_content(65536):
+                    size+=len(chunk)
+                    if size>limit: raise RuntimeError('Video exceeds the 40 MiB import limit; add a trimmed file locally')
+                    output.write(chunk)
+            if not size: raise RuntimeError('Video was empty')
+        except Exception:
+            path.unlink(missing_ok=True)
+            raise
+    return {'type':kind,'url':'/.ze_media/'+path.name,'mime':mime}
+
+
+def attach_public_video(output,url):
+    if not url: return
+    try: output.setdefault('attachments',[]).append(video_data(url))
+    except Exception as ex: output.setdefault('media_warnings',[]).append('Video unavailable: '+str(ex)[:160])
 
 
 def allowed(host, patterns):
@@ -105,6 +149,14 @@ def fetch_x_post(url):
     output['media_items'] = [pic for pic in (image_data(photo.get('url')) for photo in photos[:4]) if pic]
     if output['media_items']:
         output['media_data'] = output['media_items'][0]
+    output['attachments']=[{'type':'image','data_url':item} for item in output['media_items']]
+    video=data.get('video') or {}
+    variants=video.get('variants') or []
+    playable=[v for v in variants if v.get('type',v.get('content_type'))=='video/mp4' and (v.get('src') or v.get('url'))]
+    if playable:
+        chosen=min(playable,key=lambda v:abs((v.get('bitrate') or 1000000)-1500000))
+        attach_public_video(output,chosen.get('src') or chosen.get('url'))
+    elif video: output.setdefault('media_warnings',[]).append('The post has video but no publicly downloadable MP4. Add the original file locally.')
     return output
 
 
@@ -180,6 +232,16 @@ def fetch_metadata(url):
         raise RuntimeError(x_failure)
     if image:
         output['media_data']=image_data(image)
+    if output.get('media_data'):
+        output['attachments']=[{'type':'image','data_url':output['media_data']}]
+    video_url=meta('og:video:secure_url','og:video:url','og:video')
+    if video_url:
+        output['attachments']=[]  # OG image is the video's poster, not a separate photo.
+        attach_public_video(output,video_url)
+    audio_url=meta('og:audio:secure_url','og:audio')
+    if audio_url:
+        try: output.setdefault('attachments',[]).append(video_data(audio_url,'audio'))
+        except Exception as ex: output.setdefault('media_warnings',[]).append('Audio unavailable: '+str(ex)[:160])
     og_icon=meta('twitter:creator')
     if og_icon and not output['handle']: output['handle']=og_icon.lstrip('@')
     # For Telegram publicly rendered posts, the sender avatar is directly accessible as CSS background.
@@ -244,6 +306,16 @@ def screenshot_public_post(url):
                 if len(pic) >= 4_000_000:
                     return {'capture_error': 'The post screenshot is too large. Import a cropped screenshot manually.'}
                 extracted = {'screenshot_data': 'data:image/png;base64,'+base64.b64encode(pic).decode()}
+                # Keep attachments separate from the flattened screenshot where the page exposes them.
+                extracted['attachments']=[]
+                image_urls=loc.locator('img').evaluate_all('(nodes)=>nodes.filter(im=>im.naturalWidth>=240 && im.naturalHeight>=120 && !im.closest("header,h2,h3")).map(im=>im.currentSrc||im.src).slice(0,8)')
+                for media_url in dict.fromkeys(image_urls):
+                    image=image_data(media_url)
+                    if image: extracted['attachments'].append({'type':'image','data_url':image})
+                videos=loc.locator('video').evaluate_all('(nodes)=>nodes.map(v=>v.currentSrc||v.src||v.querySelector("source")?.src||"").slice(0,2)')
+                for media_url in dict.fromkeys(videos):
+                    if media_url.startswith('https://'): attach_public_video(extracted,media_url)
+                    else: extracted.setdefault('media_warnings',[]).append('Video is visible but its original file is not publicly downloadable. Add it locally.')
                 # Missing author information must not discard an otherwise valid post screenshot.
                 try:
                     author_selectors = {'X': '[data-testid="User-Name"] a', 'Facebook': 'h2 a, h3 a, strong a', 'Instagram': 'header a', 'Telegram': '.tgme_widget_message_author_name', 'Threads': 'header a'}
@@ -269,14 +341,46 @@ def screenshot_public_post(url):
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*a,**kw):super().__init__(*a,directory=str(ROOT),**kw)
+    def _send_media(self,path):
+        if not path.is_file():self.send_error(404);return
+        size=path.stat().st_size;start=0;end=size-1;partial=False
+        requested=self.headers.get('Range')
+        if requested:
+            match=re.fullmatch(r'bytes=(\d*)-(\d*)',requested)
+            if not match or not any(match.groups()):self.send_error(416);return
+            first,last=match.groups()
+            if first:start=int(first);end=min(int(last),end) if last else end
+            else:start=max(0,size-int(last))
+            if start>=size or end<start:
+                self.send_response(416);self.send_header('Content-Range',f'bytes */{size}');self.end_headers();return
+            partial=True
+        self.send_response(206 if partial else 200)
+        self.send_header('Content-Type',mimetypes.guess_type(path.name)[0] or 'application/octet-stream')
+        self.send_header('Accept-Ranges','bytes')
+        self.send_header('Content-Length',str(end-start+1))
+        if partial:self.send_header('Content-Range',f'bytes {start}-{end}/{size}')
+        self.end_headers()
+        try:
+            with path.open('rb') as source:
+                source.seek(start);remaining=end-start+1
+                while remaining:
+                    chunk=source.read(min(65536,remaining))
+                    if not chunk:break
+                    self.wfile.write(chunk);remaining-=len(chunk)
+        except (BrokenPipeError,ConnectionResetError):pass
     def do_OPTIONS(self):
         self.send_response(204)
         self.send_header('Access-Control-Allow-Methods','GET, OPTIONS')
         self.send_header('Access-Control-Allow-Headers','Content-Type')
         self.end_headers()
     def do_GET(self):
+        media_path=urlparse(self.path).path
+        if media_path.startswith('/.ze_media/'):
+            filename=media_path.removeprefix('/.ze_media/')
+            if not re.fullmatch(r'[a-f0-9]{32}\.(mp4|webm|mp3|m4a|ogg|wav)',filename):self.send_error(404);return
+            return self._send_media(MEDIA_ROOT/filename)
         if urlparse(self.path).path == '/api/health':
-            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.1'}).encode()
+            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.3'}).encode()
             self.send_response(200)
             self.send_header('Content-Type','application/json')
             self.send_header('Content-Length',str(len(payload)))
@@ -295,7 +399,12 @@ class Handler(SimpleHTTPRequestHandler):
                 data={'url':url,'platform':platform_for(url),'status':'partial'}
             screen=screenshot_public_post(url)
             if screen and screen.get('screenshot_data'):
-                data.update({key:value for key,value in screen.items() if value})
+                attachments=data.get('attachments',[])
+                warnings=data.get('media_warnings',[])
+                data.update({key:value for key,value in screen.items() if value and key not in ('attachments','media_warnings')})
+                # Prefer real post attachments found in the browser over an OG thumbnail.
+                data['attachments']=screen.get('attachments') or attachments
+                data['media_warnings']=warnings+screen.get('media_warnings',[])
                 data['status']='captured'
             elif failure:
                 detail=(screen or {}).get('capture_error','Capture did not return a screenshot.')

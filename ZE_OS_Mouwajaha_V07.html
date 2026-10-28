@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>ZE OS — Mouwajaha Roll V0.7 · Test Beta 2.2</title>
+<title>ZE OS — Mouwajaha Roll V0.7 · Test Beta 2.3</title>
 <style>
 :root{--bg:#09090c;--pane:#151217;--pane2:#20191f;--edge:#3b2930;--red:#b12035;--hot:#e04455;--text:#f6f1f2;--muted:#ad9ca5;--gold:#e5afb0}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:13px}button,input,textarea,select{font:inherit}button{color:#eee;background:#282027;border:1px solid #5b343f;border-radius:9px;padding:9px 12px;cursor:pointer}button:hover{border-color:#bc3b52;background:#39232d}button.primary{background:linear-gradient(135deg,#9d1428,#e24252);color:white;font-weight:700;border-color:#d33a4e}button:disabled{opacity:.45;cursor:not-allowed}.app{height:100vh;display:grid;grid-template-rows:58px minmax(0,1fr) 150px}.top{display:flex;align-items:center;gap:16px;padding:0 21px;background:#100e11;border-bottom:1px solid var(--edge)}.mark{width:36px;height:36px;border-radius:10px;background:#bc2035;display:grid;place-items:center;font-weight:1000;font-size:15px;box-shadow:0 0 24px #e2223c44}.logo{font-size:17px;font-weight:950;letter-spacing:-.7px}.logo small{display:block;font-size:10px;font-weight:700;letter-spacing:2px;color:#d98a97}.topmeta{color:#a8999e;font-size:11px;border-left:1px solid #55333f;padding-left:15px}.top .grow{flex:1}.status{color:#ed9ba6;font-size:11px;border:1px solid #66333d;padding:7px 11px;border-radius:18px;background:#2b151c}.stage{min-width:0;display:grid;grid-template-columns:314px minmax(0,1fr) 310px;overflow:hidden}.sidebar{background:var(--pane);overflow:auto;border-right:1px solid var(--edge);padding:18px 15px}.sidebar.right{border-right:0;border-left:1px solid var(--edge);background:#120f14}.paneltitle{font-size:10px;letter-spacing:1.7px;color:#d65b71;text-transform:uppercase;font-weight:900;margin:8px 0 13px}.section{padding:0 0 16px;margin:0 0 15px;border-bottom:1px solid #34252d}.section:last-child{border:0}.label{font-weight:700;font-size:11px;color:#dbc9cc;margin:10px 0 6px;display:block}input[type=text],input[type=url],textarea,select{background:#211a21;border:1px solid #49303a;color:#fff;padding:10px;width:100%;border-radius:9px;outline:0}textarea{resize:vertical;min-height:94px;line-height:1.6;direction:rtl}input:focus,textarea:focus,select:focus{border-color:#d34860}.micro{font-size:11px;line-height:1.55;color:#b5a3ad}.row{display:flex;align-items:center;gap:8px}.row>*{min-width:0}.row .fill{flex:1}.check{display:flex;align-items:center;gap:7px;color:#ddd;font-size:12px;margin:9px 0}.check input{accent-color:#dd3f53}.pill{padding:6px 10px;background:#37202b;border-radius:20px;color:#ffc6ce;font-size:11px}.center{padding:18px 22px;overflow:auto;min-width:0;background:radial-gradient(ellipse at top,#27141b,#09090c 72%)}.viewtabs{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}.viewtabs button{border-radius:7px;padding:8px 11px;background:#19151c}.viewtabs button.active{background:#832133;border-color:#b83951}.viewer{border:1px solid #6a343e;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 20px 100px #000a}.display{width:100%;aspect-ratio:16/9;position:relative;background:#050505}.display canvas{display:block;width:100%;height:100%;object-fit:contain;background:black}.display video{width:100%;height:100%;object-fit:contain}.twoup{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}.twoup .display{border:1px solid #512b36}.overlabel{position:absolute;top:9px;left:9px;font-size:10px;letter-spacing:1px;background:#08080dc7;padding:6px 9px;border-radius:5px;color:#f8d5d9}.underbar{padding:12px 14px;background:#151116;display:flex;gap:11px;align-items:center;flex-wrap:wrap}.underbar .time{font-family:Consolas,monospace;color:#fdd0d6}.small{font-size:11px}.spacer{flex:1}.legend{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}.legend span{color:#bbb0b3;font-size:11px}.legend b{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:middle}.stat{background:#1c161d;border:1px solid #3b2830;border-radius:10px;padding:13px;margin:9px 0}.stat strong{display:block;font-size:13px;color:#fff}.stat small{display:block;margin-top:5px;font-size:11px;color:#ac9ba4;line-height:1.5}.kv{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid #30212a}.kv:last-child{border:0}.kv b{font-size:12px}.kv span{font:12px Consolas,monospace;color:#f6abb8}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.metric{padding:9px 4px;border:1px solid #51343c;border-radius:8px;text-align:center;color:#dfadba;font-size:10px}.metric b{display:block;color:white;font-size:15px;padding-bottom:4px}.bottom{border-top:1px solid #61313d;background:#110e13;padding:11px 20px}.transport{display:flex;gap:7px;align-items:center}.transport button{padding:7px 12px}.scrub{flex:1;accent-color:#d83a50;min-width:80px}.track{height:28px;margin-top:10px;border-radius:6px;background:#332128;position:relative;overflow:hidden;border:1px solid #57333c}.track .bar{position:absolute;inset:0 0 0 0;background:linear-gradient(to right,#561827,#4b1b2a 7%,#26212b 16%,#211c27 100%)}.event{position:absolute;top:0;bottom:0;border-left:1px solid #f88e9e;opacity:.85}.event label{position:absolute;left:3px;top:5px;white-space:nowrap;font-size:9px;color:#f6e5e7}.head{width:2px;background:#fffaab;box-shadow:0 0 9px #ffe3a1;position:absolute;top:0;bottom:0}.timelinelegend{display:flex;justify-content:space-between;color:#887780;font:10px Consolas,monospace;margin-top:5px}.filetag{display:block;color:#eab4bc;font-size:10px;line-height:1.5;word-break:break-all}.note{background:#271921;border-left:3px solid #da4359;border-radius:6px;padding:10px;font-size:11px;color:#e1cdd2;line-height:1.7}.op{text-transform:uppercase;letter-spacing:.8px;font-size:10px;color:#ac8b99}.kbd{font:11px Consolas,monospace;color:#ffccd3}.mute{color:#af9ca4}.warn{background:#30221a;border:1px solid #8a5b34;border-radius:7px;padding:9px;color:#f5d3ab;font-size:11px;line-height:1.6}.btnrow{display:flex;flex-wrap:wrap;gap:6px}@media(max-width:1200px){.stage{grid-template-columns:255px minmax(0,1fr) 235px}.center{padding:12px}.sidebar{padding:12px}}@media(max-width:850px){.app{height:auto;min-height:100vh;grid-template-rows:55px auto 160px}.stage{display:flex;flex-direction:column}.center{order:0}.sidebar{order:1;max-height:500px}.sidebar.right{order:2;max-height:none}.topmeta{display:none}.twoup{grid-template-columns:1fr}.top{gap:8px;padding:8px}}
@@ -55,12 +55,20 @@
  .transport .kbd{white-space:nowrap}.event label{display:none}
 }
 
+.post-media-item{display:flex;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #49303a;font-size:11px;overflow-wrap:anywhere}.post-media-item input{accent-color:#dd3f53;flex:none}
 </style>
 </head>
 <body>
-<div class="app"><header class="top"><div class="mark">ZE</div><div class="logo">ZERO GRAPHICS OS<small>MOUWAJAHA · V0.7 · TEST BETA 2.2</small></div><div class="topmeta">PROJECT 11 · MOUWAJAHA / PIXEL-REFERENCE</div><div class="grow"></div><div class="status">MOTION STUDY · NOT BROADCAST APPROVED</div></header>
+<div class="app"><header class="top"><div class="mark">ZE</div><div class="logo">ZERO GRAPHICS OS<small>MOUWAJAHA · V0.7 · TEST BETA 2.3</small></div><div class="topmeta">PROJECT 11 · MOUWAJAHA / PIXEL-REFERENCE</div><div class="grow"></div><div class="status">MOTION STUDY · NOT BROADCAST APPROVED</div></header>
 <main class="stage">
-<aside class="sidebar"><div class="paneltitle">Editor controls</div><details class="control-panel" data-panel="import" open id="linkImport"><summary><span>Post import</span><svg class="panel-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></summary><div class="panel-content"><label class="label">Public X / Facebook / Instagram / Telegram post URL</label><input autocomplete="off" id="postUrl" placeholder="https://x.com/account/status/…" spellcheck="false" type="url"/><div class="row" style="margin-top:8px"><button class="primary" id="importPost" type="button">Detect &amp; import post</button><button id="makeSamplePost" type="button">Generate sample card</button></div><div class="micro" id="importStatus" style="padding-top:9px">The platform and account can be recognized from a link offline. Fetching the live post, profile photo and media requires the included local importer and a publicly accessible post.</div><div class="micro" id="importerConnection" role="status" style="padding:9px 0">Local importer · connection not checked</div><div class="row"><button id="checkImporter" type="button">Check importer connection</button><button hidden="" id="openImporter" type="button">Open local editor</button></div><label class="check"><input checked="" id="replaceSourceFromPost" type="checkbox"/>Use imported post in the roll</label></div></details><details class="control-panel" data-panel="content"><summary><span>Source &amp; bulletin</span><svg class="panel-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></summary><div class="panel-content"><label class="label">Source account</label><input id="account" type="text" value="@blame_d_cat"/><label class="label">Display name</label><input id="displayname" type="text" value="xpos"/><label class="label">Arabic bulletin (paragraphs separated by a blank line)</label><textarea id="bullets" rows="7">وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.
+<aside class="sidebar"><div class="paneltitle">Editor controls</div><details class="control-panel" data-panel="import" open id="linkImport"><summary><span>Post import</span><svg class="panel-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></summary><div class="panel-content"><label class="label">Public X / Facebook / Instagram / Telegram post URL</label><input autocomplete="off" id="postUrl" placeholder="https://x.com/account/status/…" spellcheck="false" type="url"/><div class="row" style="margin-top:8px"><button class="primary" id="importPost" type="button">Detect &amp; import post</button><button id="makeSamplePost" type="button">Generate sample card</button></div><div class="micro" id="importStatus" style="padding-top:9px">The platform and account can be recognized from a link offline. Fetching the live post, profile photo and media requires the included local importer and a publicly accessible post.</div><div class="micro" id="importerConnection" role="status" style="padding:9px 0">Local importer · connection not checked</div><div class="row"><button id="checkImporter" type="button">Check importer connection</button><button hidden="" id="openImporter" type="button">Open local editor</button></div><label class="check"><input checked="" id="replaceSourceFromPost" type="checkbox"/>Use imported post in the roll</label></div></details><details class="control-panel" data-panel="postmedia"><summary><span>Post photos, video &amp; audio</span><svg class="panel-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></summary><div class="panel-content">
+<label class="label" for="postContentMode">Roll content</label><select id="postContentMode"><option value="all">Post text and selected media</option><option value="media">Selected media only</option><option value="text">Text only</option></select>
+<label class="check"><input id="postPhotos" type="checkbox" checked>Include photos</label><label class="check"><input id="postVideos" type="checkbox" checked>Include videos</label>
+<div id="postMediaList"></div><label class="check"><input id="postAudio" type="checkbox">Include post audio (when available)</label><p class="micro">Audio can remain when video is hidden. Uncheck an individual media item to remove both its picture and sound.</p><label class="label" for="postVolume">Audio volume</label><input id="postVolume" type="range" min="0" max="100" value="100" style="width:100%">
+<label class="label" for="postBody">Post text</label><textarea id="postBody" rows="4"></textarea>
+<label class="check"><input id="postScreenshot" type="checkbox" disabled>Use original captured screenshot</label>
+<label class="label" for="postFiles">Add original photos, video or audio</label><input id="postFiles" type="file" accept="image/*,video/*,audio/*" multiple>
+<p class="micro" id="postMediaStatus" role="status">Import a post or add media files. Unchecking an item removes it from the roll and keeps it available to restore. Media inside a flattened screenshot cannot be edited separately.</p></div></details><details class="control-panel" data-panel="content"><summary><span>Source &amp; bulletin</span><svg class="panel-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></summary><div class="panel-content"><label class="label">Source account</label><input id="account" type="text" value="@blame_d_cat"/><label class="label">Display name</label><input id="displayname" type="text" value="xpos"/><label class="label">Arabic bulletin (paragraphs separated by a blank line)</label><textarea id="bullets" rows="7">وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.
 
 يشكل المسلمون نحو 6% من سكان أوروبا، ونحو 9 إلى 10% من سكان فرنسا
 
@@ -127,20 +135,20 @@ function headerLayout(ctx){
  ctx.font=font(18,/[\u0600-\u06ff]/.test(handle));let hw=ctx.measureText(handle).width+16;ctx.restore();
  const maxWidth=Math.max(40,R.identity.w-pw-aw-gap*3-8);
  nw=clamp(nw,40,maxWidth);hw=clamp(hw,40,maxWidth);
- const reflect=(x,w)=>flipped()?R.identity.x+R.identity.w-(x-R.identity.x)-w:x;
+ const reflect=(x,w)=>zeHeaderFlipped()?R.identity.x+R.identity.w-(x-R.identity.x)-w:x;
  const px=R.identity.x+4,ax=px+pw+gap,nx=ax+aw+gap;
  return {platform:{x:reflect(px,pw),y:86+(58-pw)/2,w:pw,h:pw},avatar:{x:reflect(ax,aw),y:76+(80-aw)/2,w:aw,h:aw},
  name:{x:reflect(nx,nw),y:90,w:nw,h:31},handle:{x:reflect(nx,hw),y:125,w:hw,h:26},nameText:name,handleText:handle,font,arabic};
 }
 function headerLabel(ctx,b,text,font,t,a,btime,black){
  const p=when(t,a,btime);if(p<=0)return;
- const x=flipped()?b.x+b.w-b.w*p:b.x;
+ const x=zeHeaderFlipped()?b.x+b.w-b.w*p:b.x;
  rr(ctx,x,b.y,b.w*p,b.h,4,black?'#252227':'#f9f8f8');
  ctx.save();ctx.beginPath();ctx.rect(x,b.y,b.w*p,b.h);ctx.clip();ctx.globalAlpha=when(t,a+.10,btime+.10);
- ctx.font=font;const measured=ctx.measureText(text).width;if(measured>b.w-16){const ratio=Math.max(.75,(b.w-16)/measured);ctx.font=font.replace(/([\d.]+)px/,(match,size)=>(+size*ratio)+'px')}ctx.fillStyle=black?'#fff':'#201e23';ctx.textAlign=flipped()?'right':'left';ctx.direction=/[\u0600-\u06ff]/.test(text)?'rtl':'ltr';
+ ctx.font=font;const measured=ctx.measureText(text).width;if(measured>b.w-16){const ratio=Math.max(.75,(b.w-16)/measured);ctx.font=font.replace(/([\d.]+)px/,(match,size)=>(+size*ratio)+'px')}ctx.fillStyle=black?'#fff':'#201e23';ctx.textAlign=zeHeaderFlipped()?'right':'left';ctx.direction=/[\u0600-\u06ff]/.test(text)?'rtl':'ltr';
  let label=text;while(ctx.measureText(label).width>b.w-16&&label.length>1)label=Array.from(label).slice(0,-1).join('');
  if(label!==text){while(ctx.measureText(label+'…').width>b.w-16&&label.length>1)label=Array.from(label).slice(0,-1).join('');label+='…'}
- ctx.fillText(label,flipped()?b.x+b.w-8:b.x+8,b.y+b.h/2);ctx.restore();
+ ctx.fillText(label,zeHeaderFlipped()?b.x+b.w-8:b.x+8,b.y+b.h/2);ctx.restore();
 }
 function identity(ctx,t){
  const l=headerLayout(ctx),p=l.platform,a=l.avatar;
@@ -364,7 +372,7 @@ $('still').onclick=()=>{draw();cvs.toBlob(b=>{if(b)save('ZE_OS_Mouwajaha_frame_'
 $('saveJson').onclick=()=>{const value={type:'ZE_OS_ROLL_RECONSTRUCTION',version:'0.6',reference:'ali.aep / blame roll.mp4',width:1920,height:1080,fps:25,sourceAccount:$('account').value,displayName:$('displayname').value,bulletParagraphs:$('bullets').value,showBullets:$('showBullets').checked,flipped:flipped(),speed:state.speed,layerPositions:state.layers,platformScale:val('platformScale'),avatarScale:val('avatarScale'),labelScale:val('labelScale'),fontSize:val('fontSize'),arabicJustification:{mode:$('justifyMode').value,kashidaStrength:val('kashidaStrength')},hasSTV:state.stvLoaded,palette:{accent:col('accentColor'),panel:col('panelColor'),text:col('textColor')},timeOffsets:{identity:val('headerTiming'),source:val('sourceTiming'),bullet:val('bulletTiming')},scroll:{start:val('scrollStart'),duration:val('scrollDuration'),distance:val('scrollDistance')},notes:'Source assets are selected locally. Motion timings are frame-measured from render; not yet recovered from AE keyframes.'};save('ZE_OS_Mouwajaha_precision_scene.json',new Blob([JSON.stringify(value,null,2)],{type:'application/json'}))};
 $('reset').onclick=()=>location.reload();
 $('record').onclick=async()=>{if(state.recording)return;if(!cvs.captureStream||typeof MediaRecorder==='undefined'){alert('Browser does not support canvas recording');return};state.recording=true;const btn=$('record');btn.disabled=true;btn.textContent='Recording 8-second sequence…';state.playing=false;setT(0);
-try{let stream=cvs.captureStream(25);const typ=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'video/webm';let rec=new MediaRecorder(stream,{mimeType:typ,videoBitsPerSecond:7500000}),pieces=[];rec.ondataavailable=e=>{if(e.data.size)pieces.push(e.data)};let done=new Promise(res=>rec.onstop=res);rec.start();let start=performance.now();await new Promise(resolve=>{const tick=()=>{let s=(performance.now()-start)/1000;setT(Math.min(s,8));if(s<8)requestAnimationFrame(tick);else resolve()};requestAnimationFrame(tick)});rec.stop();await done;save('ZE_OS_Mouwajaha_reconstructed_entrance.webm',new Blob(pieces,{type:typ}));stream.getTracks().forEach(x=>x.stop())}catch(err){alert('Browser recording error: '+err.message)}finally{state.recording=false;btn.disabled=false;btn.textContent='Record preview (WebM)';setT(0)}};
+try{await zePrepareAudio();let stream=cvs.captureStream(25);zeAddRecordedAudio(stream);const typ=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'video/webm';let rec=new MediaRecorder(stream,{mimeType:typ,videoBitsPerSecond:7500000}),pieces=[];rec.ondataavailable=e=>{if(e.data.size)pieces.push(e.data)};let done=new Promise(res=>rec.onstop=res);rec.start();let start=performance.now();await new Promise(resolve=>{const tick=()=>{let s=(performance.now()-start)/1000;setT(Math.min(s,8));if(s<8)requestAnimationFrame(tick);else resolve()};requestAnimationFrame(tick)});rec.stop();await done;save('ZE_OS_Mouwajaha_reconstructed_entrance.webm',new Blob(pieces,{type:typ}));stream.getTracks().forEach(x=>x.stop())}catch(err){alert('Browser recording error: '+err.message)}finally{state.recording=false;btn.disabled=false;btn.textContent='Record preview (WebM)';setT(0)}};
 // Keyboard transport shortcuts
 window.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select,button,summary,a,[contenteditable="true"]'))return;if(e.code==='Space'){e.preventDefault();$('play').click()}if(e.code==='ArrowRight')$('stepFwd').click();if(e.code==='ArrowLeft')$('stepBack').click()});
 
@@ -718,25 +726,26 @@ $('importPost').onclick=async()=>{
  try{
   await zeCheckImporter();
   zeSetStatus('Importer connected. Reading the public '+d.platform+' post…',true);
-  const ctrl=new AbortController();timer=setTimeout(()=>ctrl.abort(),60000);
+  const ctrl=new AbortController();timer=setTimeout(()=>ctrl.abort(),180000);
   const response=await fetch(zeImporterBase()+'/api/post?url='+encodeURIComponent(d.url),{signal:ctrl.signal});
   let data;try{data=await response.json()}catch{throw new Error('The importer returned an invalid response. Restart START_ZE_OS.bat from the Beta 2 folder.')}
   if(!response.ok||data.error)throw new Error(data.error||('Post import returned HTTP '+response.status));
-  const hasPost=data.screenshot_data||data.text||data.title||data.media_data||data.media_items?.length;
+  const hasPost=data.screenshot_data||data.text||data.title||data.media_data||data.media_items?.length||data.attachments?.length;
   if(!hasPost)throw new Error('The platform did not return readable post content. Use a public post or upload the original screenshot.');
   // Decode everything before changing the scene so an unavailable importer cannot blank it.
   let avatar=null,avatarWarning='';
   if(data.avatar_data){try{avatar=await zeReadPostImage(data.avatar_data)}catch{avatarWarning='Profile photo could not be loaded. '}}
-  const source=$('replaceSourceFromPost').checked?(data.screenshot_data?await zeReadPostImage(data.screenshot_data):await zeBuildImportedPost(data)):null;
+  const prepared=$('replaceSourceFromPost').checked?await zePreparePost(data):null;
+  const source=prepared?(prepared.screenshot||await zeBuildImportedPost({...data,media_items:[],media_data:null})):null;
   zeApplyDetection(d);
   $('displayname').value=data.name||d.account||'';
   const handle=data.handle||d.account||'';$('account').value=handle?(handle.startsWith('@')?handle:'@'+handle):'';
   assets.avatar=avatar;
-  if(source){assets.source=source;assets.sourceBottom=null}
+  if(source){assets.source=source;assets.sourceBottom=null;zeCommitPost(prepared)}
   const missing=[];
   if(!avatar)missing.push('profile photo');if(!data.name)missing.push('display name');
   const details=(missing.length?'Unavailable: '+missing.join(', ')+'. Set these manually. ':'')+avatarWarning;
-  zeSetStatus((data.screenshot_data?'Original post capture loaded. ':'Available post text/images loaded as an imported card. ')+details+(data.capture_warning?' Screenshot: '+data.capture_warning+' ':'')+'Verify against the source.',!missing.length);
+  zeSetStatus((prepared?($('postScreenshot').checked?'Original post capture loaded. ':'Editable post text and selected media loaded. '):'Post account details loaded. ')+details+(data.capture_warning?' Screenshot: '+data.capture_warning+' ':'')+'Verify against the source.',!missing.length);
   draw();
  }catch(error){
   let message=error.message;
@@ -792,11 +801,148 @@ $('backgroundFile').onchange=e=>{
  }else{img(url,im=>{state.customBackground=im;state.bgKind='image';const color=zeAnalyzeColors(im);if(color)zeSetPalette(color);draw()})}
 };
 // Export current baseline plus the additional user-approved controls.
-$('saveJson').onclick=()=>{let data={product:'ZERO GRAPHICS OS',version:'0.7-focused',project:'Mouwajaha Roll',designMode:zeMotion.mode,sourceUrl:zeSolo.postUrl,platform:zeSolo.postPlatform,account:$('account').value,displayname:$('displayname').value,showBullets:!zeNoBullets(),bullets:$('bullets').value,flipped:flipped(),soloWidth:$('soloWidth').value,soloFit:$('soloFit').value,positions:structuredClone(state.layers),backgroundAutoPalette:$('autoPalette').checked,colors:{accent:$('accentColor').value,panel:$('panelColor').value,text:$('textColor').value},typography:{font:'STV',loaded:state.stvLoaded,justify:$('justifyMode').value,kashida:val('kashidaStrength')},motion:{strength:zeMotion.intensity,animatedCorners:$('animatedCorners').checked,lightSweeps:$('lightSweeps').checked,ambientMotion:$('ambientMotion').checked}};
+$('saveJson').onclick=()=>{let data={product:'ZERO GRAPHICS OS',version:'0.7-focused',project:'Mouwajaha Roll',designMode:zeMotion.mode,sourceUrl:zeSolo.postUrl,platform:zeSolo.postPlatform,account:$('account').value,displayname:$('displayname').value,showBullets:!zeNoBullets(),bullets:$('bullets').value,flipped:flipped(),soloWidth:$('soloWidth').value,soloFit:$('soloFit').value,positions:structuredClone(state.layers),postMedia:zePost.active?{text:$('postBody').value,mode:$('postContentMode').value,photos:$('postPhotos').checked,videos:$('postVideos').checked,audio:$('postAudio').checked,volume:val('postVolume'),items:zePost.items.map(item=>({type:item.type,name:item.label,included:item.enabled})),note:'Reattach original media files when reopening on another computer.'}:null,backgroundAutoPalette:$('autoPalette').checked,colors:{accent:$('accentColor').value,panel:$('panelColor').value,text:$('textColor').value},typography:{font:'STV',loaded:state.stvLoaded,justify:$('justifyMode').value,kashida:val('kashidaStrength')},motion:{strength:zeMotion.intensity,animatedCorners:$('animatedCorners').checked,lightSweeps:$('lightSweeps').checked,ambientMotion:$('ambientMotion').checked}};
  save('ZE_OS_Mouwajaha_V07_Focused_Project.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}))};
 $('showBullets').checked=true;
 zeSetStatus('Paste a public post URL. Run START_ZE_OS.bat to enable live import.');
 Promise.all([document.fonts.load('700 21px ZEOSSTV'),document.fonts.load('400 21px ZEOSSTV')]).then(()=>{state.stvLoaded=true;$('stvStatus').textContent='STV Regular + Bold loaded · local beta';draw()});
 draw();
+
+/* V0.7 post media: independent attachments, linked layout, and timeline audio. */
+const zePost={active:false,data:{},items:[],screenshot:null,doc:null,blocks:[],audio:null,mixer:null,recordBus:null};
+function zeHeaderFlipped(){return state.postActive?!flipped():flipped()}
+function zeMediaUrl(src){if(src.startsWith('data:')||src.startsWith('blob:'))return src;return new URL(src,(zeImporterBase()||location.origin)+'/').href}
+async function zeDecodeAttachment(raw,index){
+ const type=raw.type||'image',src=zeMediaUrl(raw.data_url||raw.url||'');
+ if(type==='image'){const el=await zeReadPostImage(src);return {type,el,src,enabled:true,label:'Photo '+(index+1)}}
+ const el=document.createElement(type==='audio'?'audio':'video');el.crossOrigin='anonymous';el.preload='auto';el.muted=true;el.playsInline=true;
+ await new Promise((resolve,reject)=>{const timer=setTimeout(()=>{el.removeAttribute('src');el.load();reject(new Error('Media loading timed out'))},15000);el.onloadeddata=()=>{clearTimeout(timer);resolve()};el.onerror=()=>{clearTimeout(timer);reject(new Error('This media file or codec could not be loaded'))};el.src=src});
+ el.onseeked=()=>draw();return {type,el,src,enabled:true,label:(type==='video'?'Video ':'Audio ')+(index+1)};
+}
+async function zePreparePost(data){
+ const list=data.attachments?.length?data.attachments:(data.media_items||(data.media_data?[data.media_data]:[])).map(src=>({type:'image',data_url:src}));
+ const items=[],warnings=[...(data.media_warnings||[])];
+ for(const [index,raw] of list.slice(0,10).entries()){try{items.push(await zeDecodeAttachment(raw,index))}catch(error){warnings.push((raw.type||'Media')+': '+error.message)}}
+ const screenshot=data.screenshot_data?await zeReadPostImage(data.screenshot_data):null;
+ if(!items.length&&!screenshot&&!data.text&&!data.title)throw new Error('No readable post text or media was returned. Add the original media file locally.');
+ return {data,items,screenshot,warnings};
+}
+function zeDisposePost(){for(const item of zePost.items){if(item.type!=='image'){item.el.pause();item.el.removeAttribute('src');item.el.load()}if(item.gain)item.gain.disconnect();if(item.src.startsWith('blob:'))URL.revokeObjectURL(item.src)}}
+function zeCommitPost(prepared){
+ zeDisposePost();Object.assign(zePost,prepared,{active:true});state.postActive=true;
+ $('postBody').value=prepared.data.text||prepared.data.title||'';$('postPhotos').checked=true;$('postVideos').checked=true;$('postContentMode').value='all';
+ $('postScreenshot').checked=!!prepared.screenshot&&!prepared.items.length&&!$('postBody').value;
+ $('postScreenshot').disabled=!prepared.screenshot;
+ $('postAudio').checked=false;
+ zeRefreshMediaList();zeInvalidatePost();
+ $('postMediaStatus').textContent=prepared.warnings.join(' ')||(!prepared.items.length&&prepared.screenshot?'Only a flattened screenshot is available. Add the original media to edit its photos/video separately.':'Choose which media to include. All original items remain available when unchecked.');
+ document.querySelector('[data-panel="postmedia"]').open=true;
+}
+function zeIncludedItems(){return zePost.items.filter(item=>item.enabled&&(item.type==='image'?$('postPhotos').checked:item.type==='video'?$('postVideos').checked:true))}
+function zeVisualItems(){return $('postContentMode').value==='text'?[]:zeIncludedItems().filter(item=>item.type!=='audio')}
+function zeInvalidatePost(){zePost.doc=null;draw()}
+function zeRefreshMediaList(){
+ const list=$('postMediaList');list.replaceChildren();
+ for(const [index,item] of zePost.items.entries()){
+  const row=document.createElement('label');row.className='post-media-item';
+  const check=document.createElement('input');check.type='checkbox';check.checked=item.enabled;check.setAttribute('aria-label','Include '+item.label);
+  check.onchange=()=>{item.enabled=check.checked;$('postScreenshot').checked=false;zeInvalidatePost()};
+  const name=document.createElement('span');name.textContent=item.label+(item.type==='audio'?'':` · ${item.el.videoWidth||item.el.naturalWidth} × ${item.el.videoHeight||item.el.naturalHeight}`);
+  row.append(check,name);list.append(row);
+ }
+}
+function zePostDocument(){
+ if(zePost.doc)return zePost.doc;
+ const canvas=document.createElement('canvas');canvas.width=760;let ctx=canvas.getContext('2d');
+ const text=$('postContentMode').value==='media'?'':$('postBody').value,rtl=/[\u0600-\u06ff]/.test(text);ctx.font=rtl?'30px ZEOSSTV, STV, Tahoma':'30px Arial';
+ const lines=[];if(text.trim())for(const para of text.split('\n')){let line='';for(const word of para.split(/\s+/)){const trial=line?line+' '+word:word;if(ctx.measureText(trial).width>700&&line){lines.push(line);line=word}else line=trial}lines.push(line)}
+ let y=lines.length?34+lines.length*43:14;const blocks=[];
+ for(const item of zeVisualItems()){const w=item.el.videoWidth||item.el.naturalWidth,h=item.el.videoHeight||item.el.naturalHeight;const height=728*h/w;blocks.push({item,x:16,y,w:728,h:height});y+=height+14}
+ canvas.height=Math.max(80,Math.ceil(y+12));ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,760,canvas.height);
+ ctx.font=rtl?'30px ZEOSSTV, STV, Tahoma':'30px Arial';ctx.fillStyle='#1e2430';ctx.direction=rtl?'rtl':'ltr';ctx.textAlign=rtl?'right':'left';
+ lines.forEach((line,index)=>ctx.fillText(line,rtl?730:30,40+index*43));
+ zePost.blocks=blocks;zePost.doc=canvas;return canvas;
+}
+function zeDrawPost(ctx,x,y,w,h,t){
+ const visual=zeVisualItems();if(!$('postScreenshot').checked&&$('postContentMode').value==='media'&&visual.length===1){fit(ctx,visual[0].el,x,y,w,h);return}
+ if($('postScreenshot').checked&&zePost.screenshot){const im=zePost.screenshot;const height=w*im.height/im.width,offset=Math.max(0,height-h)*zeSmooth(clamp((t-val('scrollStart'))/Math.max(.1,val('scrollDuration'))))*val('scrollDistance')/100;ctx.drawImage(im,x,y-offset,w,height);return}
+ const doc=zePostDocument(),height=w*doc.height/doc.width,offset=Math.max(0,height-h)*zeSmooth(clamp((t-val('scrollStart'))/Math.max(.1,val('scrollDuration'))))*val('scrollDistance')/100;
+ ctx.save();ctx.translate(x,y-offset);ctx.scale(w/760,w/760);ctx.drawImage(doc,0,0);
+ for(const block of zePost.blocks){const item=block.item;if(item.type==='video'&&item.el.readyState<2)continue;ctx.drawImage(item.el,block.x,block.y,block.w,block.h)}ctx.restore();
+}
+const zeOldArticleFit=zeArticleFit;
+zeArticleFit=function(ctx,x,y,w,h,t){if(!zePost.active)return zeOldArticleFit(ctx,x,y,w,h,t);ctx.save();roundedClip(ctx,x,y,w,h,5);ctx.fillStyle='#fff';ctx.fillRect(x,y,w,h);zeDrawPost(ctx,x,y,w,h,t);ctx.restore()};
+function zePostBoxes(){
+ let ratio=1;
+ if($('postScreenshot').checked&&zePost.screenshot)ratio=zePost.screenshot.width/zePost.screenshot.height;
+ else {const primary=zeVisualItems()[0];if(primary)ratio=(primary.el.videoWidth||primary.el.naturalWidth)/(primary.el.videoHeight||primary.el.naturalHeight);else ratio=1.15}
+ ratio=clamp(ratio,.45,2.4);
+ const solo=zeNoBullets(),maxW=solo?680:560,w=clamp(340*ratio,220,maxW),h=clamp(w/ratio,220,340);
+ let src={x:solo?(W-w)/2:flipped()?34:926-w,y:156,w,h};
+ const apply=(box,layer)=>{const p=state.layers[layer],k=p.scale;return {x:box.x+(box.w-box.w*k)/2+p.x,y:box.y+(box.h-box.h*k)/2+p.y,w:box.w*k,h:box.h*k}};
+ src=apply(src,'source');
+ const k=Math.min(1,src.w/R.identity.w),hw=R.identity.w*k,hh=R.identity.h*k;
+ const header=apply({x:solo?src.x+(src.w-hw)/2:flipped()?src.x:src.x+src.w-hw,y:src.y-12-hh,w:hw,h:hh},'identity');
+ const bullet=solo?{x:0,y:0,w:0,h:0}:apply({x:flipped()?34+w+26:34,y:156,w:866-w,h},'bullet');
+ return {source:src,identity:header,bullet};
+}
+const zeOldPostBBox=getBBox;
+getBBox=function(name){return zePost.active?zePostBoxes()[name]:zeOldPostBBox(name)};
+function zeAdaptiveBullet(ctx,t){
+ const b=getBBox('bullet');if(!b.w)return;
+ const panel=when(t,1.46,2.01);if(panel<=0)return;
+ ctx.save();ctx.beginPath();ctx.rect(b.x,b.y,b.w,b.h*panel);ctx.clip();rr(ctx,b.x,b.y,b.w,b.h,11,col('panelColor')+'f2');ctx.restore();
+ const accent=when(t,1.67,2.12);rr(ctx,b.x,b.y-12,b.w*accent,7,3,col('accentColor'));
+ if(t<2.05)return;
+ const paragraphs=$('bullets').value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);if(!paragraphs.length)return;
+ const shift=Math.max(0,t-2.06),ix=Math.min(paragraphs.length-1,Math.floor(shift/15.5)),local=shift-ix*15.5;
+ ctx.save();ctx.beginPath();ctx.rect(b.x+12,b.y+10,b.w-24,b.h-20);ctx.clip();ctx.direction='rtl';ctx.textAlign='right';ctx.fillStyle=col('textColor');
+ let size=val('fontSize'),lines,lineH;do{ctx.font=`bold ${size}px ZEOSSTV,STV,Tahoma,Arial`;lines=breakRTL(ctx,paragraphs[ix],b.w-40);lineH=size*1.65;if(lines.length*lineH<=b.h-28||size<=12)break;size-=.5}while(size>=12);
+ for(let i=0;i<lines.length;i++){const reveal=zeCurve(local,i*.43,i*.43+.72);drawJustified(ctx,lines[i],b.x+b.w-20,b.y+size+12+i*lineH,b.w-40,$('justifyMode').value,val('kashidaStrength')/100,reveal,i<lines.length-1)}ctx.restore();
+}
+const zeOldPostCompose=compose;
+compose=function(ctx,t){
+ if(!zePost.active)return zeOldPostCompose(ctx,t);
+ setupCtx(ctx);ctx.fillStyle='#241222';ctx.fillRect(0,0,W,H);
+ const bg=state.customBackground||assets.bg;if(bg&&(!bg.tagName||bg.tagName!=='VIDEO'||bg.readyState>=2))cover(ctx,bg,0,0,W,H);
+ zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t);if(!zeNoBullets())zeAdaptiveBullet(ctx,timed('bulletTiming',timeline(t)));guides(ctx);
+ if($('guides').checked){const box=getBBox(state.selected);if(box.w){ctx.save();ctx.strokeStyle='#f991b2';ctx.strokeRect(box.x,box.y,box.w,box.h);ctx.restore()}}
+};
+async function zePrepareAudio(){
+ if(!$('postAudio').checked)return;
+ if(!zePost.audio){const AudioCtor=window.AudioContext||window.webkitAudioContext;if(!AudioCtor){$('postMediaStatus').textContent='This browser cannot mix post audio.';return}zePost.audio=new AudioCtor();zePost.mixer=zePost.audio.createGain();zePost.mixer.connect(zePost.audio.destination);zePost.recordBus=zePost.audio.createMediaStreamDestination();zePost.mixer.connect(zePost.recordBus)}
+ await zePost.audio.resume();
+ for(const item of zePost.items)if(item.type!=='image'&&!item.gain){const node=zePost.audio.createMediaElementSource(item.el);item.gain=zePost.audio.createGain();node.connect(item.gain);item.gain.connect(zePost.mixer);item.el.muted=false}
+}
+function zeAddRecordedAudio(stream){if($('postAudio').checked&&zePost.active&&zePost.recordBus)for(const track of zePost.recordBus.stream.getAudioTracks())stream.addTrack(track.clone())}
+function zeSyncPostMedia(){
+ const active=zePost.active,selected=new Set(active?zeIncludedItems():[]),time=Math.max(0,timeline(state.t)-val('sourceTiming')-2.12),running=(state.playing||state.recording)&&timeline(state.t)>val('sourceTiming')+2.12;
+ if(zePost.mixer)zePost.mixer.gain.value=$('postAudio').checked?val('postVolume')/100:0;
+ for(const item of zePost.items){if(item.type==='image')continue;const visible=active&&selected.has(item)&&item.type==='video'&&!$('postScreenshot').checked&&$('postContentMode').value!=='text';
+  const audible=active&&item.enabled&&$('postAudio').checked;const included=visible||audible;
+  if(item.gain)item.gain.gain.value=audible?1:0;
+  if(!item.gain)item.el.muted=true;
+  const target=Math.min(time,Number.isFinite(item.el.duration)?Math.max(0,item.el.duration-.02):time);
+  if(included&&!item.el.seeking&&Math.abs(item.el.currentTime-target)>.20)item.el.currentTime=target;
+  item.el.playbackRate=state.speed;
+  if(included&&running&&time<item.el.duration){if(item.el.paused)item.el.play().catch(()=>{})}else if(!item.el.paused)item.el.pause();
+ }
+ requestAnimationFrame(zeSyncPostMedia);
+}
+for(const id of ['postPhotos','postVideos','postContentMode','postBody','postScreenshot'])$(id).addEventListener('input',()=>{if(id!=='postScreenshot')$('postScreenshot').checked=false;zeInvalidatePost()});
+$('postAudio').onchange=()=>zePrepareAudio().catch(error=>{$('postMediaStatus').textContent='Audio could not start: '+error.message});
+const zeOldPlay=$('play').onclick;$('play').onclick=()=>{zePrepareAudio().catch(()=>{});zeOldPlay()};
+async function zeAppendFiles(files,replace=false){
+ const pending=replace||!zePost.active?{data:{text:'',name:$('displayname').value,handle:$('account').value},items:[],screenshot:null,warnings:[]}:null;
+ const added=[],warnings=[];
+ for(const file of files){const type=file.type.startsWith('video/')?'video':file.type.startsWith('audio/')?'audio':file.type.startsWith('image/')?'image':null;if(!type){warnings.push('Unsupported file: '+file.name);continue}const src=URL.createObjectURL(file);try{const item=await zeDecodeAttachment({type,url:src},zePost.items.length+added.length);item.label=file.name;added.push(item)}catch(error){URL.revokeObjectURL(src);warnings.push(file.name+': '+error.message)}}
+ if(!added.length){$('postMediaStatus').textContent=warnings.join(' ');return}
+ if(pending){pending.items=added;pending.warnings=warnings;zeCommitPost(pending)}else{zePost.items.push(...added);$('postScreenshot').checked=false;zeRefreshMediaList();zeInvalidatePost();$('postMediaStatus').textContent=warnings.join(' ')||'Local media added.'}
+ assets.source=zePostDocument();assets.sourceBottom=null;
+}
+$('postFiles').onchange=event=>{zeAppendFiles(Array.from(event.target.files)).catch(error=>{$('postMediaStatus').textContent=error.message});event.target.value=''};
+$('sourceFile').accept='image/*,video/*,audio/*';$('sourceFile').onchange=event=>{zeAppendFiles(event.target.files,true).catch(error=>{$('postMediaStatus').textContent=error.message})};
+const zeOldSample=$('makeSamplePost').onclick;$('makeSamplePost').onclick=()=>{zeDisposePost();zePost.items=[];zePost.active=false;state.postActive=false;zeOldSample()};
+requestAnimationFrame(zeSyncPostMedia);
 
 </script></body></html>

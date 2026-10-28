@@ -1,7 +1,8 @@
 import importlib.util
 from pathlib import Path
 import unittest
-from unittest.mock import patch,Mock
+from unittest.mock import patch,Mock,MagicMock
+import tempfile
 import json,socket,threading,urllib.request,urllib.error
 spec=importlib.util.spec_from_file_location('importer',Path(__file__).parents[1]/'ze_local_importer.py')
 m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
@@ -57,12 +58,49 @@ class ImportTests(unittest.TestCase):
    req=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/api/health',headers={'Origin':'null'})
    with urllib.request.urlopen(req) as response:
     self.assertEqual(response.headers['Access-Control-Allow-Origin'],'null')
-    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2.1'})
+    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2.3'})
   finally:server.shutdown();server.server_close()
  def test_capture_missing_browser_reports_cause(self):
   with patch.object(m,'launch_capture_browser',side_effect=m.CaptureUnavailable('Capture browser missing')):
    result=m.screenshot_public_post('https://www.facebook.com/share/p/example/')
   self.assertEqual(result,{'capture_error':'Capture browser missing'})
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_video_cache_preserves_original_bytes(self,_):
+  reply=MagicMock(status_code=200,headers={'content-type':'video/mp4','content-length':'12'})
+  reply.__enter__.return_value=reply;reply.iter_content.return_value=[b'original',b'media']
+  with tempfile.TemporaryDirectory() as folder,patch.object(m,'MEDIA_ROOT',Path(folder)/'media'),patch('requests.get',return_value=reply):
+   item=m.video_data('https://video.twimg.com/file.mp4')
+   self.assertEqual(item['type'],'video');self.assertEqual((m.MEDIA_ROOT/Path(item['url']).name).read_bytes(),b'originalmedia')
+ def test_cached_media_supports_seeking_ranges(self):
+  with tempfile.TemporaryDirectory() as folder,patch.object(m,'MEDIA_ROOT',Path(folder)):
+   filename='a'*32+'.mp4';(m.MEDIA_ROOT/filename).write_bytes(b'0123456789')
+   server=m.ThreadingHTTPServer(('127.0.0.1',0),m.Handler);threading.Thread(target=server.serve_forever,daemon=True).start()
+   try:
+    for requested,expected in [('bytes=2-5',b'2345'),('bytes=-3',b'789')]:
+     request=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/.ze_media/{filename}',headers={'Range':requested})
+     with urllib.request.urlopen(request) as result:self.assertEqual(result.code,206);self.assertEqual(result.read(),expected);self.assertEqual(result.headers['Accept-Ranges'],'bytes')
+    request=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/.ze_media/{filename}',headers={'Range':'bytes=99-'})
+    with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(request)
+    self.assertEqual(error.exception.code,416)
+   finally:server.shutdown();server.server_close()
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_video_cache_rejects_html_or_large_files(self,_):
+  for headers in [{'content-type':'text/html'},{'content-type':'video/mp4','content-length':str(41*1024*1024)}]:
+   reply=MagicMock(status_code=200,headers=headers);reply.__enter__.return_value=reply
+   with tempfile.TemporaryDirectory() as folder,patch.object(m,'MEDIA_ROOT',Path(folder)/'media'),patch('requests.get',return_value=reply):
+    with self.assertRaises(RuntimeError):m.video_data('https://video.twimg.com/file.mp4')
+    self.assertFalse(m.MEDIA_ROOT.exists())
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_x_video_is_separate_from_photos(self,_):
+  post={'text':'A video post','user':{'name':'Author'},'video':{'variants':[{'type':'video/mp4','bitrate':1000000,'src':'https://video.twimg.com/file.mp4'}]}}
+  with patch('requests.get',return_value=response(json.dumps(post))),patch.object(m,'video_data',return_value={'type':'video','url':'/.ze_media/example.mp4'}):data=m.fetch_x_post('https://x.com/author/status/123')
+  self.assertEqual(data['attachments'],[{'type':'video','url':'/.ze_media/example.mp4'}])
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_audio_metadata_returns_separate_attachment(self,_):
+  html='<meta property="og:description" content="Actual post"><meta property="og:audio" content="https://scontent.fbcdn.net/voice.mp3">'
+  with patch('requests.get',return_value=response(html)),patch.object(m,'video_data',return_value={'type':'audio','url':'/.ze_media/example.mp3'}) as cache:
+   data=m.fetch_metadata('https://www.facebook.com/author/posts/123')
+  self.assertEqual(data['attachments'][0]['type'],'audio');cache.assert_called_once_with('https://scontent.fbcdn.net/voice.mp3','audio')
  def test_api_retains_metadata_when_capture_fails(self):
   self.check_capture_response({'name':'Real author','text':'Actual post text','status':'partial'},None,200)
  def test_api_combines_platform_and_capture_errors(self):

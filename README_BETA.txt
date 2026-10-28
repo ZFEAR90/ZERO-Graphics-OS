@@ -1,4 +1,4 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.2
+ZE OS — Mouwajaha V0.7 / Test Beta 2.3
 
 QUICK VISUAL TEST
 Open ZE_OS_Mouwajaha_V07.html in Chrome or Edge for offline editing. Live post import requires the helper; opening the HTML does not start it.
@@ -44,3 +44,7 @@ Close the previous command window before starting the new helper. The launcher n
 
 BETA 2.2 INTERFACE
 Click any category title or its arrow to fold/unfold its controls. Post import and Project export are open initially; other categories are folded. Changes remain when a panel is folded. Enter/Space work on focused headers. On small screens, categories stack below the preview.
+
+BETA 2.3 POST MEDIA AND AUDIO
+Open Post photos, video & audio. Choose text + selected media, media only or text only. Include/exclude photos/videos or individual items; unchecking retains an item for restoration. Add originals locally if the platform restricts access. The roll, bullet panel and account header adapt together; bullets off centers the group.
+Include post audio starts OFF. Enable it for preview and WebM recording, and adjust volume. Audio may remain when video is hidden; uncheck an individual item to remove its picture and audio. Flattened screenshots cannot provide removable media or sound. Only public downloadable media can be fetched automatically; remote attachments are limited to 40 MiB each. The real Facebook post is still unverified.
