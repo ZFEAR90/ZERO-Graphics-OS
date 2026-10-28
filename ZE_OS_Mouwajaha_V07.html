@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>ZE OS — Mouwajaha Roll V0.7 · Test Beta 2.5</title>
+<title>ZE OS — Mouwajaha Roll V0.7 · Test Beta 2.6</title>
 <style>
 :root{--bg:#09090c;--pane:#151217;--pane2:#20191f;--edge:#3b2930;--red:#b12035;--hot:#e04455;--text:#f6f1f2;--muted:#ad9ca5;--gold:#e5afb0}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:13px}button,input,textarea,select{font:inherit}button{color:#eee;background:#282027;border:1px solid #5b343f;border-radius:9px;padding:9px 12px;cursor:pointer}button:hover{border-color:#bc3b52;background:#39232d}button.primary{background:linear-gradient(135deg,#9d1428,#e24252);color:white;font-weight:700;border-color:#d33a4e}button:disabled{opacity:.45;cursor:not-allowed}.app{height:100vh;display:grid;grid-template-rows:58px minmax(0,1fr) 150px}.top{display:flex;align-items:center;gap:16px;padding:0 21px;background:#100e11;border-bottom:1px solid var(--edge)}.mark{width:36px;height:36px;border-radius:10px;background:#bc2035;display:grid;place-items:center;font-weight:1000;font-size:15px;box-shadow:0 0 24px #e2223c44}.logo{font-size:17px;font-weight:950;letter-spacing:-.7px}.logo small{display:block;font-size:10px;font-weight:700;letter-spacing:2px;color:#d98a97}.topmeta{color:#a8999e;font-size:11px;border-left:1px solid #55333f;padding-left:15px}.top .grow{flex:1}.status{color:#ed9ba6;font-size:11px;border:1px solid #66333d;padding:7px 11px;border-radius:18px;background:#2b151c}.stage{min-width:0;display:grid;grid-template-columns:314px minmax(0,1fr) 310px;overflow:hidden}.sidebar{background:var(--pane);overflow:auto;border-right:1px solid var(--edge);padding:18px 15px}.sidebar.right{border-right:0;border-left:1px solid var(--edge);background:#120f14}.paneltitle{font-size:10px;letter-spacing:1.7px;color:#d65b71;text-transform:uppercase;font-weight:900;margin:8px 0 13px}.section{padding:0 0 16px;margin:0 0 15px;border-bottom:1px solid #34252d}.section:last-child{border:0}.label{font-weight:700;font-size:11px;color:#dbc9cc;margin:10px 0 6px;display:block}input[type=text],input[type=url],textarea,select{background:#211a21;border:1px solid #49303a;color:#fff;padding:10px;width:100%;border-radius:9px;outline:0}textarea{resize:vertical;min-height:94px;line-height:1.6;direction:rtl}input:focus,textarea:focus,select:focus{border-color:#d34860}.micro{font-size:11px;line-height:1.55;color:#b5a3ad}.row{display:flex;align-items:center;gap:8px}.row>*{min-width:0}.row .fill{flex:1}.check{display:flex;align-items:center;gap:7px;color:#ddd;font-size:12px;margin:9px 0}.check input{accent-color:#dd3f53}.pill{padding:6px 10px;background:#37202b;border-radius:20px;color:#ffc6ce;font-size:11px}.center{padding:18px 22px;overflow:auto;min-width:0;background:radial-gradient(ellipse at top,#27141b,#09090c 72%)}.viewtabs{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}.viewtabs button{border-radius:7px;padding:8px 11px;background:#19151c}.viewtabs button.active{background:#832133;border-color:#b83951}.viewer{border:1px solid #6a343e;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 20px 100px #000a}.display{width:100%;aspect-ratio:16/9;position:relative;background:#050505}.display canvas{display:block;width:100%;height:100%;object-fit:contain;background:black}.display video{width:100%;height:100%;object-fit:contain}.twoup{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}.twoup .display{border:1px solid #512b36}.overlabel{position:absolute;top:9px;left:9px;font-size:10px;letter-spacing:1px;background:#08080dc7;padding:6px 9px;border-radius:5px;color:#f8d5d9}.underbar{padding:12px 14px;background:#151116;display:flex;gap:11px;align-items:center;flex-wrap:wrap}.underbar .time{font-family:Consolas,monospace;color:#fdd0d6}.small{font-size:11px}.spacer{flex:1}.legend{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}.legend span{color:#bbb0b3;font-size:11px}.legend b{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:middle}.stat{background:#1c161d;border:1px solid #3b2830;border-radius:10px;padding:13px;margin:9px 0}.stat strong{display:block;font-size:13px;color:#fff}.stat small{display:block;margin-top:5px;font-size:11px;color:#ac9ba4;line-height:1.5}.kv{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid #30212a}.kv:last-child{border:0}.kv b{font-size:12px}.kv span{font:12px Consolas,monospace;color:#f6abb8}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.metric{padding:9px 4px;border:1px solid #51343c;border-radius:8px;text-align:center;color:#dfadba;font-size:10px}.metric b{display:block;color:white;font-size:15px;padding-bottom:4px}.bottom{border-top:1px solid #61313d;background:#110e13;padding:11px 20px}.transport{display:flex;gap:7px;align-items:center}.transport button{padding:7px 12px}.scrub{flex:1;accent-color:#d83a50;min-width:80px}.track{height:28px;margin-top:10px;border-radius:6px;background:#332128;position:relative;overflow:hidden;border:1px solid #57333c}.track .bar{position:absolute;inset:0 0 0 0;background:linear-gradient(to right,#561827,#4b1b2a 7%,#26212b 16%,#211c27 100%)}.event{position:absolute;top:0;bottom:0;border-left:1px solid #f88e9e;opacity:.85}.event label{position:absolute;left:3px;top:5px;white-space:nowrap;font-size:9px;color:#f6e5e7}.head{width:2px;background:#fffaab;box-shadow:0 0 9px #ffe3a1;position:absolute;top:0;bottom:0}.timelinelegend{display:flex;justify-content:space-between;color:#887780;font:10px Consolas,monospace;margin-top:5px}.filetag{display:block;color:#eab4bc;font-size:10px;line-height:1.5;word-break:break-all}.note{background:#271921;border-left:3px solid #da4359;border-radius:6px;padding:10px;font-size:11px;color:#e1cdd2;line-height:1.7}.op{text-transform:uppercase;letter-spacing:.8px;font-size:10px;color:#ac8b99}.kbd{font:11px Consolas,monospace;color:#ffccd3}.mute{color:#af9ca4}.warn{background:#30221a;border:1px solid #8a5b34;border-radius:7px;padding:9px;color:#f5d3ab;font-size:11px;line-height:1.6}.btnrow{display:flex;flex-wrap:wrap;gap:6px}@media(max-width:1200px){.stage{grid-template-columns:255px minmax(0,1fr) 235px}.center{padding:12px}.sidebar{padding:12px}}@media(max-width:850px){.app{height:auto;min-height:100vh;grid-template-rows:55px auto 160px}.stage{display:flex;flex-direction:column}.center{order:0}.sidebar{order:1;max-height:500px}.sidebar.right{order:2;max-height:none}.topmeta{display:none}.twoup{grid-template-columns:1fr}.top{gap:8px;padding:8px}}
@@ -62,16 +62,19 @@
 .composition-move{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.composition-move input{width:70px;min-width:0;background:#211a21;color:white;border:1px solid #49303a;border-radius:6px;padding:8px}.composition-move button{padding:8px}.display{background:transparent}.display canvas{width:100%;height:auto;aspect-ratio:16/9;object-fit:fill;background:transparent}.viewer{background:transparent}
 .selection-overlay{position:absolute;inset:0;pointer-events:none;z-index:3}.selection-overlay[hidden]{display:none}.selection-box{position:absolute;border:1px dashed #ff94ae;box-sizing:border-box;pointer-events:none}
 .editor-nav{position:sticky;top:-18px;z-index:5;background:var(--pane);padding:8px 0 10px;margin-bottom:10px}.editor-tabs{display:flex;gap:5px}.editor-tabs button{flex:1;padding:10px 6px;font-size:12px}.editor-tabs [aria-selected=true]{background:#832133;border-color:#c44a61;color:white}.editor-tab-panel[hidden]{display:none!important}.edit-history{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:8px}.edit-history button{padding:6px 9px;font-size:11px}.edit-history .micro{width:100%;font-size:10px;min-height:15px}.editor-tab-panel{min-width:0}
+.paragraph-controls{margin-top:14px;padding-top:12px;border-top:1px solid #49303a}.paragraph-controls input[type=number]{width:100%;min-width:0;padding:8px;background:#211a21;color:white;border:1px solid #59404b;border-radius:6px}.paragraph-row{border:1px solid #49303a;border-radius:8px;padding:9px;margin-top:9px;background:#211820}.paragraph-row .excerpt{font-size:12px;line-height:1.5;margin:7px 0;overflow-wrap:anywhere}.paragraph-row .timing-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end}.paragraph-row button{font-size:11px;padding:6px 8px}.paragraph-row .label{margin:0 0 5px}.timing-summary{white-space:pre-line;padding-top:8px}.timing-summary.warn{border:0;background:transparent;padding:8px 0;color:#ffd49b}.track{height:47px}.paragraph-clip{position:absolute;top:21px;bottom:2px;background:#6b293caa;border:1px solid #c35c77;border-radius:3px;color:#ffe4ea;font:10px Arial;padding:3px 4px;overflow:hidden;white-space:nowrap;cursor:pointer;z-index:2}.track .head{z-index:4}.track .event label{font-size:8px;top:3px}.record-status{margin:10px 0;white-space:pre-line}
+.alpha-output{background-color:#242129!important;background-image:conic-gradient(#35313b 25%,transparent 0 50%,#35313b 0 75%,transparent 0)!important;background-size:20px 20px!important}
+.paragraph-controls>summary{cursor:pointer;color:#f3d8df;font-weight:700;font-size:12px;padding:4px 0 8px}
 </style>
 </head>
 <body>
-<div class="app"><header class="top"><div class="mark">ZE</div><div class="logo">ZERO GRAPHICS OS<small>MOUWAJAHA · V0.7 · TEST BETA 2.5</small></div><div class="topmeta">PROJECT 11 · MOUWAJAHA / PIXEL-REFERENCE</div><div class="grow"></div><div class="status">MOTION STUDY · NOT BROADCAST APPROVED</div></header>
+<div class="app"><header class="top"><div class="mark">ZE</div><div class="logo">ZERO GRAPHICS OS<small>MOUWAJAHA · V0.7 · TEST BETA 2.6</small></div><div class="topmeta">PROJECT 11 · MOUWAJAHA / PIXEL-REFERENCE</div><div class="grow"></div><div class="status">MOTION STUDY · NOT BROADCAST APPROVED</div></header>
 <main class="stage">
 <aside class="sidebar"><div class="paneltitle">Editor controls</div><div class="editor-nav"><div aria-label="Editor options" class="editor-tabs" role="tablist"><button aria-controls="mainOptions" aria-selected="true" id="mainTab" role="tab" type="button">Main</button><button aria-controls="advancedOptions" aria-selected="false" id="advancedTab" role="tab" tabindex="-1" type="button">Advanced options</button></div><div class="edit-history"><button disabled="" id="undoEdit" title="Undo movement (Ctrl+Z)" type="button">↶ Undo</button><button disabled="" id="redoEdit" title="Redo movement (Ctrl+Shift+Z)" type="button">↷ Redo</button><span class="micro" id="historyStatus" role="status">Move a group in the preview.</span></div></div><div aria-labelledby="mainTab" class="editor-tab-panel" id="mainOptions" role="tabpanel"><details class="control-panel" data-panel="import" id="linkImport"><summary><span>Post import</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Public X / Facebook / Instagram / Telegram post URL</label><input autocomplete="off" id="postUrl" placeholder="https://x.com/account/status/…" spellcheck="false" type="url"/><div class="row" style="margin-top:8px"><button class="primary" id="importPost" type="button">Detect &amp; import post</button><button id="makeSamplePost" type="button">Generate sample card</button></div><div class="micro" id="importStatus" style="padding-top:9px">The platform and account can be recognized from a link offline. Fetching the live post, profile photo and media requires the included local importer and a publicly accessible post.</div><div class="micro" id="importerConnection" role="status" style="padding:9px 0">Local importer · connection not checked</div><div class="row"><button id="checkImporter" type="button">Check importer connection</button><button hidden="" id="openImporter" type="button">Open local editor</button></div><label class="check"><input checked="" id="replaceSourceFromPost" type="checkbox"/>Use imported post in the roll</label></div></details><details class="control-panel" data-panel="content" open=""><summary><span>Roll &amp; account</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Source account</label><input id="account" type="text" value="@blame_d_cat"/><label class="label">Display name</label><input id="displayname" type="text" value="xpos"/><label class="check"><input id="flip" type="checkbox"/>Flip source and bulletin</label><details class="element-overrides"><summary>Replace roll, profile or logos</summary><label class="label">Source article or post</label><input accept="image/*" id="sourceFile" type="file"/><span class="filetag" id="sourcePath">Default: cropped sample post from original render</span><label class="label">Profile picture</label><input accept="image/*" id="avatarFile" type="file"/><span class="filetag" id="avatarPath">Default: sample portrait from the original render</span><label class="label">Platform logo (transparent PNG)</label><input accept="image/*" id="platformFile" type="file"/><span class="filetag" id="platformPath">Default: X icon reconstructed as vector</span><label class="label">Account / source logo</label><input accept="image/*" id="sourceLogoFile" type="file"/><span class="filetag" id="sourceLogoPath">Optional separate source branding</span></details></div></details><details class="control-panel" data-panel="bullettext" open=""><summary><span>Bullet text</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="check"><input checked="" id="showBullets" type="checkbox"/>Show bullet panel</label><label class="label">Arabic bulletin (paragraphs separated by a blank line)</label><textarea id="bullets" rows="7">وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.
 
 يشكل المسلمون نحو 6% من سكان أوروبا، ونحو 9 إلى 10% من سكان فرنسا
 
-المواطنون يعانون بسبب ارتفاع الأسعار والضرائب</textarea></div></details><details class="control-panel" data-panel="postmedia"><summary><span>Post photos, video &amp; audio</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content">
+المواطنون يعانون بسبب ارتفاع الأسعار والضرائب</textarea><details class="paragraph-controls" open><summary>Paragraph timing &amp; output</summary><label class="check"><input id="transparentOutput" type="checkbox">Transparent background (no loop)</label><label class="label" for="videoDuration">Overall video length (seconds)</label><input id="videoDuration" type="number" min="5" max="600" step="0.04" value="50"><label class="label" for="paragraphTransition">Paragraph exit / slide time (seconds)</label><input id="paragraphTransition" type="number" min="0.2" max="2" step="0.04" value="0.64"><p class="micro">Paragraphs enter from the right and leave to the left; Flip reverses both directions. Text stays masked inside the bullet panel. Hold time starts after the text has appeared. Auto uses reading length and fits the remaining video time; editing seconds makes that paragraph manual.</p><div class="rowwrap"><button id="autoParagraphs" type="button" class="tinyaction">Reset holds to Auto</button><button id="fitParagraphVideo" type="button" class="tinyaction">Use estimated total</button></div><div id="paragraphTimings"></div><p id="paragraphTimingStatus" class="micro timing-summary" role="status" aria-live="polite"></p></details></div></details><details class="control-panel" data-panel="postmedia"><summary><span>Post photos, video &amp; audio</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content">
 <label class="label" for="postContentMode">Roll content</label><select id="postContentMode"><option value="all">Post text and selected media</option><option value="media">Selected media only</option><option value="text">Text only</option></select>
 <label class="check"><input checked="" id="postPhotos" type="checkbox"/>Include photos</label><label class="check"><input checked="" id="postVideos" type="checkbox"/>Include videos</label>
 <div id="postMediaList"></div><label class="check"><input id="postAudio" type="checkbox"/>Include post audio (when available)</label><p class="micro">Audio can remain when video is hidden. Uncheck an individual media item to remove both its picture and sound.</p><label class="label" for="postVolume">Audio volume</label><input id="postVolume" max="100" min="0" style="width:100%" type="range" value="100"/>
@@ -95,17 +98,21 @@
 <div class="underbar"><span class="time" id="clock">00:00.00</span><span class="small mute">Reconstruction time</span><span class="micro" hidden="" id="renderStatus" role="status"></span><span class="spacer"></span><button id="still">Export current frame PNG</button><button class="primary" id="record">Record preview (WebM)</button></div></div>
 <div class="legend"><span><b style="background:#b3283f"></b>Arabic bulletin / ribbon</span><span><b style="background:#e1e0e0"></b>Web/post mask</span><span><b style="background:#747174"></b>Source scaling</span><span><b style="background:#d0b1ba"></b>Account reveal</span></div>
 </section>
-<aside class="sidebar right"><div class="paneltitle">Project &amp; reference</div><details class="control-panel" data-panel="export" open=""><summary><span>Project export</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="btnrow"><button id="saveJson">Project JSON</button><button id="reset">Reset editor</button></div><p class="micro">The standalone preview exports an image and browser-recorded WebM where supported. AE export is not yet implemented for this reconstruction.</p></div></details><details class="control-panel" data-panel="aep"><summary><span>AEP reference</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="stat"><strong>ali.aep</strong><small>RIFX structure was inspected directly. Main composition elements found:</small></div><div class="kv"><b>WEB_ROLL_1</b><span>4 layers</span></div><div class="kv"><b>X_ROLL_1</b><span>4 layers</span></div><div class="kv"><b>X_ROLL_2</b><span>4 layers</span></div><div class="kv"><b>LEB_ONLINE_ROLL_1</b><span>14 layers</span></div><div class="kv"><b>LEB_ONLINE_ROLL_TITLE_1</b><span>19 layers</span></div><div class="paneltitle" style="margin-top:20px">Confirmed layer roles</div><div class="micro">`ROLL_MASK`, `SOLID_MASK`, `IMAGE_MASK`, `WHITE_BACK_MASK`, `TEXT_BACK`, `TITLE_BACK`, `STROKE-1`, `STROKE-2` and named shape layers are present in the supplied project.</div></div></details><details class="control-panel" data-panel="timing"><summary><span>Reference timing</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="kv"><b>Identity appears</b><span>0.00–1.44 s</span></div><div class="kv"><b>Source scales up</b><span>0.68–1.20 s</span></div><div class="kv"><b>Panel construction</b><span>1.36–1.80 s</span></div><div class="kv"><b>Post reveal</b><span>1.56–1.88 s</span></div><div class="kv"><b>Arabic type reveal</b><span>1.84–5.40 s</span></div><div class="kv"><b>Article scroll</b><span>After reveal</span></div><p class="micro" style="margin-top:14px">Timing windows are video-derived approximations, not values decoded from AE keyframe data.</p></div></details><details class="control-panel" data-panel="about"><summary><span>About this reconstruction</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="note">This scene is drawn from independently scaling nested squares, editable Arabic Kashida and shapes, source media, account graphics and editable Arabic text. The original video is only used in the comparison player; it is <b>not</b> the generated preview.</div></div></details></aside>
+<aside class="sidebar right"><div class="paneltitle">Project &amp; reference</div><details class="control-panel" data-panel="export" open=""><summary><span>Project export</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="btnrow"><button id="saveJson">Project JSON</button><button id="recordFull" class="primary" type="button">Render full video (WebM)</button><button id="cancelRecord" hidden type="button">Cancel recording</button><p id="exportProgress" class="micro record-status" role="status"></p><button id="reset">Reset editor</button></div><p class="micro">The standalone preview exports an transparent PNG and browser-recorded opaque WebM where supported. MOV / alpha video belongs to the final render engine. AE export is not yet implemented for this reconstruction.</p></div></details><details class="control-panel" data-panel="aep"><summary><span>AEP reference</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="stat"><strong>ali.aep</strong><small>RIFX structure was inspected directly. Main composition elements found:</small></div><div class="kv"><b>WEB_ROLL_1</b><span>4 layers</span></div><div class="kv"><b>X_ROLL_1</b><span>4 layers</span></div><div class="kv"><b>X_ROLL_2</b><span>4 layers</span></div><div class="kv"><b>LEB_ONLINE_ROLL_1</b><span>14 layers</span></div><div class="kv"><b>LEB_ONLINE_ROLL_TITLE_1</b><span>19 layers</span></div><div class="paneltitle" style="margin-top:20px">Confirmed layer roles</div><div class="micro">`ROLL_MASK`, `SOLID_MASK`, `IMAGE_MASK`, `WHITE_BACK_MASK`, `TEXT_BACK`, `TITLE_BACK`, `STROKE-1`, `STROKE-2` and named shape layers are present in the supplied project.</div></div></details><details class="control-panel" data-panel="timing"><summary><span>Reference timing</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="kv"><b>Identity appears</b><span>0.00–1.44 s</span></div><div class="kv"><b>Source scales up</b><span>0.68–1.20 s</span></div><div class="kv"><b>Panel construction</b><span>1.36–1.80 s</span></div><div class="kv"><b>Post reveal</b><span>1.56–1.88 s</span></div><div class="kv"><b>Arabic type reveal</b><span>1.84–5.40 s</span></div><div class="kv"><b>Article scroll</b><span>After reveal</span></div><p class="micro" style="margin-top:14px">Timing windows are video-derived approximations, not values decoded from AE keyframe data.</p></div></details><details class="control-panel" data-panel="about"><summary><span>About this reconstruction</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="note">This scene is drawn from independently scaling nested squares, editable Arabic Kashida and shapes, source media, account graphics and editable Arabic text. The original video is only used in the comparison player; it is <b>not</b> the generated preview.</div></div></details></aside>
 </main>
-<footer class="bottom"><div class="transport"><button class="primary" id="play">▶ Play</button><button id="restart">↶ Restart</button><button id="stepBack">◀ Frame</button><button id="stepFwd">Frame ▶</button><input class="scrub" id="scrubber" max="71.48" min="0" step="0.04" type="range" value="0"/><span class="kbd" id="elapsed">0.00 / 71.48 s</span></div>
+<footer class="bottom"><div class="transport"><button class="primary" id="play">▶ Play</button><button id="restart">↶ Restart</button><button id="stepBack">◀ Frame</button><button id="stepFwd">Frame ▶</button><input class="scrub" id="scrubber" max="50" min="0" step="0.04" type="range" value="0"/><span class="kbd" id="elapsed">0.00 / 50.00 s</span></div>
 <div class="track"><div class="bar"></div><div class="event" style="left:.28%"><label>Identity</label></div><div class="event" style="left:1.12%"><label>Roll reveal</label></div><div class="event" style="left:2.10%"><label>Mask complete</label></div><div class="event" style="left:2.85%"><label>Bullet</label></div><div class="event" style="left:14%"><label>Scroll / next paragraph</label></div><div class="head" id="head" style="left:0"></div></div>
 <div class="timelinelegend"><span>00:00</span><span>00:10</span><span>00:20</span><span>00:30</span><span>00:40</span><span>00:50</span><span>01:00</span><span>01:11.48</span></div>
 </footer></div>
 <script>
 'use strict';
-const zeStage=document.createElement('canvas');zeStage.width=1920;zeStage.height=1080;const zeStageContext=zeStage.getContext('2d',{alpha:false});
+const zeStage=document.createElement('canvas');zeStage.width=1920;zeStage.height=1080;const zeStageContext=zeStage.getContext('2d',{alpha:true});
 const zeBackgroundFrame=document.createElement('canvas');zeBackgroundFrame.width=1920;zeBackgroundFrame.height=1080;const zeBackgroundContext=zeBackgroundFrame.getContext('2d',{alpha:false});let zeBackgroundReady=false,zeBackgroundAsset=null;
+function zeIsTransparent(){return document.getElementById('transparentOutput').checked}
+function zeClearScene(ctx){setupCtx(ctx);if(!zeIsTransparent()){ctx.fillStyle='#241222';ctx.fillRect(0,0,W,H)}}
+function zeUpdateTransparency(){document.querySelectorAll('#singleRebuild,#canvasCompare').forEach(el=>el.classList.toggle('alpha-output',zeIsTransparent()))}
 function zeDrawBackground(ctx,t){
+ if(zeIsTransparent())return;
  const chosen=state.customBackground||assets.bg,isVideo=chosen?.tagName==='VIDEO',ready=chosen&&(isVideo?chosen.readyState>=2&&chosen.videoWidth>0:chosen.width>0);
  if(ready&&(isVideo||zeBackgroundAsset!==chosen||!zeBackgroundReady)){
   try{zeBackgroundContext.setTransform(2,0,0,2,0,0);cover(zeBackgroundContext,chosen,0,0,W,H);zeBackgroundAsset=chosen;zeBackgroundReady=true}catch(error){state.backgroundFrameError=error.name}
@@ -173,8 +180,8 @@ function zeReferenceFrame(ctx,b,t,article){
 }
 
 const $=id=>document.getElementById(id);
-const cvs=$('canvas'), c=cvs.getContext('2d',{alpha:false}), compareC=$('canvasCompare').getContext('2d',{alpha:false});
-const W=960,H=540,DURATION=71.48;
+const cvs=$('canvas'), c=cvs.getContext('2d',{alpha:true}), compareC=$('canvasCompare').getContext('2d',{alpha:true});
+const W=960,H=540;let DURATION=50;
 const assets={}; const state={stvLoaded:false,t:0,playing:false,last:0,view:'rebuild',recording:false,customBackground:null,bgKind:'image',speed:1,selected:'source',layers:{identity:{x:0,y:0,scale:1},source:{x:0,y:0,scale:1},bullet:{x:0,y:0,scale:1}}};
 const R={identity:{x:42,y:70,w:432,h:94},source:{x:504,y:60,w:432,h:431},bullet:{x:28,y:153,w:505,h:282}};
 const buffers={},offCtx={}; for(const n of Object.keys(R)){let el=document.createElement('canvas');el.width=1920;el.height=1080;buffers[n]=el;offCtx[n]=el.getContext('2d',{alpha:true})}
@@ -199,6 +206,88 @@ function shapeX(ctx,cx,cy,size){ctx.save();ctx.translate(cx,cy);ctx.strokeStyle=
 function headerX(x,w){return flipped()?2*R.identity.x+R.identity.w-x-w:x}
 function localHeader(ctx,x,w,draw){const dest=headerX(x,w);ctx.save();ctx.translate(dest-x,0);draw();ctx.restore()}
 function centeredScaled(ctx,x,y,w,h,p,draw){if(p<=0)return;ctx.save();ctx.translate(x+w/2,y+h/2);ctx.scale(p,p);ctx.translate(-x-w/2,-y-h/2);draw();ctx.restore()}
+/* V0.7 editorial timing: seconds are wall-clock values; animation speed affects motion only. */
+const zeParagraphModel={items:[],nextId:1,text:null,cache:null,ready:false};
+const zeWrapCache=new Map(),zeJustifyCache=new Map();
+function zeInvalidateTextCache(){zeWrapCache.clear();zeJustifyCache.clear();zeParagraphModel.cache=null}
+function zeTextCacheKey(ctx,text,width,mode='',strength=0){return JSON.stringify([ctx.font,ctx.direction,ctx.fontKerning,ctx.letterSpacing,ctx.wordSpacing,state.stvLoaded,text,width,mode,strength])}
+function breakRTL(ctx,text,width){const key=zeTextCacheKey(ctx,text,width);if(!zeWrapCache.has(key)){if(zeWrapCache.size>=500)zeWrapCache.clear();zeWrapCache.set(key,zeBuildWrappedLines(ctx,text,width))}return zeWrapCache.get(key).slice()}
+function justifyLine(ctx,text,width,mode,strength){const key=zeTextCacheKey(ctx,text,width,mode,strength);if(!zeJustifyCache.has(key)){if(zeJustifyCache.size>=500)zeJustifyCache.clear();zeJustifyCache.set(key,zeBuildJustifiedLine(ctx,text,width,mode,strength))}return zeJustifyCache.get(key)}
+function zeSyncParagraphs(){
+ const text=$('bullets').value;if(text===zeParagraphModel.text)return;
+ const previous=zeParagraphModel.items,pool=new Map();for(const item of previous){if(!pool.has(item.text))pool.set(item.text,[]);pool.get(item.text).push(item)}
+ const values=text.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean),matched=values.map(value=>pool.get(value)?.shift()||null),used=new Set(matched.filter(Boolean).map(item=>item.id));
+ zeParagraphModel.items=values.map((value,index)=>{if(matched[index])return matched[index];const old=values.length===previous.length&&!used.has(previous[index]?.id)?previous[index]:null;if(old){used.add(old.id);return {...old,text:value}}return {id:zeParagraphModel.nextId++,text:value,manual:null}});
+ zeParagraphModel.text=text;zeParagraphModel.cache=null;
+}
+function zeReadingEstimate(text){const words=text.match(/[\p{L}\p{N}]+/gu)||[],characters=Array.from(text.replace(/\s/g,'')).length;return Math.round(Math.max(3,1.5+Math.max(words.length/2.6,characters/16))*10)/10}
+function zeParagraphLineCount(text){
+ const box=getBBox('bullet'),k=!!state.postActive?1:Math.max(.2,box.w/R.bullet.w),size=val('fontSize')*k;
+ c.save();c.font=`bold ${size}px ZEOSSTV,STV,Tahoma,Arial`;const count=Math.max(1,breakRTL(c,text,!!state.postActive?Math.max(80,box.w-40):420*k).length);c.restore();return count;
+}
+function zeParagraphSchedule(){
+ zeSyncParagraphs();const speed=Math.max(.1,state.speed),offset=val('bulletTiming'),box=getBBox('bullet'),transition=clamp(val('paragraphTransition'),.2,2),smooth=$('smartBulletTransition').checked;
+ const key=JSON.stringify([zeParagraphModel.items,DURATION,speed,offset,box.w,box.h,val('fontSize'),state.stvLoaded,!!state.postActive,smooth,transition]);if(zeParagraphModel.cache?.key===key)return zeParagraphModel.cache;
+ const start=(1.84+offset)/speed,exit=smooth?transition/speed:0;
+ const rows=zeParagraphModel.items.map(item=>{const lineCount=zeParagraphLineCount(item.text),last=lineCount<=6?[[46,68],[68,82],[82,93],[94,105],[105,119],[119,135]][lineCount-1][1]:151+(lineCount-7)*16;return {...item,estimate:zeReadingEstimate(item.text),entry:Math.max(.88,last/25-1.84)/speed,exit}});
+ const overhead=start+rows.reduce((n,r)=>n+r.entry+r.exit,0),manual=rows.filter(r=>r.manual!==null).reduce((n,r)=>n+r.manual,0),automatic=rows.filter(r=>r.manual===null),free=DURATION-overhead-manual;
+ const minimum=3,remaining=Math.max(0,free-automatic.length*minimum),weight=automatic.reduce((n,r)=>n+r.estimate,0);let cursor=start;
+ for(const row of rows){row.hold=row.manual??minimum+(weight?remaining*row.estimate/weight:0);row.start=cursor;row.entryEnd=cursor+row.entry;row.exitStart=row.entryEnd+row.hold;row.end=row.exitStart+row.exit;cursor=row.end}
+ const result={key,rows,start,end:cursor,overflow:Math.max(0,cursor-DURATION),unused:Math.max(0,DURATION-cursor),estimatedTotal:overhead+rows.reduce((n,r)=>n+(r.manual??r.estimate),0)};
+ zeParagraphModel.cache=result;if(zeParagraphModel.ready&&!zeParagraphModel.uiQueued){zeParagraphModel.uiQueued=true;queueMicrotask(()=>{zeParagraphModel.uiQueued=false;zeUpdateParagraphEditor()})}return result;
+}
+function zeParagraphPhase(motionTime){
+ const schedule=zeParagraphSchedule(),wall=(motionTime+val('bulletTiming'))/Math.max(.1,state.speed),row=schedule.rows.find(r=>wall>=r.start&&wall<r.end);if(!row)return null;
+ const local=wall-row.start,inExit=wall>=row.exitStart,exitProgress=inExit&&row.exit?zeSmooth((wall-row.exitStart)/row.exit):0,slide=$('smartBulletTransition').checked?zeSmooth(clamp(local*Math.max(.1,state.speed)/clamp(val('paragraphTransition'),.2,2))):1;
+ return {row,local,inExit,exitProgress,entryProgress:row.start===schedule.start?1:slide,revealTime:1.84+local*Math.max(.1,state.speed)};
+}
+function zeDrawParagraphText(ctx,t,b){
+ const phase=zeParagraphPhase(t);if(!phase)return;
+ let size=b.font,lines,lineHeight;ctx.save();ctx.direction='rtl';ctx.textAlign='right';
+ do{ctx.font=`bold ${size}px ZEOSSTV,STV,Tahoma,Arial`;lines=breakRTL(ctx,phase.row.text,b.wrap);lineHeight=b.lineHeight*(size/b.font);if(!b.adaptive||lines.length*lineHeight<=b.h-8||size<=12)break;size-=.5}while(size>=12);
+ const fitHeight=(b.h-b.baseline-size*.65-2)/Math.max(1,lines.length-1);if(fitHeight>=size*1.25)lineHeight=Math.min(lineHeight,fitHeight);
+ const overflow=Math.max(0,b.baseline+(lines.length-1)*lineHeight+size*.65+2-b.h),scrollStart=Math.min(phase.row.entry,3.56/Math.max(.1,state.speed)),scrollEnd=Math.max(scrollStart+.1,phase.row.entry+phase.row.hold-.5),scroll=overflow*zeSmooth(clamp((Math.min(phase.local,phase.row.entry+phase.row.hold)-scrollStart)/(scrollEnd-scrollStart)));
+ roundedClip(ctx,b.x+1,b.y+1,Math.max(1,b.w-2),Math.max(1,b.h-2),Math.min(12,b.w/12,b.h/12));
+ const direction=flipped()?-1:1,mode=$('justifyMode').value,strength=val('kashidaStrength')/100;
+ const textWidth=Math.max(0,...lines.map((line,index)=>justifyLine(ctx,line,b.textWidth,index<lines.length-1?mode:'none',strength).total||0)),left=b.right-textWidth;
+ const enterDistance=direction>0?b.x+b.w-left+4:b.right-b.x+4,exitDistance=direction>0?b.right-b.x+4:b.x+b.w-left+4;
+ const dx=phase.inExit?-direction*exitDistance*phase.exitProgress:direction*enterDistance*(1-phase.entryProgress);ctx.translate(dx,-scroll);
+ const alpha=phase.inExit?1-zeSmooth(clamp((phase.exitProgress-.65)/.35)):Math.min(1,phase.entryProgress*2);ctx.globalAlpha=alpha;
+ ctx.fillStyle=zeElementColor('bulletText');ctx.shadowColor='#0008';ctx.shadowBlur=b.shadow||0;
+ for(let i=0;i<lines.length;i++){const reveal=phase.inExit?1:zeReferenceType(phase.revealTime,i);if(reveal<=0)continue;ctx.save();ctx.globalAlpha*=.35+reveal*.65;drawJustified(ctx,lines[i],b.right,b.y+b.baseline+i*lineHeight,b.textWidth,$('justifyMode').value,val('kashidaStrength')/100,reveal,i<lines.length-1,direction);ctx.restore()}
+ ctx.restore();
+}
+function zeTimingExport(){const plan=zeParagraphSchedule();return {durationSeconds:DURATION,transitionSeconds:val('paragraphTransition'),paragraphs:plan.rows.map(r=>({text:r.text,mode:r.manual===null?'auto':'manual',holdSeconds:r.hold,estimatedHoldSeconds:r.estimate,start:r.start,entryEnd:r.entryEnd,exitStart:r.exitStart,end:r.end})),note:'Hold seconds exclude entry and exit. Automatic holds share available video time by reading length.'}}
+function zeTimeLabel(time){return Math.floor(time/60).toString().padStart(2,'0')+':'+(time%60).toFixed(1).padStart(4,'0')}
+function zeUpdateParagraphEditor(){
+ if(!zeParagraphModel.ready)return;const plan=zeParagraphSchedule(),list=$('paragraphTimings');list.replaceChildren();
+ for(const [index,item] of plan.rows.entries()){
+  const row=document.createElement('div');row.className='paragraph-row';row.dataset.id=item.id;
+  const title=document.createElement('button');title.type='button';title.textContent='Preview paragraph '+(index+1);title.onclick=()=>{view('rebuild');setT(Math.max(0,item.start-.08));if(!state.playing)$('play').click()};row.append(title);
+  const excerpt=document.createElement('div');excerpt.className='excerpt';excerpt.dir='auto';excerpt.textContent=Array.from(item.text).slice(0,100).join('')+(item.text.length>100?'…':'');row.append(excerpt);
+  const controls=document.createElement('div');controls.className='timing-row';const autoLabel=document.createElement('label');autoLabel.className='check';const auto=document.createElement('input');auto.type='checkbox';auto.checked=item.manual===null;auto.setAttribute('aria-label','Automatic hold for paragraph '+(index+1));autoLabel.append(auto,document.createTextNode('Auto'));
+  const label=document.createElement('label');label.className='label';label.textContent='Hold (seconds)';const seconds=document.createElement('input');seconds.type='number';seconds.min='.5';seconds.max='600';seconds.step='.01';seconds.value=item.hold.toFixed(2);seconds.setAttribute('aria-label','Hold seconds for paragraph '+(index+1));label.append(seconds);controls.append(autoLabel,label);row.append(controls);
+  const update=value=>{zeParagraphModel.items.find(r=>r.id===item.id).manual=value;zeParagraphModel.cache=null;zeUpdateParagraphEditor();draw()};auto.onchange=()=>update(auto.checked?null:Number(seconds.value));seconds.onchange=()=>{const value=Number(seconds.value);if(!Number.isFinite(value)||value<.5||value>600){seconds.value=item.hold.toFixed(2);return}update(value)};
+  const times=document.createElement('div');times.className='micro';times.textContent=`${zeTimeLabel(item.start)} – ${zeTimeLabel(item.end)} · reading estimate ${item.estimate.toFixed(1)} s`;row.append(times);list.append(row);
+ }
+ const status=$('paragraphTimingStatus');status.classList.toggle('warn',plan.overflow>.001&&$('showBullets').checked);
+ status.textContent=!plan.rows.length?'Add paragraphs separated by a blank line.':plan.overflow>.001?`Paragraphs need ${plan.end.toFixed(2)} s, longer than the ${DURATION.toFixed(2)} s video. Manual holds are preserved. Increase the video length, reduce holds or use the estimated total.`:plan.unused>.05?`Paragraphs finish at ${plan.end.toFixed(2)} s; ${plan.unused.toFixed(2)} s remains after the final exit.`:`${plan.rows.length} paragraphs fit ${DURATION.toFixed(2)} s. Hold times exclude entrances and exits.`;
+ $('scrubber').max=DURATION;$('elapsed').textContent=state.t.toFixed(2)+' / '+DURATION.toFixed(2)+' s';
+ const legend=document.querySelector('.timelinelegend');if(legend){legend.replaceChildren();for(let i=0;i<=5;i++){const span=document.createElement('span');span.textContent=zeTimeLabel(DURATION*i/5);legend.append(span)}}
+ const events=document.querySelectorAll('.track .event'),times=[0,.68,1.8,1.84,7];events.forEach((event,i)=>{event.style.left=Math.min(100,times[i]/state.speed/DURATION*100)+'%';if(i===4)event.querySelector('label').textContent='Article scroll'});
+ document.querySelectorAll('.paragraph-clip').forEach(el=>el.remove());for(const [index,row] of plan.rows.entries()){if(row.start>=DURATION)continue;const clip=document.createElement('div');clip.className='paragraph-clip';clip.style.left=row.start/DURATION*100+'%';clip.style.width=(Math.min(DURATION,row.end)-row.start)/DURATION*100+'%';clip.textContent='P'+(index+1);clip.title=`Paragraph ${index+1} · ${row.hold.toFixed(2)} s hold`;clip.onclick=()=>{state.playing=false;$('play').textContent='▶ Play';setT(row.start)};document.querySelector('.track').append(clip)}
+ zeUpdateExportAvailability();
+}
+function zeSetVideoDuration(value){DURATION=Math.round(clamp(Number.isFinite(value)?value:50,5,600)*25)/25;$('videoDuration').value=DURATION;zeParagraphModel.cache=null;if(state.t>DURATION)setT(DURATION);zeUpdateParagraphEditor();draw()}
+function zeInitParagraphEditor(){
+ zeParagraphModel.ready=true;$('videoDuration').onchange=()=>zeSetVideoDuration(Number($('videoDuration').value));
+ $('paragraphTransition').onchange=()=>{$('paragraphTransition').value=clamp(Number($('paragraphTransition').value)||.64,.2,2);zeParagraphModel.cache=null;zeUpdateParagraphEditor();draw()};
+ $('autoParagraphs').onclick=()=>{zeSyncParagraphs();zeParagraphModel.items.forEach(r=>r.manual=null);zeParagraphModel.cache=null;zeUpdateParagraphEditor();draw()};
+ $('fitParagraphVideo').onclick=()=>zeSetVideoDuration(Math.ceil(zeParagraphSchedule().estimatedTotal*25)/25);
+ for(const id of ['bullets','fontSize','bulletTiming','speed','showBullets','smartBulletTransition'])$(id).addEventListener('input',()=>{zeParagraphModel.cache=null;zeUpdateParagraphEditor();draw()});
+ $('transparentOutput').onchange=()=>{zeUpdateTransparency();zeUpdateExportAvailability();draw()};zeUpdateTransparency();zeUpdateParagraphEditor();draw();
+}
+
 function headerLayout(ctx){
  const ps=clamp(val('platformScale')/100,.3,2.5),vs=clamp(val('avatarScale')/100,.3,2.5),ls=clamp(val('labelScale')/100,.3,2.5);
  const pw=58*ps,aw=80*vs,gap=6;
@@ -266,7 +355,7 @@ function articleSample(ctx,x,y,w,h,t){
 // Independent nested rectangle scale phases: outer gray source, inner gray square,
 // white aperture, framed article reveal. 25fps reference measurements remain approximate.
 function sourceFrame(ctx,t){zeReferenceFrame(ctx,{x:509,y:84,w:402,h:398},t,articleSample)}
-function breakRTL(ctx,text,maxWidth){const words=text.trim().split(/\s+/).filter(Boolean);let lines=[],buf='';for(let word of words){let test=buf?buf+' '+word:word;if(ctx.measureText(test).width>maxWidth&&buf){lines.push(buf);buf=word}else buf=test}if(buf)lines.push(buf);return lines}
+function zeBuildWrappedLines(ctx,text,maxWidth){const words=text.trim().split(/\s+/).filter(Boolean);let lines=[],buf='';for(let word of words){let test=buf?buf+' '+word:word;if(ctx.measureText(test).width>maxWidth&&buf){lines.push(buf);buf=word}else buf=test}if(buf)lines.push(buf);return lines}
 // A conservative tatweel selector: only between joining Arabic characters in the
 // same word. The underlying text is unchanged; kashida is purely typographic.
 const NONJOIN=/[اأإآدذرزوؤءة]$/u;
@@ -289,7 +378,7 @@ function stretchWord(ctx,word,extraLimit){
  }
  return output;
 }
-function justifyLine(ctx,line,maxWidth,mode,strength){
+function zeBuildJustifiedLine(ctx,line,maxWidth,mode,strength){
  const words=line.split(/\s+/).filter(Boolean);
  if(!words.length)return [];
  let width=words.reduce((s,w)=>s+ctx.measureText(w).width,0);
@@ -310,18 +399,18 @@ function justifyLine(ctx,line,maxWidth,mode,strength){
  }
  width=words.reduce((s,w)=>s+ctx.measureText(w).width,0);
  let gap=mode==='none'?baseSpace:Math.max(baseSpace,(maxWidth-width)/Math.max(1,words.length-1));
- return {words,gap,total:width+gap*(words.length-1)};
+ return {words,gap,total:width+gap*(words.length-1),wordWidths:words.map(word=>ctx.measureText(word).width)};
 }
-function drawJustified(ctx,line,x,y,maxWidth,mode,strength,reveal,fullJustify){
+function drawJustified(ctx,line,x,y,maxWidth,mode,strength,reveal,fullJustify,revealDirection=1){
  if(reveal<=0)return;
  const prepared=justifyLine(ctx,line,maxWidth,fullJustify?mode:'none',strength);
  if(!prepared.words?.length)return;
- const {words,gap,total}=prepared;
+ const {words,gap,total,wordWidths}=prepared;
  ctx.save();ctx.direction='rtl';ctx.textAlign='right';
  // Reveal moves from right to left without reshaping text at every frame.
- ctx.beginPath();ctx.rect(x-total*reveal-2,y-21,total*reveal+4,43);ctx.clip();
+ ctx.beginPath();ctx.rect(revealDirection<0?x-total-2:x-total*reveal-2,y-21,total*reveal+4,43);ctx.clip();
  let cursor=x;
- for(const word of words){ctx.fillText(word,cursor,y);cursor-=ctx.measureText(word).width+gap}
+ for(let index=0;index<words.length;index++){ctx.fillText(words[index],cursor,y);cursor-=wordWidths[index]+gap}
  ctx.restore();
 }
 function bullet(ctx,t){if(!$('showBullets').checked)return;
@@ -332,23 +421,7 @@ function bullet(ctx,t){if(!$('showBullets').checked)return;
  const ac=when(t,1.71,2.06);
  if(ac>0){ctx.save();ctx.globalAlpha=ac;let bandX=lerp(263,219,when(t,2.0,3.1));rr(ctx,bandX,159,513-bandX,15,6,zeElementColor('bulletAccent'));line(ctx,34,169,34,169+110*ac,'#4893b9',2.2);line(ctx,34,169,146,169,'#326c90',2.4);ctx.restore()}
  if(t<1.84)return;
- const paragraphs=$('bullets').value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);if(!paragraphs.length)return;
- const index=Math.min(paragraphs.length-1,Math.max(0,Math.floor((t-1.84)/15.5)));
- const start=1.84+index*15.5,txt=paragraphs[index];
- ctx.save();ctx.beginPath();ctx.rect(40,176,467,244);ctx.clip();ctx.direction='rtl';ctx.textAlign='right';
- ctx.font=`bold ${val('fontSize')}px ${state.stvLoaded?'"ZEOSSTV", ':''}'STV','Noto Sans Arabic',Tahoma,Arial,sans-serif`;
- ctx.fillStyle=zeElementColor('bulletText');ctx.shadowColor='#0008';ctx.shadowBlur=2;
- let lines=breakRTL(ctx,txt,420).slice(0,7),lh=Math.min(37,222/Math.max(1,lines.length));
- const mode=$('justifyMode').value,strength=val('kashidaStrength')/100;
- for(let i=0;i<lines.length;i++){
-   let reveal=zeReferenceType(t-index*15.5,i);
-   if(reveal<=0)continue;
-   ctx.save();ctx.globalAlpha=Math.min(1,.35+reveal*.65);
-   // Do not justify a final line or lines containing a single long word.
-   drawJustified(ctx,lines[i],489,199+i*lh,437,mode,strength,reveal,i<lines.length-1);
-   ctx.restore();
- }
- ctx.restore();
+ zeDrawParagraphText(ctx,t,{x:40,y:176,w:467,h:244,wrap:420,textWidth:437,right:489,baseline:23,lineHeight:37,font:val('fontSize'),shadow:2});
 }
 function guides(ctx){if($('safeAreas').checked){ctx.save();ctx.setLineDash([7,6]);ctx.strokeStyle='#83e0bc';ctx.lineWidth=1;ctx.strokeRect(39,34,882,453);ctx.strokeStyle='#ee9d36';ctx.strokeRect(28,448,904,60);ctx.restore()}if($('guides').checked){ctx.save();ctx.setLineDash([4,3]);rr(ctx,46,86,58,60,0,null,'#ffd25c',1);rr(ctx,515,85,393,395,0,null,'#ffd25c',1);rr(ctx,40,176,477,245,0,null,'#4ad5ff',1);ctx.restore()}}
 function getBBox(name){const r=R[name],p=state.layers[name],s=p.scale;
@@ -356,7 +429,7 @@ function getBBox(name){const r=R[name],p=state.layers[name],s=p.scale;
  return {x:centerX-r.w*s/2+p.x,y:centerY-r.h*s/2+p.y,w:r.w*s,h:r.h*s};
 }
 function drawGroup(ctx,name,fn,t){let bc=offCtx[name];bc.setTransform(1,0,0,1,0,0);bc.clearRect(0,0,1920,1080);setupCtx(bc);fn(bc,t);const r=R[name],b=getBBox(name);ctx.drawImage(buffers[name],r.x*2,r.y*2,r.w*2,r.h*2,b.x,b.y,b.w,b.h)}
-function compose(ctx,t){setupCtx(ctx);ctx.fillStyle='#241222';ctx.fillRect(0,0,W,H);
+function compose(ctx,t){zeClearScene(ctx);
  zeDrawBackground(ctx,t);
  const tt=timeline(t);
  drawGroup(ctx,'identity',identity,timed('headerTiming',tt));
@@ -366,12 +439,12 @@ function compose(ctx,t){setupCtx(ctx);ctx.fillStyle='#241222';ctx.fillRect(0,0,W
  if($('guides').checked){const b=getBBox(state.selected);ctx.save();ctx.strokeStyle='#f991b2';ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.strokeRect(b.x,b.y,b.w,b.h);ctx.restore()}
 }
 function draw(){try{compose(zeStageContext,state.t)}catch(error){state.renderError=error.message||error.name;zeStage.width=1920;$('renderStatus').hidden=false;$('renderStatus').textContent='Waiting for a media frame — keeping the previous preview.';return}
- c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(zeStage,0,0);c.restore();compareC.save();compareC.setTransform(1,0,0,1,0,0);compareC.drawImage(zeStage,0,0);compareC.restore();
+ c.save();c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,1920,1080);c.drawImage(zeStage,0,0);c.restore();compareC.save();compareC.setTransform(1,0,0,1,0,0);compareC.clearRect(0,0,1920,1080);compareC.drawImage(zeStage,0,0);compareC.restore();
  if(state.renderError){state.renderError=null;$('renderStatus').hidden=true;}
  $('clock').textContent=String(Math.floor(state.t/60)).padStart(2,'0')+':'+(state.t%60).toFixed(2).padStart(5,'0');$('scrubber').value=state.t;$('head').style.left=(state.t/DURATION*100)+'%';$('elapsed').textContent=state.t.toFixed(2)+' / '+DURATION.toFixed(2)+' s';}
 function setT(t){state.t=clamp(t,0,DURATION);draw();if(state.view==='compare'){if(Math.abs(cmp.currentTime-t)>(state.playing ? .08 : .0001)){try{cmp.currentTime=t}catch(e){}}} }
-function animate(now){if(!state.last)state.last=now;let dt=(now-state.last)/1000;state.last=now;if(state.playing){let next=state.t+Math.min(dt,.15);if(next>=DURATION){next=0;state.playing=false;$('play').textContent='▶ Play';cmp.pause()}setT(next)}requestAnimationFrame(animate)}requestAnimationFrame(animate);
-$('play').onclick=()=>{state.playing=!state.playing;$('play').textContent=state.playing?'❚❚ Pause':'▶ Play';if(state.view==='compare'){if(state.playing){cmp.currentTime=state.t;cmp.play().catch(()=>{})}else cmp.pause()}};
+function animate(now){if(!state.last)state.last=now;let dt=(now-state.last)/1000;state.last=now;if(state.playing){let next=state.t+Math.min(dt,.15);if(next>=DURATION){next=DURATION;state.playing=false;$('play').textContent='▶ Play';cmp.pause()}setT(next)}requestAnimationFrame(animate)}requestAnimationFrame(animate);
+$('play').onclick=()=>{if(!state.playing&&state.t>=DURATION)setT(0);state.playing=!state.playing;$('play').textContent=state.playing?'❚❚ Pause':'▶ Play';if(state.view==='compare'){if(state.playing){cmp.currentTime=state.t;cmp.play().catch(()=>{})}else cmp.pause()}};
 $('restart').onclick=()=>setT(0);$('stepBack').onclick=()=>{cmp.pause();state.playing=false;$('play').textContent='▶ Play';setT(state.t-.04)};$('stepFwd').onclick=()=>{cmp.pause();state.playing=false;$('play').textContent='▶ Play';setT(state.t+.04)};$('scrubber').oninput=e=>{state.playing=false;$('play').textContent='▶ Play';cmp.pause();setT(+e.target.value)};
 for(let field of ['justifyMode','kashidaStrength','account','displayname','bullets','showBullets','safeAreas','guides','platformScale','avatarScale','labelScale','fontSize','accentColor','panelColor','textColor','frameColor','headerTiming','sourceTiming','bulletTiming','scrollStart','scrollDuration','scrollDistance'])$(field).addEventListener('input',()=>{if(field==='fontSize')$('fontLabel').textContent=val('fontSize')+'px';draw()});
 function setFlipped(x){$('flip').checked=x;$('position').value=x?'mirrored':'original';draw()}
@@ -389,7 +462,7 @@ document.querySelectorAll('[data-view]').forEach(x=>x.onclick=()=>view(x.dataset
 player.onseeked=()=>{if(state.view==='original')setT(player.currentTime)};player.ontimeupdate=()=>{if(state.view==='original'&&Math.abs(player.currentTime-state.t)>.15)setT(player.currentTime)};
 function fileImg(el,kind){el.onchange=e=>{const f=e.target.files[0];if(!f)return;const u=URL.createObjectURL(f);img(u,i=>{assets[kind]=i;if(kind==='source')assets.sourceBottom=null;draw()});$(kind==='source'?'sourcePath':'avatarPath').textContent=f.name}}
 fileImg($('sourceFile'),'source');fileImg($('avatarFile'),'avatar');
-$('stvFont').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=await f.arrayBuffer();const face=new FontFace('ZEOSSTV',data);await face.load();document.fonts.add(face);state.stvLoaded=true;$('stvStatus').textContent='Loaded locally: '+f.name;draw()}catch(err){$('stvStatus').textContent='Unable to load STV: '+err.message}};
+$('stvFont').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=await f.arrayBuffer();const face=new FontFace('ZEOSSTV',data);await face.load();document.fonts.add(face);state.stvLoaded=true;zeInvalidateTextCache();$('stvStatus').textContent='Loaded locally: '+f.name;draw()}catch(err){$('stvStatus').textContent='Unable to load STV: '+err.message}};
 $('platformFile').onchange=e=>{const f=e.target.files[0];if(!f)return;img(URL.createObjectURL(f),i=>{assets.platform=i;draw()});$('platformPath').textContent=f.name};
 $('sourceLogoFile').onchange=e=>{const f=e.target.files[0];if(!f)return;img(URL.createObjectURL(f),i=>{assets.avatar=i;draw()});$('sourceLogoPath').textContent=f.name+' (used as account image)'};
 $('backgroundFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const u=URL.createObjectURL(f);$('backgroundPath').textContent=f.name;if(f.type.startsWith('video')){let v=document.createElement('video');v.src=u;v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.onloadeddata=()=>{state.customBackground=v;state.bgKind='video';v.play().catch(()=>{});draw()}}else img(u,i=>{state.customBackground=i;state.bgKind='image';draw()})};
@@ -397,8 +470,50 @@ function save(name,blob){let a=document.createElement('a');a.download=name;let u
 $('still').onclick=()=>{draw();cvs.toBlob(b=>{if(b)save('ZE_OS_Mouwajaha_frame_'+state.t.toFixed(2)+'.png',b)},'image/png')};
 $('saveJson').onclick=()=>{const value={type:'ZE_OS_ROLL_RECONSTRUCTION',version:'0.6',reference:'ali.aep / blame roll.mp4',width:1920,height:1080,fps:25,sourceAccount:$('account').value,displayName:$('displayname').value,bulletParagraphs:$('bullets').value,showBullets:$('showBullets').checked,flipped:flipped(),speed:state.speed,layerPositions:state.layers,platformScale:val('platformScale'),avatarScale:val('avatarScale'),labelScale:val('labelScale'),fontSize:val('fontSize'),arabicJustification:{mode:$('justifyMode').value,kashidaStrength:val('kashidaStrength')},hasSTV:state.stvLoaded,palette:{accent:zeElementColor('bulletAccent'),panel:col('panelColor'),text:col('textColor')},timeOffsets:{identity:val('headerTiming'),source:val('sourceTiming'),bullet:val('bulletTiming')},scroll:{start:val('scrollStart'),duration:val('scrollDuration'),distance:val('scrollDistance')},notes:'Source assets are selected locally. Motion timings are frame-measured from render; not yet recovered from AE keyframes.'};save('ZE_OS_Mouwajaha_precision_scene.json',new Blob([JSON.stringify(value,null,2)],{type:'application/json'}))};
 $('reset').onclick=()=>location.reload();
-$('record').onclick=async()=>{if(state.recording)return;if(!cvs.captureStream||typeof MediaRecorder==='undefined'){alert('Browser does not support canvas recording');return};state.recording=true;const btn=$('record');btn.disabled=true;btn.textContent='Recording 8-second sequence…';state.playing=false;setT(0);
-try{await zePrepareAudio();let stream=cvs.captureStream(25);zeAddRecordedAudio(stream);const typ=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'video/webm';let rec=new MediaRecorder(stream,{mimeType:typ,videoBitsPerSecond:7500000}),pieces=[];rec.ondataavailable=e=>{if(e.data.size)pieces.push(e.data)};let done=new Promise(res=>rec.onstop=res);rec.start();let start=performance.now();await new Promise(resolve=>{const tick=()=>{let s=(performance.now()-start)/1000;setT(Math.min(s,8));if(s<8)requestAnimationFrame(tick);else resolve()};requestAnimationFrame(tick)});rec.stop();await done;save('ZE_OS_Mouwajaha_reconstructed_entrance.webm',new Blob(pieces,{type:typ}));stream.getTracks().forEach(x=>x.stop())}catch(err){alert('Browser recording error: '+err.message)}finally{state.recording=false;btn.disabled=false;btn.textContent='Record preview (WebM)';setT(0)}};
+/* MediaRecorder omits WebM duration on some browsers. Add it to Segment/Info so
+   the downloaded clip has a finite, seekable duration without a render server. */
+async function zeFinalizeWebM(blob,seconds){
+ const bytes=new Uint8Array(await blob.arrayBuffer());
+ const read=(offset,id=false)=>{let width=1,mask=128;while(width<=8&&!(bytes[offset]&mask)){width++;mask>>=1}if(width>8||offset+width>bytes.length)throw new Error('Invalid WebM element');let value=id?bytes[offset]:bytes[offset]&(mask-1),unknown=!id&&value===mask-1;for(let i=1;i<width;i++){value=value*256+bytes[offset+i];unknown=unknown&&bytes[offset+i]===255}return {width,value,unknown}};
+ const element=offset=>{const id=read(offset,true),size=read(offset+id.width);return {id:id.value,offset,idWidth:id.width,sizeWidth:size.width,unknown:size.unknown,size:size.value,start:offset+id.width+size.width,end:size.unknown?bytes.length:offset+id.width+size.width+size.value}};
+ const vint=(value,width)=>{while(value>=2**(7*width)-1)width++;const out=new Uint8Array(width);let n=BigInt(value);for(let i=width-1;i>=0;i--){out[i]=Number(n&255n);n>>=8n}out[0]|=1<<(8-width);return out};
+ let segment=null;for(let pos=0;pos<bytes.length;){const e=element(pos);if(e.id===0x18538067){segment=e;break}if(e.end<=pos)break;pos=e.end}if(!segment)throw new Error('WebM segment not found');
+ let info=null;for(let pos=segment.start;pos<segment.end;){const e=element(pos);if(e.id===0x1549a966){info=e;break}if(e.end<=pos)break;pos=e.end}if(!info)throw new Error('WebM timing info not found');
+ let scale=1000000,duration=null;for(let pos=info.start;pos<info.end;){const e=element(pos);if(e.id===0x2ad7b1){scale=0;for(let i=e.start;i<e.end;i++)scale=scale*256+bytes[i]}if(e.id===0x4489)duration=e;if(e.end<=pos)break;pos=e.end}
+ const ticks=seconds*1e9/scale;
+ if(duration){const view=new DataView(bytes.buffer);if(duration.size===8)view.setFloat64(duration.start,ticks);else if(duration.size===4)view.setFloat32(duration.start,ticks);else throw new Error('Invalid WebM duration field');return new Blob([bytes],{type:blob.type})}
+ const value=new Uint8Array(8);new DataView(value.buffer).setFloat64(0,ticks);const field=new Uint8Array([0x44,0x89,0x88,...value]),newSize=vint(info.size+field.length,info.sizeWidth),delta=field.length+newSize.length-info.sizeWidth;
+ const parts=[bytes.slice(info.offset,info.offset+info.idWidth),newSize,bytes.slice(info.start,info.end),field,bytes.slice(info.end)];
+ if(segment.unknown)parts.unshift(bytes.slice(0,info.offset));else parts.unshift(bytes.slice(0,segment.offset+segment.idWidth),vint(segment.size+delta,segment.sizeWidth),bytes.slice(segment.start,info.offset));
+ return new Blob(parts,{type:blob.type});
+}
+
+function zeUpdateExportAvailability(){
+ if(state.recording)return;const alpha=$('transparentOutput').checked,overflow=$('showBullets').checked&&zeParagraphSchedule().overflow>.001;
+ $('recordFull').disabled=alpha||overflow;$('record').disabled=alpha;
+ $('recordFull').title=alpha?'MOV with alpha requires the final render engine. Use transparent PNG in this beta.':overflow?'Resolve the paragraph timing warning before full export.':'';
+ if(alpha)$('exportProgress').textContent='Transparent preview / PNG ready. MOV with alpha is reserved for the final render engine; browser WebM export is disabled for transparency.';
+ else if(overflow)$('exportProgress').textContent='Paragraph timing exceeds video length. Adjust the timing before full export.';
+ else $('exportProgress').textContent='Full browser recording uses the selected '+DURATION.toFixed(2)+' seconds. Keep this tab visible.';
+}
+async function zeRecordVideo(full=false){
+ if(state.recording||$('transparentOutput').checked)return;if(full&&$('showBullets').checked&&zeParagraphSchedule().overflow>.001)return;
+ if(!cvs.captureStream||typeof MediaRecorder==='undefined'){$('exportProgress').textContent='This browser does not support video recording.';return}
+ const target=full?DURATION:Math.min(8,DURATION),disabled=[];let stream=null,rec=null;
+ state.recording=true;state.recordCancel=false;state.playing=false;cmp.pause();$('play').textContent='▶ Play';setT(0);
+ for(const el of document.querySelectorAll('button,input,textarea,select'))if(el.id!=='cancelRecord'){disabled.push([el,el.disabled]);el.disabled=true}
+ $('cancelRecord').hidden=false;$('cancelRecord').disabled=false;$('cancelRecord').onclick=()=>state.recordCancel=true;
+ try{
+  await zePrepareAudio();stream=cvs.captureStream(25);zeAddRecordedAudio(stream);const typ=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'video/webm';
+  rec=new MediaRecorder(stream,{mimeType:typ,videoBitsPerSecond:7500000});const pieces=[];let recorderError=null;rec.ondataavailable=e=>{if(e.data.size)pieces.push(e.data)};const done=new Promise(resolve=>{rec.onstop=resolve;rec.onerror=event=>{recorderError=event.error||new Error('Recorder failed');state.recordCancel=true;resolve()}});rec.start(1000);
+  const start=performance.now();await new Promise(resolve=>{const tick=()=>{const elapsed=Math.min(target,(performance.now()-start)/1000);setT(elapsed);$('exportProgress').textContent=`Recording ${elapsed.toFixed(1)} / ${target.toFixed(1)} s · keep this tab visible.`;if(elapsed<target&&!state.recordCancel)requestAnimationFrame(tick);else resolve()};requestAnimationFrame(tick)});
+  if(rec.state!=='inactive')rec.stop();await done;if(recorderError)throw recorderError;
+  if(!state.recordCancel){save(full?'ZE_OS_Mouwajaha_'+target.toFixed(2)+'s.webm':'ZE_OS_Mouwajaha_reconstructed_entrance.webm',await zeFinalizeWebM(new Blob(pieces,{type:typ}),target));$('exportProgress').textContent='Video recorded · '+target.toFixed(2)+' seconds.'}else $('exportProgress').textContent='Recording cancelled.';
+ }catch(error){$('exportProgress').textContent='Video recording failed: '+error.message}
+ finally{if(rec&&rec.state!=='inactive')rec.stop();if(stream)stream.getTracks().forEach(track=>track.stop());for(const [el,wasDisabled] of disabled)el.disabled=wasDisabled;state.recording=false;$('cancelRecord').hidden=true;const result=$('exportProgress').textContent;setT(0);zeUpdateParagraphEditor();$('exportProgress').textContent=result}
+}
+$('record').onclick=()=>zeRecordVideo(false);$('recordFull').onclick=()=>zeRecordVideo(true);
+
 // Keyboard transport shortcuts
 window.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select,button,summary,a,[contenteditable="true"]'))return;if(e.code==='Space'){e.preventDefault();$('play').click()}if(e.code==='ArrowRight')$('stepFwd').click();if(e.code==='ArrowLeft')$('stepBack').click()});
 
@@ -488,8 +603,8 @@ function zeBulletMarkup(ctx,t){
  ctx.restore();
  if(t>1.66)zeShimmer(ctx,41,176,476,245,t,1.72,.40,true)
 }
-// On the reference track the original bullet animation is never modified.
-// In enhanced mode the same geometry is drawn, with controlled exits and new paragraph entrances.
+// Frame/panel construction retains its V0.7 staging. Both profiles use the
+// shared user-editable paragraph schedule and masked, flip-aware transitions.
 function zeEnhancedBullet(ctx,t){
  if(!$('showBullets').checked)return;
  const lineP=zeCurve(t,1.22,1.45);if(lineP<=0)return;
@@ -504,32 +619,7 @@ function zeEnhancedBullet(ctx,t){
   ctx.restore()}
  zeBulletMarkup(ctx,t);
  if(t<1.84)return;
- const paras=$('bullets').value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);if(!paras.length)return;
- const shift=Math.max(0,t-1.84),interval=15.5;
- const ix=Math.min(paras.length-1,Math.floor(shift/interval));
- const local=shift-ix*interval;
- let opacity=1,dy=0;
- if($('smartBulletTransition').checked&&ix>0&&local<.67){
-   opacity=zeCurve(local,.08,.67);dy=(1-opacity)*16*zeMotion.intensity;
- }
- if($('smartBulletTransition').checked&&ix<paras.length-1&&local>interval-.48){
-   const u=zeCurve(local,interval-.48,interval);opacity*=1-u;dy-=u*9*zeMotion.intensity;
- }
- if(opacity<=0)return;
- ctx.save();ctx.beginPath();ctx.rect(40,176,467,244);ctx.clip();ctx.translate(0,dy);
- ctx.direction='rtl';ctx.textAlign='right';ctx.font=`bold ${val('fontSize')}px ${state.stvLoaded?'"ZEOSSTV", ':''}'STV','Noto Sans Arabic',Tahoma,Arial,sans-serif`;
- ctx.fillStyle=zeElementColor('bulletText');ctx.shadowColor='#0007';ctx.shadowBlur=1.4;
- const lines=breakRTL(ctx,paras[ix],420).slice(0,7);
- const lh=Math.min(37,220/Math.max(1,lines.length));
- const mode=$('justifyMode').value,strength=val('kashidaStrength')/100;
- for(let i=0;i<lines.length;i++){
-   const reveal=zeReferenceType(t-ix*15.5,i);
-   if(reveal<=0)continue;
-   ctx.save();ctx.globalAlpha=opacity*(.25+.75*reveal);
-   drawJustified(ctx,lines[i],489,200+i*lh,437,mode,strength,reveal,i<lines.length-1);
-   ctx.restore()
- }
- ctx.restore();
+ zeDrawParagraphText(ctx,t,{x:40,y:176,w:467,h:244,wrap:420,textWidth:437,right:489,baseline:24,lineHeight:37,font:val('fontSize'),shadow:1.4});
 }
 bullet=function(ctx,t){
  if(zeMotion.mode!=='enhanced')return zeOriginalBullet(ctx,t);
@@ -537,7 +627,7 @@ bullet=function(ctx,t){
 };
 compose=function(ctx,t){
  if(zeMotion.mode!=='enhanced')return zeOriginalCompose(ctx,t);
- setupCtx(ctx);ctx.fillStyle='#241222';ctx.fillRect(0,0,W,H);
+ zeClearScene(ctx);
  const m=zeMotion.intensity;
  // Subpixel camera drift on the background alone; graphics coordinates remain fixed.
  if($('ambientMotion').checked&&m>0){
@@ -623,7 +713,7 @@ function zeDrawSoloIdentity(ctx,t){
 const zeCoreCompose=compose;
 compose=function(ctx,t){
  if(!zeNoBullets())return zeCoreCompose(ctx,t);
- setupCtx(ctx);ctx.fillStyle='#241222';ctx.fillRect(0,0,W,H);
+ zeClearScene(ctx);
  zeDrawBackground(ctx,t);
  zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t);
  guides(ctx);
@@ -804,11 +894,11 @@ $('backgroundFile').onchange=e=>{
  }else{img(url,im=>{state.customBackground=im;state.bgKind='image';const color=zeAnalyzeColors(im);if(color)zeSetPalette(color);draw()})}
 };
 // Export current baseline plus the additional user-approved controls.
-$('saveJson').onclick=()=>{let data={product:'ZERO GRAPHICS OS',version:'0.7-focused',safeArea:{enabled:$('protectLowerThird').checked,mode:$('lowerThirdMode').value,lowerThirdTop:val('lowerThirdTop'),breakingNewsTop:val('breakingNewsTop'),gap:val('lowerThirdGap'),topClearance:val('broadcastTop'),compositionY:val('compositionY'),compositionX:val('compositionX'),screenOffsets:state.screenOffsets},project:'Mouwajaha Roll',headerGroupScale:val('headerGroupScale'),designMode:zeMotion.mode,sourceUrl:zeSolo.postUrl,platform:zeSolo.postPlatform,account:$('account').value,displayname:$('displayname').value,showBullets:!zeNoBullets(),bullets:$('bullets').value,flipped:flipped(),soloWidth:$('soloWidth').value,soloFit:$('soloFit').value,positions:structuredClone(state.layers),postMedia:zePost.active?{text:$('postBody').value,mode:$('postContentMode').value,photos:$('postPhotos').checked,videos:$('postVideos').checked,audio:$('postAudio').checked,volume:val('postVolume'),items:zePost.items.map(item=>({type:item.type,name:item.label,included:item.enabled})),note:'Reattach original media files when reopening on another computer.'}:null,backgroundAutoPalette:$('autoPalette').checked,colors:{accent:$('accentColor').value,panel:$('panelColor').value,text:$('textColor').value,frame:$('frameColor').value,adaptFrame:$('adaptFrameColor').checked,elementOverrides:Object.fromEntries(Object.entries(zeColorSpec).map(([key,[label,id]])=>[key,{enabled:$(key+'Override').checked,color:$(id).value}]))},typography:{font:'STV',loaded:state.stvLoaded,justify:$('justifyMode').value,kashida:val('kashidaStrength')},motion:{strength:zeMotion.intensity,animatedCorners:$('animatedCorners').checked,lightSweeps:$('lightSweeps').checked,ambientMotion:$('ambientMotion').checked}};
+$('saveJson').onclick=()=>{let data={product:'ZERO GRAPHICS OS',version:'0.7-focused',safeArea:{enabled:$('protectLowerThird').checked,mode:$('lowerThirdMode').value,lowerThirdTop:val('lowerThirdTop'),breakingNewsTop:val('breakingNewsTop'),gap:val('lowerThirdGap'),topClearance:val('broadcastTop'),compositionY:val('compositionY'),compositionX:val('compositionX'),screenOffsets:state.screenOffsets},project:'Mouwajaha Roll',videoTiming:zeTimingExport(),output:{background:zeIsTransparent()?'transparent':'loop',requestedFinalCodec:zeIsTransparent()?'QuickTime ProRes 4444 with alpha':null},headerGroupScale:val('headerGroupScale'),designMode:zeMotion.mode,sourceUrl:zeSolo.postUrl,platform:zeSolo.postPlatform,account:$('account').value,displayname:$('displayname').value,showBullets:!zeNoBullets(),bullets:$('bullets').value,flipped:flipped(),soloWidth:$('soloWidth').value,soloFit:$('soloFit').value,positions:structuredClone(state.layers),postMedia:zePost.active?{text:$('postBody').value,mode:$('postContentMode').value,photos:$('postPhotos').checked,videos:$('postVideos').checked,audio:$('postAudio').checked,volume:val('postVolume'),items:zePost.items.map(item=>({type:item.type,name:item.label,included:item.enabled})),note:'Reattach original media files when reopening on another computer.'}:null,backgroundAutoPalette:$('autoPalette').checked,colors:{accent:$('accentColor').value,panel:$('panelColor').value,text:$('textColor').value,frame:$('frameColor').value,adaptFrame:$('adaptFrameColor').checked,elementOverrides:Object.fromEntries(Object.entries(zeColorSpec).map(([key,[label,id]])=>[key,{enabled:$(key+'Override').checked,color:$(id).value}]))},typography:{font:'STV',loaded:state.stvLoaded,justify:$('justifyMode').value,kashida:val('kashidaStrength')},motion:{strength:zeMotion.intensity,animatedCorners:$('animatedCorners').checked,lightSweeps:$('lightSweeps').checked,ambientMotion:$('ambientMotion').checked}};
  save('ZE_OS_Mouwajaha_V07_Focused_Project.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}))};
 $('showBullets').checked=true;
 zeSetStatus('Paste a public post URL. Run START_ZE_OS.bat to enable live import.');
-Promise.all([document.fonts.load('700 21px ZEOSSTV'),document.fonts.load('400 21px ZEOSSTV')]).then(()=>{state.stvLoaded=true;$('stvStatus').textContent='STV Regular + Bold loaded · local beta';draw()});
+Promise.all([document.fonts.load('700 21px ZEOSSTV'),document.fonts.load('400 21px ZEOSSTV')]).then(()=>{state.stvLoaded=true;zeInvalidateTextCache();$('stvStatus').textContent='STV Regular + Bold loaded · local beta';draw()});
 draw();
 
 /* V0.7 post media: independent attachments, linked layout, and timeline audio. */
@@ -897,16 +987,12 @@ function zeAdaptiveBullet(ctx,t,target=null){
  ctx.save();ctx.beginPath();ctx.rect(b.x,b.y,b.w,b.h*panel);ctx.clip();rr(ctx,b.x,b.y,b.w,b.h,11,zeElementColor('bulletPanel')+'f2');ctx.restore();
  const accent=when(t,1.67,2.12);rr(ctx,b.x,b.y-12,b.w*accent,7,3,zeElementColor('bulletAccent'));
  if(t<1.84)return;
- const paragraphs=$('bullets').value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);if(!paragraphs.length)return;
- const shift=Math.max(0,t-1.84),ix=Math.min(paragraphs.length-1,Math.floor(shift/15.5)),local=shift-ix*15.5;
- ctx.save();ctx.beginPath();ctx.rect(b.x+12,b.y+10,b.w-24,b.h-20);ctx.clip();ctx.direction='rtl';ctx.textAlign='right';ctx.fillStyle=zeElementColor('bulletText');
- let size=val('fontSize'),lines,lineH;do{ctx.font=`bold ${size}px ZEOSSTV,STV,Tahoma,Arial`;lines=breakRTL(ctx,paragraphs[ix],b.w-40);lineH=size*1.65;if(lines.length*lineH<=b.h-28||size<=12)break;size-=.5}while(size>=12);
- for(let i=0;i<lines.length;i++){const reveal=zeReferenceType(t-ix*15.5,i);drawJustified(ctx,lines[i],b.x+b.w-20,b.y+size+12+i*lineH,b.w-40,$('justifyMode').value,val('kashidaStrength')/100,reveal,i<lines.length-1)}ctx.restore();
+ zeDrawParagraphText(ctx,t,{x:b.x+12,y:b.y+10,w:b.w-24,h:b.h-20,wrap:b.w-40,textWidth:b.w-40,right:b.x+b.w-20,baseline:val('fontSize')+2,lineHeight:val('fontSize')*1.65,font:val('fontSize'),adaptive:true});
 }
 const zeOldPostCompose=compose;
 compose=function(ctx,t){
  if(!zePost.active)return zeOldPostCompose(ctx,t);
- setupCtx(ctx);ctx.fillStyle='#241222';ctx.fillRect(0,0,W,H);
+ zeClearScene(ctx);
  zeDrawBackground(ctx,t);
  zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t);if(!zeNoBullets())zeAdaptiveBullet(ctx,timed('bulletTiming',timeline(t)));guides(ctx);
  if($('guides').checked){const box=getBBox(state.selected);if(box.w){ctx.save();ctx.strokeStyle='#f991b2';ctx.strokeRect(box.x,box.y,box.w,box.h);ctx.restore()}}
@@ -1008,12 +1094,7 @@ function zeSafeReferenceBullet(ctx,t){
  const ac=when(t,1.71,2.06);
  if(ac>0){ctx.save();ctx.globalAlpha=ac;const bandX=group.x+(lerp(263,219,when(t,2,3.1))-28)*k;rr(ctx,bandX,group.y+6*k,group.x+485*k-bandX,15*k,6,zeElementColor('bulletAccent'));line(ctx,group.x+6*k,group.y+16*k,group.x+6*k,group.y+(16+110*ac)*k,'#4893b9',2.2);line(ctx,group.x+6*k,group.y+16*k,group.x+118*k,group.y+16*k,'#326c90',2.4);ctx.restore()}
  if(t<1.84)return;
- const paragraphs=$('bullets').value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);if(!paragraphs.length)return;
- const index=Math.min(paragraphs.length-1,Math.max(0,Math.floor((t-1.84)/15.5))),size=val('fontSize')*k;
- ctx.save();ctx.beginPath();ctx.rect(b.x,b.y,b.w-10*k,b.h);ctx.clip();ctx.direction='rtl';ctx.textAlign='right';ctx.font=`bold ${size}px ZEOSSTV,STV,Tahoma,Arial`;ctx.fillStyle=zeElementColor('bulletText');ctx.shadowColor='#0008';ctx.shadowBlur=2;
- const lines=breakRTL(ctx,paragraphs[index],420*k).slice(0,7),lh=Math.min(37*k,(b.h-23*k)/Math.max(1,lines.length));
- for(let i=0;i<lines.length;i++){const reveal=zeReferenceType(t-index*15.5,i);if(reveal<=0)continue;ctx.save();ctx.globalAlpha=Math.min(1,.35+reveal*.65);drawJustified(ctx,lines[i],group.x+461*k,b.y+23*k+i*lh,437*k,$('justifyMode').value,val('kashidaStrength')/100,reveal,i<lines.length-1);ctx.restore()}
- ctx.restore();
+ zeDrawParagraphText(ctx,t,{x:b.x,y:b.y,w:b.w-10*k,h:b.h,wrap:420*k,textWidth:437*k,right:group.x+461*k,baseline:23*k,lineHeight:37*k,font:val('fontSize')*k,shadow:2});
 }
 const zeUnprotectedDrawGroup=drawGroup;
 drawGroup=function(ctx,name,fn,t){
@@ -1079,6 +1160,7 @@ for(const [id,key] of [['layerX','x'],['layerY','y']])$(id).oninput=()=>{if(zeAl
 let zeDrag=null;cvs.tabIndex=0;
 const point=event=>{const r=cvs.getBoundingClientRect();return {x:(event.clientX-r.left)/r.width*W,y:(event.clientY-r.top)/r.height*H}};
 cvs.addEventListener('pointerdown',event=>{
+ if(state.recording)return;
  const p=point(event),hit=['identity','source','bullet'].find(name=>{const b=getBBox(name);return b.w&&p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h});if(!hit)return;
  if(event.shiftKey)selectLayer(hit,true);else if(!state.selectedLayers.has(hit))selectLayer(hit);
  if(!state.selectedLayers.size)return;
@@ -1114,7 +1196,7 @@ const zeTransformKey=snapshot=>JSON.stringify([snapshot.layers,snapshot.offsets,
 function zeUpdateHistory(label){$('undoEdit').disabled=!zeUndoStack.length;$('redoEdit').disabled=!zeRedoStack.length;if(label)$('historyStatus').textContent=label}
 function zeCommitMovement(before){if(before&&zeTransformKey(before)!==zeTransformKey(zeLayoutSnapshot())){zeUndoStack.push(before);if(zeUndoStack.length>100)zeUndoStack.shift();zeRedoStack.length=0;zeUpdateHistory('Position saved · Ctrl+Z to undo.')}}
 function zeRestoreMovement(snapshot){state.layers=structuredClone(snapshot.layers);state.screenOffsets=structuredClone(snapshot.offsets);state.selected=snapshot.selected;state.selectedLayers=new Set(snapshot.selection);for(const [id,value] of Object.entries(snapshot.values))if($(id).type==='checkbox')$(id).checked=value;else $(id).value=value;zeSelectionControls();$('layerScale').value=Math.round(state.layers[state.selected].scale*100);zeUpdateSafePreview();draw()}
-function zeUndoMovement(redo=false){const from=redo?zeRedoStack:zeUndoStack,to=redo?zeUndoStack:zeRedoStack;if(!from.length)return;to.push(zeLayoutSnapshot());zeRestoreMovement(from.pop());zePendingHistory=null;zeUpdateHistory(redo?'Movement restored.':'Movement undone.');}
+function zeUndoMovement(redo=false){if(state.recording)return;const from=redo?zeRedoStack:zeUndoStack,to=redo?zeUndoStack:zeRedoStack;if(!from.length)return;to.push(zeLayoutSnapshot());zeRestoreMovement(from.pop());zePendingHistory=null;zeUpdateHistory(redo?'Movement restored.':'Movement undone.');}
 $('undoEdit').onclick=()=>zeUndoMovement();$('redoEdit').onclick=()=>zeUndoMovement(true);
 let zePendingHistory=null,zeDragHistory=null;
 for(const id of zeHistoryFields){const field=$(id);for(const type of ['focusin','pointerdown'])field.addEventListener(type,()=>{zePendingHistory=zeLayoutSnapshot()});field.addEventListener('change',()=>{zeCommitMovement(zePendingHistory);zePendingHistory=zeLayoutSnapshot()})}
@@ -1126,5 +1208,6 @@ window.addEventListener('keydown',event=>{
  const key=event.key.toLowerCase();if(key==='z'||key==='y'){event.preventDefault();if(zeDrag&&zeDragHistory){zeRestoreMovement(zeDragHistory);zeDrag=null;zeDragHistory=null;zeUpdateHistory('Movement cancelled.');return}zeUndoMovement(key==='y'||event.shiftKey)}
 });
 zeUpdateHistory();
+zeInitParagraphEditor();
 
 </script></body></html>

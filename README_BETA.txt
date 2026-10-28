@@ -1,6 +1,14 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.5
+ZE OS — Mouwajaha V0.7 / Test Beta 2.6
 
-BETA 2.5 — CURRENT CHANGES
+BETA 2.6 — CURRENT CHANGES
+Main → Bullet text → Paragraph timing & output contains the video length (default 50 s), transition duration, and individual Auto / Hold seconds / Preview controls.
+Auto estimates reading time from paragraph length and shares available time accordingly. Manual holds are preserved when video length changes. Hold excludes entry and exit. A warning appears if the schedule cannot fit; full recording is blocked instead of silently truncating the text.
+Text exits opposite its entry, then the next appears. Flip reverses both directions. Text is clipped inside the black panel throughout entry and exit.
+Render full video (WebM) in Project export records the selected duration; the short preview remains separate. Keep the tab visible. Cancel discards the recording.
+Transparent background removes the loop and solid fill. The preview uses a checkerboard; PNG exports have real alpha. MOV / ProRes 4444 alpha belongs to the final render engine and is saved as the output intent in scene JSON. Browser video recording is disabled in transparent mode; this beta does not export MOV alpha.
+Connection version is 0.7-beta2.6. Close the old helper before starting START_ZE_OS.bat from this folder.
+
+BETA 2.5 — EARLIER CHANGES
 Main contains Roll & account, Bullet text, Post import, selected post media/audio and composition Up/Down. Advanced options holds the remaining detailed categories. Fold the category titles as needed.
 Roll and bullet widths/text are restored: protection no longer scales down the composition. Tall viewing windows shorten only when necessary to fit above the lower third; content keeps its proportions and scrolls. Disable protection to use the original unrestricted height.
 The logo/profile/name group defaults to 90%, stays consistent for 9:16 and landscape, and is a further 5% smaller on the TV-logo side. It clears both top corners after flipping. Change its group size in Advanced → Detailed layout & selection.

@@ -1,3 +1,15 @@
+ZE OS V0.7 Beta 2.6 timing / transparent-output examples
+
+ZE_OS_V07_Beta26_50s.webm: actual default 50-second browser export, 1920x1080, silent. Contains the three editable sample paragraphs, reading-length-weighted automatic holds, masked exits and following entrances. Rendered from the normal editor, with the background enabled.
+ZE_OS_V07_Beta26_50s.mp4: H.264 viewing copy converted externally with FFmpeg, 25 fps (duplicated frames where the real-time browser capture drops frames). This conversion is not an in-app MP4 renderer.
+ZE_OS_V07_Beta26_Timing.json: the actual default schedule and hold durations used by that recording.
+ZE_OS_V07_Beta26_Editor.png: current timing controls and the editor.
+ZE_OS_V07_Beta26_Transparent.png: actual PNG export with real alpha and the background disabled. The preview checkerboard and safe-area guides are not baked in.
+
+Browser capture is real time and can drop frames; it is not the future deterministic broadcast render engine. MOV / ProRes 4444 with alpha is deferred to that final engine. The beta does not export alpha MOV or claim reliable alpha WebM.
+
+Earlier demonstration files retained below:
+
 ZE OS V0.7 Beta 2.5 update demonstration
 
 ZE_OS_V07_Beta25_Demo.mp4: 40.48-second real-editor walkthrough, H.264, 1440x900, silent.

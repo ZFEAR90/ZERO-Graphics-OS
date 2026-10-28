@@ -1,0 +1,37 @@
+{
+  "durationSeconds": 50,
+  "transitionSeconds": 0.64,
+  "paragraphs": [
+    {
+      "text": "وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.",
+      "mode": "auto",
+      "holdSeconds": 18.819245283018866,
+      "estimatedHoldSeconds": 10.3,
+      "start": 1.84,
+      "entryEnd": 4.2,
+      "exitStart": 23.019245283018865,
+      "end": 23.659245283018866
+    },
+    {
+      "text": "يشكل المسلمون نحو 6% من سكان أوروبا، ونحو 9 إلى 10% من سكان فرنسا",
+      "mode": "auto",
+      "holdSeconds": 13.597358490566037,
+      "estimatedHoldSeconds": 6.9,
+      "start": 23.659245283018866,
+      "entryEnd": 25.099245283018867,
+      "exitStart": 38.696603773584904,
+      "end": 39.336603773584905
+    },
+    {
+      "text": "المواطنون يعانون بسبب ارتفاع الأسعار والضرائب",
+      "mode": "auto",
+      "holdSeconds": 9.143396226415094,
+      "estimatedHoldSeconds": 4,
+      "start": 39.336603773584905,
+      "entryEnd": 40.21660377358491,
+      "exitStart": 49.36,
+      "end": 50
+    }
+  ],
+  "note": "Hold seconds exclude entry and exit. Automatic holds share available video time by reading length."
+}

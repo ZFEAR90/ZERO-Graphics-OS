@@ -1,4 +1,4 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.5
+# ZE OS — Mouwajaha V0.7, Test Beta 2.6
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
@@ -70,7 +70,7 @@ Browser validation covered automatic palette selection from two real file inputs
 
 **Layout & positioning** now includes whole-composition Up/Down/Reset controls and group selection: Account group, Roll + account, Bullet panel, and Select all. Drag a selected group in the preview. Shift-click adds a group; selected subsets move only those groups, and Select all translates the full composition. Roll dragging includes its linked account header. Selection outlines are preview-only and hide during playback/recording. Safe protection clamps movement to the on-air area; switching it off permits unrestricted positioning.
 
-Portrait media no longer scales down the header: the normal identity group remains 432×94 scene units (with its original logo/profile/text sizes) across portrait and landscape sources unless explicitly resized. Within protected layouts, source/bullet content fits the available space separately from the header. Per-group mouse offsets and whole-composition offsets are included in scene JSON.
+Portrait media no longer scales down the header: the identity group uses the same base size across portrait and landscape sources. Beta 2.5 sets it to 90% of the original 432×94 scene units, with a further 5% reduction on the TV-logo side, unless explicitly resized. Within protected layouts, source/bullet content fits the available space separately from the header. Per-group mouse offsets and whole-composition offsets are included in scene JSON.
 
 The renderer retains the last decoded background during decoder starvation and paints a complete scene into a staging canvas before publishing it to the visible/compare canvases. If rendering is interrupted, the prior complete preview is retained with a waiting message. Intentional black frames encoded into a media file are not removed. Tests simulated an unavailable background frame and an interrupted scene render and verified that the visible frame remained unchanged. Layout computation is cached between edits to avoid repeated fitting work during playback.
 
@@ -92,3 +92,17 @@ Drag a group or use Shift-click / Select all for a selection. **Undo / Ctrl+Z** 
 The new browser workspace check covers actual tab navigation, unchanged source/bullet widths, the smaller header, both flip directions clearing the TV/Live exclusion, protected upward movement, per-drag and grouped undo/redo, numeric edits, guide visibility and mobile width. Existing animation, imports, media/audio and palette checks remain.
 
 [Beta 2.5 update demonstration](demo/ZE_OS_V07_Beta25_Demo.mp4) shows the current full-width layout, tabs, guides, TV-side header compensation, mouse movements and undo. The earlier Beta 2.4 video and actual WebM/audio recording are retained separately.
+
+## Paragraph timing and transparent output (Beta 2.6)
+
+Under **Main → Bullet text → Paragraph timing & output**, set the overall length (default **50 seconds**) and paragraph exit/slide time (default **0.64 seconds**). Each paragraph has a Preview button, an Auto checkbox and an editable Hold duration. Hold starts after its entrance/type reveal and excludes the exit. Auto estimates reading length from word/character counts, then distributes the available video time by those estimates. Manual holds remain unchanged when video length changes. Editing the same paragraph retains its manual setting; reordering exact paragraphs carries their timing with them.
+
+Text enters from the right and exits left before the next paragraph appears. Flip reverses those directions without mirroring glyphs. A fixed rounded mask clips the animated text inside the black panel in reference, protected, and imported layouts. The original first type reveal and panel/frame entrance staging remain. Long paragraphs scroll inside the same mask rather than losing lines. The timeline shows paragraph segments; Preview seeks to the chosen entrance. **Reset holds to Auto** clears overrides; **Use estimated total** sets a natural reading-length total. If paragraphs cannot fit, a warning preserves manual settings and prevents a full recording from silently cutting them off. If all holds are manual and finish early, the remaining time contains the graphics without paragraph text.
+
+**Project export → Render full video (WebM)** records the selected duration in real time, with post audio if enabled. The short preview recorder remains available. Keep the browser tab visible; Cancel discards a recording. Browser recording runs in real time and can drop frames on a busy computer; deterministic broadcast rendering belongs to the final engine. Controls are locked while recording. The downloaded WebM receives finite duration metadata. A final offline render engine and native MP4/MOV encoding are not implemented in this beta.
+
+**Transparent background (no loop)** removes both the loop and the background fill. The checkerboard is preview-only; PNG export contains real alpha. Project JSON records the transparent-output request and a target MOV / ProRes 4444 alpha setting for the final renderer. Browser WebM export is disabled in transparency mode because it does not provide reliable alpha. This beta does not claim to export a MOV alpha video.
+
+Validation includes reading-length weighting, preserved manual holds, edited/reordered/duplicate paragraphs, overflow handling, motion-speed independence of hold seconds, both masked flip directions, pixel comparisons across imported/reference/protected layouts, transparent PNG alpha, saved timing/output settings, real full-duration WebM output and cancellation. Existing media/audio, safe-area, palette, typography/import and movement-history checks remain.
+
+[50-second paragraph-transition example](demo/ZE_OS_V07_Beta26_50s.mp4) · [actual WebM export](demo/ZE_OS_V07_Beta26_50s.webm) · [transparent PNG example](demo/ZE_OS_V07_Beta26_Transparent.png). The MP4 viewing copy was converted externally, not generated by an in-app final render engine.
