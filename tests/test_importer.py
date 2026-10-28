@@ -1,0 +1,62 @@
+import importlib.util
+from pathlib import Path
+import unittest
+from unittest.mock import patch,Mock
+import json,socket,threading,urllib.request,urllib.error
+spec=importlib.util.spec_from_file_location('importer',Path(__file__).parents[1]/'ze_local_importer.py')
+m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+PUBLIC=[(socket.AF_INET,socket.SOCK_STREAM,6,'',('8.8.8.8',443))]
+def response(body,status=200,kind='application/json'):
+ r=Mock(status_code=status,content=body.encode() if isinstance(body,str) else body,headers={'content-type':kind})
+ r.text=body if isinstance(body,str) else '';r.json=lambda:json.loads(r.text);return r
+class ImportTests(unittest.TestCase):
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_x_post_before_blocked_website(self,_):
+  post={'text':'Actual post text','user':{'name':'Real Author','screen_name':'real','profile_image_url_https':'https://pbs.twimg.com/profile.jpg'},'photos':[{'url':'https://pbs.twimg.com/one.jpg'},{'url':'https://pbs.twimg.com/two.jpg'}]}
+  with patch('requests.get',side_effect=[response(json.dumps(post)),response(b'avatar',kind='image/jpeg'),response(b'first',kind='image/jpeg'),response(b'second',kind='image/jpeg')]) as get:
+   data=m.fetch_metadata('https://x.com/real/status/123456789')
+  self.assertEqual(data['name'],'Real Author');self.assertEqual(data['handle'],'real');self.assertTrue(data['avatar_data'].startswith('data:image/'));self.assertEqual(len(data['media_items']),2)
+  self.assertEqual(get.call_args_list[0].args[0],'https://cdn.syndication.twimg.com/tweet-result')
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_telegram_real_author_and_avatar(self,_):
+  html='''<meta property="og:description" content="Summary"><a class="tgme_widget_message_user_photo" style="background-image:url('https://cdn-telegram.org/avatar.jpg')"></a><span class="tgme_widget_message_owner_name">Actual Channel</span><div class="tgme_widget_message_text">Actual message</div>'''
+  with patch('requests.get',side_effect=[response(html,kind='text/html'),response(b'avatar',kind='image/jpeg')]):data=m.fetch_metadata('https://t.me/s/channel/123')
+  self.assertEqual(data['handle'],'channel');self.assertEqual(data['name'],'Actual Channel');self.assertEqual(data['text'],'Actual message');self.assertTrue(data['avatar_data'])
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_platform_denial_is_error(self,_):
+  with patch('requests.get',return_value=response('denied',403)):
+   with self.assertRaisesRegex(RuntimeError,'403'):m.fetch_metadata('https://instagram.com/p/example')
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_facebook_share_redirect_and_author(self,_):
+  redirect=response('',302);redirect.headers['Location']='https://www.facebook.com/real.author/posts/123'
+  html='<meta property="og:description" content="Actual post"><script type="application/ld+json">'+json.dumps({'author':{'name':'Real FB Author','image':'https://scontent.fbcdn.net/avatar.jpg'}})+'</script>'
+  with patch('requests.get',side_effect=[redirect,response(html,kind='text/html'),response(b'avatar',kind='image/jpeg')]) as get:
+   data=m.fetch_metadata('https://www.facebook.com/share/p/1Cuq9SFPGz/')
+  self.assertEqual(data['name'],'Real FB Author');self.assertEqual(data['handle'],'real.author');self.assertTrue(data['avatar_data']);self.assertEqual(get.call_count,3)
+ @patch.object(m.socket,'getaddrinfo',return_value=PUBLIC)
+ def test_redirect_does_not_escape_supported_hosts(self,_):
+  redirect=response('',302);redirect.headers['Location']='https://evil.example/post'
+  with patch('requests.get',return_value=redirect) as get:
+   with self.assertRaises(ValueError):m.fetch_metadata('https://www.facebook.com/share/p/example/')
+  self.assertEqual(get.call_count,1)
+ def test_reject_unsupported_or_private_urls(self):
+  for url in ['http://x.com/user/status/123','https://evil.example/post','https://user:pass@x.com/a','https://x.com:444/a']:
+   with self.assertRaises(ValueError):m.public_url(url,m.KNOWN)
+  with patch.object(m.socket,'getaddrinfo',return_value=[(socket.AF_INET,socket.SOCK_STREAM,6,'',('127.0.0.1',443))]):
+   with self.assertRaises(ValueError):m.public_url('https://x.com/a',m.KNOWN)
+ def test_local_api_file_origin(self):
+  server=m.ThreadingHTTPServer(('127.0.0.1',0),m.Handler);threading.Thread(target=server.serve_forever,daemon=True).start()
+  try:
+   req=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/api/post?url=invalid',headers={'Origin':'null'})
+   with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(req)
+   self.assertEqual(error.exception.code,422);self.assertEqual(error.exception.headers['Access-Control-Allow-Origin'],'null');self.assertIn('error',json.loads(error.exception.read()))
+  finally:server.shutdown();server.server_close()
+ def test_health_identifies_importer_for_file_origin(self):
+  server=m.ThreadingHTTPServer(('127.0.0.1',0),m.Handler);threading.Thread(target=server.serve_forever,daemon=True).start()
+  try:
+   req=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/api/health',headers={'Origin':'null'})
+   with urllib.request.urlopen(req) as response:
+    self.assertEqual(response.headers['Access-Control-Allow-Origin'],'null')
+    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2'})
+  finally:server.shutdown();server.server_close()
+if __name__=='__main__':unittest.main()
