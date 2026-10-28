@@ -1,4 +1,4 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.1
+ZE OS — Mouwajaha V0.7 / Test Beta 2.2
 
 QUICK VISUAL TEST
 Open ZE_OS_Mouwajaha_V07.html in Chrome or Edge for offline editing. Live post import requires the helper; opening the HTML does not start it.
@@ -41,3 +41,6 @@ Use Check importer connection before importing. Run START_ZE_OS.bat from the ext
 
 BETA 2.1 CAPTURE FIX
 Close the previous command window before starting the new helper. The launcher now checks the capture browser and installs Chromium if needed. Browser fallback waits for a visible post/images and reports why it fails. Check importer connection should show version 0.7-beta2.1. Facebook can still refuse public access; try the direct URL reached by clicking the post timestamp. The real Facebook example remains unverified in the cloud.
+
+BETA 2.2 INTERFACE
+Click any category title or its arrow to fold/unfold its controls. Post import and Project export are open initially; other categories are folded. Changes remain when a panel is folded. Enter/Space work on focused headers. On small screens, categories stack below the preview.

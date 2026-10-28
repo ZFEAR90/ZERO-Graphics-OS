@@ -1,4 +1,4 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.1
+# ZE OS — Mouwajaha V0.7, Test Beta 2.2
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
@@ -31,3 +31,9 @@ See `README_BETA.txt` for additional setup instructions and limitations. Origina
 Close the old helper window before starting this version. The launcher checks the capture browser and installs Playwright Chromium if no working browser is found. Capture waits for a visible post and its images. Errors now distinguish a missing browser, HTTP rejection, login redirection, timeout, and an unsupported page layout; valid metadata remains usable when capture fails. A successful screenshot is retained even if author extraction fails.
 
 The supplied Facebook test URL is `https://www.facebook.com/share/p/1GVmqHPmx5/`. Its live content remains unverified because Facebook is outside this cloud instance's enforced network allowlist. Browser capture checks use controlled public-post, HTTP 400, and login-page fixtures. If a share link fails, open it normally, click the post date/time, and try that direct post URL. Posts that require signing in may need a manually imported screenshot.
+
+## Interface categories (Beta 2.2)
+
+The editor sidebar now groups controls into Post import, Source & bulletin, Layout & positioning, Media assets, Arabic typography, Animation, Colors & palette, and Guides & safe areas. Each titled panel has a fold/unfold arrow and supports Enter/Space keyboard toggling. Post import opens by default. The reference sidebar has Project export, AEP reference, Reference timing, and About this reconstruction; export opens by default. Folding preserves edits. Mobile controls wrap within the viewport.
+
+Browser validation covered every panel, keyboard toggling without triggering playback, retained edits, layout controls, mobile horizontal overflow, and existing font/name/import behavior. Canvas images matched the preceding beta exactly at 1.2, 2.12, and 4 seconds; this verifies the interface regrouping did not change those rendered frames. The Facebook-access limitations above still apply.
