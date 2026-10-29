@@ -1,6 +1,14 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.7.1
+ZE OS — Mouwajaha V0.7 / Test Beta 2.7.2
 
-BETA 2.7.1 — CURRENT CORRECTIONS
+BETA 2.7.2 — CURRENT WORKFLOW
+The entire black bulletin panel and text now stay above the lower-third safe line, even with protection Off, after moving/scaling/flipping. Only the roll may use extra lower space.
+Successful media-post imports copy the cleaned post text into the editable bullet field, replacing the sample text. Edited bullets remain independent. Main → Post photos, video & audio has Post text placement: Bullet panel / Inside the roll / Hide post text, plus Use post text in bullets.
+Returning an unchanged copied bullet to the roll clears that duplicate; custom bullet edits are preserved. Inside the roll defaults to scrolling text and media together. Keep selected media visible is available when a speaker should remain fixed instead. Text-only imports retain their text inside the roll.
+Media fitting defaults to Fill frame, with Fit whole image selectable. Single-media frames match media proportions to remove unintended white margins. Fit shows the whole image and ignores zoom. A protected crop region still limits Fill; soft duplicate background fills an uncovered edge when protection prevents a crop.
+Wider two-column media are positioned lower for balance, with a small permitted roll overlap below the lower third. With bullets off, a wide card puts the profile/name/account inside its top strip and the platform tile across the top-right corner. The attached header moves with the card. Portrait solo remains its own layout.
+Connection version is 0.7-beta2.7.2. Close the old helper before running this folder's START_ZE_OS.bat. The app still defaults to 50 seconds. A 24-second comparison and actual 8-second browser scroll export are in demo/. MOV/alpha belongs to the final renderer.
+
+BETA 2.7.1 — EARLIER CORRECTIONS
 The account/profile/logo header stays above the bullet column whenever bullets are enabled. Move the bulletin to move its header; the roll moves independently. With bullets off, the header sits above the roll.
 Large centered portrait centers the whole assembly and gives the roll more height. Its header uses the bullet column instead of the space above the media.
 Bullet TEXT always stays above the selected lower-third safe line, including the breaking-news preset and gap. This is mandatory even with Respect safe area Off. The black panel may extend below the line; wrapping/scrolling and a fixed mask keep the text above it.

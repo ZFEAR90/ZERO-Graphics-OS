@@ -1,3 +1,16 @@
+ZE OS V0.7 Beta 2.7.2 — current workflow comparison
+
+ZE_OS_V07_Beta272_Demo.mp4: 24-second silent comparison, H.264, 1920x1080.
+0–4 s: actual wider layout still, with the imported post text in the bulletin and filled media in a balanced lower frame. The complete black panel stays above the lower-third safe line.
+4–8 s: wide solo card with account/profile inside its top strip and platform overlapping the top-right corner.
+8–12 s: native portrait media fills its frame; the centered assembly keeps the panel safe.
+12–16 s: optional post text returned inside the roll.
+16–24 s: actual eight-second browser recording of joined text/video scrolling. For this concise example, scroll starts at 2 s and lasts 4 s; these are demo overrides. The app still defaults to a 50-second video.
+
+ZE_OS_V07_Beta272_Scroll.webm is the actual browser export, with finite eight-second duration metadata. The viewing MP4 was composed externally with FFmpeg, adding labels and duplicating/holding frames where the real-time capture dropped frames. It is not an in-app final MP4 renderer or deterministic broadcast export. The current PNGs and Editor.png are real editor screenshots. Guides appear in screenshots only; they are absent from the browser WebM.
+The existing synthetic gradient clips supply demo pictures/video. No live social extraction or automatic face tracking is demonstrated. Source audio is disabled in this comparison; audio exports are checked separately. Fill is the default with a Fit option; imported text defaults to editable bullets and can be returned or hidden.
+Earlier demos retained below reflect their labeled versions and precede these corrections.
+
 ZE OS V0.7 Beta 2.7.1 — current layout comparison
 
 ZE_OS_V07_Beta271_Layouts.mp4: 16-second silent comparison composed from four actual editor stills: wider caption-first card, enlarged centered portrait assembly, flipped portrait, and solo roll. It shows the header above the bulletin whenever bullets are on, and above the roll only with bullets off. Guides remain preview overlays. Bullet text stays above the breaking-news safe line even when the panel/roll cross below it.

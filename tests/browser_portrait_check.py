@@ -73,7 +73,7 @@ try:
   page.locator('#postBody').fill('An editable caption remains separate from the complete landscape video. '*15)
   page.locator('#showBullets').check(); page.evaluate('setFlipped(false)')
   boxes=page.evaluate('zeSafeLayout()'); a=page.evaluate('zeBroadcastBounds()')
-  assert boxes['source']['w']==432 and abs(boxes['source']['w']-boxes['bullet']['w'])<40
+  assert boxes['source']['w']==460 and abs(boxes['source']['w']-boxes['bullet']['w'])<60
   assert boxes['source']['y']+boxes['source']['h']<=508
   page.evaluate('state.screenOffsets.source={x:0,y:100};draw()');assert page.evaluate('zeBroadcastBounds().top<getBBox("source").y+getBBox("source").h<=508')
   assert boxes['bullet']['y']+boxes['bullet']['h']<=a['bottom']+.01
@@ -90,7 +90,7 @@ try:
   page.wait_for_function('zePost.items.length===1 && zePost.items[0].type==="image"')
   page.locator('#postBody').fill('A longer editable caption. '*20)
   page.evaluate('setFlipped(false);setT(5)')
-  assert page.evaluate('getBBox("bullet").h>=300 && getBBox("bullet").y+getBBox("bullet").h>zeBroadcastBounds().top')
+  assert page.evaluate('getBBox("bullet").h>180 && getBBox("bullet").y+getBBox("bullet").h<=zeBroadcastBounds().bottom+.01')
   assert page.evaluate('zePostDocument();zePost.blocks.length===0 && zeFixedPostMedia().includes(zePost.items[0])')
   photo=page.evaluate('''(()=>{const ctx=document.createElement('canvas').getContext('2d'),old=fit;let bounds=null;fit=(c,im,x,y,w,h)=>{bounds={w,h};old(c,im,x,y,w,h)};try{zeDrawPost(ctx,0,0,400,300,25)}finally{fit=old}return bounds})()''')
   assert photo['w']==400 and photo['h']>200
@@ -98,7 +98,7 @@ try:
   assert page.evaluate('getBBox("bullet").y+getBBox("bullet").h<=zeBroadcastBounds().bottom')
   assert page.evaluate('getBBox("source").y+getBBox("source").h<=zeBroadcastBounds().bottom')
   assert page.locator('#respectSafeArea').get_attribute('aria-pressed')=='true'
-  print('Taller bullet, full pinned photo, smaller header and strict/flexible Main switch: passed',flush=True)
+  print('Safe bullet panel, full pinned photo, smaller header and strict/flexible Main switch: passed',flush=True)
   assert not page.evaluate('state.renderError') and not errors, errors
   browser.close()
 finally:

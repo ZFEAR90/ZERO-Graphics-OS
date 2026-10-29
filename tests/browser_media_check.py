@@ -38,7 +38,7 @@ try:
   page.locator('#postVideos').check();page.locator('#postContentMode').select_option('media')
   page.locator('#canvas').screenshot(path='/tmp/ze-media-video-only.png')
   page.locator('#showBullets').uncheck();assert page.evaluate('getBBox("bullet").w')==0
-  assert abs(page.evaluate('getBBox("source").x+getBBox("source").w/2')-480)<.01
+  assert page.evaluate('(()=>{const bs=["source","identity"].map(n=>zeVisibleBounds(n,getBBox(n)));return Math.abs((Math.min(...bs.map(b=>b.x))+Math.max(...bs.map(b=>b.x+b.w)))/2-480)<.01})()')
   page.locator('#showBullets').check()
   page.evaluate('setT(2.88)');page.wait_for_function('Math.abs(zePost.items[1].el.currentTime-1)<.1')
   assert page.evaluate('zePost.items[1].el.paused')

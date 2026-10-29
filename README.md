@@ -1,6 +1,19 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.7.1
+# ZE OS — Mouwajaha V0.7, Test Beta 2.7.2
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
+
+## Current workflow — Beta 2.7.2
+
+- **The whole bullet panel is always safe.** Its black background and text end above the selected lower-third boundary and gap, including breaking news. Movement, size changes and Flip obey this limit even with Respect safe area Off. That toggle can still allow the roll extra space.
+- **Imported media posts put their cleaned post text into the bullet field by default.** This replaces the sample text on successful import. Edit the bullet field independently. Under Main → Post photos, video & audio, **Post text placement** offers Bullet panel / Inside the roll / Hide post text; **Use post text in bullets** restores the original post text. Returning an unchanged copied bullet to the roll clears that duplicate; edited bullet text is preserved. Text-only imports remain in the roll.
+- **Inside the roll** defaults to **Scroll text and media together**. It renders them as one continuous masked post. **Keep selected media visible** retains the optional fixed-media treatment; checking a video's Keep video visible option selects that mode. Joined scrolling can move media out of the viewport; the fixed mode is available for a talking speaker.
+- **Fill frame** is the default; **Fit whole image** is selectable. Fit ignores crop zoom and shows the entire image. Single-media cards use the media's aspect ratio rather than leaving a large white image margin. A protected face region can limit a crop; Fill then uses soft duplicate background at otherwise uncovered edges. There is still no automatic face tracking.
+- The **wider two-column roll** is lower and uses the native media proportions. A typical 16:9 roll reaches slightly below the lower third while its bullet panel remains above it. Tall media fit within the available frame rather than stretching.
+- With bullets off, a **wide media card has its account/profile inside the top strip**, a platform tile overlapping its upper-right corner, and edge-to-edge media below. Moving the card moves its attached header. The strip reserves actual header space rather than creating a large empty image area. Portrait solo rolls retain their separate centered-header treatment.
+
+[Current 24-second comparison](demo/ZE_OS_V07_Beta272_Demo.mp4) · [Wide](demo/ZE_OS_V07_Beta272_Wide.png) · [Wide solo](demo/ZE_OS_V07_Beta272_Solo.png) · [Portrait](demo/ZE_OS_V07_Beta272_Portrait.png). The comparison includes real browser footage of joined scrolling; see `demo/README.txt` for capture details.
+
+Checks cover the entire painted bulletin, native frame/media ratios, real copied text versus custom edits, returned/hidden text, joined scroll offsets, Fill/Fit, the inset/overlapping solo header, movement and saved scene settings. Existing import, undo, line transitions, video/audio, palette and proxy entrance checks remain. The default duration is still 50 seconds; the final MOV/alpha renderer remains deferred.
 
 ## Latest corrections — Beta 2.7.1
 
