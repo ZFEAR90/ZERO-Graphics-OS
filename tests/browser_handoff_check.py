@@ -8,7 +8,7 @@ root=Path(__file__).resolve().parents[1];server=ThreadingHTTPServer(('127.0.0.1'
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.locator('#respectSafeArea').click()
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.evaluate("document.getElementById('bulletSplitMode').value='blank'");page.locator('#respectSafeArea').click()
   page.locator('#portraitLayout').select_option('focus',force=True)  # Explicit legacy adaptive treatment; reference default has its own check.
   cases=[['نص قصير جديد','هذه فقرة طويلة لاختبار تتابع الأسطر وعدم تداخل الكلمات داخل اللوحة السوداء. '*6],['هذه فقرة طويلة لاختبار سرعة خروج كل سطر مع دخول الفقرة التالية. '*7,'نص آخر'],['A short line','A longer English paragraph with mixed Arabic كلمات عربية to verify a safe line handoff. '*5],['فقرة أولى للاختبار '*18,'فقرة ثانية '*15,'النص الأخير يبقى على الشاشة']]
   for case in cases:
@@ -39,7 +39,7 @@ try:
   # Larger solo roll and safe central header, with correct source direction for both scripts.
   page.evaluate('setT(5);setFlipped(false)');with_bullets=page.evaluate('getBBox("source")');page.locator('#showBullets').uncheck();solo=page.evaluate('getBBox("source")');assert solo['w']>with_bullets['w'] and abs(solo['x']+solo['w']/2-480)<.01
   def check_safe():
-   data=page.evaluate('({area:zeBroadcastBounds(),source:getBBox("source"),header:getBBox("identity"),focus:zeCenteredPortrait()})');a=data['area'];s=data['source'];h=data['header'];assert s['x']>=a['x'] and s['x']+s['w']<=a['x']+a['w'];assert s['y']>=a['y'] and s['y']+s['h']<=(508 if data['focus'] else a['bottom'])+.01;assert h['y']>=34 and h['x']>=a['x']+102 and h['x']+h['w']<=a['x']+a['w']-102;assert h['y']+h['h']<s['y']
+   data=page.evaluate('({area:zeBroadcastBounds(),source:getBBox("source"),header:zeHeaderPaintBounds(getBBox("identity")),focus:zeCenteredPortrait()})');a=data['area'];s=data['source'];h=data['header'];assert s['x']>=a['x'] and s['x']+s['w']<=a['x']+a['w'];assert s['y']>=a['y'] and s['y']+s['h']<=(508 if data['focus'] else a['bottom'])+.01;assert h['y']>=34 and h['x']>=a['x']+102 and h['x']+h['w']<=a['x']+a['w']-102;assert h['y']+h['h']<s['y']
   check_safe()
   page.locator('#allowMediaOverlap').check();page.locator('#postFiles').set_input_files(str(root/'tests/fixtures/portrait.mp4'));page.wait_for_function('zePost.active');page.locator('#postContentMode').select_option('media');portrait=page.evaluate('getBBox("source")');assert portrait['w']>200 and portrait['h']>350;check_safe()
   page.locator('#rollLanguage').select_option('rtl');assert page.evaluate('zeHeaderFlipped()')
@@ -48,9 +48,9 @@ try:
   page.locator('#rollLanguage').select_option('rtl');assert page.evaluate('zeRollDirection()')=='rtl'
   # One diagonal gesture uses the destination X position to release the top-corner limit.
   page.locator('#showBullets').check();page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/landscape.mp4'));page.wait_for_function('zePost.items.length===1 && zePost.items[0].label==="landscape.mp4"');page.locator('#postContentMode').select_option('media');page.evaluate("state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}};document.getElementById('compositionX').value=0;document.getElementById('compositionY').value=0;setFlipped(false)")
-  page.evaluate("state.screenOffsets.bullet={x:0,y:-300};draw()");side=page.evaluate('({bullet:getBBox("bullet"),header:getBBox("identity")})');assert side['header']['y']>=76
-  page.evaluate("state.screenOffsets.bullet={x:170,y:-300};draw()");middle=page.evaluate('({bullet:getBBox("bullet"),header:getBBox("identity")})');assert abs(middle['header']['y']-34)<.01;assert middle['bullet']['y']<side['bullet']['y']-30,(side,middle)
-  page.evaluate("state.screenOffsets.bullet={x:0,y:-300};draw()");assert page.evaluate('getBBox("identity").y')>=76
+  page.evaluate("state.screenOffsets.bullet={x:0,y:-300};draw()");side=page.evaluate('({bullet:getBBox("bullet"),header:zeHeaderPaintBounds(getBBox("identity"))})');assert side['header']['y']>=76
+  page.evaluate("state.screenOffsets.bullet={x:170,y:-300};draw()");middle=page.evaluate('({bullet:getBBox("bullet"),header:zeHeaderPaintBounds(getBBox("identity"))})');assert abs(middle['header']['y']-34)<.01;assert middle['bullet']['y']<side['bullet']['y']-30,(side,middle)
+  page.evaluate("state.screenOffsets.bullet={x:0,y:-300};draw()");assert page.evaluate('zeHeaderPaintBounds(getBBox("identity")).y')>=76
   print('Moving diagonally into the clear middle releases the corner limit; returning to a side restores it',flush=True)
   assert not page.evaluate('state.renderError');assert not errors,errors;print('Final hold and enlarged, safe, language-aware solo roll: passed',flush=True);browser.close()
 finally:server.shutdown();server.server_close()

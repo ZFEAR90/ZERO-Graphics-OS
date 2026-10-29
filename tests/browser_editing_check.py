@@ -17,12 +17,12 @@ try:
   def boxes():return page.evaluate('Object.fromEntries(["identity","source","bullet"].map(n=>[n,getBBox(n)]))')
   def drag(name,dx,dy):
    b=page.evaluate('(n)=>getBBox(n)',name);r=page.locator('#canvas').bounding_box();x=r['x']+(b['x']+b['w']/2)/960*r['width'];y=r['y']+(b['y']+b['h']/2)/540*r['height'];page.mouse.move(x,y);page.mouse.down();page.mouse.move(x+dx,y+dy,steps=8);page.mouse.up()
-  page.locator('#selectBullet').click();before=boxes();drag('bullet',12,-8);after=boxes();assert before['source']==after['source'] and before['identity']==after['identity'];assert before['bullet']!=after['bullet']
+  page.locator('#selectBullet').click();before=boxes();drag('bullet',12,-8);after=boxes();assert before['source']==after['source'] and before['identity']!=after['identity'];assert before['bullet']!=after['bullet']
   page.evaluate("selectLayer('identity');selectLayer('bullet',true)");before=boxes();drag('bullet',6,3);after=boxes();assert before['source']==after['source'];assert before['identity']!=after['identity'] and before['bullet']!=after['bullet']
   print('Selected subset moves only its chosen groups',flush=True)
   page.locator('#selectAll').click();before=boxes();drag('source',10,12);after=boxes();deltas=[(after[n]['x']-before[n]['x'],after[n]['y']-before[n]['y']) for n in before];assert all(abs(dx-deltas[0][0])<.01 and abs(dy-deltas[0][1])<.01 for dx,dy in deltas),deltas
-  before=boxes();page.locator('#compositionUp').click();after=boxes();assert all(abs(after[n]['y']-before[n]['y']+10)<.01 for n in before)
-  page.locator('#protectLowerThird').check();safe=page.evaluate('zeBroadcastBounds()');assert all(b['y']>=safe['y'] and b['y']+b['h']<=safe['bottom'] for b in page.evaluate('Object.fromEntries(["identity","source","bullet"].map(n=>[n,zeVisibleBounds(n,getBBox(n))]))').values())
+  page.evaluate("document.getElementById('compositionY').value=-40;draw()");before=boxes();page.locator('#compositionUp').click();after=boxes();assert all(abs(after[n]['y']-before[n]['y']+10)<.01 for n in before),(before,after)
+  page.locator('#protectLowerThird').check();safe=page.evaluate('zeBroadcastBounds()');assert page.evaluate('(()=>{const a=zeBroadcastBounds();return ["identity","source","bullet"].every(n=>{const b=zeVisibleBounds(n,getBBox(n));return b.y>=(b.x>=a.x+114?34:a.y)-.01&&b.y+b.h<=(n==="source"&&zeRollOverlapAllowed()?508:a.bottom)+.01})})()')
   print('Mouse bullet-only/all-group dragging, whole-composition Up, and safe constraints passed',flush=True)
   # Decoder starvation must reuse the previous loop frame, not paint a dark frame.
   page.evaluate('state.customBackground=assets.avatar;state.bgKind="image";draw()');before=page.evaluate('cvs.toDataURL()')

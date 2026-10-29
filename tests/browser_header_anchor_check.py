@@ -14,7 +14,7 @@ try:
    for protected in [False,True]:
     for flipped in [False,True]:
      for offset in [0,-10]:
-      data=page.evaluate('''(v)=>{document.getElementById('protectLowerThird').checked=v.protected;document.getElementById('allowMediaOverlap').checked=true;state.screenOffsets.bullet={x:0,y:v.offset};setFlipped(v.flipped);setT(5);const head=getBBox('identity'),bullet=zeVisibleBounds('bullet',getBBox('bullet'));return {head,bullet,gap:bullet.y-head.y-head.h,area:zeBroadcastBounds()}}''',dict(protected=protected,flipped=flipped,offset=offset))
+      data=page.evaluate('''(v)=>{document.getElementById('protectLowerThird').checked=v.protected;document.getElementById('allowMediaOverlap').checked=true;state.screenOffsets.bullet={x:0,y:v.offset};setFlipped(v.flipped);setT(5);const head=zeHeaderPaintBounds(getBBox('identity')),bullet=zeVisibleBounds('bullet',getBBox('bullet'));return {head,bullet,gap:bullet.y-head.y-head.h,area:zeBroadcastBounds()}}''',dict(protected=protected,flipped=flipped,offset=offset))
       assert abs(data['gap']-24)<.01,data
       if protected:assert data['head']['y']>=(34 if flipped else data['area']['y'])-.01,data
       gaps.append(data['gap'])

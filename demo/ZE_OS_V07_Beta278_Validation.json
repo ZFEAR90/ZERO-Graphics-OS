@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-29",
+  "branch": "ze-os-v07-beta278-recovery",
+  "base": "e1e4830ef214a93a6c823b18543349791b4f9f3f",
+  "syntax": "node --check passed for all inline scripts",
+  "importer_tests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "browser_suites_passed": [
+    "browser_auto_post_check",
+    "browser_clean_media_check",
+    "browser_editing_check",
+    "browser_handoff_check",
+    "browser_header_anchor_check",
+    "browser_media_toggle_check",
+    "browser_motion_check",
+    "browser_native_account_check",
+    "browser_palette_check",
+    "browser_paragraph_check",
+    "browser_post_layout_check",
+    "browser_recovery_check",
+    "browser_reference_frame_check",
+    "browser_social_layout_check",
+    "browser_whole_below_check"
+  ],
+  "browser_suites_failed": [],
+  "reference_source_width_mean_error_proxy_pixels": 0.14285714285714285,
+  "safe_entrance_frames_per_preset": 151,
+  "browser_export": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "vp9",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "nb_read_frames": "1186"
+      },
+      {
+        "codec_name": "opus",
+        "codec_type": "audio",
+        "nb_read_frames": "833"
+      }
+    ],
+    "format": {
+      "duration": "50.000000"
+    }
+  },
+  "full_black_intervals": 0,
+  "audio_max_db": -17.6,
+  "demo_duration_seconds": 78.08,
+  "media": "generated local fixtures; controlled import response",
+  "limits": [
+    "Browser recording is real time and can drop frames.",
+    "Native MOV alpha and native After Effects export are deferred.",
+    "Failed-task files and ArmedForcesJO reference were not available."
+  ]
+}

@@ -10,8 +10,8 @@ server=ThreadingHTTPServer(('127.0.0.1',0),partial(SimpleHTTPRequestHandler,dire
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.wait_for_function('zeParagraphModel.ready')
-  assert page.evaluate('DURATION')==50;assert page.locator('#scrubber').get_attribute('max')=='50'
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.evaluate("document.getElementById('bulletSplitMode').value='blank'");page.wait_for_function('zeParagraphModel.ready')
+  page.locator('.editor-tab-panel').evaluate_all('(els)=>els.forEach(el=>el.hidden=false)');page.locator('.paragraph-controls').evaluate('(el)=>el.open=true');assert page.evaluate('DURATION')==50;assert page.locator('#scrubber').get_attribute('max')=='50'
   page.locator('#bullets').fill('نص قصير\n\n'+'هذه فقرة أطول لاختبار حساب وقت القراءة بشكل تلقائي ' * 5)
   plan=page.evaluate('zeParagraphSchedule()');assert abs(plan['end']-50)<.001;assert plan['rows'][1]['estimate']>plan['rows'][0]['estimate'];assert plan['rows'][1]['hold']>plan['rows'][0]['hold'];assert len(plan['rows'])==2
   hold=page.get_by_role('spinbutton',name='Hold seconds for paragraph 1');hold.fill('4.5');hold.press('Tab');assert page.evaluate('zeParagraphSchedule().rows[0].hold')==4.5

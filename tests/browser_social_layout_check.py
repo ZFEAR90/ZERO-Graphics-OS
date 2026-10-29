@@ -15,12 +15,12 @@ try:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source')
   assert page.locator('#portraitLayout').input_value()=='reference'
-  page.locator('#portraitLayout').select_option('social',force=True);assert not page.locator('#showBullets').is_checked() and page.locator('#showBullets').is_disabled()
+  page.locator('#portraitLayout').select_option('social',force=True);page.locator('#showBullets').uncheck();assert not page.locator('#showBullets').is_checked() and not page.locator('#showBullets').is_disabled()
   text='هذه فقرة طويلة قابلة للتحرير. النص يتحرك داخل مساحته فقط بينما تبقى الصورة والفيديو ظاهرين. '
   for kind,src in [('video','/fixtures/portrait.mp4'),('video','/fixtures/landscape.mp4'),('image','/fixtures/photo.png')]:
    page.evaluate(r'''async(v)=>{zeCommitPost(await zePreparePost({text:(v.text.repeat(4)+'\n\n').repeat(5),attachments:[{type:v.kind,url:v.src}]}));document.getElementById('displayname').value='اسم حساب عربي طويل قابل للتحرير';document.getElementById('account').value='@EditableAccount';setT(5)}''',dict(kind=kind,src=src,text=text))
    if kind=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postTextPlacement').input_value()=='roll' and page.locator('#postScrollMode').is_disabled()
+   assert page.locator('#postTextPlacement').input_value()=='roll' and not page.locator('#postScrollMode').is_disabled()
    for flipped in [False,True]:
     page.evaluate('(v)=>setFlipped(v)',flipped)
     layout=page.evaluate('''(()=>{const source=getBBox('source'),head=getBBox('identity'),k=head.w/R.identity.w,local=headerLayout(c),paint=p=>({x:head.x+(p.x-R.identity.x)*k,y:head.y+(p.y-R.identity.y)*k,w:p.w*k,h:p.h*k});return {source,avatar:paint(local.avatar),name:paint(local.name),handle:paint(local.handle),platform:paint(local.platform),bullet:getBBox('bullet')}})()''');s=layout['source'];logo=layout['platform'];assert abs(s['x']+s['w']/2-480)<.01 and layout['bullet']['w']==0
@@ -36,7 +36,7 @@ try:
      for time in [5,45]:
       snapshots.append(page.evaluate('''(t)=>{const canvas=document.createElement('canvas');canvas.width=960;canvas.height=540;const ctx=canvas.getContext('2d'),oldText=CanvasRenderingContext2D.prototype.drawImage,oldMedia=zeDrawCleanMedia;let text=null,media=null;CanvasRenderingContext2D.prototype.drawImage=function(im,...args){if(im===zePost.socialDoc?.canvas)text={x:args[0],y:args[1]};return oldText.call(this,im,...args)};zeDrawCleanMedia=(c,im,x,y,w,h,item)=>{media={x,y,w,h};oldMedia(c,im,x,y,w,h,item)};try{zeDrawSocialPost(ctx,100,180,600,300,t)}finally{CanvasRenderingContext2D.prototype.drawImage=oldText;zeDrawCleanMedia=oldMedia}return {text,media}}''',time))
      assert snapshots[1]['text']['y']<snapshots[0]['text']['y'],snapshots
-     if page.evaluate('zeWholeBelowMotion()'):assert snapshots[1]['media']['y']<snapshots[0]['media']['y'] and abs((snapshots[1]['media']['y']-snapshots[0]['media']['y'])-(snapshots[1]['text']['y']-snapshots[0]['text']['y']))<.01,snapshots
+     if page.evaluate('zeScrollTogether()'):assert snapshots[1]['media']['y']<snapshots[0]['media']['y'] and abs((snapshots[1]['media']['y']-snapshots[0]['media']['y'])-(snapshots[1]['text']['y']-snapshots[0]['text']['y']))<.01,snapshots
      else:assert snapshots[0]['media']==snapshots[1]['media'],snapshots
      for fit in ['fit','fill']:
       page.locator('#postMediaFit').select_option(fit);page.evaluate('setT(5)');assert page.evaluate('getBBox("source").w')==s['w']
@@ -56,7 +56,7 @@ try:
   page.keyboard.press('Control+z');assert page.evaluate('zeSafeLayout()')==before_drag
   with page.expect_download() as output:page.locator('#saveJson').click()
   output.value.save_as('/tmp/ze-beta274.json');saved=json.loads(Path('/tmp/ze-beta274.json').read_text());assert saved['headerAnchor']=='native-post-top-left' and saved['socialPost']['mediaPosition']=='right' and saved['socialPost']['textSizePixels']==44
-  page.locator('#portraitLayout').select_option('reference',force=True);assert page.locator('#showBullets').is_checked() and not page.locator('#showBullets').is_disabled() and page.locator('#postScrollMode').is_disabled()
+  page.locator('#portraitLayout').select_option('reference',force=True);assert not page.locator('#showBullets').is_checked() and not page.locator('#showBullets').is_disabled() and not page.locator('#postScrollMode').is_disabled()
   page.set_viewport_size({'width':780,'height':1000});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   assert not errors and not page.evaluate('state.renderError'),errors;print('Text-only/hidden modes, RTL/LTR painted safety, attached movement, saved settings and prior layout restoration: passed',flush=True);browser.close()
 finally:server.shutdown();server.server_close()

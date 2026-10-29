@@ -1,8 +1,16 @@
-# ZE OS — Main roll V0.7, Test Beta 2.7.7
+# ZE OS — Main roll V0.7, Test Beta 2.7.8
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
-## Current correction — Beta 2.7.7
+## Recovery continuation — Beta 2.7.8
+
+Reconstructed from published Beta 2.7.7 on `ze-os-v07-beta278-recovery`, retaining the approved V0.7 base. Auto bullet grouping now paginates by safe capacity; inside-roll text preserves editorial bullets. Whole roll defaults to shared text/media motion with its account pinned inside. Multiple media use directional masked sequencing with local video time and audio crossfades; grid, fixed media and hidden-video audio are explicit options. Arabic post kashida preserves source text. Header spacing follows painted bounds.
+
+Main contains export, primary colors and timing, with Render Video beside the preview. Detailed controls and reference comparison are under Advanced. See [the recovery handoff](RECOVERY_BETA278.md) for implementation, commands and limits.
+
+[Editor demonstration](demo/ZE_OS_V07_Beta278_Demo.mp4) · [Actual 50-second browser export with audio](demo/ZE_OS_V07_Beta278_50s.webm) · [Main](demo/ZE_OS_V07_Beta278_Main.png) · [Whole](demo/ZE_OS_V07_Beta278_Whole.png). Imports in the demonstration use controlled local fixtures. The original failed task's files and ArmedForcesJO reference were unavailable. MOV alpha/native AE export remains deferred.
+
+## Previous correction — Beta 2.7.7
 
 **Whole roll frame** now uses a native post account row. The circular profile picture, plain display name and gray handle stay **fixed at the top-left inside the white post**, including after Flip. The separate animated broadcast name/handle straps and decorative top ribbon are removed in this presentation. The platform tile remains outside at the chosen side, using its existing entrance animation.
 

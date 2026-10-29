@@ -23,7 +23,7 @@ try:
   for filename,type_,position in [('portrait.mp4','video','right'),('portrait.png','image','right'),('landscape.mp4','video','below'),('photo.png','image','below'),(None,'image','below')]:
    page.evaluate(r'''async(v)=>{let url=v.file?'/fixtures/'+v.file:null;if(!url){const c=document.createElement('canvas');c.width=c.height=400;c.getContext('2d').fillRect(0,0,400,400);url=c.toDataURL()}zeCommitPost(await zePreparePost({text:(v.text.repeat(3)+'\n\n').repeat(5),attachments:[{type:v.type,url}]}));setT(5)}''',dict(file=filename,type=type_,text=text))
    if type_=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postTextPlacement').input_value()=='roll' and page.locator('#postScrollMode').is_disabled()
+   assert page.locator('#postTextPlacement').input_value()=='roll' and not page.locator('#postScrollMode').is_disabled()
    assert page.locator('#bullets').input_value()=='نص تحريري مستقل عن المنشور'
    for flip in [False,True]:
     page.evaluate('(v)=>setFlipped(v)',flip);before=page.evaluate('zeSafeLayout()');s=before['source'];assert s['w']==baseline['w'] and s['h']==baseline['h']
@@ -59,7 +59,7 @@ try:
   page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/portrait.mp4'));page.wait_for_function('zePost.items[0].label==="portrait.mp4"');portrait=page.evaluate('getBBox("source")');assert portrait['h']>portrait['w']
   page.locator('#openRollLayouts').click();page.locator('#portraitLayout').select_option('reference');page.locator('#socialMediaPosition').select_option('auto');page.locator('#mainTab').click();assert page.evaluate('getBBox("source").w===402 && getBBox("source").h===398')
   # The whole-post idea is directly available in Main, with inset identity and a side platform.
-  page.locator('#useWholePost').click();assert page.evaluate('zeSocialMode() && zeNoBullets()') and page.locator('#useWholePost').get_attribute('aria-pressed')=='true'
+  page.locator('#useWholePost').click();assert page.locator('#showBullets').is_checked();page.locator('#showBullets').uncheck();assert page.evaluate('zeSocialMode() && zeNoBullets()') and page.locator('#useWholePost').get_attribute('aria-pressed')=='true'
   inside=page.evaluate('''(()=>{const b=getBBox('source'),head=getBBox('identity'),local=headerLayout(c),k=head.w/R.identity.w,p=part=>({x:head.x+(part.x-R.identity.x)*k,y:head.y+(part.y-R.identity.y)*k,w:part.w*k,h:part.h*k});return {b,avatar:p(local.avatar),name:p(local.name),handle:p(local.handle),platform:p(local.platform)}})()''');b=inside['b'];assert abs(b['x']+b['w']/2-480)<.01
   for key in ['avatar','name','handle']:
    item=inside[key];assert b['x']<=item['x'] and item['x']+item['w']<=b['x']+b['w'] and b['y']<=item['y']<b['y']+100,inside
@@ -67,8 +67,8 @@ try:
   page.evaluate('''async()=>zeCommitPost(await zePreparePost({text:'Wide post text also stays on the left in Whole roll frame.',attachments:[{type:'video',url:'/fixtures/landscape.mp4'}]}))''')
   assert page.evaluate('zeAutoPostPosition()')=='right' and 'media right' in page.locator('#socialMediaPosition option[value=auto]').text_content()
   assert page.title().startswith('ZE OS — Main roll')
-  page.locator('#undoEdit').click();assert page.locator('#portraitLayout').input_value()=='reference';page.locator('#useWholePost').click();assert not page.locator('#showBullets').is_checked() and page.locator('#postTextPlacement').input_value()=='roll'
-  page.locator('#useMainRoll').click();assert page.locator('#portraitLayout').input_value()=='reference' and page.locator('#showBullets').is_checked()
+  page.locator('#undoEdit').click();assert page.locator('#showBullets').is_checked();page.locator('#undoEdit').click();assert page.locator('#portraitLayout').input_value()=='reference';page.locator('#useWholePost').click();assert page.locator('#showBullets').is_checked();page.locator('#showBullets').uncheck();assert not page.locator('#showBullets').is_checked() and page.locator('#postTextPlacement').input_value()=='roll'
+  page.locator('#useMainRoll').click();assert page.locator('#portraitLayout').input_value()=='reference' and not page.locator('#showBullets').is_checked()
   with page.expect_download() as output:page.locator('#saveJson').click()
   output.value.save_as('/tmp/ze-beta276.json');saved=json.loads(Path('/tmp/ze-beta276.json').read_text());assert saved['postArrangement']['selection']=='auto' and saved['rollFrameSizing']=='reference'
   page.set_viewport_size({'width':780,'height':1000});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')

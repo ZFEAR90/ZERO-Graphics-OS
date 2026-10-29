@@ -17,7 +17,7 @@ try:
   page.locator('#restoreColors').click();assert page.locator('#frameColor').input_value()=='#8f8f90';assert page.locator('#adaptFrameColor').is_checked()
   page.locator('#safeAreas').check();show=page.evaluate('cvs.toDataURL()');page.locator('#safeAreas').uncheck();assert show==page.evaluate('cvs.toDataURL()')
   samples=page.evaluate('Array.from({length:101},(_,i)=>zeSampleTrack("gray",(26+12*i/100)/25))');assert samples[0]==0 and samples[-1]==1;assert all(b>=a for a,b in zip(samples,samples[1:]));assert max(b-a for a,b in zip(samples,samples[1:]))<.05
-  page.locator('[data-panel="colors"] .element-overrides').evaluate('(el)=>el.open=true')
+  page.locator('#individualColors').evaluate('(el)=>el.open=true')
   assert page.locator('[data-panel="colors"] .colorgrid input[type="color"]').count()==3
   page.locator('#backgroundFile').set_input_files(str(root/'tests/fixtures/photo.png'))
   page.wait_for_function('zeSolo.palette!==null');accent1=page.locator('#accentColor').input_value()

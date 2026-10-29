@@ -12,7 +12,7 @@ server=ThreadingHTTPServer(('127.0.0.1',0),Handler);threading.Thread(target=serv
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.locator('#useWholePost').click()
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.locator('#useWholePost').click();page.locator('#showBullets').uncheck()
   page.evaluate('''async()=>{zeCommitPost(await zePreparePost({text:'نص طويل داخل المنشور يتحرك دون أن تتغير مواضع صورة الحساب واسمه. '.repeat(25),attachments:[{type:'video',url:'/fixtures/landscape.mp4'}]}));document.getElementById('displayname').value='Native post account';document.getElementById('account').value='@PinnedAccount'}''');page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
   def geometry():
    return page.evaluate('''(()=>{const source=getBBox('source'),head=getBBox('identity'),local=headerLayout(c),k=head.w/R.identity.w,p=b=>({x:head.x+(b.x-R.identity.x)*k,y:head.y+(b.y-R.identity.y)*k,w:b.w*k,h:b.h*k});return {source,avatar:p(local.avatar),name:p(local.name),handle:p(local.handle),platform:p(local.platform)}})()''')

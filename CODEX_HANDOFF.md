@@ -1,3 +1,7 @@
+# Current continuation — Beta 2.7.8 recovery
+
+The owner supplied the Universal Main roll continuation on October 29, 2026, authorizing reconstruction and implementation beyond the historical scope below. Read [RECOVERY_BETA278.md](RECOVERY_BETA278.md) first. Work is on `ze-os-v07-beta278-recovery`, from `e1e4830ef214a93a6c823b18543349791b4f9f3f`; keep main untouched. The failed environment was not recovered. Compare and preserve any subsequently supplied recovery files before further work. V0.7 alone remains approved. The older “wait for edits” text below records historical context and is superseded by this continuation.
+
 # ZE OS / Mouwajaha V0.7 — Codex Handoff
 
 ## Current user decision
