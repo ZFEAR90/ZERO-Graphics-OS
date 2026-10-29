@@ -17,7 +17,7 @@ try:
   assert all(target==targets[0] for target in targets) and targets[0]['h']>200,targets
   # Every video cell uses contain: the face cannot be cropped by source scrolling.
   page.locator('#postFiles').set_input_files(str(root/'tests/fixtures/landscape.mp4'));page.wait_for_function('zePost.items.length===3');assert page.evaluate('zePinnedVideos().length')==2
-  regions=page.evaluate('zePinnedVideoRegions(zePinnedVideos(),100,100,500,300,true).cells.map(({x,y,w,h})=>({x,y,w,h}))');assert regions[0]['x']+regions[0]['w']<regions[1]['x'];assert all(r['y']>=100 and r['y']+r['h']<=316 for r in regions)
+  regions=page.evaluate('zePinnedVideoRegions(zePinnedVideos(),100,100,500,300,true).cells.map(({x,y,w,h})=>({x,y,w,h}))');assert regions[0]['x']+regions[0]['w']<regions[1]['x'];assert all(r['y']>=192 and r['y']+r['h']<=400 for r in regions)
   pin.uncheck();assert page.evaluate('zePinnedVideos().length')==1;assert page.evaluate('zePostDocument();zePost.blocks.some(block=>block.item===zePost.items[0])')
   with page.expect_download() as scene:page.locator('#saveJson').click()
   scene.value.save_as('/tmp/ze-beta27-speaker.json');data=json.loads(Path('/tmp/ze-beta27-speaker.json').read_text());assert data['postMedia']['items'][0]['keepVisible'] is False and data['postMedia']['items'][2]['keepVisible'] is True

@@ -1,6 +1,21 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.7
+# ZE OS — Mouwajaha V0.7, Test Beta 2.7.1
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
+
+## Latest corrections — Beta 2.7.1
+
+- **Header above bullets:** with bullets enabled, the account/logo/profile group anchors to the bulletin column in every layout and Flip direction. Moving the bullet panel moves its header; moving the roll leaves the header in place. Independent header offsets stay within that column. With bullets off, the header moves above the roll.
+- **Centered portrait assembly:** Large centered portrait now centers the complete visible group, with a larger roll (436 scene-unit target height when the permitted space allows it). The roll can use the lower-third overlap permission; its header no longer takes space above it when bullets are on.
+- **Mandatory bulletin text protection:** the black panel may extend below the guide with protection off, but its text is always measured, wrapped/scrolled and clipped above the lower-third safe line, including transitions and mouse movement. This rule remains active with **Respect safe area: Off**. The current selected regular/breaking-news boundary and gap define the line.
+- **Post text first:** wider photo/video cards and the Balanced portrait treatment put their independently scrolling caption above the fixed picture. The explicit Beside treatment retains its separate text/media columns.
+- **No copied URLs in roll text:** import and rendering remove HTTP/HTTPS, `www`, shortened `t.co` links and common bare domains from editable post text. The original source URL remains in the import controls/project metadata. Existing screenshot/image pixels are not OCR-edited; links baked into a supplied bitmap require a replacement or manual framing.
+- **Optional protected crop:** under each visual attachment, unfold **Framing / protect face**. Full-frame protection and 100% zoom are the defaults. For a closer crop, enter a percentage rectangle containing the whole face throughout the clip, then increase zoom (up to 140%). The crop is limited/repositioned to keep that rectangle visible. This is a manual region, not automatic face detection/tracking. Framing and the header/text policies are saved in JSON.
+
+The default duration remains 50 seconds. The existing line handoff, Hold/Loop, audio, palette and background-alpha controls remain. The native MOV/alpha renderer is still deferred.
+
+[Current layout comparison](demo/ZE_OS_V07_Beta271_Layouts.mp4) · [Wide](demo/ZE_OS_V07_Beta271_Wide.png) · [Portrait](demo/ZE_OS_V07_Beta271_Portrait.png) · [Flipped](demo/ZE_OS_V07_Beta271_Flipped.png). This 16-second comparison uses four real editor stills; the earlier animation demos remain separately labeled.
+
+Focused browser checks compare bulletin text pixels with/without the renderer across reference/imported layouts, flips, offsets and protection states; no changed text pixels may enter the lower-third region. They also verify caption positions, imported URL cleanup, complete-group centering, header grouping, solo placement, protected crop bounds and saved settings. Media/audio recordings, line handoffs, undo and the 151-frame reference entrance check remain covered.
 
 ## Download and test on Windows
 

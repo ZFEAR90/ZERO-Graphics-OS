@@ -46,10 +46,10 @@ try:
   page.locator('#postContentMode').select_option('text');page.locator('#postBody').fill('هذه فقرة عربية مع بعض الأرقام 123');assert page.evaluate('zeRollDirection()')=='rtl';page.locator('#postBody').fill('An English article with numbers 123');assert page.evaluate('zeRollDirection()')=='ltr';check_safe()
   page.locator('#rollLanguage').select_option('rtl');assert page.evaluate('zeRollDirection()')=='rtl'
   # One diagonal gesture uses the destination X position to release the top-corner limit.
-  page.locator('#showBullets').check();page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/landscape.mp4'));page.wait_for_function('zePost.items.length===1 && zePost.items[0].label==="landscape.mp4"');page.locator('#postContentMode').select_option('media');page.evaluate("state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}};document.getElementById('compositionX').value=0;document.getElementById('compositionY').value=0;setFlipped(true)")
-  page.evaluate("state.screenOffsets.source={x:0,y:-300};draw()");side=page.evaluate('({source:getBBox("source"),header:getBBox("identity")})');assert side['header']['y']>=76
-  page.evaluate("state.screenOffsets.source={x:170,y:-300};draw()");middle=page.evaluate('({source:getBBox("source"),header:getBBox("identity")})');assert abs(middle['header']['y']-34)<.01;assert middle['source']['y']<side['source']['y']-30,(side,middle)
-  page.evaluate("state.screenOffsets.source={x:0,y:-300};draw()");assert page.evaluate('getBBox("identity").y')>=76
+  page.locator('#showBullets').check();page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/landscape.mp4'));page.wait_for_function('zePost.items.length===1 && zePost.items[0].label==="landscape.mp4"');page.locator('#postContentMode').select_option('media');page.evaluate("state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}};document.getElementById('compositionX').value=0;document.getElementById('compositionY').value=0;setFlipped(false)")
+  page.evaluate("state.screenOffsets.bullet={x:0,y:-300};draw()");side=page.evaluate('({bullet:getBBox("bullet"),header:getBBox("identity")})');assert side['header']['y']>=76
+  page.evaluate("state.screenOffsets.bullet={x:170,y:-300};draw()");middle=page.evaluate('({bullet:getBBox("bullet"),header:getBBox("identity")})');assert abs(middle['header']['y']-34)<.01;assert middle['bullet']['y']<side['bullet']['y']-30,(side,middle)
+  page.evaluate("state.screenOffsets.bullet={x:0,y:-300};draw()");assert page.evaluate('getBBox("identity").y')>=76
   print('Moving diagonally into the clear middle releases the corner limit; returning to a side restores it',flush=True)
   assert not page.evaluate('state.renderError');assert not errors,errors;print('Final hold and enlarged, safe, language-aware solo roll: passed',flush=True);browser.close()
 finally:server.shutdown();server.server_close()

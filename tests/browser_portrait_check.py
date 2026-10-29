@@ -33,7 +33,7 @@ try:
     assert s['x'] >= a['x'] and s['x']+s['w'] <= a['x']+a['w']
     assert b['y']+b['h'] <= a['bottom']+.01 and h['y']+h['h'] <= a['bottom']+.01
     if mode == 'focus':
-     assert abs(s['x']+s['w']/2-480)<.01 and s['h']>=360
+     assert abs((min(b['x'],s['x'])+max(b['x']+b['w'],s['x']+s['w']))/2-480)<.01 and s['h']>=420
      assert a['top'] < s['y']+s['h'] <= 508 and b['w'] <= 280 and h['w'] < 310
      assert b['x'] > s['x']+s['w'] if flip else b['x']+b['w'] < s['x']
      assert 'overlap allowed' in page.locator('.broadcast-exclusion').first.inner_text()
@@ -74,21 +74,23 @@ try:
   page.locator('#showBullets').check(); page.evaluate('setFlipped(false)')
   boxes=page.evaluate('zeSafeLayout()'); a=page.evaluate('zeBroadcastBounds()')
   assert boxes['source']['w']==432 and abs(boxes['source']['w']-boxes['bullet']['w'])<40
-  assert a['top']<boxes['source']['y']+boxes['source']['h']<=508
+  assert boxes['source']['y']+boxes['source']['h']<=508
+  page.evaluate('state.screenOffsets.source={x:0,y:100};draw()');assert page.evaluate('zeBroadcastBounds().top<getBBox("source").y+getBBox("source").h<=508')
   assert boxes['bullet']['y']+boxes['bullet']['h']<=a['bottom']+.01
-  assert 34<=boxes['identity']['y']<76
+  assert boxes['identity']['y']>=76
   page.locator('#allowMediaOverlap').uncheck()
   assert page.evaluate('getBBox("source").y+getBBox("source").h<=zeBroadcastBounds().bottom')
-  page.evaluate('setFlipped(true)'); assert page.evaluate('getBBox("identity").y>=76')
+  page.evaluate('setFlipped(true)'); assert page.evaluate('34<=getBBox("identity").y<76')
   print('Balanced landscape widths, shortened Live clearance, TV compensation and optional source-only overlap: passed',flush=True)
   # Main switch restores full-height bullets and unclips a full single photo.
+  page.evaluate('state.screenOffsets.source={x:0,y:0}')
   page.locator('#respectSafeArea').click()
   assert not page.locator('#protectLowerThird').is_checked()
   page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/photo.png'))
   page.wait_for_function('zePost.items.length===1 && zePost.items[0].type==="image"')
   page.locator('#postBody').fill('A longer editable caption. '*20)
   page.evaluate('setFlipped(false);setT(5)')
-  assert page.evaluate('getBBox("bullet").h>=330 && getBBox("bullet").y+getBBox("bullet").h>zeBroadcastBounds().top')
+  assert page.evaluate('getBBox("bullet").h>=300 && getBBox("bullet").y+getBBox("bullet").h>zeBroadcastBounds().top')
   assert page.evaluate('zePostDocument();zePost.blocks.length===0 && zeFixedPostMedia().includes(zePost.items[0])')
   photo=page.evaluate('''(()=>{const ctx=document.createElement('canvas').getContext('2d'),old=fit;let bounds=null;fit=(c,im,x,y,w,h)=>{bounds={w,h};old(c,im,x,y,w,h)};try{zeDrawPost(ctx,0,0,400,300,25)}finally{fit=old}return bounds})()''')
   assert photo['w']==400 and photo['h']>200

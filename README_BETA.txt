@@ -1,6 +1,15 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.7
+ZE OS — Mouwajaha V0.7 / Test Beta 2.7.1
 
-BETA 2.7 — CURRENT CHANGES
+BETA 2.7.1 — CURRENT CORRECTIONS
+The account/profile/logo header stays above the bullet column whenever bullets are enabled. Move the bulletin to move its header; the roll moves independently. With bullets off, the header sits above the roll.
+Large centered portrait centers the whole assembly and gives the roll more height. Its header uses the bullet column instead of the space above the media.
+Bullet TEXT always stays above the selected lower-third safe line, including the breaking-news preset and gap. This is mandatory even with Respect safe area Off. The black panel may extend below the line; wrapping/scrolling and a fixed mask keep the text above it.
+Wider photo/video cards and Balanced put post text above the picture. Beside retains its separate columns. Original editable post URLs are removed from import/rendered text; source URL metadata remains. Baked-in links in screenshots/images are not automatically erased.
+Each visual attachment has Framing / protect face. Default: full image protected, zoom 100%. For a closer crop, set a percentage rectangle including the entire face throughout the clip, then increase zoom, up to 140%. The crop keeps that rectangle visible. This is manual framing, not face detection or tracking.
+Project JSON saves headerAnchor, mandatory bulletin text protection and per-media framing. Duration remains 50 s by default. MOV/alpha still belongs to the final renderer.
+Connection version is 0.7-beta2.7.1. Close the old helper before running this folder's START_ZE_OS.bat. New layout stills and a 16-second comparison are in demo/.
+
+BETA 2.7 — EARLIER CHANGES
 Main has Respect safe area: On/Off. It defaults Off for the taller composition requested: bullets and roll may cross the lower third; movement is unrestricted. On enables strict protection and turns off the media-only exception. The separate media checkbox can selectively allow the roll below the lower third with protection still on. Guides remain visible. Automatic initial placement still compensates for the TV-logo side; the Live reservation ends above the green top-safe line.
 Header size now defaults to 85%, plus the existing TV-side reduction; the centered portrait treatment has its own additional reduction. Imported bullets retain more height with protection off. A single photo stays fully visible while its caption scrolls separately.
 Lines leave in an overlapping wave, and the next paragraph starts entering during that exit. Text widths, wrapping and font metrics control the handoff masks so lines do not touch. Flip reverses the motion. The final paragraph stays through the end; its manual hold is a minimum.

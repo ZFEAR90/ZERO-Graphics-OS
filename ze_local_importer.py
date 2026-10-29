@@ -380,7 +380,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not re.fullmatch(r'[a-f0-9]{32}\.(mp4|webm|mp3|m4a|ogg|wav)',filename):self.send_error(404);return
             return self._send_media(MEDIA_ROOT/filename)
         if urlparse(self.path).path == '/api/health':
-            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.7'}).encode()
+            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.7.1'}).encode()
             self.send_response(200)
             self.send_header('Content-Type','application/json')
             self.send_header('Content-Length',str(len(payload)))

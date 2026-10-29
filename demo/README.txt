@@ -1,3 +1,9 @@
+ZE OS V0.7 Beta 2.7.1 — current layout comparison
+
+ZE_OS_V07_Beta271_Layouts.mp4: 16-second silent comparison composed from four actual editor stills: wider caption-first card, enlarged centered portrait assembly, flipped portrait, and solo roll. It shows the header above the bulletin whenever bullets are on, and above the roll only with bullets off. Guides remain preview overlays. Bullet text stays above the breaking-news safe line even when the panel/roll cross below it.
+The matching Wide / Portrait / Flipped / Solo PNG files show each composition; Editor.png shows the current interface. The synthetic local demo videos are the existing gradient assets. No live social import or automatic face detection is demonstrated. Captions are cleaned of copied URLs. Optional protected-region cropping is manual and defaults to full-frame protection.
+This is a layout-still comparison, not a fresh real-time animation recording or final render-engine export. Earlier Beta 2.7 animation recordings are retained below; they precede the header/caption/mandatory-text corrections.
+
 ZE OS V0.7 Beta 2.7 — current demonstration
 
 ZE_OS_V07_Beta27_Demo.mp4: 52-second silent H.264 viewing copy, 1920x1080, 25 fps.

@@ -34,7 +34,7 @@ try:
   page.locator('#advancedTab').click();page.locator('[data-panel="layout"] summary').click();before=boxes();page.locator('#headerGroupScale').fill('80');page.locator('#headerGroupScale').press('Tab');assert abs(boxes()['identity']['w']/before['identity']['w']-80/85)<.001;page.locator('#undoEdit').click();assert boxes()==before;page.locator('#mainTab').click()
   page.locator('#flip').uncheck();page.locator('[data-panel="placement"] summary').click();before=boxes();page.locator('#compositionUp').click();after=boxes();assert all(abs(after[n]['y']-before[n]['y']+10)<.01 for n in before);page.locator('#undoEdit').click();assert boxes()==before;page.locator('[data-panel="placement"] summary').click();page.locator('#advancedTab').click();page.locator('[data-panel="guides"] summary').click();page.locator('#protectLowerThird').uncheck();page.locator('#mainTab').click()
   page.evaluate("selectLayer('bullet')");before=boxes();depth=page.evaluate('zeUndoStack.length');drag('bullet',-15,-12);after=boxes()
-  assert before['source']==after['source'] and before['identity']==after['identity'] and before['bullet']!=after['bullet']
+  assert before['source']==after['source'] and before['identity']!=after['identity'] and before['bullet']!=after['bullet']
   assert page.evaluate('zeUndoStack.length')==depth+1
   page.keyboard.press('Control+z');assert boxes()==before
   page.locator('#redoEdit').click();assert boxes()==after
