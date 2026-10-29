@@ -1,6 +1,15 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.7.2
+ZE OS — Mouwajaha V0.7 / Test Beta 2.7.3
 
-BETA 2.7.2 — CURRENT WORKFLOW
+BETA 2.7.3 — CURRENT CORRECTION
+Reference size is the default under Main → Roll & account → Roll frame layout. The same V0.7 cadre is retained for 9:16, square and wide media: 804 × 796 pixels at 100% source scale with bullets on. Fit/Fill and post text placement do not resize it. The older adaptive treatments remain optional.
+Main → Post photos, video & audio → Media fitting: Fill frame (crop edges) covers the frame by default. Fit whole image (no crop) shows the full picture/video inside it, with space when aspect ratios differ.
+Post text placement is independent: Bullet panel / Inside the roll / Hide post text. Media posts default to editable bullets and no text inside the roll. Inside-roll text and media can scroll together or keep selected media fixed.
+Fill crops edges. A manual face region can limit that crop when Protect manual face region is enabled; Fit shows the whole image and ignores zoom. There is no automatic face tracking.
+The header stays above bullets when enabled. Reference-size solo cards anchor it inside the top strip, including portrait media. The whole bullet panel and text always remain above the lower third. Strict safe-area fitting can shorten the roll viewport; user scaling still applies.
+Text-only solo rolls retain their existing larger size. Their editable text scrolls only above the selected lower-third boundary and gap, even with safe-area protection Off. The frame may still extend below it; baked-in screenshot lettering is not independently editable.
+Close the old helper, extract this ZIP, and run START_ZE_OS.bat. Connection version: 0.7-beta2.7.3. demo/ZE_OS_V07_Beta273_Layouts.mp4 is a 14-second still comparison. Previous real animation recordings remain. Default duration remains 50 seconds; MOV/alpha is deferred to the final renderer.
+
+BETA 2.7.2 — PREVIOUS WORKFLOW
 The entire black bulletin panel and text now stay above the lower-third safe line, even with protection Off, after moving/scaling/flipping. Only the roll may use extra lower space.
 Successful media-post imports copy the cleaned post text into the editable bullet field, replacing the sample text. Edited bullets remain independent. Main → Post photos, video & audio has Post text placement: Bullet panel / Inside the roll / Hide post text, plus Use post text in bullets.
 Returning an unchanged copied bullet to the roll clears that duplicate; custom bullet edits are preserved. Inside the roll defaults to scrolling text and media together. Keep selected media visible is available when a speaker should remain fixed instead. Text-only imports retain their text inside the roll.

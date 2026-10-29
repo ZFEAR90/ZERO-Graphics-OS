@@ -11,6 +11,7 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source')
+  page.locator('#postMediaFit').select_option('fit',force=True)  # These caption-placement checks exercise the whole-image option.
   page.locator('#bullets').fill('هذا نص طويل لاختبار عدم عبور أي سطر إلى منطقة الخبر العاجل. '*12+'\n\nالنص الأخير يبقى فوق الخط الآمن. '*8)
   def check_pixels(moves=(0,100,250),protections=(False,True)):
    for flip in [False,True]:
@@ -48,8 +49,8 @@ try:
   for filename in ['photo.png','landscape.mp4']:
    page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures'/filename));page.wait_for_function('(name)=>zePost.items.length===1 && zePost.items[0].label===name',arg=filename);page.locator('#postBody').fill('هذه فقرة فوق الصورة وليست تحتها. '*12);page.locator('#postTextPlacement').select_option('roll');page.locator('#postScrollMode').select_option('fixed')
    positions=page.evaluate('''(()=>{const ctx=document.createElement('canvas').getContext('2d'),oldFit=fit,oldDoc=zeDrawPostDocument;let media=null,caption=null;fit=(c,im,x,y,w,h)=>{media={x,y,w,h};oldFit(c,im,x,y,w,h)};zeDrawPostDocument=(c,x,y,w,h,t)=>{caption={x,y,w,h};oldDoc(c,x,y,w,h,t)};try{zeDrawPost(ctx,0,0,400,300,5)}finally{fit=oldFit;zeDrawPostDocument=oldDoc}return {media,caption}})()''');assert positions['caption']['y']+positions['caption']['h']<positions['media']['y'],positions
-  # A crop cannot exclude the full manually protected face rectangle. Full frame is the default.
-  result=page.evaluate('''(()=>{const frame={width:360,height:640},item={framing:{zoom:140,face:{x:0,y:0,w:100,h:100}}},full=zeProtectedPlacement(frame,240,300,item);if(full.scale!==full.base)throw Error('Full frame cropped');for(const face of [{x:20,y:5,w:60,h:55},{x:80,y:0,w:20,h:25},{x:0,y:70,w:25,h:30}])for(const target of [[240,300],[400,200],[140,400]]){item.framing.face=face;const p=zeProtectedPlacement(frame,...target,item),f=p.face;if(p.x+f.x*p.w<-.001||p.y+f.y*p.h<-.001||p.x+(f.x+f.w)*p.w>target[0]+.001||p.y+(f.y+f.h)*p.h>target[1]+.001)throw Error('Protected face clipped')}return true})()''');assert result
+  # Explicit manual protection must keep its face rectangle visible.
+  result=page.evaluate('''(()=>{const frame={width:360,height:640},item={framing:{zoom:140,protectFace:true,face:{x:0,y:0,w:100,h:100}}},full=zeProtectedPlacement(frame,240,300,item);if(full.scale!==full.base)throw Error('Full frame cropped');for(const face of [{x:20,y:5,w:60,h:55},{x:80,y:0,w:20,h:25},{x:0,y:70,w:25,h:30}])for(const target of [[240,300],[400,200],[140,400]]){item.framing.face=face;const p=zeProtectedPlacement(frame,...target,item),f=p.face;if(p.x+f.x*p.w<-.001||p.y+f.y*p.h<-.001||p.x+(f.x+f.w)*p.w>target[0]+.001||p.y+(f.y+f.h)*p.h>target[1]+.001)throw Error('Protected face clipped')}return true})()''');assert result
   page.get_by_text('Framing / protect face',exact=True).click()
   zoom=page.get_by_role('spinbutton',name='Zoom for landscape.mp4',exact=True);zoom.fill('130');zoom.press('Tab');assert page.evaluate('zePost.items[0].framing.zoom')==130
   page.get_by_role('spinbutton',name='Face left for landscape.mp4',exact=True).fill('20');page.get_by_role('spinbutton',name='Face left for landscape.mp4',exact=True).press('Tab');assert page.get_by_role('spinbutton',name='Face width for landscape.mp4',exact=True).input_value()=='80'

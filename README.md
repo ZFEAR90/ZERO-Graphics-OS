@@ -1,8 +1,27 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.7.2
+# ZE OS — Mouwajaha V0.7, Test Beta 2.7.3
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
-## Current workflow — Beta 2.7.2
+## Current correction — Beta 2.7.3
+
+**Reference size · all media shapes** is now the default under Main → Roll & account → Roll frame layout. The two-column roll keeps the painted V0.7 reference size: 804 × 796 pixels at 100% source scale in the 1920 × 1080 composition. Importing 9:16, square or wide media, changing Fill/Fit, or including post text does not change those dimensions. The previous adaptive portrait treatments remain selectable. Explicit scaling/movement and strict safe-area fitting still apply; only the roll may use the allowed space below the lower third. The whole bullet panel and its text remain protected.
+
+Under Main → Post photos, video & audio:
+
+- **Fill frame (crop edges)** is the default. The picture/video covers the existing frame instead of shrinking the frame to the media aspect ratio.
+- **Fit whole image (no crop)** shows all of the media inside the same frame; unused space is expected when aspect ratios differ.
+- **Post text placement** stays independent: Bullet panel (media without post text inside the roll), Inside the roll, or Hide post text. Custom bullet edits remain editable. Inside-roll text and media can scroll together or keep the media fixed.
+- Fill can crop a face at the edges. Optional **Framing / protect face → Protect manual face region** limits that crop to a manually marked region; editing the region enables protection. If it prevents full coverage, soft duplicate background fills the remaining area. Fit always contains the whole image and ignores zoom. There is no automatic face tracking.
+
+**Text-only solo roll:** its existing larger frame is preserved. Its text viewport ends above the selected regular/breaking-news boundary and gap, including with protection Off. Text scrolls through that shorter reading region, so the end of the post can reach a readable position without entering the on-air lower third. The outer frame can still extend below it. This applies to editable imported post text, not lettering baked into screenshots.
+
+With bullets enabled, the account/profile/platform header remains above the bulletin. With bullets off in Reference size, it anchors inside the roll's top strip with the platform across the upper-right corner, including portrait media; the frame stays the same size.
+
+[14-second layout comparison](demo/ZE_OS_V07_Beta273_Layouts.mp4) · [Portrait Fill](demo/ZE_OS_V07_Beta273_PortraitFill.png) · [Portrait Fit](demo/ZE_OS_V07_Beta273_PortraitFit.png) · [Wide Fill](demo/ZE_OS_V07_Beta273_WideFill.png) · [Wide Fit](demo/ZE_OS_V07_Beta273_WideFit.png). This comparison uses editor stills; prior real browser animation/scroll recordings remain separately versioned.
+
+Checks cover real portrait/landscape video and square/wide photos, both flips, all text-placement choices, unchanged frame rectangles, painted crop versus contain, manual protection, solo/header attachment, strict safety, entrance frames and saved settings. Arabic/English text-only solo checks compare painted text pixels across custom boundaries, movement, protection states and scrolling through the final frame. The 50-second default, line transitions, media/audio policies and deferred final alpha renderer remain.
+
+## Previous workflow — Beta 2.7.2
 
 - **The whole bullet panel is always safe.** Its black background and text end above the selected lower-third boundary and gap, including breaking news. Movement, size changes and Flip obey this limit even with Respect safe area Off. That toggle can still allow the roll extra space.
 - **Imported media posts put their cleaned post text into the bullet field by default.** This replaces the sample text on successful import. Edit the bullet field independently. Under Main → Post photos, video & audio, **Post text placement** offers Bullet panel / Inside the roll / Hide post text; **Use post text in bullets** restores the original post text. Returning an unchanged copied bullet to the roll clears that duplicate; edited bullet text is preserved. Text-only imports remain in the roll.

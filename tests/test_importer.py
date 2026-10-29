@@ -58,7 +58,7 @@ class ImportTests(unittest.TestCase):
    req=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/api/health',headers={'Origin':'null'})
    with urllib.request.urlopen(req) as response:
     self.assertEqual(response.headers['Access-Control-Allow-Origin'],'null')
-    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2.7.2'})
+    self.assertEqual(json.load(response),{'service':'ze-os-importer','version':'0.7-beta2.7.3'})
   finally:server.shutdown();server.server_close()
  def test_capture_missing_browser_reports_cause(self):
   with patch.object(m,'launch_capture_browser',side_effect=m.CaptureUnavailable('Capture browser missing')):

@@ -15,7 +15,8 @@ try:
   errors = []; page.on('pageerror', lambda e: errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html')
   page.wait_for_function('assets.source && state.stvLoaded')
-  assert page.locator('#portraitLayout').input_value() == 'focus'
+  assert page.locator('#portraitLayout').input_value() == 'reference'
+  page.locator('#portraitLayout').select_option('focus');page.locator('#postMediaFit').select_option('fit',force=True)
   assert not page.locator('#protectLowerThird').is_checked()
   page.locator('#respectSafeArea').click();assert page.locator('#protectLowerThird').is_checked() and not page.locator('#allowMediaOverlap').is_checked()
   page.locator('#allowMediaOverlap').check()

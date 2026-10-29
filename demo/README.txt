@@ -1,3 +1,9 @@
+ZE OS V0.7 Beta 2.7.3 — fixed reference-frame comparison
+
+ZE_OS_V07_Beta273_Layouts.mp4: 14-second silent H.264 comparison of seven actual editor stills, not an animation-timing demonstration. Shows Wide Fill, Wide Fit, Portrait Fill, Portrait Fit, optional inside-roll text hidden post text, and safe text-only scrolling. All preserve the same outer frame size. The PNGs and Editor.png are actual browser screenshots with guide overlays; overlays are absent from exports. Demo material is local generated media, not a live social post or automatic face tracking.
+
+Previous versions and their actual browser recordings are retained below.
+
 ZE OS V0.7 Beta 2.7.2 — current workflow comparison
 
 ZE_OS_V07_Beta272_Demo.mp4: 24-second silent comparison, H.264, 1920x1080.

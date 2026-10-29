@@ -8,6 +8,7 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('assets.source && state.stvLoaded')
+  page.locator('#postMediaFit').select_option('fit',force=True)  # Keep the complete speaker visible in this optional mode.
   page.locator('#postFiles').set_input_files([str(root/'tests/fixtures/portrait.mp4'),str(root/'tests/fixtures/photo.png')]);page.wait_for_function('zePost.items.length===2');page.locator('#postBody').fill('هذه مقالة طويلة تظل قابلة للتمرير بينما يبقى فيديو المتحدث مرئياً. '*20)
   pin=page.get_by_role('checkbox',name='Keep portrait.mp4 visible while post scrolls');assert pin.is_checked()
   assert page.evaluate('zePinnedVideos().length===1');assert page.evaluate('zePostDocument();zePost.blocks.every(block=>block.item.type!=="video")')
