@@ -36,7 +36,7 @@
         "codec_type": "video",
         "width": 1920,
         "height": 1080,
-        "nb_read_frames": "1186"
+        "nb_read_frames": "1151"
       },
       {
         "codec_name": "opus",
@@ -49,12 +49,33 @@
     }
   },
   "full_black_intervals": 0,
-  "audio_max_db": -17.6,
-  "demo_duration_seconds": 78.08,
+  "audio_max_db": -17.7,
+  "demo_duration_seconds": 78.16,
   "media": "generated local fixtures; controlled import response",
   "limits": [
     "Browser recording is real time and can drop frames.",
     "Native MOV alpha and native After Effects export are deferred.",
     "Failed-task files and ArmedForcesJO reference were not available."
-  ]
+  ],
+  "final_adjustments": {
+    "base_commit": "47fd3f7",
+    "editor_sha256": "4d9b7c800c6d5db2f89a3cab0c5d517cf1e8bf214db6fa028e03c483c220ac9d",
+    "browser_suites_passed": [
+      "browser_clean_media_check",
+      "browser_final_adjustments_check",
+      "browser_header_anchor_check",
+      "browser_media_toggle_check",
+      "browser_motion_check",
+      "browser_native_account_check",
+      "browser_palette_check",
+      "browser_recovery_check",
+      "browser_social_layout_check",
+      "browser_whole_below_check"
+    ],
+    "browser_suites_failed": [],
+    "importer_tests_passed": 16,
+    "syntax": "passed",
+    "evidence": "demo/final-adjustments/validation.json",
+    "full_black_intervals": 0
+  }
 }

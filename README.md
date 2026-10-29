@@ -10,6 +10,12 @@ Main contains export, primary colors and timing, with Render Video beside the pr
 
 [Editor demonstration](demo/ZE_OS_V07_Beta278_Demo.mp4) · [Actual 50-second browser export with audio](demo/ZE_OS_V07_Beta278_50s.webm) · [Main](demo/ZE_OS_V07_Beta278_Main.png) · [Whole](demo/ZE_OS_V07_Beta278_Whole.png). Imports in the demonstration use controlled local fixtures. The original failed task's files and ArmedForcesJO reference were unavailable. MOV alpha/native AE export remains deferred.
 
+### Final owner adjustments
+
+The [final adjustment list](FINAL_ADJUSTMENTS.md) has been checked in normal and flipped browser layouts. Detailed geometry, per-media framing/playback and palette strength are now under Advanced; Main retains inclusion and an Advanced media shortcut. Speaker toggles stay synchronized and restore shared scrolling when disabled. Text-only content also respects a stricter custom breaking-news boundary under regular guides. Retained Advanced media-only treatments use the same clean, centered renderer.
+
+[Normal workspace](demo/final-adjustments/workspace-0.png) · [Flipped workspace](demo/final-adjustments/workspace-1.png). Acceptance test: `python tests/browser_final_adjustments_check.py` with the repository environment active.
+
 ## Previous correction — Beta 2.7.7
 
 **Whole roll frame** now uses a native post account row. The circular profile picture, plain display name and gray handle stay **fixed at the top-left inside the white post**, including after Flip. The separate animated broadcast name/handle straps and decorative top ribbon are removed in this presentation. The platform tile remains outside at the chosen side, using its existing entrance animation.

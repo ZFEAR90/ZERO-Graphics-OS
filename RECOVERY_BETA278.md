@@ -59,3 +59,16 @@ All 16 importer tests and 15 focused browser suites passed; inline JavaScript pa
 The failed task's uncommitted files, `X Roll ArmedForcesJO.mp4`, a full original broadcast render and additional approved screenshot references were not available here. If supplied later, compare and preserve any recovered work before further changes. The included proxy and written direction support current testing, not a claim of matching unavailable reference footage. Live social access still depends on the platform and environment network settings; manual file import remains available.
 
 The onboarding draft stores tested install/start instructions; saving it does not publish the environment. Review environment settings separately before publishing a snapshot. No credentials are required for the local workflow.
+
+## Final owner-adjustment audit
+
+The owner subsequently supplied the final pre-failure requests, retained verbatim in `FINAL_ADJUSTMENTS.md`. Most behavior was present in recovery commit `47fd3f7`; this follow-up closes the remaining gaps:
+
+- Composition offsets and the media-overlap override now live in Advanced. Per-item face/framing, Hold/Loop and speaker controls also live there; Main keeps per-item inclusion and an **Advanced media controls** shortcut. Palette strength is an Advanced detail. Export, Render Video, primary timing/colors and Undo/Redo remain accessible.
+- The speaker checkbox refreshes on presentation changes. Disabling it restores shared movement in Main/Whole structured layouts. Clicking the already active presentation preserves its manual choices.
+- Roll text and bullet text share the stricter breaking-news/current-guide boundary. Text-only content remains protected with regular guides selected and roll protection off.
+- Hidden-text/media-only content uses the clean centered renderer even in retained Advanced layout treatments; it does not acquire duplicate blur.
+
+Run `.venv/bin/python tests/browser_final_adjustments_check.py` for the final acceptance matrix. It checks Main/Advanced placement through actual controls, speaker on/off, ten hidden-media layout/flip combinations, sixteen Text-only geometry combinations, painted text safety in Main/Whole and both flips, and the 24-unit painted header gap. Browser evidence is in `demo/final-adjustments/`. The existing recovery, header-anchor, social-layout, whole-below, clean-media, native-account, media-toggle, palette and motion checks were also rerun. JavaScript syntax and all 16 importer tests passed. The demonstration and real 50-second browser output were refreshed for this interface.
+
+This audit still uses generated fixture media and the available V0.7 proxy. No recovered failed-task files or unavailable external references are implied. Changes remain on the recovery branch; no remote or environment publication was performed.
