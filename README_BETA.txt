@@ -1,6 +1,14 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.7.3
+ZE OS — Mouwajaha V0.7 / Test Beta 2.7.4
 
-BETA 2.7.3 — CURRENT CORRECTION
+BETA 2.7.4 — CENTERED SOCIAL POST OPTION
+Main → Roll & account → Roll frame layout → Centered social post · side platform.
+The roll is centered, with the platform beside it and the profile/name/account inside the top strip. Flip swaps the platform side without mirroring text or pictures. This reuses the existing V0.7 animation; Reference size remains the default.
+Media inside the post: Below post text, or Right side · text on left. Long text scrolls inside its own mask while media stays visible. The selected lower-third text boundary stays protected. Use Post text size (28–64 px at 1080p) and the existing scroll timing controls. Fill/Fit, optional audio, Hold/Loop and per-item media toggles remain available.
+Post text defaults inside the card in this layout. Under Post photos, video & audio, choose Hide post text for media alone, or Text only for a text-only card. The external bullet is disabled in this layout; returning to a previous layout restores its prior visibility and text/content/scroll settings. Source movement carries the profile and platform with the frame, with Ctrl+Z undo.
+Close the old helper, extract this folder, and run START_ZE_OS.bat. Helper version: 0.7-beta2.7.4. demo/ZE_OS_V07_Beta274_Demo.mp4 is a 16-second demonstration with an actual silent 8-second browser export after four still views.
+The supplied X Roll ArmedForcesJO.mp4 exceeded the 32 MiB transfer limit, so the layout follows the written description. Its frames have not been inspected or matched. The original Mouwajaha animation remains the baseline; final MOV/alpha rendering is still deferred.
+
+BETA 2.7.3 — PREVIOUS CORRECTION
 Reference size is the default under Main → Roll & account → Roll frame layout. The same V0.7 cadre is retained for 9:16, square and wide media: 804 × 796 pixels at 100% source scale with bullets on. Fit/Fill and post text placement do not resize it. The older adaptive treatments remain optional.
 Main → Post photos, video & audio → Media fitting: Fill frame (crop edges) covers the frame by default. Fit whole image (no crop) shows the full picture/video inside it, with space when aspect ratios differ.
 Post text placement is independent: Bullet panel / Inside the roll / Hide post text. Media posts default to editable bullets and no text inside the roll. Inside-roll text and media can scroll together or keep selected media fixed.

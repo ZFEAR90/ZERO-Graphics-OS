@@ -1,8 +1,22 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.7.3
+# ZE OS — Mouwajaha V0.7, Test Beta 2.7.4
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
-## Current correction — Beta 2.7.3
+## Current addition — Beta 2.7.4
+
+Under **Main → Roll & account → Roll frame layout**, choose **Centered social post · side platform**. This is an optional Mouwajaha V0.7 layout using the existing frame/mask, source reveal and identity animation. Reference size remains the default.
+
+- The roll frame is centered. The platform tile sits beside it; Flip swaps the tile side without mirroring any text or images. Profile picture, display name and handle appear inside the top of the card and remain separately editable.
+- **Media inside the post** offers **Below post text** or **Right side · text on left**. Long text scrolls inside its own masked region; selected images/videos remain visible. Right-side media remains on the right in both Flip directions, as labeled.
+- **Post text size** adjusts Arabic STV or Latin text from 28 to 64 pixels at 1080p. Existing Scroll start, duration and distance controls set its movement. Text stays above the selected lower-third safe line; media can use the permitted lower space.
+- Fill/Fit, per-item inclusion, manual face region, source audio, Hold/Loop and hidden/text-only modes remain available. Post text defaults inside the card in this layout; choose Hide post text for media alone.
+- The external bullet panel is hidden while this layout is selected. Returning to a previous layout restores its bullet visibility and text-placement/content/scroll settings. Source dragging moves the card, profile and platform together; Ctrl+Z restores the move. Selecting a new post while in this mode retains the layout.
+
+[16-second demonstration](demo/ZE_OS_V07_Beta274_Demo.mp4) · [Media below](demo/ZE_OS_V07_Beta274_Below.png) · [Media right](demo/ZE_OS_V07_Beta274_Right.png) · [Flipped](demo/ZE_OS_V07_Beta274_Flipped.png). The final eight seconds are a real silent browser export; the opening views are editor stills. Generated local demo media are used. The supplied “X Roll ArmedForcesJO.mp4” exceeded the workspace's 32 MiB transfer limit and could not be frame-inspected, so this layout follows the user's written description. It does not claim an exact visual match to that sample. The original Mouwajaha animation remains the motion baseline.
+
+Browser checks cover inset metadata, external platform geometry, both media placements, Fill/Fit, independent scroll with real portrait/landscape video and photos, RTL/LTR safe text pixels, mouse undo, saved settings and layout restoration. Reference sizing, solo text safety, existing paragraph handoff and 151-frame entrance checks remain passing.
+
+## Previous correction — Beta 2.7.3
 
 **Reference size · all media shapes** is now the default under Main → Roll & account → Roll frame layout. The two-column roll keeps the painted V0.7 reference size: 804 × 796 pixels at 100% source scale in the 1920 × 1080 composition. Importing 9:16, square or wide media, changing Fill/Fit, or including post text does not change those dimensions. The previous adaptive portrait treatments remain selectable. Explicit scaling/movement and strict safe-area fitting still apply; only the roll may use the allowed space below the lower third. The whole bullet panel and its text remain protected.
 

@@ -69,9 +69,9 @@
 </style>
 </head>
 <body>
-<div class="app"><header class="top"><div class="mark">ZE</div><div class="logo">ZERO GRAPHICS OS<small>MOUWAJAHA · V0.7 · TEST BETA 2.7.3</small></div><div class="topmeta">PROJECT 11 · MOUWAJAHA / PIXEL-REFERENCE</div><div class="grow"></div><div class="status">MOTION STUDY · NOT BROADCAST APPROVED</div></header>
+<div class="app"><header class="top"><div class="mark">ZE</div><div class="logo">ZERO GRAPHICS OS<small>MOUWAJAHA · V0.7 · TEST BETA 2.7.4</small></div><div class="topmeta">PROJECT 11 · MOUWAJAHA / PIXEL-REFERENCE</div><div class="grow"></div><div class="status">MOTION STUDY · NOT BROADCAST APPROVED</div></header>
 <main class="stage">
-<aside class="sidebar"><div class="paneltitle">Editor controls</div><div class="editor-nav"><div aria-label="Editor options" class="editor-tabs" role="tablist"><button aria-controls="mainOptions" aria-selected="true" id="mainTab" role="tab" type="button">Main</button><button aria-controls="advancedOptions" aria-selected="false" id="advancedTab" role="tab" tabindex="-1" type="button">Advanced options</button></div><div class="edit-history"><button disabled="" id="undoEdit" title="Undo movement (Ctrl+Z)" type="button">↶ Undo</button><button disabled="" id="redoEdit" title="Redo movement (Ctrl+Shift+Z)" type="button">↷ Redo</button><span class="micro" id="historyStatus" role="status">Move a group in the preview.</span></div></div><div aria-labelledby="mainTab" class="editor-tab-panel" id="mainOptions" role="tabpanel"><button aria-pressed="false" id="respectSafeArea" style="width:100%;margin-bottom:10px" type="button">Respect safe area: Off</button><p class="micro" style="margin:0 0 10px">The bullet panel and its text always stay above the lower-third safe line.</p><details class="control-panel" data-panel="import" id="linkImport"><summary><span>Post import</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Public X / Facebook / Instagram / Telegram post URL</label><input autocomplete="off" id="postUrl" placeholder="https://x.com/account/status/…" spellcheck="false" type="url"/><div class="row" style="margin-top:8px"><button class="primary" id="importPost" type="button">Detect &amp; import post</button><button id="makeSamplePost" type="button">Generate sample card</button></div><div class="micro" id="importStatus" style="padding-top:9px">The platform and account can be recognized from a link offline. Fetching the live post, profile photo and media requires the included local importer and a publicly accessible post.</div><div class="micro" id="importerConnection" role="status" style="padding:9px 0">Local importer · connection not checked</div><div class="row"><button id="checkImporter" type="button">Check importer connection</button><button hidden="" id="openImporter" type="button">Open local editor</button></div><label class="check"><input checked="" id="replaceSourceFromPost" type="checkbox"/>Use imported post in the roll</label></div></details><details class="control-panel" data-panel="content" open=""><summary><span>Roll &amp; account</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Source account</label><input id="account" type="text" value="@blame_d_cat"/><label class="label">Display name</label><input id="displayname" type="text" value="xpos"/><label class="check"><input id="flip" type="checkbox"/>Flip source and bulletin</label><label class="label" for="rollLanguage">Roll language / reading direction</label><select id="rollLanguage"><option value="auto">Auto detect</option><option value="rtl">Arabic / RTL</option><option value="ltr">Latin / LTR</option></select><p class="micro" id="rollLanguageStatus">Auto uses editable post text. Screenshots and media retain their original lettering. The reference frame keeps its size for portrait, square and landscape media. Fill / Fit and post text placement are independent controls.</p><label class="label" for="portraitLayout">Roll frame layout</label><select id="portraitLayout"><option value="reference">Reference size · all media shapes</option><option value="focus">Large centered portrait</option><option value="balanced">Balanced card · soft sides</option><option value="beside">Portrait beside post text</option></select><p class="micro">Reference size keeps the approved V0.7 frame dimensions, including for 9:16, square and wide media. Fill crops to the frame; Fit shows the whole image. The other portrait treatments remain optional.</p><label class="check"><input checked="" id="allowMediaOverlap" type="checkbox"/>Allow large post photos/videos below lower third</label><p class="micro">With safe area On, this lets only the roll use extra height. The bullet panel always stays above the lower third. This option allows only the roll to use extra height.</p><details class="element-overrides"><summary>Replace roll, profile or logos</summary><label class="label">Source article or post</label><input accept="image/*" id="sourceFile" type="file"/><span class="filetag" id="sourcePath">Default: cropped sample post from original render</span><label class="label">Profile picture</label><input accept="image/*" id="avatarFile" type="file"/><span class="filetag" id="avatarPath">Default: sample portrait from the original render</span><label class="label">Platform logo (transparent PNG)</label><input accept="image/*" id="platformFile" type="file"/><span class="filetag" id="platformPath">Default: X icon reconstructed as vector</span><label class="label">Account / source logo</label><input accept="image/*" id="sourceLogoFile" type="file"/><span class="filetag" id="sourceLogoPath">Optional separate source branding</span></details></div></details><details class="control-panel" data-panel="bullettext" open=""><summary><span>Bullet text</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="check"><input checked="" id="showBullets" type="checkbox"/>Show bullet panel</label><label class="label">Arabic bulletin (paragraphs separated by a blank line)</label><textarea id="bullets" rows="7">وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.
+<aside class="sidebar"><div class="paneltitle">Editor controls</div><div class="editor-nav"><div aria-label="Editor options" class="editor-tabs" role="tablist"><button aria-controls="mainOptions" aria-selected="true" id="mainTab" role="tab" type="button">Main</button><button aria-controls="advancedOptions" aria-selected="false" id="advancedTab" role="tab" tabindex="-1" type="button">Advanced options</button></div><div class="edit-history"><button disabled="" id="undoEdit" title="Undo movement (Ctrl+Z)" type="button">↶ Undo</button><button disabled="" id="redoEdit" title="Redo movement (Ctrl+Shift+Z)" type="button">↷ Redo</button><span class="micro" id="historyStatus" role="status">Move a group in the preview.</span></div></div><div aria-labelledby="mainTab" class="editor-tab-panel" id="mainOptions" role="tabpanel"><button aria-pressed="false" id="respectSafeArea" style="width:100%;margin-bottom:10px" type="button">Respect safe area: Off</button><p class="micro" style="margin:0 0 10px">The bullet panel and its text always stay above the lower-third safe line.</p><details class="control-panel" data-panel="import" id="linkImport"><summary><span>Post import</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Public X / Facebook / Instagram / Telegram post URL</label><input autocomplete="off" id="postUrl" placeholder="https://x.com/account/status/…" spellcheck="false" type="url"/><div class="row" style="margin-top:8px"><button class="primary" id="importPost" type="button">Detect &amp; import post</button><button id="makeSamplePost" type="button">Generate sample card</button></div><div class="micro" id="importStatus" style="padding-top:9px">The platform and account can be recognized from a link offline. Fetching the live post, profile photo and media requires the included local importer and a publicly accessible post.</div><div class="micro" id="importerConnection" role="status" style="padding:9px 0">Local importer · connection not checked</div><div class="row"><button id="checkImporter" type="button">Check importer connection</button><button hidden="" id="openImporter" type="button">Open local editor</button></div><label class="check"><input checked="" id="replaceSourceFromPost" type="checkbox"/>Use imported post in the roll</label></div></details><details class="control-panel" data-panel="content" open=""><summary><span>Roll &amp; account</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Source account</label><input id="account" type="text" value="@blame_d_cat"/><label class="label">Display name</label><input id="displayname" type="text" value="xpos"/><label class="check"><input id="flip" type="checkbox"/>Flip source and bulletin</label><label class="label" for="rollLanguage">Roll language / reading direction</label><select id="rollLanguage"><option value="auto">Auto detect</option><option value="rtl">Arabic / RTL</option><option value="ltr">Latin / LTR</option></select><p class="micro" id="rollLanguageStatus">Auto uses editable post text. Screenshots and media retain their original lettering. The reference frame keeps its size for portrait, square and landscape media. Fill / Fit and post text placement are independent controls.</p><label class="label" for="portraitLayout">Roll frame layout</label><select id="portraitLayout"><option value="reference">Reference size · all media shapes</option><option value="social">Centered social post · side platform</option><option value="focus">Large centered portrait</option><option value="balanced">Balanced card · soft sides</option><option value="beside">Portrait beside post text</option></select><p class="micro">Reference size keeps the approved V0.7 frame dimensions, including for 9:16, square and wide media. Fill crops to the frame; Fit shows the whole image. The other portrait treatments remain optional.</p><div id="socialLayoutOptions" hidden=""><label class="label" for="socialMediaPosition">Media inside the post</label><select id="socialMediaPosition"><option value="below">Below post text</option><option value="right">Right side · text on left</option></select><label class="label" for="socialTextSize">Post text size (1080p pixels)</label><input id="socialTextSize" type="number" min="28" max="64" step="2" value="44"/><p class="micro">Centered social post keeps the platform beside the frame, with profile and account inside. Long post text scrolls independently; media stays visible. Choose Inside the roll or Hide post text under Post photos, video &amp; audio. Flip moves the platform to the other side.</p></div><label class="check"><input checked="" id="allowMediaOverlap" type="checkbox"/>Allow large post photos/videos below lower third</label><p class="micro">With safe area On, this lets only the roll use extra height. The bullet panel always stays above the lower third. This option allows only the roll to use extra height.</p><details class="element-overrides"><summary>Replace roll, profile or logos</summary><label class="label">Source article or post</label><input accept="image/*" id="sourceFile" type="file"/><span class="filetag" id="sourcePath">Default: cropped sample post from original render</span><label class="label">Profile picture</label><input accept="image/*" id="avatarFile" type="file"/><span class="filetag" id="avatarPath">Default: sample portrait from the original render</span><label class="label">Platform logo (transparent PNG)</label><input accept="image/*" id="platformFile" type="file"/><span class="filetag" id="platformPath">Default: X icon reconstructed as vector</span><label class="label">Account / source logo</label><input accept="image/*" id="sourceLogoFile" type="file"/><span class="filetag" id="sourceLogoPath">Optional separate source branding</span></details></div></details><details class="control-panel" data-panel="bullettext" open=""><summary><span>Bullet text</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="check"><input checked="" id="showBullets" type="checkbox"/>Show bullet panel</label><label class="label">Arabic bulletin (paragraphs separated by a blank line)</label><textarea id="bullets" rows="7">وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.
 
 يشكل المسلمون نحو 6% من سكان أوروبا، ونحو 9 إلى 10% من سكان فرنسا
 
@@ -175,7 +175,7 @@ function zeReferenceFrame(ctx,b,t,article){
  const aperture=zeSampleTrack('aperture',t),aw=b.w*374/402*aperture,ah=b.h*374/398*aperture;
  if(aperture>0){ctx.save();roundedClip(ctx,cx-aw/2,cy-ah/2,aw,ah,Math.min(6,aw/12,ah/12));ctx.fillStyle='#fff';ctx.fillRect(cx-aw/2,cy-ah/2,aw,ah);
   const p=zeSampleTrack('content',t),w=b.w*365/402,h=b.h*372/398;
-  if(zeSafeRollText()){ctx.beginPath();ctx.rect(0,0,W,zeBroadcastBounds().bottom-2);ctx.clip()}
+  if(zeSafeRollText()&&!zeSocialMode()){ctx.beginPath();ctx.rect(0,0,W,zeBroadcastBounds().bottom-2);ctx.clip()}
   if(p>0)centeredScaled(ctx,cx-w/2,cy-h/2,w,h,p,()=>article(ctx,cx-w/2,cy-h/2,w,h,t));ctx.restore();
  }
  const accent=zeSmooth(clamp((t-1.76)/.36));if(accent>0)rr(ctx,b.x+b.w*.08,b.y-8,b.w*.70*accent,Math.min(28,b.h*.07),10,zeElementColor('sourceAccent'));
@@ -331,7 +331,7 @@ function headerLayout(ctx){
  nw=clamp(nw,40,maxWidth);hw=clamp(hw,40,maxWidth);
  const reflect=(x,w)=>zeHeaderFlipped()?R.identity.x+R.identity.w-(x-R.identity.x)-w:x;
  const px=R.identity.x+4,ax=px+pw+gap,nx=ax+aw+gap;
- return {platform:{x:reflect(px,pw),y:(zeEmbeddedHeader()?40:86)+(58-pw)/2,w:pw,h:pw},avatar:{x:reflect(ax,aw),y:76+(80-aw)/2,w:aw,h:aw},
+ return {platform:{x:reflect(px,pw)+(zeSocialMode()?(zeHeaderFlipped()?30:-30):0),y:(zeEmbeddedHeader()?40:86)+(58-pw)/2,w:pw,h:pw},avatar:{x:reflect(ax,aw),y:76+(80-aw)/2,w:aw,h:aw},
  name:{x:reflect(nx,nw),y:90,w:nw,h:31},handle:{x:reflect(nx,hw),y:125,w:hw,h:26},nameText:name,handleText:handle,font,arabic};
 }
 function headerLabel(ctx,b,text,font,t,a,btime,black){
@@ -702,7 +702,8 @@ const zeReferenceBBox=getBBox;
 const zeReferenceArticle=articleSample;
 const zeReferenceIdentity=identity;
 const zeReferenceSource=sourceFrame;
-function zeNoBullets(){return !$('showBullets').checked;}
+function zeSocialMode(){return $('portraitLayout').value==='social'}
+function zeNoBullets(){return zeSocialMode()||!$('showBullets').checked;}
 function zeAssetAspect(){const im=assets.source;if(!im)return 1;let w=im.videoWidth||im.width,h=im.videoHeight||im.height;return w&&h?w/h:1;}
 function zeCleanPostText(value){return String(value||'').replace(/\b(?:https?:\/\/|www\.)[^\s<>\u200e\u200f]+/giu,'').replace(/\b(?:t\.co|x\.com|twitter\.com|facebook\.com|instagram\.com|t\.me|youtu\.be|youtube\.com)\/[^\s<>\u200e\u200f]+/giu,'').replace(/(?<![@\w])(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:com|org|net|co|io|tv|me|ly|info|news|gov|edu|uk|fr|de|lb|ir)\b(?:[\/?#][^\s<>\u200e\u200f]*)?/giu,'').split('\n').map(line=>line.replace(/[ \t]+/g,' ').trim()).join('\n').replace(/\n{3,}/g,'\n\n').trim()}
 function zeRollDirection(text){const mode=$('rollLanguage').value;if(mode!=='auto')return mode;const value=zeCleanPostText(text??($('postBody').value||zeSolo.sourceTitle||''));const arabic=(value.match(/[\u0600-\u06ff]/g)||[]).length,latin=(value.match(/[A-Za-z]/g)||[]).length;return arabic>latin?'rtl':'ltr'}
@@ -737,7 +738,7 @@ function zeArticleFit(ctx,x,y,w,h,t){
 }
 function zeDrawSoloIdentity(ctx,t){
  const b=getBBox('identity');const r=R.identity;
- if(zeEmbeddedHeader()){ctx.save();ctx.translate(b.x,b.y);ctx.scale(b.w/r.w,b.h/r.h);ctx.translate(-r.x,-r.y);identity(ctx,timed('headerTiming',timeline(t)));ctx.restore();return}
+ if(zeEmbeddedHeader()||zeSocialMode()){ctx.save();ctx.translate(b.x,b.y);ctx.scale(b.w/r.w,b.h/r.h);ctx.translate(-r.x,-r.y);identity(ctx,timed('headerTiming',timeline(t)));ctx.restore();return}
  let buffer=offCtx.identity;buffer.setTransform(1,0,0,1,0,0);buffer.clearRect(0,0,1920,1080);setupCtx(buffer);
  identity(buffer,timed('headerTiming',timeline(t)));
  const w=b.w,h=b.h;
@@ -748,7 +749,7 @@ compose=function(ctx,t){
  if(!zeNoBullets())return zeCoreCompose(ctx,t);
  zeClearScene(ctx);
  zeDrawBackground(ctx,t);
- zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t);
+ if(zeSocialMode()){zeDrawSoloSource(ctx,t);zeDrawSoloIdentity(ctx,t)}else{zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t)}
  guides(ctx);
  if($('guides').checked){const b=getBBox(state.selected);if(b.w){ctx.save();ctx.strokeStyle='#f991b2';ctx.setLineDash([5,4]);ctx.strokeRect(b.x,b.y,b.w,b.h);ctx.restore()}}
 };
@@ -927,7 +928,7 @@ $('backgroundFile').onchange=e=>{
  }else{img(url,im=>{state.customBackground=im;state.bgKind='image';const color=zeAnalyzeColors(im);if(color)zeSetPalette(color);draw()})}
 };
 // Export current baseline plus the additional user-approved controls.
-$('saveJson').onclick=()=>{let data={product:'ZERO GRAPHICS OS',version:'0.7-focused',safeArea:{bulletPanelAlwaysProtected:true,bulletTextAlwaysProtected:true,soloRollTextAlwaysProtected:true,enabled:$('protectLowerThird').checked,mode:$('lowerThirdMode').value,lowerThirdTop:val('lowerThirdTop'),breakingNewsTop:val('breakingNewsTop'),gap:val('lowerThirdGap'),topClearance:val('broadcastTop'),compositionY:val('compositionY'),compositionX:val('compositionX'),screenOffsets:state.screenOffsets},project:'Mouwajaha Roll',headerAnchor:zeEmbeddedHeader()?'inside-roll':zeNoBullets()?'roll':'bullet',portraitLayout:$('portraitLayout').value,rollFrameSizing:zeReferenceSize()?'reference':'adaptive',portraitLowerThirdOverlap:zeCenteredPortrait()&&zeRollOverlapAllowed(),sourceLowerThirdOverlapAllowed:zeRollOverlapAllowed(),rollLanguage:$('rollLanguage').value,videoTiming:zeTimingExport(),output:{background:zeIsTransparent()?'transparent':'loop',requestedFinalCodec:zeIsTransparent()?'QuickTime ProRes 4444 with alpha':null},headerGroupScale:val('headerGroupScale'),designMode:zeMotion.mode,sourceUrl:zeSolo.postUrl,platform:zeSolo.postPlatform,account:$('account').value,displayname:$('displayname').value,showBullets:!zeNoBullets(),bullets:$('bullets').value,flipped:flipped(),soloWidth:$('soloWidth').value,soloFit:$('soloFit').value,positions:structuredClone(state.layers),postMedia:zePost.active?{text:zeCleanPostText($('postBody').value),mode:$('postContentMode').value,textPlacement:$('postTextPlacement').value,scrollMode:$('postScrollMode').value,fit:$('postMediaFit').value,bulletLinked:!!zePost.bulletLinked,photos:$('postPhotos').checked,videos:$('postVideos').checked,audio:$('postAudio').checked,volume:val('postVolume'),items:zePost.items.map(item=>({type:item.type,name:item.label,included:item.enabled,framing:item.type==='audio'?undefined:zeMediaFraming(item),endBehavior:item.type==='video'?(item.endBehavior||'hold'):undefined,keepVisible:item.type==='video'?item.keepVisible!==false:undefined})),note:'Reattach original media files when reopening on another computer.'}:null,backgroundAutoPalette:$('autoPalette').checked,colors:{accent:$('accentColor').value,panel:$('panelColor').value,text:$('textColor').value,frame:$('frameColor').value,adaptFrame:$('adaptFrameColor').checked,elementOverrides:Object.fromEntries(Object.entries(zeColorSpec).map(([key,[label,id]])=>[key,{enabled:$(key+'Override').checked,color:$(id).value}]))},typography:{font:'STV',loaded:state.stvLoaded,justify:$('justifyMode').value,kashida:val('kashidaStrength')},motion:{strength:zeMotion.intensity,animatedCorners:$('animatedCorners').checked,lightSweeps:$('lightSweeps').checked,ambientMotion:$('ambientMotion').checked}};
+$('saveJson').onclick=()=>{let data={product:'ZERO GRAPHICS OS',version:'0.7-focused',safeArea:{bulletPanelAlwaysProtected:true,bulletTextAlwaysProtected:true,soloRollTextAlwaysProtected:true,enabled:$('protectLowerThird').checked,mode:$('lowerThirdMode').value,lowerThirdTop:val('lowerThirdTop'),breakingNewsTop:val('breakingNewsTop'),gap:val('lowerThirdGap'),topClearance:val('broadcastTop'),compositionY:val('compositionY'),compositionX:val('compositionX'),screenOffsets:state.screenOffsets},project:'Mouwajaha Roll',headerAnchor:zeSocialMode()?'inside-roll-side-platform':zeEmbeddedHeader()?'inside-roll':zeNoBullets()?'roll':'bullet',portraitLayout:$('portraitLayout').value,rollFrameSizing:zeSocialMode()?'centered-social':zeReferenceSize()?'reference':'adaptive',socialPost:{mediaPosition:$('socialMediaPosition').value,textSizePixels:val('socialTextSize'),scroll:'text-only',platformSide:flipped()?'left':'right'},portraitLowerThirdOverlap:zeCenteredPortrait()&&zeRollOverlapAllowed(),sourceLowerThirdOverlapAllowed:zeRollOverlapAllowed(),rollLanguage:$('rollLanguage').value,videoTiming:zeTimingExport(),output:{background:zeIsTransparent()?'transparent':'loop',requestedFinalCodec:zeIsTransparent()?'QuickTime ProRes 4444 with alpha':null},headerGroupScale:val('headerGroupScale'),designMode:zeMotion.mode,sourceUrl:zeSolo.postUrl,platform:zeSolo.postPlatform,account:$('account').value,displayname:$('displayname').value,showBullets:!zeNoBullets(),bullets:$('bullets').value,flipped:flipped(),soloWidth:$('soloWidth').value,soloFit:$('soloFit').value,positions:structuredClone(state.layers),postMedia:zePost.active?{text:zeCleanPostText($('postBody').value),mode:$('postContentMode').value,textPlacement:$('postTextPlacement').value,scrollMode:$('postScrollMode').value,fit:$('postMediaFit').value,bulletLinked:!!zePost.bulletLinked,photos:$('postPhotos').checked,videos:$('postVideos').checked,audio:$('postAudio').checked,volume:val('postVolume'),items:zePost.items.map(item=>({type:item.type,name:item.label,included:item.enabled,framing:item.type==='audio'?undefined:zeMediaFraming(item),endBehavior:item.type==='video'?(item.endBehavior||'hold'):undefined,keepVisible:item.type==='video'?item.keepVisible!==false:undefined})),note:'Reattach original media files when reopening on another computer.'}:null,backgroundAutoPalette:$('autoPalette').checked,colors:{accent:$('accentColor').value,panel:$('panelColor').value,text:$('textColor').value,frame:$('frameColor').value,adaptFrame:$('adaptFrameColor').checked,elementOverrides:Object.fromEntries(Object.entries(zeColorSpec).map(([key,[label,id]])=>[key,{enabled:$(key+'Override').checked,color:$(id).value}]))},typography:{font:'STV',loaded:state.stvLoaded,justify:$('justifyMode').value,kashida:val('kashidaStrength')},motion:{strength:zeMotion.intensity,animatedCorners:$('animatedCorners').checked,lightSweeps:$('lightSweeps').checked,ambientMotion:$('ambientMotion').checked}};
  save('ZE_OS_Mouwajaha_V07_Focused_Project.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}))};
 $('showBullets').checked=true;
 zeSetStatus('Paste a public post URL. Run START_ZE_OS.bat to enable live import.');
@@ -936,7 +937,7 @@ draw();
 
 /* V0.7 post media: independent attachments, linked layout, and timeline audio. */
 const zePost={active:false,data:{},items:[],screenshot:null,doc:null,blocks:[],audio:null,mixer:null,recordBus:null};
-function zeHeaderFlipped(){return zeEmbeddedHeader()?true:zeNoBullets()?zeRollDirection()==='rtl':flipped()}
+function zeHeaderFlipped(){return zeSocialMode()?!flipped():zeEmbeddedHeader()?true:zeNoBullets()?zeRollDirection()==='rtl':flipped()}
 function zeMediaUrl(src){if(src.startsWith('data:')||src.startsWith('blob:'))return src;return new URL(src,(zeImporterBase()||location.origin)+'/').href}
 async function zeDecodeAttachment(raw,index){
  const type=raw.type||'image',src=zeMediaUrl(raw.data_url||raw.url||'');
@@ -956,7 +957,7 @@ async function zePreparePost(data){
 function zeDisposePost(){for(const item of zePost.items){if(item.type!=='image'){item.el.pause();item.el.removeAttribute('src');item.el.load()}if(item.gain)item.gain.disconnect();if(item.src.startsWith('blob:'))URL.revokeObjectURL(item.src)}}
 function zePostRollText(){if($('postTextPlacement').value==='hidden')return '';return $('postContentMode').value==='text'?zeCleanPostText($('postBody').value):$('postContentMode').value==='media'||$('postTextPlacement').value!=='roll'?'':zeCleanPostText($('postBody').value)}
 function zeScrollTogether(){return !!zePost.active&&$('postTextPlacement').value==='roll'&&$('postScrollMode').value==='together'&&$('postContentMode').value!=='media'&&!$('postScreenshot').checked}
-function zeUpdatePostPlacementUI(){const placement=$('postTextPlacement').value;$('postPlacementStatus').textContent=placement==='bullet'?'Post text is in the editable bullet field. Edit it there, or return the original post text inside the roll.':placement==='roll'?($('postScrollMode').value==='together'?'Text and media scroll together inside the roll.':'Text is inside the roll; selected media can remain fixed.'):'Post text is hidden from the roll. Custom bullet text remains editable.';$('copyPostToBullets').disabled=!zeCleanPostText($('postBody').value)}
+function zeUpdatePostPlacementUI(){const placement=$('postTextPlacement').value;$('postPlacementStatus').textContent=placement==='bullet'?'Post text is in the editable bullet field. Edit it there, or return the original post text inside the roll.':placement==='roll'?($('postScrollMode').value==='together'?'Text and media scroll together inside the roll.':'Text is inside the roll; selected media can remain fixed.'):'Post text is hidden from the roll. Custom bullet text remains editable.';$('copyPostToBullets').disabled=zeSocialMode()||!zeCleanPostText($('postBody').value);$('postScrollMode').disabled=zeSocialMode();$('postTextPlacement').querySelector('[value=bullet]').disabled=zeSocialMode();if(zeSocialMode())$('postPlacementStatus').textContent='Centered social post: text scrolls in its own masked area and media stays visible. Choose Inside the roll or Hide post text.'}
 function zeCopyPostToBullets(){const text=zeCleanPostText($('postBody').value);$('bullets').value=text;zePost.lastBulletCopy=text;zePost.bulletLinked=true;zeParagraphModel.cache=null;zeUpdateParagraphEditor();draw()}
 function zePlacementChanged(){
  if($('postTextPlacement').value==='roll'&&$('postContentMode').value==='media')$('postContentMode').value='all';
@@ -971,7 +972,7 @@ function zeCommitPost(prepared){
  $('postScreenshot').checked=!!prepared.screenshot&&!prepared.items.length&&!$('postBody').value;
  $('postScreenshot').disabled=!prepared.screenshot;
  $('postAudio').checked=false;
- $('postTextPlacement').value=prepared.items.some(item=>item.type==='image'||item.type==='video')?'bullet':'roll';$('postScrollMode').value='together';zePost.bulletLinked=false;zePost.lastBulletCopy='';
+ $('postTextPlacement').value=zeSocialMode()?'roll':prepared.items.some(item=>item.type==='image'||item.type==='video')?'bullet':'roll';$('postScrollMode').value=zeSocialMode()?'fixed':'together';zePost.bulletLinked=false;zePost.lastBulletCopy='';
  if($('postTextPlacement').value==='bullet'&&$('postBody').value.trim())zeCopyPostToBullets();
  zeRefreshMediaList();zeInvalidatePost();
  $('postMediaStatus').textContent=prepared.warnings.join(' ')||(!prepared.items.length&&prepared.screenshot?'Only a flattened screenshot is available. Add the original media to edit its photos/video separately.':'Choose which media to include. All original items remain available when unchecked.');
@@ -1074,9 +1075,9 @@ function zeDrawPost(ctx,x,y,w,h,t){
 }
 
 const zeOldArticleFit=zeArticleFit;
-zeArticleFit=function(ctx,x,y,w,h,t){if(!zePost.active)return zeOldArticleFit(ctx,x,y,w,h,t);ctx.save();roundedClip(ctx,x,y,w,h,5);ctx.fillStyle='#fff';ctx.fillRect(x,y,w,h);if(zeSafeRollText()){const textHeight=Math.max(0,Math.min(h,zeBroadcastBounds().bottom-2-y));zeDrawPostDocument(ctx,x,y,w,textHeight,t)}else if(zeEmbeddedHeader()){const band=zeEmbeddedBand();zeDrawPost(ctx,x,y+band,w,Math.max(1,h-band),t)}else zeDrawPost(ctx,x,y,w,h,t);ctx.restore()};
+zeArticleFit=function(ctx,x,y,w,h,t){if(!zePost.active){if(zeSocialMode()){const band=zeSocialBand();return zeOldArticleFit(ctx,x,y+band,w,Math.max(1,h-band),t)}return zeOldArticleFit(ctx,x,y,w,h,t)}ctx.save();roundedClip(ctx,x,y,w,h,5);ctx.fillStyle='#fff';ctx.fillRect(x,y,w,h);if(zeSocialMode()){const band=zeSocialBand();if($('postScreenshot').checked)zeDrawPost(ctx,x,y+band,w,Math.max(1,h-band),t);else zeDrawSocialPost(ctx,x,y+band,w,Math.max(1,h-band),t)}else if(zeSafeRollText()){const textHeight=Math.max(0,Math.min(h,zeBroadcastBounds().bottom-2-y));zeDrawPostDocument(ctx,x,y,w,textHeight,t)}else if(zeEmbeddedHeader()){const band=zeEmbeddedBand();zeDrawPost(ctx,x,y+band,w,Math.max(1,h-band),t)}else zeDrawPost(ctx,x,y,w,h,t);ctx.restore()};
 function zePrimaryMedia(){return $('postScreenshot').checked?null:zeVisualItems()[0]||null}
-function zeEmbeddedHeader(){return !!state.postActive&&zeNoBullets()&&!!zePrimaryMedia()&&(zeReferenceSize()||!zePortraitMedia())}
+function zeEmbeddedHeader(){return !zeSocialMode()&&!!state.postActive&&zeNoBullets()&&!!zePrimaryMedia()&&(zeReferenceSize()||!zePortraitMedia())}
 function zeEmbeddedBand(){return Math.max(80*val('avatarScale')/100,75*val('labelScale')/100)*val('headerGroupScale')/100*(state.layers.identity?.scale||1)+10}
 function zeMatchedMediaFrame(source,solo=false){
  const item=zePrimaryMedia();if(!item||zeVisualItems().length!==1)return;
@@ -1094,6 +1095,7 @@ function zeReferencePostBoxes(){
  return boxes;
 }
 function zePostBoxes(){
+ if(zeSocialMode())return zeSocialBoxes();
  if(zeReferenceMediaFrame())return zeReferencePostBoxes();
  let ratio=1;
  if($('postScreenshot').checked&&zePost.screenshot)ratio=zePost.screenshot.width/zePost.screenshot.height;
@@ -1113,7 +1115,7 @@ function zePostBoxes(){
  return {source:src,identity:header,bullet};
 }
 const zeOldPostBBox=getBBox;
-getBBox=function(name){return zePost.active?zePostBoxes()[name]:zeOldPostBBox(name)};
+getBBox=function(name){return zePost.active||zeSocialMode()?zePostBoxes()[name]:zeOldPostBBox(name)};
 function zeAdaptiveBullet(ctx,t,target=null){
  const b=target||getBBox('bullet');if(!b.w)return;
  const panel=zeSampleTrack('panel',t);if(panel<=0)return;
@@ -1127,7 +1129,7 @@ compose=function(ctx,t){
  if(!zePost.active)return zeOldPostCompose(ctx,t);
  zeClearScene(ctx);
  zeDrawBackground(ctx,t);
- if(zeNoBullets()&&(zePortraitFocus()||zeEmbeddedHeader())){zeDrawSoloSource(ctx,t);zeDrawSoloIdentity(ctx,t)}else{zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t)}if(!zeNoBullets())zeAdaptiveBullet(ctx,timed('bulletTiming',timeline(t)));guides(ctx);
+ if(zeSocialMode()||zeNoBullets()&&(zePortraitFocus()||zeEmbeddedHeader())){zeDrawSoloSource(ctx,t);zeDrawSoloIdentity(ctx,t)}else{zeDrawSoloIdentity(ctx,t);zeDrawSoloSource(ctx,t)}if(!zeNoBullets())zeAdaptiveBullet(ctx,timed('bulletTiming',timeline(t)));guides(ctx);
  if($('guides').checked){const box=getBBox(state.selected);if(box.w){ctx.save();ctx.strokeStyle='#f991b2';ctx.strokeRect(box.x,box.y,box.w,box.h);ctx.restore()}}
 };
 async function zePrepareAudio(){
@@ -1173,7 +1175,7 @@ requestAnimationFrame(zeSyncPostMedia);
 function zeBroadcastBounds(){const breaking=$('lowerThirdMode').value==='breaking',top=clamp(val(breaking?'breakingNewsTop':'lowerThirdTop')/2,180,530),gap=clamp(val('lowerThirdGap')/2,0,80),clearance=clamp(val('broadcastTop')/2,20,160);return {x:39.5,y:Math.min(clearance,top-gap-40),w:881,bottom:top-gap,top,gap}}
 const zeBeforeSafeBBox=getBBox;
 function zeVisibleBounds(name,b){
- if(name==='identity'&&state.postActive&&(zeCenteredPortrait()||zeEmbeddedHeader()||zePortraitFocus()&&zeNoBullets())){c.save();const local=headerLayout(c),parts=[local.platform,local.avatar,local.name,local.handle];c.restore();const k=b.w/R.identity.w,j=b.h/R.identity.h,minX=Math.min(...parts.map(p=>p.x)),minY=Math.min(...parts.map(p=>p.y)),maxX=Math.max(...parts.map(p=>p.x+p.w)),maxY=Math.max(...parts.map(p=>p.y+p.h));return {x:b.x+(minX-R.identity.x)*k,y:b.y+(minY-R.identity.y)*j,w:(maxX-minX)*k,h:(maxY-minY)*j}}
+ if(name==='identity'&&(state.postActive||zeSocialMode())&&(zeSocialMode()||zeCenteredPortrait()||zeEmbeddedHeader()||zePortraitFocus()&&zeNoBullets())){c.save();const local=headerLayout(c),parts=[local.platform,local.avatar,local.name,local.handle];c.restore();const k=b.w/R.identity.w,j=b.h/R.identity.h,minX=Math.min(...parts.map(p=>p.x)),minY=Math.min(...parts.map(p=>p.y)),maxX=Math.max(...parts.map(p=>p.x+p.w)),maxY=Math.max(...parts.map(p=>p.y+p.h));return {x:b.x+(minX-R.identity.x)*k,y:b.y+(minY-R.identity.y)*j,w:(maxX-minX)*k,h:(maxY-minY)*j}}
  if(!zePost.active&&!zeNoBullets()){
   const k=b.w/R[name].w;
   if(name==='source')return {x:b.x+5*k,y:b.y+24*k,w:402*k,h:Math.max(24,b.h-33*k)};
@@ -1183,7 +1185,7 @@ function zeVisibleBounds(name,b){
 }
 function zeSafeLayout(){
  const raw=Object.fromEntries(['identity','source','bullet'].map(name=>[name,zeBeforeSafeBBox(name)])),area=zeBroadcastBounds(),protect=$('protectLowerThird').checked,pad=10;
- const signature=JSON.stringify([raw,area,protect,val('headerGroupScale'),val('compositionX'),val('compositionY'),state.screenOffsets,zePost.active,$('portraitLayout').value,$('postContentMode').value,$('postTextPlacement').value,$('postScrollMode').value,$('postScreenshot').checked,$('allowMediaOverlap').checked,zePortraitMedia()?.ratio,zeRollDirection(),$('account').value,$('displayname').value,val('platformScale'),val('avatarScale'),val('labelScale')]);
+ const signature=JSON.stringify([raw,area,protect,val('headerGroupScale'),val('compositionX'),val('compositionY'),state.screenOffsets,zePost.active,$('portraitLayout').value,$('postContentMode').value,$('postTextPlacement').value,$('postScrollMode').value,$('postScreenshot').checked,$('allowMediaOverlap').checked,zePortraitMedia()?.ratio,zeRollDirection(),$('account').value,$('displayname').value,val('platformScale'),val('avatarScale'),val('labelScale'),zeSocialMode()]);
  if(zeSafeLayout.cached?.signature===signature)return zeSafeLayout.cached.boxes;
  const boxes=structuredClone(raw),visible=names=>names.filter(name=>boxes[name].w>0),extent=names=>{const bs=visible(names).map(n=>zeVisibleBounds(n,boxes[n]));return {l:Math.min(...bs.map(b=>b.x)),r:Math.max(...bs.map(b=>b.x+b.w)),t:Math.min(...bs.map(b=>b.y)),b:Math.max(...bs.map(b=>b.y+b.h))}};
  const limit=(value,min,max)=>min<=max?clamp(value,min,max):max;
@@ -1197,10 +1199,13 @@ function zeSafeLayout(){
  const headerScale=clamp(val('headerGroupScale')/100,.3,1.5)*(headerCenter<W/2-30 ? .95 : 1);
  if(zeNoBullets())header.x+=header.w*(1-headerScale)/2;
  else if(zeHeaderFlipped())header.x+=header.w*(1-headerScale);
- const portraitHeader=zeCenteredPortrait()?.78:1;header.w*=headerScale*portraitHeader;header.h*=headerScale*portraitHeader;
+ const portraitHeader=zeSocialMode()?.84:zeCenteredPortrait()?.78:1;header.w*=headerScale*portraitHeader;header.h*=headerScale*portraitHeader;
  if(!zeNoBullets()){const width=zeCenteredPortrait()?270*state.layers.bullet.scale:zeVisibleBounds('bullet',boxes.bullet).w,k=Math.min(1,width/header.w);header.w*=k;header.h*=k}
 
- if(state.postActive&&zeReferenceMediaFrame()){
+ if(zeSocialMode()){
+  const src=boxes.source,head=boxes.identity;if(protect&&!zeRollOverlapAllowed()){src.h=Math.min(src.h,Math.max(80,area.bottom-54));src.y=34+(area.bottom-34-src.h)/2}
+  zePlaceSocialHeader(src,head);translate(['source','identity'],0,0);
+ }else if(state.postActive&&zeReferenceMediaFrame()){
   const src=boxes.source,head=boxes.identity,bullet=boxes.bullet;
   // Keep the reference cadre; only the material inside responds to its aspect ratio.
   src.y=Math.max(src.y,topFor('source')+pad);src.h=Math.min(src.h,Math.max(48,bottomFor('source')-pad-src.y));
@@ -1259,7 +1264,7 @@ function zeSafeLayout(){
  const offsets=state.screenOffsets||{};
  const source=offsets.source||{x:0,y:0};translate(zeNoBullets()?['source','identity']:['source'],source.x,source.y);
  const bulletin=offsets.bullet||{x:0,y:0};translate(zeNoBullets()?[]:['bullet','identity'],bulletin.x,bulletin.y);
- const account=offsets.identity||{x:0,y:0};if(!zeEmbeddedHeader())translate(['identity'],account.x,account.y);
+ const account=offsets.identity||{x:0,y:0};if(!zeEmbeddedHeader()&&!zeSocialMode())translate(['identity'],account.x,account.y);
  if(!zeNoBullets()){
   const b=zeVisibleBounds('bullet',boxes.bullet),head=boxes.identity;
   head.x=limit(head.x,b.x,b.x+b.w-head.w);head.y=Math.min(head.y,b.y-head.h-12);
@@ -1326,7 +1331,7 @@ $('compositionReset').onclick=()=>{$('compositionY').value=0;$('compositionX').v
 state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}};
 state.selectedLayers=new Set(['source']);
 const zeSingleSelect=selectLayer;
-selectLayer=function(name,add=false){if(name==='identity'&&zeEmbeddedHeader())name='source';if(name==='bullet'&&zeNoBullets())name='source';
+selectLayer=function(name,add=false){if(name==='identity'&&(zeEmbeddedHeader()||zeSocialMode()))name='source';if(name==='bullet'&&zeNoBullets())name='source';
  if(add){if(state.selectedLayers.has(name)){if(state.selectedLayers.size>1)state.selectedLayers.delete(name)}else state.selectedLayers.add(name)}else state.selectedLayers=new Set([name]);
  zeSingleSelect(name);zeSelectionControls();
 };
@@ -1344,10 +1349,11 @@ function zeSelectionControls(){
 $('selectAll').onclick=()=>{state.selectedLayers=new Set(zeNoBullets()?['identity','source']:['identity','source','bullet']);zeSelectionControls();draw()};
 for(const [id,key] of [['layerX','x'],['layerY','y']])$(id).oninput=()=>{if(zeAllSelected())$('composition'+(key==='x'?'X':'Y')).value=val(id)*2;else state.screenOffsets[state.selected][key]=val(id);draw()};
 let zeDrag=null;cvs.tabIndex=0;
+function zeSelectionBounds(name){const b=getBBox(name);if(!zeSocialMode())return b;const head=zeVisibleBounds('identity',getBBox('identity'));if(name==='identity')return head;if(name!=='source')return b;return {x:Math.min(b.x,head.x),y:Math.min(b.y,head.y),w:Math.max(b.x+b.w,head.x+head.w)-Math.min(b.x,head.x),h:Math.max(b.y+b.h,head.y+head.h)-Math.min(b.y,head.y)}}
 const point=event=>{const r=cvs.getBoundingClientRect();return {x:(event.clientX-r.left)/r.width*W,y:(event.clientY-r.top)/r.height*H}};
 cvs.addEventListener('pointerdown',event=>{
  if(state.recording)return;
- const p=point(event),hit=['identity','source','bullet'].find(name=>{const b=getBBox(name);return b.w&&p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h});if(!hit)return;
+ const p=point(event),hit=['identity','source','bullet'].find(name=>{const b=zeSelectionBounds(name);return b.w&&p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h});if(!hit)return;
  if(event.shiftKey)selectLayer(hit,true);else if(!state.selectedLayers.has(hit))selectLayer(hit);
  if(!state.selectedLayers.size)return;
  zeDrag={point:p,all:zeAllSelected(),x:val('compositionX'),y:val('compositionY'),offsets:structuredClone(state.screenOffsets),names:[...state.selectedLayers]};
@@ -1364,7 +1370,7 @@ const selectionOverlays=[];
 for(const canvas of [cvs,$('canvasCompare')]){const overlay=document.createElement('div');overlay.className='selection-overlay';canvas.parentElement.append(overlay);selectionOverlays.push(overlay)}
 function zeUpdateSelection(){for(const overlay of selectionOverlays){overlay.hidden=state.playing||state.recording||!$('showSelection').checked;const names=[...state.selectedLayers].filter(name=>name!=='bullet'||!zeNoBullets());
  while(overlay.children.length<names.length){const box=document.createElement('div');box.className='selection-box';overlay.append(box)}while(overlay.children.length>names.length)overlay.lastChild.remove();
- names.forEach((name,index)=>{const b=getBBox(name),box=overlay.children[index];box.style.left=b.x/W*100+'%';box.style.top=b.y/H*100+'%';box.style.width=b.w/W*100+'%';box.style.height=b.h/H*100+'%'});
+ names.forEach((name,index)=>{const b=zeSelectionBounds(name),box=overlay.children[index];box.style.left=b.x/W*100+'%';box.style.top=b.y/H*100+'%';box.style.width=b.w/W*100+'%';box.style.height=b.h/H*100+'%'});
 }requestAnimationFrame(zeUpdateSelection)}
 $('showBullets').addEventListener('change',zeSelectionControls);zeSelectionControls();requestAnimationFrame(zeUpdateSelection);
 
@@ -1376,12 +1382,12 @@ function zeEditorTab(advanced){
 $('mainTab').onclick=()=>zeEditorTab(false);$('advancedTab').onclick=()=>zeEditorTab(true);
 for(const id of ['mainTab','advancedTab'])$(id).addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const advanced=event.key==='End'||event.key==='ArrowRight';zeEditorTab(advanced);$(advanced?'advancedTab':'mainTab').focus()}});
 const zeUndoStack=[],zeRedoStack=[];
-const zeHistoryFields=['headerGroupScale','compositionX','compositionY','layerX','layerY','layerScale','platformScale','avatarScale','labelScale','flip','position','showBullets','protectLowerThird','broadcastTop','lowerThirdGap','lowerThirdTop','breakingNewsTop','lowerThirdMode','soloWidth','portraitLayout','allowMediaOverlap','rollLanguage'];
+const zeHistoryFields=['headerGroupScale','compositionX','compositionY','layerX','layerY','layerScale','platformScale','avatarScale','labelScale','flip','position','showBullets','protectLowerThird','broadcastTop','lowerThirdGap','lowerThirdTop','breakingNewsTop','lowerThirdMode','soloWidth','portraitLayout','allowMediaOverlap','rollLanguage','socialMediaPosition','socialTextSize','postContentMode','postTextPlacement','postScrollMode'];
 function zeLayoutSnapshot(){return {layers:structuredClone(state.layers),offsets:structuredClone(state.screenOffsets),selected:state.selected,selection:[...state.selectedLayers],values:Object.fromEntries(zeHistoryFields.filter(id=>!['layerX','layerY','layerScale'].includes(id)).map(id=>[id,$(id).type==='checkbox'?$(id).checked:$(id).value]))}}
 const zeTransformKey=snapshot=>JSON.stringify([snapshot.layers,snapshot.offsets,snapshot.values]);
 function zeUpdateHistory(label){$('undoEdit').disabled=!zeUndoStack.length;$('redoEdit').disabled=!zeRedoStack.length;if(label)$('historyStatus').textContent=label}
 function zeCommitMovement(before){if(before&&zeTransformKey(before)!==zeTransformKey(zeLayoutSnapshot())){zeUndoStack.push(before);if(zeUndoStack.length>100)zeUndoStack.shift();zeRedoStack.length=0;zeUpdateHistory('Position saved · Ctrl+Z to undo.')}}
-function zeRestoreMovement(snapshot){state.layers=structuredClone(snapshot.layers);state.screenOffsets=structuredClone(snapshot.offsets);state.selected=snapshot.selected;state.selectedLayers=new Set(snapshot.selection);for(const [id,value] of Object.entries(snapshot.values))if($(id).type==='checkbox')$(id).checked=value;else $(id).value=value;zeSelectionControls();$('layerScale').value=Math.round(state.layers[state.selected].scale*100);zeUpdateSafePreview();draw()}
+function zeRestoreMovement(snapshot){state.layers=structuredClone(snapshot.layers);state.screenOffsets=structuredClone(snapshot.offsets);state.selected=snapshot.selected;state.selectedLayers=new Set(snapshot.selection);for(const [id,value] of Object.entries(snapshot.values))if($(id).type==='checkbox')$(id).checked=value;else $(id).value=value;zeSocialControls(false);zeSelectionControls();$('layerScale').value=Math.round(state.layers[state.selected].scale*100);zeUpdateSafePreview();draw()}
 function zeUndoMovement(redo=false){if(state.recording)return;const from=redo?zeRedoStack:zeUndoStack,to=redo?zeUndoStack:zeRedoStack;if(!from.length)return;to.push(zeLayoutSnapshot());zeRestoreMovement(from.pop());zePendingHistory=null;zeUpdateHistory(redo?'Movement restored.':'Movement undone.');}
 $('undoEdit').onclick=()=>zeUndoMovement();$('redoEdit').onclick=()=>zeUndoMovement(true);
 let zePendingHistory=null,zeDragHistory=null;
@@ -1397,13 +1403,59 @@ zeUpdateHistory();
 function zeUpdateRollLanguageUI(){const direction=zeRollDirection();$('postBody').style.direction=direction;$('postBody').style.textAlign=direction==='rtl'?'right':'left';$('rollLanguageStatus').textContent='Reading direction: '+(direction==='rtl'?'Arabic / RTL':'Latin / LTR')+'. Screenshots and media are never mirrored.'}
 $('rollLanguage').onchange=()=>{zePost.doc=null;zeUpdateRollLanguageUI();draw()};$('postBody').addEventListener('input',zeUpdateRollLanguageUI);zeUpdateRollLanguageUI();
 $('respectSafeArea').onclick=()=>{const before=zeLayoutSnapshot(),enabled=!$('protectLowerThird').checked;$('protectLowerThird').checked=enabled;$('allowMediaOverlap').checked=!enabled;zeUpdateSafePreview();zeCommitMovement(before);draw()};
-$('portraitLayout').onchange=()=>{zePost.doc=null;zeParagraphModel.cache=null;zeUpdateParagraphEditor();zeUpdateSafePreview();draw();requestAnimationFrame(draw)};
+
+function zeSocialBoxes(){
+ const scale=state.layers.source.scale,mode=$('soloWidth').value,w=(mode==='compact'?580:mode==='wide'?760:700)*scale,h=380*scale;
+ return {source:{x:(W-w)/2+state.layers.source.x,y:(H-h)/2+state.layers.source.y,w,h},identity:zeReferenceBBox('identity'),bullet:{x:0,y:0,w:0,h:0}};
+}
+function zePlaceSocialHeader(source,head){
+ const k=head.w/R.identity.w,ps=clamp(val('platformScale')/100,.3,2.5),pw=58*ps;
+ // Local platform is shifted 30 units away from the profile, beyond the card edge.
+ head.x=flipped()?source.x-12-(pw-26)*k:source.x+source.w+12-(428-pw+30)*k;
+ head.y=source.y+18-6*k;
+}
+function zeSocialBand(){const k=getBBox('identity').w/R.identity.w;return 18+Math.max(80*clamp(val('avatarScale')/100,.3,2.5),81*clamp(val('labelScale')/100,.3,2.5))*k+10}
+function zeSocialTextDocument(width){
+ const text=zePostRollText(),font=val('socialTextSize')/2,key=JSON.stringify([text,Math.round(width),font,$('rollLanguage').value]);if(zePost.socialDoc?.key===key)return zePost.socialDoc;
+ const canvas=document.createElement('canvas'),w=Math.max(24,Math.ceil(width)),padding=10,lines=[],lineHeight=font*1.55;canvas.width=w*2;let ctx=canvas.getContext('2d');
+ for(const paragraph of text.split('\n')){const direction=zeRollDirection(paragraph),face=direction==='rtl'?'ZEOSSTV, STV, Tahoma, Arial':'Arial',style=`${font*2}px ${face}`;ctx.font=style;for(const line of breakRTL(ctx,paragraph,Math.max(1,(w-padding*2)*2)))lines.push({text:line,direction,style})}
+ const height=Math.max(1,padding*2+lines.length*lineHeight);canvas.height=Math.ceil(height*2);ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#1e2430';ctx.textBaseline='top';
+ lines.forEach((line,index)=>{ctx.font=line.style;ctx.direction=line.direction;ctx.textAlign=line.direction==='rtl'?'right':'left';ctx.fillText(line.text,(line.direction==='rtl'?w-padding:padding)*2,(padding+index*lineHeight)*2)});
+ return zePost.socialDoc={key,canvas,height,width:w};
+}
+function zeSocialRegions(x,y,w,h){
+ const text=zePostRollText(),media=zeVisualItems(),gap=text&&media.length?12:0,position=$('socialMediaPosition').value;let textBox=null,mediaBox=null;
+ if(!media.length){if(text)textBox={x,y,w,h}}
+ else if(!text)mediaBox={x,y,w,h};
+ else if(position==='right'){const textWidth=(w-gap)*.46;textBox={x,y,w:textWidth,h};mediaBox={x:x+textWidth+gap,y,w:w-textWidth-gap,h}}
+ else {const natural=zeSocialTextDocument(w).height,textHeight=Math.min(h*.38,Math.max(40,natural));textBox={x,y,w,h:textHeight};mediaBox={x,y:y+textHeight+gap,w,h:Math.max(1,h-textHeight-gap)}}
+ if(textBox)textBox.h=Math.max(0,Math.min(textBox.h,zeBroadcastBounds().bottom-2-textBox.y));
+ return {text:textBox,media:mediaBox,items:media};
+}
+function zeDrawSocialText(ctx,b,t){
+ if(!b||b.h<1)return;const doc=zeSocialTextDocument(b.w),progress=zeSmooth(clamp((t-val('scrollStart'))/Math.max(.1,val('scrollDuration')))),offset=Math.min(Math.max(0,doc.height-b.h),Math.max(0,doc.height-b.h)*progress*val('scrollDistance')/100);
+ ctx.save();const transform=ctx.getTransform(),safeY=(zeBroadcastBounds().bottom*ctx.canvas.width/W-transform.f)/transform.d;ctx.beginPath();ctx.rect(b.x,b.y,b.w,Math.max(0,Math.min(b.h,safeY-b.y-2)));ctx.clip();roundedClip(ctx,b.x,b.y,b.w,b.h,3);ctx.drawImage(doc.canvas,b.x,b.y-offset,b.w,doc.height);ctx.restore();
+}
+function zeDrawSocialPost(ctx,x,y,w,h,t){
+ const regions=zeSocialRegions(x,y,w,h);zeDrawSocialText(ctx,regions.text,t);const b=regions.media;if(!b)return;
+ const cols=regions.items.length>1?2:1,rows=Math.ceil(regions.items.length/cols),gap=8,cw=(b.w-(cols-1)*gap)/cols,ch=(b.h-(rows-1)*gap)/rows;
+ for(const [index,item] of regions.items.entries()){const frame=zePostFrame(item);if(frame)zeDrawFramedMedia(ctx,frame,b.x+(index%cols)*(cw+gap),b.y+Math.floor(index/cols)*(ch+gap),cw,ch,item)}
+}
+let zeSocialPrevious=null;
+function zeSocialControls(changed){
+ const social=zeSocialMode();if(changed&&social&&!zeSocialPrevious){zeSocialPrevious={show:$('showBullets').checked,text:$('postTextPlacement').value,mode:$('postContentMode').value,scroll:$('postScrollMode').value};$('showBullets').checked=false;$('postTextPlacement').value='roll';if($('postContentMode').value==='media')$('postContentMode').value='all';$('postScrollMode').value='fixed'}
+ else if(changed&&!social&&zeSocialPrevious){$('showBullets').checked=zeSocialPrevious.show;$('postTextPlacement').value=zeSocialPrevious.text;$('postContentMode').value=zeSocialPrevious.mode;$('postScrollMode').value=zeSocialPrevious.scroll;zeSocialPrevious=null}
+ $('socialLayoutOptions').hidden=!social;$('showBullets').disabled=social;if(changed&&social&&state.selected==='bullet')selectLayer('source');zeSelectionControls();zeUpdatePostPlacementUI();
+}
+for(const id of ['socialMediaPosition','socialTextSize'])$(id).addEventListener('change',()=>{if(id==='socialTextSize')$('socialTextSize').value=clamp(Number($('socialTextSize').value)||44,28,64);zeInvalidatePost()});
+
+$('portraitLayout').onchange=()=>{zeSocialControls(true);zePost.doc=null;zeParagraphModel.cache=null;zeUpdateParagraphEditor();zeUpdateSafePreview();draw();requestAnimationFrame(draw)};
 $('postTextPlacement').onchange=zePlacementChanged;
 $('copyPostToBullets').onclick=()=>{$('postTextPlacement').value='bullet';zePlacementChanged()};
 $('postScrollMode').onchange=()=>{zeRefreshMediaList();zeInvalidatePost()};$('postMediaFit').onchange=zeInvalidatePost;
 $('bullets').addEventListener('input',()=>{zePost.bulletLinked=false});
 $('postBody').addEventListener('input',()=>{if(zePost.bulletLinked&&$('postTextPlacement').value==='bullet')zeCopyPostToBullets()});
 $('postContentMode').addEventListener('change',()=>{if($('postContentMode').value==='text')$('postTextPlacement').value='roll';zeRefreshMediaList();zeInvalidatePost()});
-zeInitParagraphEditor();zeUpdatePostPlacementUI();
+zeInitParagraphEditor();zeUpdatePostPlacementUI();zeSocialControls(false);
 
 </script></body></html>

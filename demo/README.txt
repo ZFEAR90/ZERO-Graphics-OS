@@ -1,3 +1,11 @@
+ZE OS V0.7 Beta 2.7.4 — optional centered social-post layout
+
+ZE_OS_V07_Beta274_Demo.mp4: 16 seconds, silent H.264, 1920 × 1080. Four two-second editor stills show media below, media right/text left, Flip and text-only. The final eight seconds show an actual browser export of the retained entrance and independently scrolling post text with fixed media. ZE_OS_V07_Beta274_Social.webm is that original browser recording, with finite eight-second duration metadata. The MP4 viewing copy was composed externally with FFmpeg, adding labels and duplicating/holding frames where real-time capture dropped frames. It is not an in-app final MP4 renderer or deterministic broadcast export.
+
+The PNGs are actual editor screenshots; their guide overlays are absent from the browser recording. Generated local media are used; this is not a successful live social import demonstration. The new supplied reference video exceeded the 32 MiB workspace transfer limit, so it has not been frame-inspected. The layout follows the user's written request and uses the existing Mouwajaha animation.
+
+Earlier demonstrations remain separately versioned below.
+
 ZE OS V0.7 Beta 2.7.3 — fixed reference-frame comparison
 
 ZE_OS_V07_Beta273_Layouts.mp4: 14-second silent H.264 comparison of seven actual editor stills, not an animation-timing demonstration. Shows Wide Fill, Wide Fit, Portrait Fill, Portrait Fit, optional inside-roll text hidden post text, and safe text-only scrolling. All preserve the same outer frame size. The PNGs and Editor.png are actual browser screenshots with guide overlays; overlays are absent from exports. Demo material is local generated media, not a live social post or automatic face tracking.
