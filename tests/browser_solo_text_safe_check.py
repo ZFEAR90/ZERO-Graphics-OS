@@ -8,7 +8,7 @@ root=Path(__file__).resolve().parents[1];server=ThreadingHTTPServer(('127.0.0.1'
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.locator('#showBullets').uncheck()
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.locator('#portraitLayout').select_option('focus',force=True);page.locator('#showBullets').uncheck()
   texts=['نص عربي طويل للاختبار يجب أن يبقى كاملاً فوق منطقة الخبر العاجل مع استمرار التمرير داخل الرول. ','A readable English article should scroll above the selected lower-third boundary without resizing its frame. ']
   for text in texts:
    page.evaluate(r'''async(text)=>zeCommitPost(await zePreparePost({text:(text.repeat(4)+'\n\n').repeat(7),attachments:[]}))''',text)

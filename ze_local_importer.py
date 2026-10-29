@@ -380,7 +380,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not re.fullmatch(r'[a-f0-9]{32}\.(mp4|webm|mp3|m4a|ogg|wav)',filename):self.send_error(404);return
             return self._send_media(MEDIA_ROOT/filename)
         if urlparse(self.path).path == '/api/health':
-            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.7.5'}).encode()
+            payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.7.6'}).encode()
             self.send_response(200)
             self.send_header('Content-Type','application/json')
             self.send_header('Content-Length',str(len(payload)))
@@ -445,7 +445,7 @@ if __name__=='__main__':
     except OSError as ex:
         print('Unable to start ZE OS local importer:',ex);sys.exit(1)
     url=f'http://127.0.0.1:{port}/ZE_OS_Mouwajaha_V07.html'
-    print('ZE OS Mouwajaha V0.7:',url)
+    print('ZE OS Main roll V0.7:',url)
     print('Local importer listens on this computer only. Press Ctrl+C to stop.')
     webbrowser.open(url)
     try:server.serve_forever()

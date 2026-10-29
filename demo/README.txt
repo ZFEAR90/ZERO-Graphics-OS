@@ -1,3 +1,11 @@
+ZE OS Main roll V0.7 Beta 2.7.6 — final layout/motion review
+
+ZE_OS_V07_Beta276_Demo.mp4: 26-second silent H.264 viewing copy, 1920 × 1080. Nine two-second editor stills show Whole roll frame with portrait/wide media right, Below start/centered endpoint, Hide post text centered, Main fixed portrait/wide arrangements, the Advanced native-size treatment and close flipped header. The final eight seconds are an actual browser export of the wide below-text post moving together and settling centered. ZE_OS_V07_Beta276_Auto.webm is that original recording with finite eight-second metadata. FFmpeg adds labels and may duplicate/hold dropped real-time frames in the viewing copy; this is not an in-app deterministic renderer.
+
+The PNGs are actual editor screenshots. WholePostEditor.png shows the Main presentation buttons; Advanced.png shows earlier adaptive sizing. Preview guides/selection overlays are absent from WebM. Generated local media are used, not a demonstrated live import or face tracker. The oversized ArmedForcesJO sample could not be frame-inspected; the layout follows the user's description and the existing V0.7 animation.
+
+Earlier demonstrations remain separately versioned below.
+
 ZE OS V0.7 Beta 2.7.5 — Include videos correction
 
 ZE_OS_V07_Beta275_VideoOn.png and VideoOff.png show the exact same source/header/bullet rectangles before/after hiding video. The hidden video is replaced by editable post text inside the roll. SoloVideoOff.png retains the inset header and ends the text viewport above the lower-third line. Actual browser screenshots use generated local demo media; guide overlays are not exported. Earlier video demonstrations remain separately versioned below.

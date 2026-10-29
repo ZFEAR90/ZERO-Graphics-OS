@@ -1,6 +1,19 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.7.5
+ZE OS — Main roll V0.7 / Test Beta 2.7.6
 
-BETA 2.7.5 — INCLUDE VIDEO FIX
+BETA 2.7.6 — MAIN ROLL / WHOLE ROLL FRAME
+The editor is named Main roll; it retains the approved V0.7 baseline.
+Main → Roll & account: Main roll (default) or Whole roll frame.
+Main roll keeps the screenshot's 804 × 796 pixel frame at 100% source scale. Auto places 9:16 media right/text left, and wide/square media below text. Text scrolls independently while media remains visible. The account header stays above the separate bulletin.
+Whole roll frame centers the card, with profile/name/handle/post inside and the platform beside it. It defaults to media right/text left for all shapes, including wide video. Flip swaps the platform side. The external bulletin is hidden.
+Whole roll frame arrangement → Text above · move media to center: a single wide photo/video below text scrolls upward with the text, then holds centered below the account header. Right-side/portrait arrangements keep independent text scrolling.
+Hide post text / Media only centers the media in the full body area with Fill or Fit. No blurred duplicate is added by the Main/Whole editor renderers. If a protected crop cannot cover the area, media-only mode contains the whole image in the center. Blur encoded in source media is unchanged. The explicitly selected old soft-side treatment remains in Advanced.
+All post text remains masked above the selected lower-third safe boundary, including shared scrolling. Source audio, per-item inclusion and Hold/Loop remain available.
+Post text now defaults inside Main/Whole imports, preserving the editorial bulletin. Excluding media still shows post text without a layout jump; Hide is honored. Main roll returns to the default with bullets visible.
+Advanced options → Roll layout & media arrangement → Adaptive roll · size to media restores earlier native-sized portrait/wide frames. Other former layouts, overrides and text size remain there. Main's Advanced roll layouts button opens the panel.
+Flip keeps the header close above the bulletin instead of raising it on the Live side; corner safety remains.
+Close the old helper, extract this folder, and run START_ZE_OS.bat. Helper version: 0.7-beta2.7.6. demo/ZE_OS_V07_Beta276_Demo.mp4 is a 26-second demonstration ending with an actual eight-second wide text/media scroll recording. Default app duration remains 50 seconds; MOV/alpha is deferred.
+
+BETA 2.7.5 — PREVIOUS INCLUDE VIDEO FIX
 Main Mouwajaha · reference size (default) is the startup layout. Turning Include videos off keeps the roll, its side, frame size, header, bullet panel and movement offsets. Excluding the last media item no longer changes the layout.
 With all photos/videos hidden, the original cleaned post text appears in the same roll and scrolls above the lower-third safe line. Custom bullet text remains unchanged. Re-enabling media restores your selected text/media placement. Hide post text is still honored. Include photos and individual attachment checkboxes follow the same policy; source audio remains independent.
 Solo cards keep their existing account/header strip. Explicitly selecting Text only still gives the previous larger text-only solo frame, as do new text-only imports. The optional centered social-post layout remains available.

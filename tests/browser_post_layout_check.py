@@ -14,7 +14,7 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source')
-  page.locator('#portraitLayout').select_option('focus')  # Explicit legacy adaptive treatment; reference default has its own check.
+  page.locator('#portraitLayout').select_option('focus',force=True)  # Explicit legacy adaptive treatment; reference default has its own check.
   def panel_pixels():
    for flip in [False,True]:
     for protect in [False,True]:

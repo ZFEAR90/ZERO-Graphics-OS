@@ -33,7 +33,7 @@ try:
   strings=page.evaluate('''(()=>{const proto=CanvasRenderingContext2D.prototype,old=proto.fillText,text=[];proto.fillText=function(s,...args){text.push(s);return old.call(this,s,...args)};try{zePost.doc=null;zePostDocument()}finally{proto.fillText=old}return text})()''');assert strings and all('http' not in s and 't.co/' not in s and 'www.' not in s for s in strings)
   page.locator('#postTextPlacement').select_option('bullet')
   for mode in ['focus','balanced','beside']:
-   page.locator('#portraitLayout').select_option(mode)
+   page.locator('#portraitLayout').select_option(mode,force=True)
    for flip in [False,True]:
     page.evaluate('(v)=>{document.getElementById("protectLowerThird").checked=false;state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}};setFlipped(v);setT(5)}',flip)
     boxes=page.evaluate('zeSafeLayout()');b=boxes['bullet'];h=boxes['identity'];s=boxes['source'];assert h['x']>=b['x']-.01 and h['x']+h['w']<=b['x']+b['w']+.01 and h['y']+h['h']+10<=b['y'],boxes
@@ -43,7 +43,7 @@ try:
     page.evaluate('state.screenOffsets.source={x:18,y:-12};draw()');moved=page.evaluate('zeSafeLayout()');assert moved['identity']==h and moved['bullet']==b
     page.evaluate('state.screenOffsets.source={x:0,y:0};state.screenOffsets.bullet={x:12,y:-10};draw()');moved=page.evaluate('zeSafeLayout()');assert abs(moved['identity']['x']-h['x']-12)<.01 and abs(moved['identity']['y']-h['y']+10)<.01 and moved['source']==s
    print(mode,'header stays above and moves with bullets; roll moves independently',flush=True)
-  page.evaluate('state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}}');page.locator('#portraitLayout').select_option('focus');page.locator('#showBullets').uncheck();boxes=page.evaluate('zeSafeLayout()');assert boxes['identity']['y']+boxes['identity']['h']<boxes['source']['y'];page.locator('#showBullets').check()
+  page.evaluate('state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}}');page.locator('#portraitLayout').select_option('focus',force=True);page.locator('#showBullets').uncheck();boxes=page.evaluate('zeSafeLayout()');assert boxes['identity']['y']+boxes['identity']['h']<boxes['source']['y'];page.locator('#showBullets').check()
   check_pixels();print('Imported bulletin text never enters lower third, including tall black panels',flush=True)
   # Every wider fixed-media card places its independently scrolling caption first.
   for filename in ['photo.png','landscape.mp4']:

@@ -16,7 +16,7 @@ try:
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html')
   page.wait_for_function('assets.source && state.stvLoaded')
   assert page.locator('#portraitLayout').input_value() == 'reference'
-  page.locator('#portraitLayout').select_option('focus');page.locator('#postMediaFit').select_option('fit',force=True)
+  page.locator('#portraitLayout').select_option('focus',force=True);page.locator('#postMediaFit').select_option('fit',force=True)
   assert not page.locator('#protectLowerThird').is_checked()
   page.locator('#respectSafeArea').click();assert page.locator('#protectLowerThird').is_checked() and not page.locator('#allowMediaOverlap').is_checked()
   page.locator('#allowMediaOverlap').check()
@@ -25,7 +25,7 @@ try:
   page.locator('#postBody').fill('هذه فقرة توضيحية طويلة قابلة للتمرير وتبقى الصورة كاملة في كل وضع. '*30)
   page.evaluate('setT(5)')
   for mode in ['focus', 'balanced', 'beside']:
-   page.locator('#portraitLayout').select_option(mode)
+   page.locator('#portraitLayout').select_option(mode,force=True)
    page.wait_for_timeout(80)
    for flip in [False, True]:
     page.evaluate('(v)=>setFlipped(v)', flip)
@@ -53,7 +53,7 @@ try:
     page.locator('#rollLanguage').select_option('ltr'); left=page.evaluate('zeRollDirection()'); assert left=='ltr'
     page.locator('#rollLanguage').select_option('rtl'); assert page.evaluate('zeRollDirection()')=='rtl'
    print(mode, 'portrait containment, safe areas and both flips: passed', flush=True)
-  page.locator('#portraitLayout').select_option('focus')
+  page.locator('#portraitLayout').select_option('focus',force=True)
   page.locator('#allowMediaOverlap').uncheck()
   assert page.evaluate('getBBox("source").y+getBBox("source").h<=zeBroadcastBounds().bottom')
   assert 'graphics excluded' in page.locator('.broadcast-exclusion').first.inner_text()

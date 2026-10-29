@@ -1,8 +1,36 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.7.5
+# ZE OS — Main roll V0.7, Test Beta 2.7.6
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
-## Current fix — Beta 2.7.5
+## Current workflow — Beta 2.7.6
+
+The editor is now named **Main roll**. It still uses the approved Mouwajaha V0.7 motion and visual baseline; this is an incremental update, not another template.
+
+**Main → Roll & account** has two clear presentation buttons:
+
+- **Main roll** is the default. Its frame keeps the supplied screenshot's painted reference size: **804 × 796 pixels at 100% source scale** in the 1920 × 1080 scene, including portrait, wide, square, media-only and text-only posts. Scaling and strict safe-area fitting remain explicit controls. The account header stays above the separate bulletin.
+- **Whole roll frame** centers a larger card with **profile picture, name, handle and post inside**, and the **platform tile beside it**. It hides the external bulletin. Flip swaps the platform side without mirroring content. Main roll returns to the default presentation and shows the bulletin.
+
+Content arrangement:
+
+- Main roll uses **9:16 media right / text left**, and **wide or square media below text**, automatically. Long text scrolls independently while media remains visible.
+- Whole roll frame defaults to **media right / text left for every media shape**, including wide video. Long text scrolls independently in this arrangement.
+- In Whole roll frame, choose **Whole roll frame arrangement → Text above · move media to center** for a single wide photo/video below the post. Text and media then scroll upward together as one post; the media stops and holds centered in the body below the account header. The scroll finishes before the selected video end at default timing. Right-side and portrait treatments keep independent text scrolling.
+- **Media only / Hide post text** gives media the full body area and centers it. **Fill** is the default; **Fit whole image** contains the full image in the current frame. A manually protected crop that cannot cover the whole media-only area falls back to a centered complete image.
+- The current Main/Whole renderers **do not add a blurred duplicate background**. Manual crop protection can leave clean white space. This does not remove blur already encoded in an original photo/video. The earlier explicitly named soft-side treatment remains an Advanced option.
+- Post text stays inside a safe mask above the selected lower-third boundary, including shared scrolling. Source audio, per-item inclusion and Hold/Loop remain available.
+
+Imports into Main roll / Whole roll frame default to **post text inside the roll** and preserve the separate editorial bulletin. Main → Post photos, video & audio can move post text to bullets or hide it. Excluding the last visual attachment still reveals its post text without moving the frame; re-enabling media restores the selected routing.
+
+**Advanced options → Roll layout & media arrangement → Adaptive roll · size to media** restores the earlier centered portrait/native wide-card sizing. Other previous treatments remain selectable there, with manual content-arrangement overrides and post text size. **Advanced roll layouts** in Main opens that panel.
+
+**Flip header correction:** the header keeps the same close 24-scene-unit gap above the painted bulletin in both directions, with TV/Live corner safety and grouped movement. V0.7 entrance, identity animation and line transitions remain.
+
+[26-second demonstration](demo/ZE_OS_V07_Beta276_Demo.mp4) · [Whole frame / portrait](demo/ZE_OS_V07_Beta276_WholePostPortrait.png) · [Whole frame / wide right](demo/ZE_OS_V07_Beta276_WholePostWide.png) · [Wide below / centered endpoint](demo/ZE_OS_V07_Beta276_WholeBelowCentered.png) · [Hidden text / centered media](demo/ZE_OS_V07_Beta276_WholeHiddenCentered.png) · [Main portrait](demo/ZE_OS_V07_Beta276_PortraitAuto.png) · [Flipped header](demo/ZE_OS_V07_Beta276_FlippedHeader.png). Nine two-second editor views precede an actual eight-second silent browser recording of the wide below-text arrangement. Generated media are used; the oversized ArmedForcesJO sample could not be transferred for inspection, so this follows the written idea rather than claiming a frame match.
+
+Checks cover fixed dimensions, automatic main placement, whole-frame wide-right default, actual Main/Advanced access, presentation buttons/Undo, protected media-only centering, absence of editor blur, independent and shared text/media scroll, centered endpoint at 8/50 seconds, both flips, close header anchoring, safe text pixels, media toggles, earlier native sizing and JSON. Existing media/audio, undo, handoff and 151-frame entrance checks remain passing. Default video length remains 50 seconds; final MOV/alpha rendering remains deferred.
+
+## Previous fix — Beta 2.7.5
 
 **Main Mouwajaha · reference size (default)** remains the startup layout. Turning **Include videos** off now keeps the frame, chosen side, header, bullet panel, sizes and movement offsets. It no longer enters a different text-only layout when the last selected video disappears. The last visible media geometry is retained while attachments are hidden; no disabled image/video is drawn.
 

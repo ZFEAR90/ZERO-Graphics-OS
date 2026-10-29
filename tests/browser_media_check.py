@@ -15,7 +15,7 @@ try:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
   page=browser.new_page(viewport={'width':1600,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('assets.avatar && state.stvLoaded')
-  page.locator('#portraitLayout').select_option('focus')  # Explicit legacy adaptive treatment; reference default has its own check.
+  page.locator('#portraitLayout').select_option('focus',force=True)  # Explicit legacy adaptive treatment; reference default has its own check.
   page.locator('#postMediaFit').select_option('fit',force=True)
   assert not page.evaluate('state.renderError');assert not errors,errors
   page.locator('.control-panel').evaluate_all('(els)=>els.forEach(el=>el.open=true)')
