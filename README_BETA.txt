@@ -1,6 +1,12 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.7.4
+ZE OS — Mouwajaha V0.7 / Test Beta 2.7.5
 
-BETA 2.7.4 — CENTERED SOCIAL POST OPTION
+BETA 2.7.5 — INCLUDE VIDEO FIX
+Main Mouwajaha · reference size (default) is the startup layout. Turning Include videos off keeps the roll, its side, frame size, header, bullet panel and movement offsets. Excluding the last media item no longer changes the layout.
+With all photos/videos hidden, the original cleaned post text appears in the same roll and scrolls above the lower-third safe line. Custom bullet text remains unchanged. Re-enabling media restores your selected text/media placement. Hide post text is still honored. Include photos and individual attachment checkboxes follow the same policy; source audio remains independent.
+Solo cards keep their existing account/header strip. Explicitly selecting Text only still gives the previous larger text-only solo frame, as do new text-only imports. The optional centered social-post layout remains available.
+Close the old helper, extract this folder, and run START_ZE_OS.bat. Helper version: 0.7-beta2.7.5. demo/ZE_OS_V07_Beta275_VideoOn.png and VideoOff.png show the unchanged frame before/after exclusion; SoloVideoOff.png shows its inset header and safe post text.
+
+BETA 2.7.4 — PREVIOUS CENTERED SOCIAL POST ADDITION
 Main → Roll & account → Roll frame layout → Centered social post · side platform.
 The roll is centered, with the platform beside it and the profile/name/account inside the top strip. Flip swaps the platform side without mirroring text or pictures. This reuses the existing V0.7 animation; Reference size remains the default.
 Media inside the post: Below post text, or Right side · text on left. Long text scrolls inside its own mask while media stays visible. The selected lower-third text boundary stays protected. Use Post text size (28–64 px at 1080p) and the existing scroll timing controls. Fill/Fit, optional audio, Hold/Loop and per-item media toggles remain available.

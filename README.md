@@ -1,8 +1,20 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.7.4
+# ZE OS — Mouwajaha V0.7, Test Beta 2.7.5
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
-## Current addition — Beta 2.7.4
+## Current fix — Beta 2.7.5
+
+**Main Mouwajaha · reference size (default)** remains the startup layout. Turning **Include videos** off now keeps the frame, chosen side, header, bullet panel, sizes and movement offsets. It no longer enters a different text-only layout when the last selected video disappears. The last visible media geometry is retained while attachments are hidden; no disabled image/video is drawn.
+
+When all visual attachments are excluded, the cleaned editable post text appears inside that same roll, even if media posts had placed their text in bullets or Media only was selected. Custom bulletin text is preserved. Enabling media restores the existing media/text placement without changing those controls. **Hide post text** remains an explicit override. Include photos and individual attachment checkboxes follow the same rule. Audio remains independently selectable.
+
+The fallback text scrolls within a safe masked region above the lower third; solo cards also reserve the existing inset account/header strip. Selecting **Text only** explicitly still uses the previous larger text-only solo treatment, and a new text-only import retains that behavior. The optional centered social-post layout remains selectable.
+
+[Video on](demo/ZE_OS_V07_Beta275_VideoOn.png) · [Video off / same frame](demo/ZE_OS_V07_Beta275_VideoOff.png) · [Solo video off](demo/ZE_OS_V07_Beta275_SoloVideoOff.png). These are actual editor screenshots using local generated demo media.
+
+Checks reproduce the old geometry jump, then compare all group rectangles before/after exclusion and re-inclusion across both flips, portrait/landscape video, bullets on/off, safety settings and the retained layout options. They also verify text fallback, individual exclusion, explicit Hide, header clearance and the larger text-only solo layout. Rendered text pixels are checked against the lower-third boundary through entrance, scrolling and the final frame. Existing reference sizing, social layout, media/audio, line handoff and entrance checks remain passing.
+
+## Previous addition — Beta 2.7.4
 
 Under **Main → Roll & account → Roll frame layout**, choose **Centered social post · side platform**. This is an optional Mouwajaha V0.7 layout using the existing frame/mask, source reveal and identity animation. Reference size remains the default.
 

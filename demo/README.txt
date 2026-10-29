@@ -1,3 +1,7 @@
+ZE OS V0.7 Beta 2.7.5 — Include videos correction
+
+ZE_OS_V07_Beta275_VideoOn.png and VideoOff.png show the exact same source/header/bullet rectangles before/after hiding video. The hidden video is replaced by editable post text inside the roll. SoloVideoOff.png retains the inset header and ends the text viewport above the lower-third line. Actual browser screenshots use generated local demo media; guide overlays are not exported. Earlier video demonstrations remain separately versioned below.
+
 ZE OS V0.7 Beta 2.7.4 — optional centered social-post layout
 
 ZE_OS_V07_Beta274_Demo.mp4: 16 seconds, silent H.264, 1920 × 1080. Four two-second editor stills show media below, media right/text left, Flip and text-only. The final eight seconds show an actual browser export of the retained entrance and independently scrolling post text with fixed media. ZE_OS_V07_Beta274_Social.webm is that original browser recording, with finite eight-second duration metadata. The MP4 viewing copy was composed externally with FFmpeg, adding labels and duplicating/holding frames where real-time capture dropped frames. It is not an in-app final MP4 renderer or deterministic broadcast export.
