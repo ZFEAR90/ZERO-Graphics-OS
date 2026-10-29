@@ -10,7 +10,7 @@ threading.Thread(target=server.serve_forever,daemon=True).start()
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source')
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.evaluate("document.querySelectorAll('.editor-tab-panel').forEach(e=>e.hidden=false);document.querySelectorAll('details').forEach(e=>e.open=true)")
   page.locator('#postMediaFit').select_option('fit',force=True)  # These caption-placement checks exercise the whole-image option.
   page.locator('#bullets').fill('هذا نص طويل لاختبار عدم عبور أي سطر إلى منطقة الخبر العاجل. '*12+'\n\nالنص الأخير يبقى فوق الخط الآمن. '*8)
   def check_pixels(moves=(0,100,250),protections=(False,True)):

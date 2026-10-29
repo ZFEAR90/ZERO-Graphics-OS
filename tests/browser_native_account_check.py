@@ -34,6 +34,16 @@ try:
    # Check real painted labels have white space around dark glyphs, with no solid strap.
    result=page.evaluate('''(()=>{setT(5);const h=getBBox('identity'),l=headerLayout(c),k=h.w/R.identity.w,b=l.name,x=Math.floor((h.x+(b.x-R.identity.x)*k)*2),y=Math.floor((h.y+(b.y-R.identity.y)*k)*2),w=Math.max(1,Math.floor(b.w*k*2)),height=Math.max(1,Math.floor(b.h*k*2)),a=c.getImageData(x,y,w,height).data;let white=0,dark=0;for(let i=0;i<a.length;i+=4){if(a[i]>245&&a[i+1]>245&&a[i+2]>245)white++;if(a[i]<100&&a[i+1]<100&&a[i+2]<100)dark++}return {white: white/(w*height),dark:dark/(w*height)}})()''');assert result['white']>.55 and 0<result['dark']<.4,result
    calls=page.evaluate('''(()=>{const old=headerLabel;let calls=0;headerLabel=(...args)=>{calls++;old(...args)};draw();headerLabel=old;return calls})()''');assert calls==0,calls
+  # Native row stays padded inside the resized roll at large requested avatar/label scales.
+  for flip in [False,True]:
+   page.evaluate('(v)=>setFlipped(v)',flip)
+   for scale in [.3,1.2]:
+    old=page.evaluate("({source:state.layers.source.scale,avatar:val('avatarScale'),label:val('labelScale'),group:val('headerGroupScale')})")
+    page.evaluate("v=>{state.layers.source.scale=v;document.getElementById('avatarScale').value=250;document.getElementById('labelScale').value=250;document.getElementById('headerGroupScale').value=150;draw()}",scale);g=geometry();source=g['source']
+    for name in ['avatar','name','handle']:
+     a=g[name];assert a['x']>=source['x']+8 and a['y']>=source['y']+8 and a['x']+a['w']<=source['x']+source['w']-8 and a['y']+a['h']<=source['y']+source['h']-8,g
+    assert page.evaluate('headerLayout(c).platform.w')==66
+    page.evaluate("v=>{state.layers.source.scale=v.source;document.getElementById('avatarScale').value=v.avatar;document.getElementById('labelScale').value=v.label;document.getElementById('headerGroupScale').value=v.group;draw()}",old)
   page.locator('#postTextPlacement').select_option('hidden');assert geometry()['avatar']==first['avatar']
   page.locator('#postTextPlacement').select_option('roll');page.locator('#displayname').fill('اسم عربي قابل للتحرير');page.locator('#account').fill('@EditedAccount');page.evaluate('setT(5)');assert page.evaluate('headerLayout(c).nameText')=='اسم عربي قابل للتحرير'
   with page.expect_download() as output:page.locator('#saveJson').click()

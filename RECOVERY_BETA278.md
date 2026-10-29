@@ -10,7 +10,7 @@ This work reconstructs the supplied continuation handoff. No files from the fail
 
 - Beta 2.7.8 editor and importer health version.
 - Auto bullet grouping keeps short paragraphs together even with blank lines; explicit blank-line grouping remains available. Pagination measures the actual safe text box, font and line height. Manual timing matches survive compatible edits and regrouping. Each paragraph's final line remains naturally aligned. The final page persists through the endpoint.
-- Moving post text into the roll preserves the independent bulletin. Switching presentation never changes bulletin visibility; only Show bullet panel turns it off. Whole can use the independent panel or a centered roll with that switch off. Text-only/media-hidden choices retain media geometry metadata.
+- Moving post text into the roll preserves the independent bulletin. The latest owner correction makes choosing Whole automatically turn the external bulletin off without erasing its text; returning to Main restores the prior visibility. Ordinary post-text placement remains independent of bulletin visibility. Text-only/media-hidden choices retain media geometry metadata.
 - Post Arabic uses the existing joining-safe kashida renderer without modifying editable source text. Space justification and natural alignment are alternatives. Right-only characters and lam–alef ligatures are excluded from insertion slots.
 - Main keeps the approved reference frame and automatic portrait-right / wide-below arrangement. Whole defaults to shared text/media motion, with pinned native account and an enlarged external platform tile. Fixed/speaker-safe media remains selectable. Both presentations honor the manual scroll selection.
 - Sequence is the multiple-media default; optional grid remains in Advanced. A configurable eased directional reveal covers the outgoing picture without antialiasing gaps. Flip reverses the reveal without reflecting media. Framing uses the first selected item and stays stable during the sequence. The final item holds.
@@ -72,3 +72,22 @@ The owner subsequently supplied the final pre-failure requests, retained verbati
 Run `.venv/bin/python tests/browser_final_adjustments_check.py` for the final acceptance matrix. It checks Main/Advanced placement through actual controls, speaker on/off, ten hidden-media layout/flip combinations, sixteen Text-only geometry combinations, painted text safety in Main/Whole and both flips, and the 24-unit painted header gap. Browser evidence is in `demo/final-adjustments/`. The existing recovery, header-anchor, social-layout, whole-below, clean-media, native-account, media-toggle, palette and motion checks were also rerun. JavaScript syntax and all 16 importer tests passed. The demonstration and real 50-second browser output were refreshed for this interface.
 
 This audit still uses generated fixture media and the available V0.7 proxy. No recovered failed-task files or unavailable external references are implied. Changes remain on the recovery branch; no remote or environment publication was performed.
+
+
+## Connected importer and latest owner requests
+
+The quick test launcher previously opened the offline HTML only, which explains the reported “Local importer is not reachable” message. `TEST_MAIN_ROLL.bat` now runs `START_ZE_OS.bat` and opens the connected local editor. `OFFLINE_MAIN_ROLL.bat` is the explicit manual-media alternative. Setup writes `STARTUP_LOG.txt`; Python 3.10+ and dependencies are checked before starting. Screenshot-browser installation is a separate optional action, so a large browser download no longer delays the metadata importer. An identical running helper can reopen its editor; another/older server produces a clear port-conflict diagnostic.
+
+Choosing Whole now automatically hides the external bullet and retains its contents. Main restores the prior visibility. The larger/resized frame reflows post text and media; long post bodies roll inside the mask with the account pinned. Safe geometry leaves space for upward movement where applicable.
+
+The uploaded `TESTING_REQUIREMENTS.md` adds dedicated executable checks, a complete regression runner, and portable project-settings round trips. Project JSON now includes explicit sequence slots and editor settings; Load project JSON restores grouping, justification, sequence choices, layout, colors, duration and manual paragraph holds. Original media bytes remain local and must be reattached on another computer; their settings remain in the project while absent.
+
+All test files were inspected before adding the focused checks. See `tests/README.md` for coverage mapping and deliberate legacy expectation updates. The Windows archive builder verifies every packaged source file and excludes environments/logs.
+
+The owner's linked X post is `https://x.com/AB4_Ali3/status/2115886714602631173`. Its live content could not be verified from this cloud instance: the proxy rejected the X endpoint with CONNECT HTTP 403. Required X hosts were saved in the environment-settings draft; saving that draft is separate from applying it. Local importer/API/fixture tests do not establish live platform access. No credentials were requested or bypassed.
+
+
+Final automated verification for the connected-importer update: **20 unit tests and all 39 browser check files passed**. Failed: 0; skipped: 0; unrun automated checks: 0. The extracted Windows ZIP was separately smoke-tested with its own packaged helper and a controlled local URL response. The actual refreshed WebM is 50.000 seconds, has audible Opus audio and no detected full-black interval. The updated demonstration includes real playback of the long Whole post and a resize/reflow example. Reports and logs are in `demo/validation/Beta278/`; no Beta 2.7.7 artifacts were overwritten. Native Windows batch execution remains unrun, and the requested live X URL remains blocked by the cloud proxy.
+
+
+Automatic Whole bulletin hiding also retains the last visible bullet capacity. This keeps grouping and manual holds stable while the panel is hidden, including export/load on a fresh page; the persistence and round-trip tests cover that case. The complete release suite was rerun after this fix and passed all 20 unit tests and 39 browser files. The ZIP, preview evidence and demonstration were then rebuilt from that exact source.

@@ -1,0 +1,5 @@
+127.0.0.1 - - [29/Oct/2026 20:26:07] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 20:26:08] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 20:26:08] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 20:26:08] "GET /fixtures/landscape.mp4 HTTP/1.1" 206 -
+Native account at top-left in both flips; identical row pixels during right/below scrolling; no straps; editable fields and native-row JSON; Main header preserved: passed

@@ -1,0 +1,18 @@
+127.0.0.1 - - [29/Oct/2026 20:25:03] "GET /api/post?url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2Fexample%2F HTTP/1.1" 422 -
+127.0.0.1 - - [29/Oct/2026 20:25:04] "GET /api/post?url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2Fexample%2F HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 20:25:05] "GET /.ze_media/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mp4 HTTP/1.1" 206 -
+127.0.0.1 - - [29/Oct/2026 20:25:05] "GET /.ze_media/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mp4 HTTP/1.1" 206 -
+127.0.0.1 - - [29/Oct/2026 20:25:05] "GET /.ze_media/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mp4 HTTP/1.1" 416 -
+127.0.0.1 - - [29/Oct/2026 20:25:06] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 20:25:06] "GET /api/post?url=invalid HTTP/1.1" 422 -
+127.0.0.1 - - [29/Oct/2026 20:25:07] "GET /api/instance HTTP/1.1" 200 -
+This same Main roll importer is already running. Opening its connected editor.
+----------------------------------------------------------------------
+Ran 20 tests in 4.017s
+
+OK
+Task was destroyed but it is pending!
+task: <Task cancelling name='Task-3' coro=<Connection.run.<locals>.init() running at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:344> wait_for=<Future finished result=None>>
+Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed

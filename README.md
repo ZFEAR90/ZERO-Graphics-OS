@@ -2,6 +2,14 @@
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
+## Current Windows test
+
+Download the test ZIP from the recovery branch, extract the entire folder, close old helper windows and double-click `TEST_MAIN_ROLL.bat`. It now starts the URL importer and opens the connected editor. Python 3.10+ is required; first setup needs Internet. Leave the helper window open. Startup failures are recorded in `STARTUP_LOG.txt`. `OFFLINE_MAIN_ROLL.bat` is for manual media without the importer.
+
+Choosing Whole roll frame turns the external bullet off automatically while preserving its text; Main restores the previous visibility. Content reflows to the larger/resized frame and long posts scroll inside it. Project JSON can now be loaded as well as saved, including manual timing and sequence slots. Reattach original media files when changing computers.
+
+[Regression coverage](tests/README.md) · [Owner testing requirements](TESTING_REQUIREMENTS.md).
+
 ## Recovery continuation — Beta 2.7.8
 
 Reconstructed from published Beta 2.7.7 on `ze-os-v07-beta278-recovery`, retaining the approved V0.7 base. Auto bullet grouping now paginates by safe capacity; inside-roll text preserves editorial bullets. Whole roll defaults to shared text/media motion with its account pinned inside. Multiple media use directional masked sequencing with local video time and audio crossfades; grid, fixed media and hidden-video audio are explicit options. Arabic post kashida preserves source text. Header spacing follows painted bounds.

@@ -8,7 +8,7 @@ root=Path(__file__).resolve().parents[1];server=ThreadingHTTPServer(('127.0.0.1'
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.evaluate("document.getElementById('bulletSplitMode').value='blank'");page.locator('#respectSafeArea').click()
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');page.evaluate("document.querySelectorAll('.editor-tab-panel').forEach(e=>e.hidden=false);document.querySelectorAll('details').forEach(e=>e.open=true)");page.evaluate("document.getElementById('bulletSplitMode').value='blank'");page.locator('#respectSafeArea').click()
   page.locator('#portraitLayout').select_option('focus',force=True)  # Explicit legacy adaptive treatment; reference default has its own check.
   cases=[['نص قصير جديد','هذه فقرة طويلة لاختبار تتابع الأسطر وعدم تداخل الكلمات داخل اللوحة السوداء. '*6],['هذه فقرة طويلة لاختبار سرعة خروج كل سطر مع دخول الفقرة التالية. '*7,'نص آخر'],['A short line','A longer English paragraph with mixed Arabic كلمات عربية to verify a safe line handoff. '*5],['فقرة أولى للاختبار '*18,'فقرة ثانية '*15,'النص الأخير يبقى على الشاشة']]
   for case in cases:

@@ -31,7 +31,7 @@ try:
     assert g['h']['y']>=(34 if g['h']['x']>=g['safe']['x']+114 else g['safe']['y'])-.01,g
   print('Capacity pagination, Auto/blank grouping, preserved manual holds/bullets, painted header gap and corner clearance: passed',flush=True)
   arabic=('هذا نص عربي طويل لاختبار التبرير الآمن والحفاظ على اتصال الحروف داخل الإطار. '*35).rstrip()+'\nالسطر الأخير'
-  page.locator('#useWholePost').click();assert page.locator('#showBullets').is_checked();page.locator('#showBullets').uncheck();page.evaluate('''async text=>{zeCommitPost(await zePreparePost({text,attachments:[{type:'image',url:'/fixtures/portrait.png'}]}));setT(5)}''',arabic)
+  page.locator('#useWholePost').click();assert not page.locator('#showBullets').is_checked();page.locator('#showBullets').uncheck();page.evaluate('''async text=>{zeCommitPost(await zePreparePost({text,attachments:[{type:'image',url:'/fixtures/portrait.png'}]}));setT(5)}''',arabic)
   assert page.evaluate("document.getElementById('postScrollMode').value")=='together'
   assert page.evaluate("document.getElementById('postBody').value")==arabic
   result=page.evaluate('''()=>{const d=zeSocialTextDocument(200);c.save();const line=d.lines.find(l=>!l.final&&l.direction==='rtl');c.font=line.style;const prepared=justifyLine(c,line.text,360,'kashida',1),last=d.lines.at(-1),natural=justifyLine(c,last.text,360,'none',1);c.restore();return {width:prepared.total,kashida:prepared.words.join('').includes('ـ'),last:last.final,natural:natural.total}}''')

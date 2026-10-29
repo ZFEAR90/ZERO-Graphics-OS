@@ -1,28 +1,42 @@
-MAIN ROLL - BETA 2.7.8 - WINDOWS TEST PACKAGE
+MAIN ROLL - BETA 2.7.8 - WINDOWS URL-IMPORT TEST
 
-1. Extract the entire ZIP to a folder on your PC.
-2. Double-click TEST_MAIN_ROLL.bat.
-3. Use Microsoft Edge or Google Chrome for the editor.
+1. Extract the ENTIRE ZIP to a NEW folder.
+2. Close older Main roll importer windows and offline browser tabs.
+3. Double-click TEST_MAIN_ROLL.bat (or START_ZE_OS.bat).
+4. Keep the command window open. Use the browser tab it opens.
+5. Paste the public post URL and click Detect & import post.
 
-QUICK TEST (NO PYTHON / NO INTERNET REQUIRED)
-TEST_MAIN_ROLL.bat opens the standalone editor. Add your own photos or video
-under Main > Post photos, video & audio, or Replace roll, profile or logos.
-Test Main roll / Whole roll frame, Flip, Fill / Fit, bullet visibility,
-Text only, dragging and Undo / Redo. Detailed geometry, face protection and
-media sequence settings are under Advanced options.
+REQUIREMENTS
+Python 3.10 or newer is required for URL importing. Install it from
+https://www.python.org/downloads/windows/ and enable the Python launcher.
+The first run installs Python dependencies and needs Internet access.
+The launcher opens a connected local editor, not the offline HTML file.
 
-PUBLIC-POST URL IMPORT (OPTIONAL)
-Install Python 3.10 or newer from python.org, then run START_ZE_OS.bat.
-First startup needs Internet access to install dependencies and Chromium.
-Keep that command window open while importing. Close older importer windows
-before starting this package. Public social platforms can refuse anonymous
-access; local media import remains available.
+IF STARTUP FAILS
+Read the command window and STARTUP_LOG.txt in this folder.
+If a port is occupied, close the older helper window before retrying.
+If Python is missing, install it and run the launcher again.
+If post screenshots are unavailable, run INSTALL_CAPTURE_BROWSER.bat,
+then restart START_ZE_OS.bat. Installed Chrome/Edge may also be used.
+Social platforms may deny anonymous access. That is different from an
+unreachable local importer. Upload original media manually when needed.
 
-EXPORT
-Export PNG or Render Video (opaque WebM). Default video length: 50 seconds.
-Transparent PNG works. Native MOV alpha / ProRes 4444 is not implemented.
+OFFLINE MODE
+OFFLINE_MAIN_ROLL.bat opens the editor without Python. It supports manual
+photos/video, editing and browser rendering. It does NOT start URL importing.
 
-This package contains the final Beta 2.7.8 recovery adjustments on top of
-commit c221e8b. It preserves the approved Mouwajaha V0.7 base.
-The cloud checks cover Chromium behavior; the Windows batch launchers have
-not been executed on a Windows machine here.
+WHOLE ROLL
+Choosing Whole roll frame turns the external bullet off automatically.
+Its text is retained; Main roll restores its previous visibility.
+The complete post reflows inside the larger/resized frame. Long posts scroll
+inside the mask; the account row stays pinned. Speaker-safe mode is optional.
+
+PROJECTS AND EXPORT
+Project JSON saves editor settings, sequence slots and manual paragraph holds.
+Load project JSON restores those settings. Original media files stay local:
+reattach them when loading on another computer. Default video length: 50 s.
+PNG supports real alpha. Browser video is opaque WebM. Native MOV alpha is
+not implemented. Use Edge or Chrome for testing.
+
+The importer process and editor are tested in Chromium on the cloud machine.
+The .bat scripts have not been run on a native Windows machine here.

@@ -15,6 +15,9 @@ import re
 import socket
 import sys
 import math
+import hashlib
+import errno
+import urllib.request
 import shutil
 import uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -379,6 +382,9 @@ class Handler(SimpleHTTPRequestHandler):
             filename=media_path.removeprefix('/.ze_media/')
             if not re.fullmatch(r'[a-f0-9]{32}\.(mp4|webm|mp3|m4a|ogg|wav)',filename):self.send_error(404);return
             return self._send_media(MEDIA_ROOT/filename)
+        if urlparse(self.path).path == '/api/instance':
+            payload=json.dumps(instance_info()).encode()
+            self.send_response(200);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(payload)));self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(payload);return
         if urlparse(self.path).path == '/api/health':
             payload=json.dumps({'service':'ze-os-importer','version':'0.7-beta2.7.8'}).encode()
             self.send_response(200)
@@ -430,6 +436,41 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header('Vary', 'Origin')
         super().end_headers()
 
+def instance_info():
+    return {'service':'ze-os-importer','version':'0.7-beta2.7.8','editor_sha256':hashlib.sha256((ROOT/'ZE_OS_Mouwajaha_V07.html').read_bytes()).hexdigest(),'importer_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+
+
+def create_editor_server(port):
+    return ThreadingHTTPServer(('127.0.0.1',port),Handler)
+
+
+def run_editor(port=None,open_browser=True):
+    import webbrowser
+    port=int(os.environ.get('ZE_OS_PORT','8765')) if port is None else port
+    try:server=create_editor_server(port)
+    except OSError as ex:
+        if ex.errno==errno.EADDRINUSE:
+            try:
+                with urllib.request.urlopen(f'http://127.0.0.1:{port}/api/instance',timeout=2) as reply:existing=json.load(reply)
+                if existing==instance_info():
+                    url=f'http://127.0.0.1:{port}/ZE_OS_Mouwajaha_V07.html'
+                    print('This same Main roll importer is already running. Opening its connected editor.',flush=True)
+                    if open_browser:webbrowser.open(url)
+                    return 0
+            except (OSError,ValueError):pass
+            print(f'Port {port} is used by another server or an older Main roll helper. Close its window, or set ZE_OS_PORT to a free port.',flush=True)
+        else:print('Unable to start Main roll importer:',ex,flush=True)
+        return 1
+    url=f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html'
+    print('Main roll with URL importing:',url,flush=True)
+    print('Keep this window open. Use the browser tab opened at this address, not an older offline tab.',flush=True)
+    if open_browser:webbrowser.open(url)
+    try:server.serve_forever()
+    except KeyboardInterrupt:pass
+    finally:server.server_close()
+    return 0
+
+
 if __name__=='__main__':
     if '--check-browser' in sys.argv:
         try:
@@ -439,14 +480,17 @@ if __name__=='__main__':
             print('Capture browser is ready.');sys.exit(0)
         except Exception as ex:
             print('Capture browser is not ready:',str(ex)[:300]);sys.exit(1)
-    import webbrowser
-    port=int(os.environ.get('ZE_OS_PORT','8765'))
-    try:server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
-    except OSError as ex:
-        print('Unable to start ZE OS local importer:',ex);sys.exit(1)
-    url=f'http://127.0.0.1:{port}/ZE_OS_Mouwajaha_V07.html'
-    print('ZE OS Main roll V0.7:',url)
-    print('Local importer listens on this computer only. Press Ctrl+C to stop.')
-    webbrowser.open(url)
-    try:server.serve_forever()
-    except KeyboardInterrupt:server.shutdown()
+    if '--startup-log' in sys.argv:
+        class Tee:
+            def __init__(self,*outputs):self.outputs=outputs
+            def write(self,text):
+                for output in self.outputs:output.write(text);output.flush()
+                return len(text)
+            def flush(self):
+                for output in self.outputs:output.flush()
+        log_path=Path(sys.argv[sys.argv.index('--startup-log')+1])
+        startup_log=log_path.open('a',encoding='utf-8')
+        sys.stdout=Tee(sys.stdout,startup_log);sys.stderr=Tee(sys.stderr,startup_log)
+    try:sys.exit(run_editor(open_browser='--no-browser' not in sys.argv))
+    except (ValueError,OSError) as ex:
+        print('Importer startup failed:',ex,flush=True);sys.exit(1)

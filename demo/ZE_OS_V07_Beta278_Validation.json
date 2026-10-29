@@ -9,20 +9,44 @@
   },
   "browser_suites_passed": [
     "browser_auto_post_check",
+    "browser_bullet_grouping_check",
+    "browser_bullet_persistence_check",
+    "browser_capture_check",
+    "browser_check",
     "browser_clean_media_check",
+    "browser_composition_check",
+    "browser_drag_undo_check",
     "browser_editing_check",
+    "browser_final_adjustments_check",
     "browser_handoff_check",
     "browser_header_anchor_check",
+    "browser_importer_connection_check",
+    "browser_media_check",
+    "browser_media_only_layout_check",
+    "browser_media_sequence_check",
     "browser_media_toggle_check",
     "browser_motion_check",
     "browser_native_account_check",
     "browser_palette_check",
     "browser_paragraph_check",
+    "browser_portrait_check",
+    "browser_post_justification_check",
     "browser_post_layout_check",
+    "browser_project_roundtrip_check",
     "browser_recovery_check",
     "browser_reference_frame_check",
+    "browser_safe_area_check",
     "browser_social_layout_check",
-    "browser_whole_below_check"
+    "browser_solo_text_safe_check",
+    "browser_speaker_check",
+    "browser_text_only_recenter_check",
+    "browser_video_end_check",
+    "browser_video_sequence_check",
+    "browser_whole_below_check",
+    "browser_whole_resize_check",
+    "browser_whole_shared_scroll_check",
+    "browser_workspace_check",
+    "browser_workspace_cleanup_check"
   ],
   "browser_suites_failed": [],
   "reference_source_width_mean_error_proxy_pixels": 0.14285714285714285,
@@ -36,7 +60,7 @@
         "codec_type": "video",
         "width": 1920,
         "height": 1080,
-        "nb_read_frames": "1151"
+        "nb_read_frames": "1181"
       },
       {
         "codec_name": "opus",
@@ -49,8 +73,8 @@
     }
   },
   "full_black_intervals": 0,
-  "audio_max_db": -17.7,
-  "demo_duration_seconds": 78.16,
+  "audio_max_db": -17.6,
+  "demo_duration_seconds": 83.76,
   "media": "generated local fixtures; controlled import response",
   "limits": [
     "Browser recording is real time and can drop frames.",
@@ -59,7 +83,7 @@
   ],
   "final_adjustments": {
     "base_commit": "47fd3f7",
-    "editor_sha256": "4d9b7c800c6d5db2f89a3cab0c5d517cf1e8bf214db6fa028e03c483c220ac9d",
+    "editor_sha256": "942dfaf64c1735418ee8d267c85fbd96e6385d03d34f0511e12095a2e830728c",
     "browser_suites_passed": [
       "browser_clean_media_check",
       "browser_final_adjustments_check",
@@ -77,5 +101,22 @@
     "syntax": "passed",
     "evidence": "demo/final-adjustments/validation.json",
     "full_black_intervals": 0
+  },
+  "unit_tests": {
+    "passed": 20,
+    "failed": 0
+  },
+  "full_regression": {
+    "passed": 40,
+    "failed": 0,
+    "skipped": 0,
+    "unrun": 0,
+    "report": "demo/validation/Beta278/full-regression.json"
+  },
+  "editor_sha256": "942dfaf64c1735418ee8d267c85fbd96e6385d03d34f0511e12095a2e830728c",
+  "package_sha256": "602f6d242dd5d0a46b30011189b5401173afc3c3b139bd8f86052b89ef61d4b5",
+  "external_checks": {
+    "live_x_post": "blocked: cloud proxy CONNECT HTTP 403",
+    "native_windows_batch_execution": "unrun: executor is Linux"
   }
 }

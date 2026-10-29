@@ -1,0 +1,3 @@
+PUBLIC: actual browser captured post and author
+DENIED: browser rejection reported
+LOGIN: login page rejected as a post

@@ -1,14 +1,14 @@
 """Owner's final adjustments: real controls, retained geometry, masks and strict text safety."""
 from pathlib import Path
 from http.server import ThreadingHTTPServer
-import importlib.util,threading,json
+import importlib.util,threading,json,os
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('helper',root/'ze_local_importer.py');helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
 class Handler(helper.Handler):
  def log_message(self,*args):pass
 server=ThreadingHTTPServer(('127.0.0.1',0),Handler);threading.Thread(target=server.serve_forever,daemon=True).start()
-out=root/'demo'/'final-adjustments';out.mkdir(exist_ok=True)
+out=Path(os.environ.get('ZE_FINAL_EVIDENCE_DIR','/tmp/ze-browser-evidence/final-adjustments'));out.mkdir(parents=True,exist_ok=True)
 try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1600,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
@@ -26,7 +26,7 @@ try:
   page.locator('#openMediaDetails').click();assert page.locator('#advancedTab').get_attribute('aria-selected')=='true' and page.locator('#advancedMediaPanel').evaluate('el=>el.open')
   page.locator('#advancedPostMediaList details').evaluate('(el)=>el.open=true')
   field=page.get_by_role('spinbutton',name='Face left for landscape.mp4');field.fill('20');field.press('Tab');assert page.evaluate('zePost.items[0].framing.protectFace&&zePost.items[0].framing.face.x===20')
-  page.locator('#mainTab').click();page.locator('#useWholePost').click();assert page.locator('#showBullets').is_checked()
+  page.locator('#mainTab').click();page.locator('#useWholePost').click();assert not page.locator('#showBullets').is_checked()
   page.locator('#openMediaDetails').click();pin=page.get_by_role('checkbox',name='Keep landscape.mp4 visible while post scrolls');assert not pin.is_checked();pin.check();assert page.locator('#postScrollMode').input_value()=='fixed'
   page.locator('#mainTab').click();page.locator('#useWholePost').click();assert page.locator('#postScrollMode').input_value()=='fixed' # Active presentation preserves overrides.
   page.locator('#openMediaDetails').click();pin.uncheck();assert page.locator('#postScrollMode').input_value()=='together'

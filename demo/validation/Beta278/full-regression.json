@@ -1,0 +1,257 @@
+{
+  "results": [
+    {
+      "name": "unittest",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/unittest.log"
+    },
+    {
+      "name": "browser_auto_post_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_auto_post_check.py.log"
+    },
+    {
+      "name": "browser_bullet_grouping_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_bullet_grouping_check.py.log"
+    },
+    {
+      "name": "browser_bullet_persistence_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_bullet_persistence_check.py.log"
+    },
+    {
+      "name": "browser_capture_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_capture_check.py.log"
+    },
+    {
+      "name": "browser_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_check.py.log"
+    },
+    {
+      "name": "browser_clean_media_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_clean_media_check.py.log"
+    },
+    {
+      "name": "browser_composition_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_composition_check.py.log"
+    },
+    {
+      "name": "browser_drag_undo_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_drag_undo_check.py.log"
+    },
+    {
+      "name": "browser_editing_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_editing_check.py.log"
+    },
+    {
+      "name": "browser_final_adjustments_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_final_adjustments_check.py.log"
+    },
+    {
+      "name": "browser_handoff_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_handoff_check.py.log"
+    },
+    {
+      "name": "browser_header_anchor_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_header_anchor_check.py.log"
+    },
+    {
+      "name": "browser_importer_connection_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_importer_connection_check.py.log"
+    },
+    {
+      "name": "browser_media_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_media_check.py.log"
+    },
+    {
+      "name": "browser_media_only_layout_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_media_only_layout_check.py.log"
+    },
+    {
+      "name": "browser_media_sequence_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_media_sequence_check.py.log"
+    },
+    {
+      "name": "browser_media_toggle_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_media_toggle_check.py.log"
+    },
+    {
+      "name": "browser_motion_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_motion_check.py.log"
+    },
+    {
+      "name": "browser_native_account_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_native_account_check.py.log"
+    },
+    {
+      "name": "browser_palette_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_palette_check.py.log"
+    },
+    {
+      "name": "browser_paragraph_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_paragraph_check.py.log"
+    },
+    {
+      "name": "browser_portrait_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_portrait_check.py.log"
+    },
+    {
+      "name": "browser_post_justification_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_post_justification_check.py.log"
+    },
+    {
+      "name": "browser_post_layout_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_post_layout_check.py.log"
+    },
+    {
+      "name": "browser_project_roundtrip_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_project_roundtrip_check.py.log"
+    },
+    {
+      "name": "browser_recovery_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_recovery_check.py.log"
+    },
+    {
+      "name": "browser_reference_frame_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_reference_frame_check.py.log"
+    },
+    {
+      "name": "browser_safe_area_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_safe_area_check.py.log"
+    },
+    {
+      "name": "browser_social_layout_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_social_layout_check.py.log"
+    },
+    {
+      "name": "browser_solo_text_safe_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_solo_text_safe_check.py.log"
+    },
+    {
+      "name": "browser_speaker_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_speaker_check.py.log"
+    },
+    {
+      "name": "browser_text_only_recenter_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_text_only_recenter_check.py.log"
+    },
+    {
+      "name": "browser_video_end_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_video_end_check.py.log"
+    },
+    {
+      "name": "browser_video_sequence_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_video_sequence_check.py.log"
+    },
+    {
+      "name": "browser_whole_below_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_whole_below_check.py.log"
+    },
+    {
+      "name": "browser_whole_resize_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_whole_resize_check.py.log"
+    },
+    {
+      "name": "browser_whole_shared_scroll_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_whole_shared_scroll_check.py.log"
+    },
+    {
+      "name": "browser_workspace_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_workspace_check.py.log"
+    },
+    {
+      "name": "browser_workspace_cleanup_check.py",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "demo/validation/Beta278/browser_workspace_cleanup_check.py.log"
+    }
+  ],
+  "passed": 40,
+  "failed": 0,
+  "skipped": 0,
+  "unrun": 0,
+  "unit_cases_passed": 20,
+  "browser_checks_passed": 39,
+  "editor_sha256": "942dfaf64c1735418ee8d267c85fbd96e6385d03d34f0511e12095a2e830728c",
+  "package_sha256": "602f6d242dd5d0a46b30011189b5401173afc3c3b139bd8f86052b89ef61d4b5",
+  "package_smoke": "Extracted package helper + real local API fixture import + Whole auto-hide passed",
+  "external_checks": {
+    "live_x_post": "blocked: cloud proxy CONNECT HTTP 403",
+    "native_windows_batch_execution": "unrun: executor is Linux"
+  }
+}

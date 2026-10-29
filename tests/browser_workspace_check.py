@@ -17,7 +17,7 @@ try:
   assert not page.locator('#advancedOptions').is_visible()
   page.locator('#bullets').fill('هذا نص عربي قابل للتحرير');page.locator('#advancedTab').click()
   assert page.locator('#advancedOptions').is_visible() and not page.locator('#mainOptions').is_visible()
-  page.locator('[data-panel="colors"] summary').first.click();assert page.locator('#accentColor').is_visible()
+  page.locator('#mainTab').click();page.locator('[data-panel="colors"] summary').first.click();assert page.locator('#accentColor').is_visible();page.locator('#advancedTab').click()
   page.locator('#advancedTab').focus();page.keyboard.press('ArrowLeft');assert page.locator('#bullets').input_value()=='هذا نص عربي قابل للتحرير'
   def boxes():return page.evaluate('Object.fromEntries(["identity","source","bullet"].map(n=>[n,getBBox(n)]))')
   def drag(name,dx,dy):
@@ -32,7 +32,7 @@ try:
    assert all(b['y']>=(34 if b['x']>=safe['x']+114 else safe['y'])-.01 and b['y']+b['h']<=safe['bottom']+.01 for b in paint.values()),paint
    assert paint['identity']['y']>=(34 if flipped else safe['y']) # The shorter Live reservation ends at the title-safe top.
   page.locator('#advancedTab').click();page.locator('[data-panel="layout"] summary').click();before=boxes();page.locator('#headerGroupScale').fill('80');page.locator('#headerGroupScale').press('Tab');assert abs(boxes()['identity']['w']/before['identity']['w']-80/85)<.001;page.locator('#undoEdit').click();assert boxes()==before;page.locator('#mainTab').click()
-  page.locator('#flip').uncheck();page.locator('[data-panel="placement"] summary').click();before=boxes();page.locator('#compositionUp').click();after=boxes();assert all(abs(after[n]['y']-before[n]['y']+10)<.01 for n in before);page.locator('#undoEdit').click();assert boxes()==before;page.locator('[data-panel="placement"] summary').click();page.locator('#advancedTab').click();page.locator('[data-panel="guides"] summary').click();page.locator('#protectLowerThird').uncheck();page.locator('#mainTab').click()
+  page.locator('#flip').uncheck();page.locator('#advancedTab').click();page.locator('[data-panel="placement"] summary').click();before=boxes();page.locator('#compositionUp').click();after=boxes();assert all(abs(after[n]['y']-before[n]['y']+10)<.01 for n in before);page.locator('#undoEdit').click();assert boxes()==before;page.locator('[data-panel="placement"] summary').click();page.locator('#advancedTab').click();page.locator('[data-panel="guides"] summary').click();page.locator('#protectLowerThird').uncheck();page.locator('#mainTab').click()
   page.evaluate("selectLayer('bullet')");before=boxes();depth=page.evaluate('zeUndoStack.length');drag('bullet',-15,-12);after=boxes()
   assert before['source']==after['source'] and before['identity']!=after['identity'] and before['bullet']!=after['bullet']
   assert page.evaluate('zeUndoStack.length')==depth+1
@@ -46,10 +46,10 @@ try:
   page.keyboard.press('Control+z');assert boxes()==before
   page.keyboard.press('Control+Shift+z');assert boxes()==after
   # Up/Down and numeric movement are undoable too.
-  page.locator('[data-panel="placement"] summary').click();before=boxes();page.locator('#compositionUp').click();assert boxes()!=before;page.locator('#undoEdit').click();assert boxes()==before
+  page.locator('#advancedTab').click();page.locator('[data-panel="placement"]').evaluate('(el)=>el.open=true');before=boxes();page.locator('#compositionUp').click();assert boxes()!=before;page.locator('#undoEdit').click();assert boxes()==before
   before=boxes();page.locator('#compositionY').fill('-40');page.locator('#compositionY').press('Tab');assert boxes()!=before;page.locator('#undoEdit').click();assert boxes()==before
   # Ctrl+Z in a text editor remains the browser's text undo and does not undo movement.
-  before=boxes();depth=page.evaluate('zeUndoStack.length');page.locator('#bullets').focus();page.keyboard.press('End');page.keyboard.type(' EXTRA');page.keyboard.press('Control+z');assert boxes()==before and page.evaluate('zeUndoStack.length')==depth
+  page.locator('#mainTab').click();before=boxes();depth=page.evaluate('zeUndoStack.length');page.locator('#bullets').focus();page.keyboard.press('End');page.keyboard.type(' EXTRA');page.keyboard.press('Control+z');assert boxes()==before and page.evaluate('zeUndoStack.length')==depth
   page.locator('#advancedTab').click();page.locator('#protectLowerThird').check();page.locator('#mainTab').click();page.locator('#canvas').scroll_into_view_if_needed();page.screenshot(path='/tmp/ze-beta25-workspace.png')
   assert page.locator('#singleRebuild .broadcast-exclusion').is_visible()
   assert page.locator('#singleRebuild .broadcast-outline').is_visible()

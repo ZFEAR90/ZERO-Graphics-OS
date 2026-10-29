@@ -14,7 +14,7 @@ try:
   page = browser.new_page(viewport={'width':1920, 'height':1080})
   errors = []; page.on('pageerror', lambda e: errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html')
-  page.wait_for_function('assets.source && state.stvLoaded')
+  page.wait_for_function('assets.source && state.stvLoaded');page.evaluate("document.querySelectorAll('.editor-tab-panel').forEach(e=>e.hidden=false);document.querySelectorAll('details').forEach(e=>e.open=true)")
   assert page.locator('#portraitLayout').input_value() == 'reference'
   page.locator('#portraitLayout').select_option('focus',force=True);page.locator('#postMediaFit').select_option('fit',force=True)
   assert not page.locator('#protectLowerThird').is_checked()
@@ -59,11 +59,13 @@ try:
   assert 'graphics excluded' in page.locator('.broadcast-exclusion').first.inner_text()
   page.locator('#allowMediaOverlap').check(); page.locator('#showBullets').uncheck()
   assert page.evaluate('getBBox("source").h>390 && getBBox("bullet").w===0')
-  # The exception is removed immediately when the portrait is removed or text-only is chosen.
+  # Text-only now preserves the chosen media geometry; only its painted text is clamped.
+  media_geometry=page.evaluate('getBBox("source")')
   page.locator('#postContentMode').select_option('text')
-  assert not page.evaluate('zeCenteredPortrait()')
-  assert page.evaluate('getBBox("source").y+getBBox("source").h<=zeBroadcastBounds().bottom')
-  page.locator('#postContentMode').select_option('all')
+  assert page.evaluate('zeCenteredPortrait() && zeVisualItems().length===0 && zeLayoutMedia().length===1')
+  assert page.evaluate('getBBox("source")')==media_geometry
+  assert page.evaluate('zeSafeRollText()')
+  page.locator('#postContentMode').select_option('all');assert page.evaluate('getBBox("source")')==media_geometry
   with page.expect_download() as output: page.locator('#saveJson').click()
   output.value.save_as('/tmp/ze-beta27-portrait.json')
   saved=json.loads(Path('/tmp/ze-beta27-portrait.json').read_text())
@@ -78,10 +80,10 @@ try:
   assert boxes['source']['y']+boxes['source']['h']<=508
   page.evaluate('state.screenOffsets.source={x:0,y:100};draw()');assert page.evaluate('zeBroadcastBounds().top<getBBox("source").y+getBBox("source").h<=508')
   assert boxes['bullet']['y']+boxes['bullet']['h']<=a['bottom']+.01
-  assert boxes['identity']['y']>=76
+  assert page.evaluate('zeHeaderPaintBounds(getBBox("identity")).y')>=76
   page.locator('#allowMediaOverlap').uncheck()
   assert page.evaluate('getBBox("source").y+getBBox("source").h<=zeBroadcastBounds().bottom')
-  page.evaluate('setFlipped(true)'); assert page.evaluate('34<=getBBox("identity").y<76')
+  page.evaluate('setFlipped(true)'); assert page.evaluate('34<=zeHeaderPaintBounds(getBBox("identity")).y<76')
   print('Balanced landscape widths, shortened Live clearance, TV compensation and optional source-only overlap: passed',flush=True)
   # Main switch restores full-height bullets and unclips a full single photo.
   page.evaluate('state.screenOffsets.source={x:0,y:0}')

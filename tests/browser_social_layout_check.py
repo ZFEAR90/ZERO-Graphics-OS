@@ -56,7 +56,7 @@ try:
   page.keyboard.press('Control+z');assert page.evaluate('zeSafeLayout()')==before_drag
   with page.expect_download() as output:page.locator('#saveJson').click()
   output.value.save_as('/tmp/ze-beta274.json');saved=json.loads(Path('/tmp/ze-beta274.json').read_text());assert saved['headerAnchor']=='native-post-top-left' and saved['socialPost']['mediaPosition']=='right' and saved['socialPost']['textSizePixels']==44
-  page.locator('#portraitLayout').select_option('reference',force=True);assert not page.locator('#showBullets').is_checked() and not page.locator('#showBullets').is_disabled() and not page.locator('#postScrollMode').is_disabled()
+  page.locator('#portraitLayout').select_option('reference',force=True);assert page.locator('#showBullets').is_checked() and not page.locator('#showBullets').is_disabled() and not page.locator('#postScrollMode').is_disabled()
   page.set_viewport_size({'width':780,'height':1000});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   assert not errors and not page.evaluate('state.renderError'),errors;print('Text-only/hidden modes, RTL/LTR painted safety, attached movement, saved settings and prior layout restoration: passed',flush=True);browser.close()
 finally:server.shutdown();server.server_close()

@@ -60,7 +60,7 @@ try:
   assert page.evaluate('getBBox("source").w')<300
   page.locator('#canvas').screenshot(path='/tmp/ze-media-portrait.png')
   page.locator('#postAudio').check();page.wait_for_function('zePost.items[3].gain && zePost.items[4].gain')
-  page.locator('#postVideos').uncheck();page.wait_for_timeout(100)
+  page.locator('#audioWhenHidden').check();page.locator('#postVideos').uncheck();page.wait_for_timeout(100)
   assert page.evaluate('zeVisualItems().length')==0
   assert page.evaluate('zePost.items[4].gain.gain.value')==1
   page.evaluate('zePost.items[4].enabled=false');page.wait_for_timeout(100);assert page.evaluate('zePost.items[4].gain.gain.value')==0

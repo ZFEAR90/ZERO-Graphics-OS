@@ -1,0 +1,8 @@
+127.0.0.1 - - [29/Oct/2026 20:25:38] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 20:25:38] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 20:25:38] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 20:25:39] "GET /fixtures/landscape.mp4 HTTP/1.1" 206 -
+RECORD audio True ['video', 'audio']
+RECORD audio False ['video']
+Portrait reflow, multi-file upload, standalone audio, and audio without visible video passed
+Import, individual media toggles, linked layout, flip, centering, video seeking/play/pause, local upload, and audio export passed

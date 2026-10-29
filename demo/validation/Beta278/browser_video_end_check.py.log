@@ -1,0 +1,6 @@
+127.0.0.1 - - [29/Oct/2026 20:26:47] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 20:26:48] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 20:26:48] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 20:26:50] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 20:26:50] "GET /favicon.ico HTTP/1.1" 404 -
+Independent hold/loop, seek past end, playback, hidden-video audio and saved settings: passed

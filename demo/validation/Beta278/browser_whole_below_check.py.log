@@ -1,0 +1,5 @@
+127.0.0.1 - - [29/Oct/2026 20:26:52] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 20:26:52] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 20:26:52] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 20:26:52] "GET /fixtures/landscape.mp4 HTTP/1.1" 206 -
+Wide below-text post moves text/media together, stops centered before end at 8/50s, supports flip, safe text and Hide/right overrides: passed
