@@ -1,8 +1,18 @@
-# ZE OS — Main roll V0.7, Test Beta 2.7.6
+# ZE OS — Main roll V0.7, Test Beta 2.7.7
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
-## Current workflow — Beta 2.7.6
+## Current correction — Beta 2.7.7
+
+**Whole roll frame** now uses a native post account row. The circular profile picture, plain display name and gray handle stay **fixed at the top-left inside the white post**, including after Flip. The separate animated broadcast name/handle straps and decorative top ribbon are removed in this presentation. The platform tile remains outside at the chosen side, using its existing entrance animation.
+
+The account row belongs to the post reveal and stays outside the body scroll mask: right-side text scrolling and below-text shared scrolling move only the content beneath it. It stays visible when post text is hidden. Account name, handle and avatar remain editable; existing profile/label scales and name/handle text-color overrides still apply. Text and media retain the safe mask, Fill/Fit, centering and motion controls from Beta 2.7.6. The Main roll presentation retains its original header.
+
+[Native post preview](demo/ZE_OS_V07_Beta277_NativePortrait.png) · [Flipped](demo/ZE_OS_V07_Beta277_NativeFlipped.png) · [16-second demonstration](demo/ZE_OS_V07_Beta277_Demo.mp4). The first eight seconds compare four editor stills; the final eight are an actual silent browser export showing the account row pinned during shared post scrolling. Generated local media are used.
+
+Browser checks compare the actual account-row pixels at 5, 25 and 49.96 seconds in both Flip directions and both scrolling arrangements; the pixels stay identical. They also check plain text on white without solid straps, no separate header-label calls in Whole mode, editable fields, fixed native-row scene metadata, and the retained Main header. Existing layout, clean media, safe text, shared centering, header and 151-frame reference entrance checks pass.
+
+## Previous workflow — Beta 2.7.6
 
 The editor is now named **Main roll**. It still uses the approved Mouwajaha V0.7 motion and visual baseline; this is an incremental update, not another template.
 

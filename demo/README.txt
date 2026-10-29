@@ -1,3 +1,11 @@
+ZE OS Main roll V0.7 Beta 2.7.7 — native account pinned inside the full post
+
+ZE_OS_V07_Beta277_Demo.mp4: 16 seconds, silent H.264, 1920 × 1080. Four two-second editor stills show the compact circular profile and plain name/handle at the top-left, wide/portrait media, Flip and below-text scrolling. The final eight seconds are an actual browser export of shared post scrolling while the account row stays pinned. ZE_OS_V07_Beta277_PinnedAccount.webm is the original finite eight-second capture. The viewing MP4 uses FFmpeg labels and may duplicate/hold dropped real-time frames; it is not a deterministic final renderer.
+
+The PNGs are actual screenshots. Editor.png shows the Main/Whole presentation controls. Selection/guide overlays are absent from the WebM. Generated local media are used. This correction follows the supplied still's native-account layout; no pixel-exact match is claimed.
+
+Earlier demonstrations follow.
+
 ZE OS Main roll V0.7 Beta 2.7.6 — final layout/motion review
 
 ZE_OS_V07_Beta276_Demo.mp4: 26-second silent H.264 viewing copy, 1920 × 1080. Nine two-second editor stills show Whole roll frame with portrait/wide media right, Below start/centered endpoint, Hide post text centered, Main fixed portrait/wide arrangements, the Advanced native-size treatment and close flipped header. The final eight seconds are an actual browser export of the wide below-text post moving together and settling centered. ZE_OS_V07_Beta276_Auto.webm is that original recording with finite eight-second metadata. FFmpeg adds labels and may duplicate/hold dropped real-time frames in the viewing copy; this is not an in-app deterministic renderer.

@@ -1,4 +1,10 @@
-ZE OS — Main roll V0.7 / Test Beta 2.7.6
+ZE OS — Main roll V0.7 / Test Beta 2.7.7
+
+BETA 2.7.7 — PINNED NATIVE ACCOUNT IN WHOLE ROLL FRAME
+Whole roll frame now places the circular profile picture, plain display name and gray handle at the top-left inside the post. They stay fixed during right-side and below-text scrolling, including after Flip. The platform tile stays outside at the side.
+The separate name/handle header straps and decorative top ribbon are removed from this presentation. The account row reveals with the post frame; only the post text/media beneath it scroll. Main roll keeps its original header behavior.
+Edit name, handle and profile picture in Roll & account. Existing profile/label scales and name/handle text-color overrides remain usable. Hide post text keeps the pinned account row. All previous safe-text, centering, Fill/Fit and scroll options remain.
+Close the old helper, extract this folder and run START_ZE_OS.bat. Helper version: 0.7-beta2.7.7. demo/ZE_OS_V07_Beta277_Demo.mp4 is a 16-second comparison ending with eight seconds of actual browser footage showing the row pinned while the post moves.
 
 BETA 2.7.6 — MAIN ROLL / WHOLE ROLL FRAME
 The editor is named Main roll; it retains the approved V0.7 baseline.
