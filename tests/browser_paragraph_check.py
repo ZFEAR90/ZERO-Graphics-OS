@@ -38,10 +38,7 @@ try:
     png=page.evaluate('''(time)=>{const canvas=document.createElement('canvas');canvas.width=960;canvas.height=540;const ctx=canvas.getContext('2d');ctx.textBaseline='middle';zeDrawParagraphText(ctx,time,{x:100,y:150,w:400,h:200,wrap:350,textWidth:350,right:470,baseline:35,lineHeight:35,font:24});return canvas.toDataURL()}''',time)
     im=np.array(Image.open(io.BytesIO(base64.b64decode(png.split(',')[1]))));ys,xs=np.where(im[:,:,3]>0);assert len(xs)>0,(flipped,time,page.evaluate("zeParagraphPhase("+str(time)+")"));assert xs.min()>=101 and xs.max()<499 and ys.min()>=151 and ys.max()<349;points.append(xs.mean())
    assert points[1]>points[0] if flipped else points[1]<points[0],points
-   for time in [first['end']-.001,second['start'],second['start']+.1]:
-    phase=page.evaluate('(t)=>zeParagraphPhase(t)',time)
-    if time<first['end']:assert phase['row']['id']==first['id']
-    else:assert phase['row']['id']==second['id']
+   phases=page.evaluate('(t)=>zeParagraphPhases(t)',second['start']+.1);assert {first['id'],second['id']}=={phase['row']['id'] for phase in phases}
   # Compare actual composed frames with/without text in both source paths and flips.
   for imported in [False,True]:
    if imported:

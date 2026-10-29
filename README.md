@@ -1,4 +1,4 @@
-# ZE OS — Mouwajaha V0.7, Test Beta 2.6
+# ZE OS — Mouwajaha V0.7, Test Beta 2.7
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.
 
@@ -11,6 +11,12 @@ V0.7 is the active baseline. This branch contains the testable HTML editor and i
 5. Keep the command window open. In the browser tab it launches, click **Check importer connection**, then paste a public post URL and click **Detect & import post**.
 
 Opening `ZE_OS_Mouwajaha_V07.html` directly works for offline editing. It does not start the importer. Facebook and other platforms can restrict public post access; a connected importer cannot guarantee access to every post.
+
+## Current composition controls (Beta 2.7)
+
+**Main → Respect safe area: On/Off** switches between strict fitting and the requested full-height composition. It defaults **Off**: taller bullets and roll may cross the lower-third guide, and movement is unrestricted. Automatic initial placement still accounts for the TV-logo side. **On** enables protection and clears the media exception, fitting source/bullets to the guides. The separate media checkbox can grant only the roll an exception when protection is on; the button then says “On · media exception.” Guides remain visible in every mode. The account group now defaults to **85%** (with the existing extra TV-side compensation); centered portrait headers are further reduced for readability within that layout.
+
+A single landscape post uses comparable roll/bullet widths. With flexible placement, its bullet panel keeps the taller viewport instead of shortening at the lower third. A single photo remains fully visible in contain mode while its caption scrolls independently; it is not scrolled/cropped out of the frame. A video is similarly fixed unless its speaker-safe option is explicitly disabled. Multi-attachment posts retain their combined layout.
 
 ## Beta changes and validation
 
@@ -97,7 +103,7 @@ The new browser workspace check covers actual tab navigation, unchanged source/b
 
 Under **Main → Bullet text → Paragraph timing & output**, set the overall length (default **50 seconds**) and paragraph exit/slide time (default **0.64 seconds**). Each paragraph has a Preview button, an Auto checkbox and an editable Hold duration. Hold starts after its entrance/type reveal and excludes the exit. Auto estimates reading length from word/character counts, then distributes the available video time by those estimates. Manual holds remain unchanged when video length changes. Editing the same paragraph retains its manual setting; reordering exact paragraphs carries their timing with them.
 
-Text enters from the right and exits left before the next paragraph appears. Flip reverses those directions without mirroring glyphs. A fixed rounded mask clips the animated text inside the black panel in reference, protected, and imported layouts. The original first type reveal and panel/frame entrance staging remain. Long paragraphs scroll inside the same mask rather than losing lines. The timeline shows paragraph segments; Preview seeks to the chosen entrance. **Reset holds to Auto** clears overrides; **Use estimated total** sets a natural reading-length total. If paragraphs cannot fit, a warning preserves manual settings and prevents a full recording from silently cutting them off. If all holds are manual and finish early, the remaining time contains the graphics without paragraph text.
+Text enters from the right and exits left; Beta 2.7 overlaps the next paragraph line by line. Flip reverses those directions without mirroring glyphs. A fixed rounded mask clips the animated text inside the black panel in reference, protected, and imported layouts. The panel/frame entrance staging remains; Beta 2.7 uses the line-based text entrance described below. Long paragraphs scroll inside the same mask rather than losing lines. The timeline shows paragraph segments; Preview seeks to the chosen entrance. **Reset holds to Auto** clears overrides; **Use estimated total** sets a natural reading-length total. If paragraphs cannot fit, a warning preserves manual settings and prevents a full recording from silently cutting them off. If all holds are manual and finish early, Beta 2.7 keeps the final paragraph visible for the remaining time.
 
 **Project export → Render full video (WebM)** records the selected duration in real time, with post audio if enabled. The short preview recorder remains available. Keep the browser tab visible; Cancel discards a recording. Browser recording runs in real time and can drop frames on a busy computer; deterministic broadcast rendering belongs to the final engine. Controls are locked while recording. The downloaded WebM receives finite duration metadata. A final offline render engine and native MP4/MOV encoding are not implemented in this beta.
 
@@ -106,3 +112,31 @@ Text enters from the right and exits left before the next paragraph appears. Fli
 Validation includes reading-length weighting, preserved manual holds, edited/reordered/duplicate paragraphs, overflow handling, motion-speed independence of hold seconds, both masked flip directions, pixel comparisons across imported/reference/protected layouts, transparent PNG alpha, saved timing/output settings, real full-duration WebM output and cancellation. Existing media/audio, safe-area, palette, typography/import and movement-history checks remain.
 
 [50-second paragraph-transition example](demo/ZE_OS_V07_Beta26_50s.mp4) · [actual WebM export](demo/ZE_OS_V07_Beta26_50s.webm) · [transparent PNG example](demo/ZE_OS_V07_Beta26_Transparent.png). The MP4 viewing copy was converted externally, not generated by an in-app final render engine.
+
+## Current line handoff, solo layout and post video (Beta 2.7)
+
+Paragraphs now leave in a staggered top-to-bottom wave: each line starts before the previous line finishes. The next paragraph starts during that wave, also line by line. The renderer measures wrapped text, font metrics and each line's width. It gives incoming glyphs only the horizontal space already cleared by outgoing glyphs in the same vertical area. This retains the panel mask, supports different line counts/fonts and reverses correctly with Flip. The final paragraph has no exit and remains visible through the exact video end. A manual hold on the final paragraph is a minimum, rather than an instruction to clear the panel early. Full browser recording now leaves the editor at its final frame.
+
+With bullets off, the source recenters and uses a larger viewport (720 scene units for the sample article; 760 for editable post text, with media-specific/compact/wide choices). Its header may occupy the clear upper-middle region so the source gets more height. With protection on, the bounds below apply; with it off, taller viewports and unrestricted movement are available. Top constraints use the group's destination bounds. The TV-logo side keeps its 152 px clearance; the shortened Live reservation ends at the green title-safe line (68 px). Moving into the middle or onto the Live side releases the taller TV clearance; a group that still spans the TV logo remains constrained there.
+
+**Main → Roll & account → Roll language / reading direction** provides Auto, Arabic/RTL and Latin/LTR. Auto uses editable post text; each paragraph is wrapped and aligned in its direction, with STV for Arabic. Media and screenshot pixels are never mirrored or OCR-rewritten. The centered header's order follows the solo roll language.
+
+**Main → Roll & account → 9:16 photo / video layout** offers three treatments for one selected portrait photo/video (including imported posts and local media):
+
+| Choice | Behavior |
+| --- | --- |
+| **Large centered portrait** (default) | Tall, centered roll; compact readable account header; smaller bullet panel beside it. Flip moves bullets to the other side. The roll may cross the lower third, down to 1016 px, as explicitly requested. Header and bullets obey the Main safe-area switch. |
+| **Balanced card · soft sides** | A wider card with a full, uncropped portrait over blurred duplicate side fill; a caption strip scrolls independently. Source and bullets have comparable widths; its default viewport fits above the lower third. |
+| **Portrait beside post text** | Full-height portrait beside separately scrolling post text, ordered by Arabic/Latin reading direction. The default viewport fits above the lower third; the roll can use the optional extra-height permission. Without editable text, media-only uses the soft-side card. |
+
+**Allow large post photos/videos below lower third** is on by default, following the latest user correction. It grants only the source roll extra height or downward movement, up to 1016 px, for independently selected photos/videos of any aspect ratio. Disable it to restore the usual limit. Header and bullet text stay protected when protection is enabled. Single landscape posts now use a 432-unit roll beside a comparable-width bullet panel, rather than squeezing bullets next to a 560-unit roll.
+
+The menu applies to a single independently selected portrait (aspect ratio 0.42–0.72); multiple attachments use the existing combined layout. Screenshots cannot be split into editable media/text. Focus works with text + media and media-only; hiding the media or choosing text-only immediately restores normal safe-area limits. The lower-third guide remains visible and labels the media-roll permission. The header defaults to about 66% of original size for this centered treatment and stays independent of media dimensions. All three choices retain full-media contain rendering, without cropping or mirroring. The safe-area switch, layout and overlap policy are saved in JSON. Speaker-safe video can be unpinned explicitly; it then uses ordinary post scrolling.
+
+Each video under **Post photos, video & audio** has **After video ends → Hold last frame / Loop**. Hold is the default. Loop repeats that clip, including its sound when post audio is enabled. Choices affect paused seeking, preview and browser recording and are written to project JSON. A last-decoded-picture cache prevents missing decoded frames at a loop boundary from replacing the visible video.
+
+**Keep video visible (speaker-safe)** defaults on for every attached video. Selected videos remain in fixed, full-frame contain cells while text and other post media scroll below them. This is a conservative video-protection layout, not a face detector; it prevents scrolling/cropping from losing a speaker's face without requiring AI. Multiple selected videos share the fixed region. Uncheck the option to put a video back into the ordinary scrolling post. A single media-only video uses the complete source window. Flattened screenshots cannot supply independently pinnable videos.
+
+Focused checks sample Arabic/Latin and mixed-length paragraph handoffs in both flip directions for simultaneous outgoing/incoming text, stagger order, empty frames and intersecting glyph bounds. They also verify final text at the exact end, larger solo layouts, language overrides, destination-aware top constraints, independent video end behavior, retained decoded frames, pinned-video geometry and saved choices. The previous media/audio, safe-area, typography/import, palette and undo checks remain applicable.
+
+[Beta 2.7 demonstration](demo/ZE_OS_V07_Beta27_Demo.mp4) shows normal/flipped line handoffs and all three portrait options. The actual browser WebM exports and full-size comparison screenshots are in `demo/`; see `demo/README.txt` for durations and capture limits.

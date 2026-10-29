@@ -11,7 +11,7 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
   page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('assets.source && state.stvLoaded');page.evaluate('setT(6)')
+  page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('assets.source && state.stvLoaded');page.evaluate('setT(6)');page.locator('#respectSafeArea').click()
   assert page.locator('#mainTab').get_attribute('aria-selected')=='true'
   assert page.locator('#bullets').is_visible() and page.locator('#displayname').is_visible()
   assert not page.locator('#advancedOptions').is_visible()
@@ -26,12 +26,12 @@ try:
   for flipped in [False,True]:
    page.locator('#flip').set_checked(flipped);raw=page.evaluate('Object.fromEntries(["source","bullet","identity"].map(n=>[n,zeBeforeSafeBBox(n)]))');actual=boxes()
    assert all(abs(raw[n]['w']-actual[n]['w'])<.01 for n in ['source','bullet'])
-   factor=.9*(1 if flipped else .95);assert abs(raw['identity']['w']*factor-actual['identity']['w'])<.01 and abs(raw['identity']['h']*factor-actual['identity']['h'])<.01
+   factor=.85*(1 if flipped else .95);assert abs(raw['identity']['w']*factor-actual['identity']['w'])<.01 and abs(raw['identity']['h']*factor-actual['identity']['h'])<.01
    safe=page.evaluate('zeBroadcastBounds()');paint=page.evaluate('Object.fromEntries(["source","bullet","identity"].map(n=>[n,zeVisibleBounds(n,getBBox(n))]))')
    assert all(b['x']>=safe['x']-.01 and b['x']+b['w']<=safe['x']+safe['w']+.01 for b in paint.values()),paint
-   assert all(b['y']>=safe['y']-.01 and b['y']+b['h']<=safe['bottom']+.01 for b in paint.values()),paint
-   assert paint['identity']['y']>=safe['y'] # TV logo after flip, Live sign before it.
-  page.locator('#advancedTab').click();page.locator('[data-panel="layout"] summary').click();before=boxes();page.locator('#headerGroupScale').fill('80');page.locator('#headerGroupScale').press('Tab');assert abs(boxes()['identity']['w']/before['identity']['w']-80/90)<.001;page.locator('#undoEdit').click();assert boxes()==before;page.locator('#mainTab').click()
+   assert all(b['y']>=(34 if b['x']>=safe['x']+114 else safe['y'])-.01 and b['y']+b['h']<=safe['bottom']+.01 for b in paint.values()),paint
+   assert paint['identity']['y']>=(34 if flipped else safe['y']) # The shorter Live reservation ends at the title-safe top.
+  page.locator('#advancedTab').click();page.locator('[data-panel="layout"] summary').click();before=boxes();page.locator('#headerGroupScale').fill('80');page.locator('#headerGroupScale').press('Tab');assert abs(boxes()['identity']['w']/before['identity']['w']-80/85)<.001;page.locator('#undoEdit').click();assert boxes()==before;page.locator('#mainTab').click()
   page.locator('#flip').uncheck();page.locator('[data-panel="placement"] summary').click();before=boxes();page.locator('#compositionUp').click();after=boxes();assert all(abs(after[n]['y']-before[n]['y']+10)<.01 for n in before);page.locator('#undoEdit').click();assert boxes()==before;page.locator('[data-panel="placement"] summary').click();page.locator('#advancedTab').click();page.locator('[data-panel="guides"] summary').click();page.locator('#protectLowerThird').uncheck();page.locator('#mainTab').click()
   page.evaluate("selectLayer('bullet')");before=boxes();depth=page.evaluate('zeUndoStack.length');drag('bullet',-15,-12);after=boxes()
   assert before['source']==after['source'] and before['identity']==after['identity'] and before['bullet']!=after['bullet']
@@ -54,6 +54,7 @@ try:
   assert page.locator('#singleRebuild .broadcast-exclusion').is_visible()
   assert page.locator('#singleRebuild .broadcast-outline').is_visible()
   assert page.locator('#singleRebuild .broadcast-corner').count()==2
+  assert page.locator('#singleRebuild .broadcast-corner').last.evaluate('(el)=>parseFloat(el.style.top)+parseFloat(el.style.height)')<=34/540*100+.01
   pixels=page.evaluate('cvs.toDataURL()');page.evaluate("document.getElementById('safeAreas').checked=false;zeUpdateSafePreview();draw()");assert pixels==page.evaluate('cvs.toDataURL()')
   page.set_viewport_size({'width':780,'height':1000});page.locator('#mainTab').click();assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   assert not page.evaluate('state.renderError');assert not errors,errors

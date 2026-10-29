@@ -1,6 +1,21 @@
-ZE OS — Mouwajaha V0.7 / Test Beta 2.6
+ZE OS — Mouwajaha V0.7 / Test Beta 2.7
 
-BETA 2.6 — CURRENT CHANGES
+BETA 2.7 — CURRENT CHANGES
+Main has Respect safe area: On/Off. It defaults Off for the taller composition requested: bullets and roll may cross the lower third; movement is unrestricted. On enables strict protection and turns off the media-only exception. The separate media checkbox can selectively allow the roll below the lower third with protection still on. Guides remain visible. Automatic initial placement still compensates for the TV-logo side; the Live reservation ends above the green top-safe line.
+Header size now defaults to 85%, plus the existing TV-side reduction; the centered portrait treatment has its own additional reduction. Imported bullets retain more height with protection off. A single photo stays fully visible while its caption scrolls separately.
+Lines leave in an overlapping wave, and the next paragraph starts entering during that exit. Text widths, wrapping and font metrics control the handoff masks so lines do not touch. Flip reverses the motion. The final paragraph stays through the end; its manual hold is a minimum.
+Solo roll: larger and centered; normal layouts stay constrained to the on-air region. The centered header can use the clear top-middle space. Moving into the middle or onto the Live side releases the taller TV-logo limit. The Live reservation now ends at the green top-safe line (68 px); the TV-logo clearance remains 152 px.
+Roll language / reading direction is in Main → Roll & account: Auto, Arabic / RTL, or Latin / LTR. Editable Arabic uses STV. Original media pixels are never mirrored.
+Post photos, video & audio now has After video ends → Hold last frame (default) or Loop per clip. Enabled source audio follows that choice. Keep video visible (speaker-safe) is on by default: complete video pictures remain fixed while other post content scrolls separately. Turn it off for normal post scrolling. This does not use a face detector.
+Main → Roll & account → 9:16 photo / video layout has three choices for one selected portrait:
+1. Large centered portrait (default): taller centered roll, compact readable header, smaller side bullets. Flip swaps the bullet side. The roll may cross the lower third, to 1016 px; bullets and header follow the Main safe-area switch.
+2. Balanced card · soft sides: wider card, uncropped portrait over blurred duplicate side fill, independently scrolling caption. Its default viewport fits above the lower third.
+3. Portrait beside post text: full-height picture beside separately scrolling editable text, with RTL/LTR ordering. Its default viewport fits above the lower third. Without text, media-only uses the soft-side card.
+These choices work for photos or videos selected independently; flattened screenshots cannot be split. Multiple attachments use the combined post layout. The guide labels the permitted media-roll overlap. Allow large post photos/videos below lower third is enabled by default, for any independently selected media. With protection on, only the roll gains extra height/downward movement, up to 1016 px; turn it off to restore the usual source limit. Single landscape posts now use balanced source/bullet widths rather than squeezing bullets beside a wide roll. Choosing text-only or removing portrait media restores normal protection immediately.
+The video choices, portrait treatment, overlap policy and language override are included in Project JSON. MOV alpha remains for the final renderer; the existing transparent PNG/background-off option is unchanged.
+Connection version is 0.7-beta2.7. Close the old helper before starting the new folder's START_ZE_OS.bat.
+
+BETA 2.6 — EARLIER CHANGES
 Main → Bullet text → Paragraph timing & output contains the video length (default 50 s), transition duration, and individual Auto / Hold seconds / Preview controls.
 Auto estimates reading time from paragraph length and shares available time accordingly. Manual holds are preserved when video length changes. Hold excludes entry and exit. A warning appears if the schedule cannot fit; full recording is blocked instead of silently truncating the text.
 Text exits opposite its entry, then the next appears. Flip reverses both directions. Text is clipped inside the black panel throughout entry and exit.

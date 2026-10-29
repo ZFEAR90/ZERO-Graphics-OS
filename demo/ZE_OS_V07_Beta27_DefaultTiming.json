@@ -1,0 +1,48 @@
+{
+  "durationSeconds": 50,
+  "transitionSeconds": 0.64,
+  "handoff": "staggered lines with collision-safe overlap",
+  "finalParagraph": "hold through end of video",
+  "paragraphs": [
+    {
+      "text": "وسائل الإعلام والسياسيون يكذبون بشأن ما يجري في فرنسا، وتستمر التغطية الصحافية للأحداث مع نقاش واسع حول الخلفيات السياسية والاجتماعية والاقتصادية للتطورات الأخيرة.",
+      "mode": "auto",
+      "holdSeconds": 20.59841425716543,
+      "estimatedHoldSeconds": 10.3,
+      "lineCount": 4,
+      "lineStaggerSeconds": 0.16,
+      "start": 1.84,
+      "entryEnd": 2.8938310383766064,
+      "exitStart": 23.492245295542038,
+      "end": 24.546076333918645,
+      "final": false
+    },
+    {
+      "text": "يشكل المسلمون نحو 6% من سكان أوروبا، ونحو 9 إلى 10% من سكان فرنسا",
+      "mode": "auto",
+      "holdSeconds": 14.789228968392374,
+      "estimatedHoldSeconds": 6.9,
+      "lineCount": 2,
+      "lineStaggerSeconds": 0.16,
+      "start": 23.620245295542038,
+      "entryEnd": 24.586076333918644,
+      "exitStart": 39.37530530231102,
+      "end": 40.120425837308346,
+      "final": false
+    },
+    {
+      "text": "المواطنون يعانون بسبب ارتفاع الأسعار والضرائب",
+      "mode": "auto",
+      "holdSeconds": 9.834335633850651,
+      "estimatedHoldSeconds": 4,
+      "lineCount": 1,
+      "lineStaggerSeconds": 0.16,
+      "start": 39.50330530231102,
+      "entryEnd": 40.16566436614935,
+      "exitStart": null,
+      "end": 50,
+      "final": true
+    }
+  ],
+  "note": "Hold seconds exclude motion. The final paragraph stays until video end; a manual final hold is a minimum."
+}
