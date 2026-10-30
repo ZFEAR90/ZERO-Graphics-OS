@@ -1,0 +1,5 @@
+Main essentials, Advanced geometry/framing/colors, regenerated media controls, speaker toggle and active-layout overrides: passed
+Hidden/media-only post renders without duplicate blur in primary and retained Advanced layouts, both flips: passed
+Text only preserves source/header/bullet rectangles and original media geometry across 16 normal/flipped combinations: passed
+Painted text-only pixels remain above the breaking-news boundary in Main/Whole, normal/flipped, with protection off: passed
+Normal/flipped header screenshots, 24-unit painted gap, and zero JavaScript errors: passed

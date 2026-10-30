@@ -40,3 +40,7 @@ Existing capture/import/media, portrait, native account, reference-size, solo-te
 Intentional expectation changes are limited to documented product changes: automatic bulletin-off when choosing Whole; one history transaction for that selection; returning to Main restores prior visibility; Advanced control relocation; explicit Grid/speaker or hidden-video audio choices; and preserving media geometry in Text-only mode. Additional replacement-behavior tests cover each change. Other assertions are retained.
 
 Unit mocks and controlled local URL responses are identified as fixtures. Passing them does not prove that a live X/Facebook/Instagram URL is anonymously accessible. Native Windows batch execution and unavailable external broadcast references are not validated by Linux/Chromium checks.
+
+### October 30 owner examples
+
+`browser_owner_adjustments_check.py` tests Main media-only/Fit import defaults, shared movement selection, sentence/numbered-point preservation, stationary title pixels in both flips, normal-bullet reset without source edits, actual background-driven panel color and manual locking. `browser_mouse_resize_check.py` uses real pointer handles to resize each group, verifies width/height independently, reflow, native-account containment, mandatory text safety, Undo/Redo/reset and JSON round trips. Existing auto-post/reference/post-layout checks deliberately replace old roll-text/Fill defaults with bullet/Fit; optional fixed-media and Fill assertions remain.

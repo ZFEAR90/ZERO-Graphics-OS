@@ -91,3 +91,11 @@ Final automated verification for the connected-importer update: **20 unit tests 
 
 
 Automatic Whole bulletin hiding also retains the last visible bullet capacity. This keeps grouping and manual holds stable while the panel is hidden, including export/load on a fresh page; the persistence and round-trip tests cover that case. The complete release suite was rerun after this fix and passed all 20 unit tests and 39 browser files. The ZIP, preview evidence and demonstration were then rebuilt from that exact source.
+
+## October 30 owner testing continuation
+
+Main media imports now default to post text in the external bullet and centered media only in the roll, with Fit rather than Fill. Whole retains the complete-post treatment; including text in Main defaults to shared movement. Optional fixed media and Fill remain. Post import is expanded. Pagination prioritizes whole paragraphs, numbered points and sentences, with clause/word fallback for oversized content; a numbered marker stays with its text. Long numbered lists infer a pinned introductory heading on a colored strap, with editable title and normal-bullet reset. This uses structural/language boundaries, not a full semantic AI model.
+
+The panel follows loop colors more visibly, including neutral images. Manual Panel edits lock the color across loop changes; unlocking resumes automatic matching. Temporary right/bottom/corner mouse handles resize roll/bullet dimensions independently; contents reflow/scale/refit, headers remain grouped, safe text capacity is retained, and Undo/Redo/reset/Project JSON preserve dimensions. The testing switch hides the handles.
+
+Final automated validation: 20 unit cases and 41 browser files passed, zero failures/skips/unrun. New owner and pointer-resize checks cover geometry, title pixels, sentence/list boundaries, default uncropped media, normal/flipped layouts, palette, Undo and project round trips. Existing optional fixed-media and Fill coverage remains. The real URL API test now includes a photo and verifies new Main defaults; the extracted Windows ZIP also passes its packaged helper/editor test with controlled post metadata. Live platform access remains separate; native Windows batch execution remains unrun in this Linux executor. Results/logs: `demo/validation/Beta278-Oct30/`.

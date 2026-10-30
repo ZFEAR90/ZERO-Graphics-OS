@@ -10,6 +10,16 @@ Choosing Whole roll frame turns the external bullet off automatically while pres
 
 [Regression coverage](tests/README.md) · [Owner testing requirements](TESTING_REQUIREMENTS.md).
 
+## October 30 testing adjustments
+
+Main imports media posts with **text in the external bullet and media only in the roll**. **Fit** is the new default to retain the entire picture; Fill remains selectable. Including text inside the roll uses shared text/media scrolling by default. Whole keeps its complete-post/shared-scroll default and automatically hides the external bullet.
+
+Bullet pagination now prefers whole paragraphs, numbered points and language-aware sentence boundaries. Oversized units fall back to clauses/words to remain within real safe capacity. This is structural grouping, not full semantic interpretation. Long numbered lists automatically pin their introductory heading on a colored strap; edit the title or use **Return to normal bullet**. Source text is retained.
+
+The bullet-panel color follows background changes. A manual Panel color edit locks that choice; untick **Keep my manual panel color** to resume automatic matching. Pause, select the roll or bullet and drag its right/bottom/corner handles for temporary mouse resizing. Contents reflow/refit; Undo/Redo, Reset mouse sizes and Project JSON support the dimensions. The testing checkbox disables the handles. Post import is expanded by default.
+
+The older workflow sections below describe historical defaults, superseded by this section.
+
 ## Recovery continuation — Beta 2.7.8
 
 Reconstructed from published Beta 2.7.7 on `ze-os-v07-beta278-recovery`, retaining the approved V0.7 base. Auto bullet grouping now paginates by safe capacity; inside-roll text preserves editorial bullets. Whole roll defaults to shared text/media motion with its account pinned inside. Multiple media use directional masked sequencing with local video time and audio crossfades; grid, fixed media and hidden-video audio are explicit options. Arabic post kashida preserves source text. Header spacing follows painted bounds.

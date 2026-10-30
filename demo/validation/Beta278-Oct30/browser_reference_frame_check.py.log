@@ -1,0 +1,12 @@
+127.0.0.1 - - [29/Oct/2026 23:20:58] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:20:59] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:20:59] "GET /favicon.ico HTTP/1.1" 404 -
+Reference painted size: {'x': 509, 'y': 86, 'w': 402, 'h': 398}
+127.0.0.1 - - [29/Oct/2026 23:20:59] "GET /fixtures/portrait.mp4 HTTP/1.1" 206 -
+/fixtures/portrait.mp4 same frame, two flips, Fill/Fit and three text choices: passed
+127.0.0.1 - - [29/Oct/2026 23:21:00] "GET /fixtures/landscape.mp4 HTTP/1.1" 206 -
+/fixtures/landscape.mp4 same frame, two flips, Fill/Fit and three text choices: passed
+127.0.0.1 - - [29/Oct/2026 23:21:01] "GET /fixtures/photo.png HTTP/1.1" 200 -
+/fixtures/photo.png same frame, two flips, Fill/Fit and three text choices: passed
+square generated photo same frame, two flips, Fill/Fit and three text choices: passed
+Painted crop/contain, manual face region, solo/header, strict safety, entrance frames and saved settings: passed

@@ -1,0 +1,10 @@
+127.0.0.1 - - [29/Oct/2026 23:19:39] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:19:39] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:19:39] "GET /favicon.ico HTTP/1.1" 404 -
+Reference bulletin text stays above lower third through flips/movement/protection modes
+127.0.0.1 - - [29/Oct/2026 23:19:44] "GET /tests/fixtures/photo.png HTTP/1.1" 200 -
+focus header stays above and moves with bullets; roll moves independently
+balanced header stays above and moves with bullets; roll moves independently
+beside header stays above and moves with bullets; roll moves independently
+Imported bulletin text never enters lower third, including tall black panels
+Caption-first photos/videos, cleaned URLs, optional protected-region crop and JSON: passed

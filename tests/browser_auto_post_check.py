@@ -14,7 +14,7 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source')
-  assert page.locator('#postTextPlacement').input_value()=='roll' and page.locator('#postScrollMode').input_value()=='fixed'
+  assert page.locator('#postTextPlacement').input_value()=='bullet' and page.locator('#postScrollMode').input_value()=='together'
   assert page.locator('#portraitLayout').input_value()=='reference' and page.locator('#socialMediaPosition').input_value()=='auto'
   assert page.locator('#portraitLayout').evaluate('(el)=>!!el.closest("#advancedOptions")')
   assert not page.locator('#portraitLayout').is_visible();page.locator('#openRollLayouts').click();assert page.locator('#portraitLayout').is_visible();page.locator('#mainTab').click()
@@ -23,8 +23,10 @@ try:
   for filename,type_,position in [('portrait.mp4','video','right'),('portrait.png','image','right'),('landscape.mp4','video','below'),('photo.png','image','below'),(None,'image','below')]:
    page.evaluate(r'''async(v)=>{let url=v.file?'/fixtures/'+v.file:null;if(!url){const c=document.createElement('canvas');c.width=c.height=400;c.getContext('2d').fillRect(0,0,400,400);url=c.toDataURL()}zeCommitPost(await zePreparePost({text:(v.text.repeat(3)+'\n\n').repeat(5),attachments:[{type:v.type,url}]}));setT(5)}''',dict(file=filename,type=type_,text=text))
    if type_=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postTextPlacement').input_value()=='roll' and not page.locator('#postScrollMode').is_disabled()
-   assert page.locator('#bullets').input_value()=='نص تحريري مستقل عن المنشور'
+   assert page.locator('#postTextPlacement').input_value()=='bullet' and not page.locator('#postScrollMode').is_disabled()
+   assert page.locator('#bullets').input_value()==page.locator('#postBody').input_value()
+   # Optional fixed-media text presentation retains its previous coverage.
+   page.locator('#postTextPlacement').select_option('roll');page.locator('#postScrollMode').select_option('fixed')
    for flip in [False,True]:
     page.evaluate('(v)=>setFlipped(v)',flip);before=page.evaluate('zeSafeLayout()');s=before['source'];assert s['w']==baseline['w'] and s['h']==baseline['h']
     assert page.evaluate('zeAutoPostPosition()')==position

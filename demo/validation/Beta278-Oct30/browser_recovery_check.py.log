@@ -1,0 +1,7 @@
+Capacity pagination, Auto/blank grouping, preserved manual holds/bullets, painted header gap and corner clearance: passed
+Arabic kashida/unaltered source/natural final line, Whole shared movement, independent bullet visibility: passed
+Complementary masks cover every pixel; flip reverses wipe without mirroring; incoming time/weights: passed
+Only active video plays, Hold/Loop local timing, cached decoded frames, centered text-only roll: passed
+Audio weights crossfade; hidden video is silent unless explicitly enabled: passed
+Real drag, one-step Ctrl+Z and Ctrl+Shift+Z, visible movement feedback: passed
+Main timing/Render control, narrow preview-first workspace, zero browser errors: passed

@@ -21,7 +21,7 @@ try:
   for kind,src in [('video','/fixtures/portrait.mp4'),('video','/fixtures/landscape.mp4'),('image','/fixtures/photo.png'),('image',None)]:
    page.evaluate('''async(v)=>{let url=v.src;if(!url){const c=document.createElement('canvas');c.width=c.height=400;const x=c.getContext('2d');x.fillStyle='#168fb5';x.fillRect(0,0,400,400);url=c.toDataURL()}zeCommitPost(await zePreparePost({text:v.text,attachments:[{type:v.kind,url}]}));setT(5)}''',dict(kind=kind,src=src,text=text))
    if kind=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postMediaFit').input_value()=='fill' and page.locator('#postTextPlacement').input_value()=='roll'
+   assert page.locator('#postMediaFit').input_value()=='fit' and page.locator('#postTextPlacement').input_value()=='bullet'
    for flip in [False,True]:
     page.evaluate('(flip)=>setFlipped(flip)',flip)
     expected=page.evaluate('getBBox("source")')

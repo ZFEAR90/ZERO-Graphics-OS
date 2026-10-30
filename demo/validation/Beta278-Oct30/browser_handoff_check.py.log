@@ -1,0 +1,13 @@
+127.0.0.1 - - [29/Oct/2026 23:19:53] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:19:54] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:19:54] "GET /favicon.ico HTTP/1.1" 404 -
+Handoff False 90 frames, 50 overlap frames
+Handoff True 90 frames, 47 overlap frames
+Handoff False 104 frames, 71 overlap frames
+Handoff True 104 frames, 68 overlap frames
+Handoff False 94 frames, 52 overlap frames
+Handoff True 94 frames, 51 overlap frames
+Handoff False 88 frames, 54 overlap frames
+Handoff True 88 frames, 54 overlap frames
+Moving diagonally into the clear middle releases the corner limit; returning to a side restores it
+Final hold and enlarged, safe, language-aware solo roll: passed

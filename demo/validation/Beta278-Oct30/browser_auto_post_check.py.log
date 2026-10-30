@@ -1,0 +1,13 @@
+127.0.0.1 - - [29/Oct/2026 23:19:25] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:19:26] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:19:26] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 23:19:26] "GET /fixtures/portrait.mp4 HTTP/1.1" 206 -
+portrait.mp4 fixed screenshot size, default inside-roll text, automatic right , scroll and centered media Fill/Fit: passed
+127.0.0.1 - - [29/Oct/2026 23:19:27] "GET /fixtures/portrait.png HTTP/1.1" 200 -
+portrait.png fixed screenshot size, default inside-roll text, automatic right , scroll and centered media Fill/Fit: passed
+127.0.0.1 - - [29/Oct/2026 23:19:28] "GET /fixtures/landscape.mp4 HTTP/1.1" 206 -
+landscape.mp4 fixed screenshot size, default inside-roll text, automatic below , scroll and centered media Fill/Fit: passed
+127.0.0.1 - - [29/Oct/2026 23:19:29] "GET /fixtures/photo.png HTTP/1.1" 200 -
+photo.png fixed screenshot size, default inside-roll text, automatic below , scroll and centered media Fill/Fit: passed
+square photo fixed screenshot size, default inside-roll text, automatic below , scroll and centered media Fill/Fit: passed
+RTL/LTR painted safety, fixed text-only/solo, native-size option in Advanced, saved defaults and mobile width: passed

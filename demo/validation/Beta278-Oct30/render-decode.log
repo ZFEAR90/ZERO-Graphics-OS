@@ -1,0 +1,33 @@
+Input #0, matroska,webm, from 'demo/ZE_OS_V07_Beta278_50s.webm':
+  Metadata:
+    encoder         : Chrome
+  Duration: 00:00:50.00, start: 0.000000, bitrate: 236 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(pc, bt709/bt709/iec61966-2-1), 1920x1080, SAR 1:1 DAR 16:9, 1k tbr, 1k tbn (default)
+      Metadata:
+        alpha_mode      : 1
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+[Parsed_volumedetect_0 @ 0x5651ee3b0980] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp9 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (opus (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(pc, bt709/bt709/iec61966-2-1, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 1k fps, 1k tbn (default)
+      Metadata:
+        alpha_mode      : 1
+        encoder         : Lavc61.19.101 wrapped_avframe
+  Stream #0:1(eng): Audio: pcm_s16le, 48000 Hz, stereo, s16, 1536 kb/s (default)
+      Metadata:
+        encoder         : Lavc61.19.101 pcm_s16le
+frame=  196 fps=0.0 q=-0.0 size=N/A time=00:00:08.75 bitrate=N/A speed=17.4x
+frame=  484 fps=483 q=-0.0 size=N/A time=00:00:20.92 bitrate=N/A speed=20.9x
+frame=  740 fps=492 q=-0.0 size=N/A time=00:00:31.35 bitrate=N/A speed=20.8x
+frame=  997 fps=497 q=-0.0 size=N/A time=00:00:42.06 bitrate=N/A speed=  21x
+[Parsed_volumedetect_0 @ 0x7f0914002400] n_samples: 4798080
+[Parsed_volumedetect_0 @ 0x7f0914002400] mean_volume: -34.1 dB
+[Parsed_volumedetect_0 @ 0x7f0914002400] max_volume: -17.6 dB
+[Parsed_volumedetect_0 @ 0x7f0914002400] histogram_17db: 5616
+[out#0/null @ 0x5651ee3567c0] video:511KiB audio:9371KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame= 1190 fps=475 q=-0.0 Lsize=N/A time=00:00:49.94 bitrate=N/A speed=19.9x

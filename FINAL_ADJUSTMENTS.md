@@ -85,3 +85,7 @@ These are the final adjustments requested immediately before the original Codex 
 - Preserve all working controls while removing unnecessary permanent panels.
 
 Do not publish until these final adjustments are verified in a real browser in normal and flipped layouts.
+
+## Owner testing corrections — October 30, 2026
+
+Authorized implementation after owner testing: prioritize sentence/paragraph/list-point boundaries when paginating; pin an inferred introductory heading above long numbered lists using a colored strap, with editable title and Return to normal bullet; Main with visible bullets imports text to the external bullet and media only to the roll; Fit is the new import default (superseding Fill), with Fill retained; shared text/media movement when text is included, speaker-safe override retained; automatic loop-derived panel color and persistent manual override; temporary mouse width/height resizing for roll and bullet, responsive contents, Undo/Redo, reset, portable geometry. Post import starts expanded. No external AI service is used for semantic interpretation: pagination uses document structure and language-aware sentence boundaries, then clause/word fallback only for oversized units.

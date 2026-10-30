@@ -1,0 +1,16 @@
+127.0.0.1 - - [29/Oct/2026 23:20:07] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:20:08] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:20:08] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 23:20:08] "GET /fixtures/landscape.mp4 HTTP/1.1" 206 -
+reference landscape.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+127.0.0.1 - - [29/Oct/2026 23:20:12] "GET /fixtures/portrait.mp4 HTTP/1.1" 206 -
+reference portrait.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+focus landscape.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+focus portrait.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+balanced landscape.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+balanced portrait.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+beside landscape.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+beside portrait.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+social landscape.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+social portrait.mp4 stable frame/header/side after Include videos off/on, with original text fallback: passed
+Main default, individual exclusions, explicit Hide post text, restored media routing and fixed text-only layout: passed

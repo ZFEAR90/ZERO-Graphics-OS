@@ -1,0 +1,6 @@
+127.0.0.1 - - [29/Oct/2026 23:20:53] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:20:54] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:20:54] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [29/Oct/2026 23:20:54] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:20:54] "GET /api/post?url=https%3A%2F%2Fx.com%2Ffixture%2Fstatus%2F123456789 HTTP/1.1" 200 -
+Extracted ZIP: real packaged helper, connected local API fixture import, loaded media, Whole auto-hide and expanded frame: passed.

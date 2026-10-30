@@ -1,0 +1,9 @@
+127.0.0.1 - - [29/Oct/2026 23:19:35] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:19:36] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:19:36] "GET /favicon.ico HTTP/1.1" 404 -
+FONT {'loaded': True, 'regular': True, 'bold': True}
+LABELS 8 long/short/Arabic/flip cases passed
+Disconnected importer preserves all scene assets and labels
+Platform denial preserves scene and displays actual error
+IMPORT UI name/profile/logo/post replacement passed with fixture; live service separate
+BROWSER ERRORS []

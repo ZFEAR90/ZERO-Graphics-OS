@@ -4,7 +4,7 @@ MAIN ROLL - BETA 2.7.8 - WINDOWS URL-IMPORT TEST
 2. Close older Main roll importer windows and offline browser tabs.
 3. Double-click TEST_MAIN_ROLL.bat (or START_ZE_OS.bat).
 4. Keep the command window open. Use the browser tab it opens.
-5. Paste the public post URL and click Detect & import post.
+5. Post import is open at the top of Main. Paste the public post URL and click Detect & import post.
 
 REQUIREMENTS
 Python 3.10 or newer is required for URL importing. Install it from
@@ -24,6 +24,22 @@ unreachable local importer. Upload original media manually when needed.
 OFFLINE MODE
 OFFLINE_MAIN_ROLL.bat opens the editor without Python. It supports manual
 photos/video, editing and browser rendering. It does NOT start URL importing.
+
+LATEST TESTING ADJUSTMENTS (OCTOBER 30)
+Main + visible bullet: imported text goes into the bullet, and only media
+appears in the roll. Fit is the default so the complete image is visible.
+Fill remains available. Including text inside the roll is a manual option;
+text and media then scroll together unless speaker-safe mode is selected.
+Bullet pages prefer complete paragraphs, numbered points and sentences.
+Oversized sentences may still need clause/word splits to fit safely.
+Long numbered lists automatically pin their introductory heading on a
+colored strap. Edit the title or click Return to normal bullet to reset it.
+Changing the loop adapts the panel color. Editing Panel locks your manual
+choice; untick Keep my manual panel color to follow the loop again.
+Temporary mouse resizing: pause, click a roll or bullet panel, then drag
+its right/bottom/corner handle. Text scales/reflows and media refits.
+Undo/Redo and Project JSON retain sizes. Reset mouse sizes restores defaults.
+The temporary feature can be disabled using its checkbox in Main.
 
 WHOLE ROLL
 Choosing Whole roll frame turns the external bullet off automatically.

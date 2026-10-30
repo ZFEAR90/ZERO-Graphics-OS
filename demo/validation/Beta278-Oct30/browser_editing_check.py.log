@@ -1,0 +1,7 @@
+127.0.0.1 - - [29/Oct/2026 23:19:49] "GET /ZE_OS_Mouwajaha_V07.html HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 23:19:50] code 404, message File not found
+127.0.0.1 - - [29/Oct/2026 23:19:50] "GET /favicon.ico HTTP/1.1" 404 -
+Header dimensions fixed across portrait/landscape: 348.84 75.905
+Selected subset moves only its chosen groups
+Mouse bullet-only/all-group dragging, whole-composition Up, and safe constraints passed
+Undecoded background and interrupted render both retain a complete preview frame; no JS errors

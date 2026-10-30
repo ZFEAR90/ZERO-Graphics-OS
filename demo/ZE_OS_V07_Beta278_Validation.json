@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "branch": "ze-os-v07-beta278-recovery",
   "base": "e1e4830ef214a93a6c823b18543349791b4f9f3f",
   "syntax": "node --check passed for all inline scripts",
@@ -26,7 +26,9 @@
     "browser_media_sequence_check",
     "browser_media_toggle_check",
     "browser_motion_check",
+    "browser_mouse_resize_check",
     "browser_native_account_check",
+    "browser_owner_adjustments_check",
     "browser_palette_check",
     "browser_paragraph_check",
     "browser_portrait_check",
@@ -57,15 +59,11 @@
     "streams": [
       {
         "codec_name": "vp9",
-        "codec_type": "video",
         "width": 1920,
-        "height": 1080,
-        "nb_read_frames": "1181"
+        "height": 1080
       },
       {
-        "codec_name": "opus",
-        "codec_type": "audio",
-        "nb_read_frames": "833"
+        "codec_name": "opus"
       }
     ],
     "format": {
@@ -107,16 +105,26 @@
     "failed": 0
   },
   "full_regression": {
-    "passed": 40,
+    "passed": 42,
     "failed": 0,
     "skipped": 0,
     "unrun": 0,
-    "report": "demo/validation/Beta278/full-regression.json"
+    "report": "demo/validation/Beta278-Oct30/full-regression.json"
   },
-  "editor_sha256": "942dfaf64c1735418ee8d267c85fbd96e6385d03d34f0511e12095a2e830728c",
-  "package_sha256": "602f6d242dd5d0a46b30011189b5401173afc3c3b139bd8f86052b89ef61d4b5",
+  "editor_sha256": "dee79df44248a0bf0616ce6b97ca51cb0286ead81b824f092f539f813adc6dae",
+  "package_sha256": "6c65ff53f0f7ac14cef6a2c9ff8aac14f203b611a7eb647dc0f547e8ba38d6e3",
   "external_checks": {
     "live_x_post": "blocked: cloud proxy CONNECT HTTP 403",
     "native_windows_batch_execution": "unrun: executor is Linux"
+  },
+  "october30_adjustments": {
+    "url_api_text_and_photo": "passed with controlled public-post metadata",
+    "extracted_package": "passed",
+    "pinned_title_pixels": "passed normal/flipped; source text retained",
+    "mouse_resize": "passed real pointer, Undo/Redo, native account, safe capacity and project round trip",
+    "pagination": "structure/sentence boundaries; oversized clauses/words fallback",
+    "demo": "updated walkthrough and 50-second render inspected",
+    "render_full_black_intervals": 0,
+    "render_audio_peak_db": -17.6
   }
 }

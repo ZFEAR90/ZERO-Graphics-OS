@@ -26,7 +26,7 @@ try:
   panel_pixels()
   text='خبر أصلي قابل للتحرير مع صورة أو فيديو. https://t.co/example\n\nتفاصيل إضافية عن الحدث.'
   page.evaluate('''async(text)=>{const prepared=await zePreparePost({text,attachments:[{type:'video',url:'/fixtures/landscape.mp4'}]});zeCommitPost(prepared)}''',text)
-  assert page.locator('#postTextPlacement').input_value()=='bullet' and page.locator('#postMediaFit').input_value()=='fill'
+  assert page.locator('#postTextPlacement').input_value()=='bullet' and page.locator('#postMediaFit').input_value()=='fit'
   assert page.locator('#bullets').input_value()==page.locator('#postBody').input_value() and 'http' not in page.locator('#bullets').input_value()
   assert page.evaluate('zePostRollText()==="" && zePost.bulletLinked')
   b=page.evaluate('getBBox("source")');a=page.evaluate('zeBroadcastBounds()');assert b['y']>140 and a['top']<b['y']+b['h']<a['top']+30,b
@@ -57,7 +57,7 @@ try:
   # Photos use the same native sizing; no text choice is lost when media is replaced.
   page.locator('#respectSafeArea').click();page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/photo.png'));page.wait_for_function('zePost.items[0].type==="image"');native_body();page.locator('#postBody').fill('صورة مع نص قابل للاختيار');page.locator('#copyPostToBullets').click()
   with page.expect_download() as download:page.locator('#saveJson').click()
-  download.value.save_as('/tmp/ze-beta272.json');saved=json.loads(Path('/tmp/ze-beta272.json').read_text());assert saved['headerAnchor']=='inside-roll' and saved['safeArea']['bulletPanelAlwaysProtected'] and saved['postMedia']['textPlacement']=='bullet' and saved['postMedia']['fit']=='fill'
+  download.value.save_as('/tmp/ze-beta272.json');saved=json.loads(Path('/tmp/ze-beta272.json').read_text());assert saved['headerAnchor']=='inside-roll' and saved['safeArea']['bulletPanelAlwaysProtected'] and saved['postMedia']['textPlacement']=='bullet' and saved['postMedia']['fit']=='fit'
   page.set_viewport_size({'width':780,'height':1000});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   assert not page.evaluate('state.renderError') and not errors,errors;print('Photo geometry and saved text-placement, fitting, header and panel policies: passed',flush=True);browser.close()
 finally:server.shutdown();server.server_close()
