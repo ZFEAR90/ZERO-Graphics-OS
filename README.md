@@ -1,3 +1,5 @@
+Startup repair: the Windows launcher now restores missing pip in an existing `.venv` with bundled `ensurepip`, then installs and verifies importer dependencies. If Python cannot bootstrap pip, it explains how to repair the Python installation.
+
 ## Latest recovery continuation
 
 Work continues from `c4b0bbd` on `ze-os-v07-beta278-recovery`; main is unchanged.
@@ -7,7 +9,7 @@ Work continues from `c4b0bbd` on `ze-os-v07-beta278-recovery`; main is unchanged
 - Whole-frame right-side media stays fixed. Below-text media scrolls with the original text, retaining its allocated size instead of moving to a new centered layout. Switching presentations preserves the selected arrangement.
 - Telegram widget parsing keeps the full original body and treats channel photos as profiles. Only actual widget attachments become post media. Live Telegram access is unverified in this cloud because its network proxy denies t.me.
 
-Validation: **22 unit tests and 43 browser suites passed**, including the 384-case owner acceptance matrix. See [validation evidence](validation/owner-continuation.json) and [settled Whole frame](demo/pending-adjustments/Whole_Right.png). Live Telegram retrieval and native Windows execution remain unverified.
+Validation: **23 unit tests and 43 browser suites passed**, including the 384-case owner acceptance matrix. See [validation evidence](validation/owner-continuation.json) and [settled Whole frame](demo/pending-adjustments/Whole_Right.png). Live Telegram retrieval and native Windows execution remain unverified.
 
 Windows testing: download `downloads/Main_roll_test.zip`, extract it completely into a new folder, close the old helper, and run `TEST_MAIN_ROLL.bat`. Windows launchers are covered by static/unit checks; this Linux environment cannot execute them natively.
 

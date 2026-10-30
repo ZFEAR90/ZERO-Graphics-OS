@@ -19,6 +19,19 @@ class LauncherTests(unittest.TestCase):
   try:
    with patch('webbrowser.open') as opened:self.assertEqual(helper.run_editor(server.server_port),0);opened.assert_called_once()
   finally:server.shutdown();server.server_close()
+ def test_missing_pip_can_be_repaired_without_recreating_environment(self):
+  with tempfile.TemporaryDirectory() as folder:
+   target=Path(folder)/'local-env'
+   subprocess.run([os.sys.executable,'-m','venv','--without-pip',str(target)],check=True,capture_output=True)
+   python=target/('Scripts/python.exe' if os.name=='nt' else 'bin/python')
+   marker=target/'existing-user-file.txt';marker.write_text('preserve')
+   self.assertNotEqual(subprocess.run([str(python),'-m','pip','--version'],capture_output=True).returncode,0)
+   subprocess.run([str(python),'-m','ensurepip','--upgrade'],check=True,capture_output=True)
+   subprocess.run([str(python),'-m','pip','--version'],check=True,capture_output=True)
+   self.assertEqual(marker.read_text(),'preserve')
+  start=(ROOT/'START_ZE_OS.bat').read_text()
+  self.assertLess(start.index('-m ensurepip --upgrade'),start.index('-m pip install -r requirements.txt'))
+  self.assertIn('if errorlevel 1 goto pip_missing',start)
  def test_launcher_modes_are_explicit(self):
   self.assertIn('START_ZE_OS.bat',(ROOT/'TEST_MAIN_ROLL.bat').read_text());self.assertNotIn('start ""',(ROOT/'TEST_MAIN_ROLL.bat').read_text())
   start=(ROOT/'START_ZE_OS.bat').read_text();self.assertIn('--startup-log STARTUP_LOG.txt',start);self.assertIn('sys.version_info >= (3,10)',start);self.assertNotIn('-m playwright install chromium',start)

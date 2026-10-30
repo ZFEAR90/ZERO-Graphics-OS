@@ -2,10 +2,10 @@
   "base_commit": "c4b0bbd74ce02c42aad2577e61c0bcf20729c76d",
   "branch": "ze-os-v07-beta278-recovery",
   "unit_tests": {
-    "passed": 22,
+    "passed": 23,
     "failed": 0,
     "command": ".venv/bin/python -m unittest discover -s tests -p test_*.py -q",
-    "note": "The full runner initially found a nested Telegram avatar extraction bug. It was fixed; all 22 unit tests passed on the final rerun."
+    "note": "All 23 unit tests passed after the startup repair, including a real venv --without-pip / ensurepip recovery test preserving an existing file. Browser evidence remains from the unchanged editor/importer source."
   },
   "browser_suites": {
     "passed": 43,
@@ -65,11 +65,12 @@
   "sha256": {
     "ZE_OS_Mouwajaha_V07.html": "268d4e1222c6a0998ff5b8470ca8c580ee0cf7bf64f065382db5f2b89de4f808",
     "ze_local_importer.py": "f40b6541c32cd8766f1d4c632746471aa2e7c408c4da2796465d6efe2d29be04",
-    "downloads/Main_roll_test.zip": "b59b4aa4363790b055522aeaa43be0cc9a3a031453d5be5868c35c351cbe93aa"
+    "downloads/Main_roll_test.zip": "23382b1210699a40a69589b3717500b5eb987d0e6437d3650a9918e746f0e795"
   },
   "limitations": [
     "Real Telegram example: cloud proxy CONNECT returned 403; live import unverified.",
     "Windows launchers covered by unit/static checks; native Windows execution unavailable on Linux.",
     "Motion checks use existing V0.7 proxy, not unavailable full-resolution broadcast reference."
-  ]
+  ],
+  "launcher_repair": "START_ZE_OS.bat checks pip, runs ensurepip --upgrade when missing, rechecks pip and dependency imports, and gives Python Repair guidance if bootstrap fails. Windows batch execution remains unverified on Linux."
 }

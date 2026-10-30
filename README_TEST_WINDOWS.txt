@@ -16,6 +16,9 @@ IF STARTUP FAILS
 Read the command window and STARTUP_LOG.txt in this folder.
 If a port is occupied, close the older helper window before retrying.
 If Python is missing, install it and run the launcher again.
+Missing pip in an existing .venv is now repaired automatically with Python
+ensurepip. If that fails, use the official Python installer to Modify/Repair
+Python with pip enabled, then rerun START_ZE_OS.bat.
 If post screenshots are unavailable, run INSTALL_CAPTURE_BROWSER.bat,
 then restart START_ZE_OS.bat. Installed Chrome/Edge may also be used.
 Social platforms may deny anonymous access. That is different from an
