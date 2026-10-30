@@ -26,22 +26,22 @@ try:
   panel_pixels()
   text='خبر أصلي قابل للتحرير مع صورة أو فيديو. https://t.co/example\n\nتفاصيل إضافية عن الحدث.'
   page.evaluate('''async(text)=>{const prepared=await zePreparePost({text,attachments:[{type:'video',url:'/fixtures/landscape.mp4'}]});zeCommitPost(prepared)}''',text)
-  assert page.locator('#postTextPlacement').input_value()=='bullet' and page.locator('#postMediaFit').input_value()=='fit'
-  assert page.locator('#bullets').input_value()==page.locator('#postBody').input_value() and 'http' not in page.locator('#bullets').input_value()
-  assert page.evaluate('zePostRollText()==="" && zePost.bulletLinked')
+  assert page.locator('#postTextPlacement').input_value()=='roll' and page.locator('#postMediaFit').input_value()=='fit'
+  assert page.locator('#bullets').input_value()!=page.locator('#postBody').input_value() and 'http' not in page.locator('#postBody').input_value()
+  assert page.evaluate('!!zePostRollText() && !zePost.bulletLinked')
   b=page.evaluate('getBBox("source")');a=page.evaluate('zeBroadcastBounds()');assert b['y']>140 and a['top']<b['y']+b['h']<a['top']+30,b
   def native_body():
    result=page.evaluate('''(()=>{const b=getBBox('source'),item=zePrimaryMedia(),w=b.w*365/402,h=b.h*372/398-(zeEmbeddedHeader()?zeEmbeddedBand():0);return {frameRatio:w/h,mediaRatio:item.width/item.height}})()''');assert abs(result['frameRatio']-result['mediaRatio'])<.00001,result
   native_body();panel_pixels();print('Black panel and text protected through flips/movement/scales, real post copied to bullets, filled balanced frame: passed',flush=True)
   # Custom bullet edits survive text being returned to the roll; unmodified copied text moves cleanly.
-  page.locator('#bullets').fill('نص تحريري مختلف');page.locator('#postTextPlacement').select_option('roll');assert page.locator('#bullets').input_value()=='نص تحريري مختلف';assert page.evaluate('zeScrollTogether() && zePinnedVideos().length===0')
+  page.locator('#bullets').fill('نص تحريري مختلف');page.locator('#postTextPlacement').select_option('roll',force=True);assert page.locator('#bullets').input_value()=='نص تحريري مختلف';assert page.evaluate('zeScrollTogether() && zePinnedVideos().length===0')
   positions=[]
   for time in [5,30]:
-   positions.append(page.evaluate('''(t)=>{const ctx=document.createElement('canvas').getContext('2d'),old=zeDrawFramedMedia,oldText=CanvasRenderingContext2D.prototype.drawImage;let media=null,documentY=null;zeDrawFramedMedia=(c,frame,x,y,w,h,item)=>{media={y:c.getTransform().f+y*c.getTransform().d};return old(c,frame,x,y,w,h,item)};CanvasRenderingContext2D.prototype.drawImage=function(frame,...args){if(frame===zePost.doc)documentY=this.getTransform().f;return oldText.call(this,frame,...args)};try{zeDrawPost(ctx,0,0,400,160,t)}finally{zeDrawFramedMedia=old;CanvasRenderingContext2D.prototype.drawImage=oldText}return {media,documentY}}''',time))
+   positions.append(page.evaluate('''(t)=>{const ctx=document.createElement('canvas').getContext('2d'),old=zeDrawCleanMedia,oldText=CanvasRenderingContext2D.prototype.drawImage;let media=null,documentY=null;zeDrawCleanMedia=(c,frame,x,y,w,h,item)=>{media={y:c.getTransform().f+y*c.getTransform().d};return old(c,frame,x,y,w,h,item)};CanvasRenderingContext2D.prototype.drawImage=function(frame,...args){if(frame===zePost.socialDoc?.canvas)documentY=args[1];return oldText.call(this,frame,...args)};try{zeDrawPost(ctx,0,0,400,160,t)}finally{zeDrawCleanMedia=old;CanvasRenderingContext2D.prototype.drawImage=oldText}return {media,documentY}}''',time))
   assert positions[1]['media']['y']<positions[0]['media']['y'] and abs((positions[1]['media']['y']-positions[0]['media']['y'])-(positions[1]['documentY']-positions[0]['documentY']))<.01,positions
-  page.locator('#copyPostToBullets').click();copied=page.locator('#bullets').input_value();assert copied==page.locator('#postBody').input_value();page.locator('#postTextPlacement').select_option('roll');assert page.locator('#bullets').input_value()==copied
-  page.locator('#postTextPlacement').select_option('hidden');assert page.evaluate('zePostRollText()===""');page.locator('#copyPostToBullets').click()
-  page.locator('#postContentMode').select_option('media');page.locator('#postTextPlacement').select_option('roll');assert page.locator('#postContentMode').input_value()=='all' and page.evaluate('!!zePostRollText()')
+  page.locator('#copyPostToBullets').click();copied=page.locator('#bullets').input_value();assert copied==page.locator('#postBody').input_value();page.locator('#postTextPlacement').select_option('roll',force=True);assert page.locator('#bullets').input_value()==copied
+  page.locator('#postTextPlacement').select_option('hidden',force=True);assert page.evaluate('zePostRollText()===""');page.locator('#copyPostToBullets').click()
+  page.locator('#postContentMode').select_option('media');page.locator('#postTextPlacement').select_option('roll',force=True);assert page.locator('#postContentMode').input_value()=='all' and page.evaluate('!!zePostRollText()')
   page.locator('#copyPostToBullets').click();page.locator('#postMediaFit').select_option('fit');assert page.locator('#postMediaFit').input_value()=='fit';assert page.evaluate('(()=>{const p=zeProtectedPlacement({width:360,height:640},240,300,{framing:{zoom:140,face:{x:20,y:5,w:60,h:55}}});return p.scale===p.base})()');page.locator('#postMediaFit').select_option('fill')
   assert page.evaluate('(()=>{const ctx=document.createElement("canvas").getContext("2d"),calls=[];ctx.fillText=(word,x)=>calls.push({word,x});drawJustified(ctx,"First second third",300,40,250,"none",0,1,false);return calls[0].word==="First" && calls[0].x<calls[1].x && calls[1].x<calls[2].x})()')
   print('Edited bullets preserved, copied text movable, joined text/media scroll, Fill/Fit and hidden text choices: passed',flush=True)
@@ -57,7 +57,7 @@ try:
   # Photos use the same native sizing; no text choice is lost when media is replaced.
   page.locator('#respectSafeArea').click();page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/photo.png'));page.wait_for_function('zePost.items[0].type==="image"');native_body();page.locator('#postBody').fill('صورة مع نص قابل للاختيار');page.locator('#copyPostToBullets').click()
   with page.expect_download() as download:page.locator('#saveJson').click()
-  download.value.save_as('/tmp/ze-beta272.json');saved=json.loads(Path('/tmp/ze-beta272.json').read_text());assert saved['headerAnchor']=='inside-roll' and saved['safeArea']['bulletPanelAlwaysProtected'] and saved['postMedia']['textPlacement']=='bullet' and saved['postMedia']['fit']=='fit'
+  download.value.save_as('/tmp/ze-beta272.json');saved=json.loads(Path('/tmp/ze-beta272.json').read_text());assert saved['headerAnchor']=='inside-roll' and saved['safeArea']['bulletPanelAlwaysProtected'] and saved['postMedia']['textPlacement']=='roll' and saved['postMedia']['fit']=='fit'
   page.set_viewport_size({'width':780,'height':1000});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   assert not page.evaluate('state.renderError') and not errors,errors;print('Photo geometry and saved text-placement, fitting, header and panel policies: passed',flush=True);browser.close()
 finally:server.shutdown();server.server_close()

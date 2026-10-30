@@ -20,7 +20,7 @@ try:
   for kind,src in [('video','/fixtures/portrait.mp4'),('video','/fixtures/landscape.mp4'),('image','/fixtures/photo.png')]:
    page.evaluate(r'''async(v)=>{zeCommitPost(await zePreparePost({text:(v.text.repeat(4)+'\n\n').repeat(5),attachments:[{type:v.kind,url:v.src}]}));document.getElementById('displayname').value='اسم حساب عربي طويل قابل للتحرير';document.getElementById('account').value='@EditableAccount';setT(5)}''',dict(kind=kind,src=src,text=text))
    if kind=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postTextPlacement').input_value()=='roll' and not page.locator('#postScrollMode').is_disabled()
+   assert page.locator('#postTextPlacement').input_value()=='roll' and page.locator('#postScrollMode').is_disabled()
    for flipped in [False,True]:
     page.evaluate('(v)=>setFlipped(v)',flipped)
     layout=page.evaluate('''(()=>{const source=getBBox('source'),head=getBBox('identity'),k=head.w/R.identity.w,local=headerLayout(c),paint=p=>({x:head.x+(p.x-R.identity.x)*k,y:head.y+(p.y-R.identity.y)*k,w:p.w*k,h:p.h*k});return {source,avatar:paint(local.avatar),name:paint(local.name),handle:paint(local.handle),platform:paint(local.platform),bullet:getBBox('bullet')}})()''');s=layout['source'];logo=layout['platform'];assert abs(s['x']+s['w']/2-480)<.01 and layout['bullet']['w']==0
@@ -42,8 +42,8 @@ try:
       page.locator('#postMediaFit').select_option(fit);page.evaluate('setT(5)');assert page.evaluate('getBBox("source").w')==s['w']
    print(src,'centered frame, side platform, inset editable identity, two placements, flip and independent scroll: passed',flush=True)
   # Text-only mode and hidden text use all the available body space; all text remains above the lower third.
-  page.locator('#postTextPlacement').select_option('hidden');assert page.evaluate('zeSocialRegions(0,100,600,300).text===null')
-  page.locator('#postTextPlacement').select_option('roll');page.locator('#postContentMode').select_option('text')
+  page.locator('#postTextPlacement').select_option('hidden',force=True);assert page.evaluate('zeSocialRegions(0,100,600,300).text===null')
+  page.locator('#postTextPlacement').select_option('roll',force=True);page.locator('#postContentMode').select_option('text')
   assert page.evaluate('zeSocialRegions(0,100,600,300).media===null')
   for direction,text in [('rtl','نص عربي طويل فوق الخبر العاجل. '),('ltr','Long English text scrolls above the news safe boundary. ')]:
    page.locator('#postBody').fill(text*90);page.locator('#rollLanguage').select_option(direction)

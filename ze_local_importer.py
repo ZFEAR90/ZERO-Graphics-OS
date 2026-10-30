@@ -167,6 +167,8 @@ def fetch_metadata(url):
     import requests
     from bs4 import BeautifulSoup
     url=public_url(url,KNOWN)
+    if platform_for(url) == 'Telegram':
+        url = url.split('?')[0] + '?embed=1&mode=tme'
     # Try the public post service before the website; x.com often returns a login wall.
     if platform_for(url) == 'X':
         try:
@@ -233,31 +235,45 @@ def fetch_metadata(url):
     if avatar: output['avatar_data'] = image_data(avatar)
     if platform=='X' and not description:
         raise RuntimeError(x_failure)
-    if image:
+    if image and platform != 'Telegram':
         output['media_data']=image_data(image)
     if output.get('media_data'):
         output['attachments']=[{'type':'image','data_url':output['media_data']}]
     video_url=meta('og:video:secure_url','og:video:url','og:video')
-    if video_url:
+    if video_url and platform != 'Telegram':
         output['attachments']=[]  # OG image is the video's poster, not a separate photo.
         attach_public_video(output,video_url)
     audio_url=meta('og:audio:secure_url','og:audio')
-    if audio_url:
+    if audio_url and platform != 'Telegram':
         try: output.setdefault('attachments',[]).append(video_data(audio_url,'audio'))
         except Exception as ex: output.setdefault('media_warnings',[]).append('Audio unavailable: '+str(ex)[:160])
     og_icon=meta('twitter:creator')
     if og_icon and not output['handle']: output['handle']=og_icon.lstrip('@')
-    # For Telegram publicly rendered posts, the sender avatar is directly accessible as CSS background.
+    # Telegram OG images can be channel avatars. Only widget attachments are post media.
     if platform=='Telegram':
-        node=doc.select_one('.tgme_widget_message_user_photo img, .tgme_widget_message_user_photo')
-        if node and node.get('src'):output['avatar_data']=image_data(node['src'])
-        elif node:
-            avatar_match = re.search(r"url\(['\"]?(https://[^)'\"]+)", node.get('style', ''))
-            if avatar_match: output['avatar_data'] = image_data(avatar_match.group(1))
-        author_node = doc.select_one('.tgme_widget_message_author .tgme_widget_message_author_name, .tgme_widget_message_owner_name')
-        if author_node: output['name'] = author_node.get_text(' ', strip=True)[:100]
+        node=doc.select_one('.tgme_widget_message_user_photo img') or doc.select_one('.tgme_widget_message_user_photo')
+        avatar_url = node.get('src') if node else ''
+        if node and not avatar_url:
+            match=re.search(r"url\(['\"]?(https://[^)'\"]+)",node.get('style',''))
+            if match: avatar_url=match.group(1)
+        if avatar_url: output['avatar_data']=image_data(urljoin(url,avatar_url))
+        elif image and not doc.select_one('.tgme_widget_message_photo_wrap, video'): output['avatar_data']=image_data(image)
+        author_node=doc.select_one('.tgme_widget_message_owner_name, .tgme_widget_message_author .tgme_widget_message_author_name')
+        if author_node: output['name']=author_node.get_text(' ',strip=True)[:100]
         content=doc.select_one('.tgme_widget_message_text')
-        if content:output['text']=content.get_text(' ',strip=True)[:4000]
+        if content:
+            for br in content.find_all('br'): br.replace_with('\n')
+            output['text']=content.get_text().strip()
+        output.pop('media_data',None)
+        output['attachments']=[]
+        for node in doc.select('.tgme_widget_message_photo_wrap'):
+            match=re.search(r"url\(['\"]?(https://[^)'\"]+)",node.get('style',''))
+            if match:
+                photo=image_data(urljoin(url,match.group(1)))
+                if photo: output['attachments'].append({'type':'image','data_url':photo})
+        for node in doc.select('video'):
+            source=node.get('src') or (node.find('source') or {}).get('src')
+            if source: attach_public_video(output,urljoin(url,source))
     return output
 
 
@@ -287,7 +303,8 @@ def screenshot_public_post(url):
             browser = launch_capture_browser(p)
             try:
                 page = browser.new_page(viewport={'width': 1140, 'height': 1380}, device_scale_factor=1)
-                response = page.goto(url, wait_until='domcontentloaded', timeout=18000)
+                capture_url=url.split('?')[0]+'?embed=1&mode=tme' if platform_for(url)=='Telegram' else url
+                response = page.goto(capture_url, wait_until='domcontentloaded', timeout=18000)
                 final_path = urlparse(page.url).path.rstrip('/')
                 if final_path in ('/login', '/login.php', '/accounts/login'):
                     return {'capture_error': 'The platform redirected the capture browser to login. Use a post available without signing in or import its screenshot.'}
@@ -311,7 +328,11 @@ def screenshot_public_post(url):
                 extracted = {'screenshot_data': 'data:image/png;base64,'+base64.b64encode(pic).decode()}
                 # Keep attachments separate from the flattened screenshot where the page exposes them.
                 extracted['attachments']=[]
-                image_urls=loc.locator('img').evaluate_all('(nodes)=>nodes.filter(im=>im.naturalWidth>=240 && im.naturalHeight>=120 && !im.closest("header,h2,h3")).map(im=>im.currentSrc||im.src).slice(0,8)')
+                image_urls=loc.locator('img').evaluate_all('(nodes)=>nodes.filter(im=>im.naturalWidth>=240 && im.naturalHeight>=120 && !im.closest("header,h2,h3,.tgme_widget_message_user_photo")).map(im=>im.currentSrc||im.src).slice(0,8)')
+                if platform=='Telegram':
+                    image_urls=loc.locator('.tgme_widget_message_photo_wrap').evaluate_all(r"nodes=>nodes.map(el=>getComputedStyle(el).backgroundImage).map(value=>value.match(/url\(['\"]?(https:[^)'\"]+)/)?.[1]).filter(Boolean).slice(0,8)")
+                    text=loc.locator('.tgme_widget_message_text').first
+                    if text.count(): extracted['text']=text.evaluate(r"el=>{const copy=el.cloneNode(true);copy.querySelectorAll('br').forEach(br=>br.replaceWith('\n'));return copy.textContent.trim()}")
                 for media_url in dict.fromkeys(image_urls):
                     image=image_data(media_url)
                     if image: extracted['attachments'].append({'type':'image','data_url':image})
@@ -321,13 +342,13 @@ def screenshot_public_post(url):
                     else: extracted.setdefault('media_warnings',[]).append('Video is visible but its original file is not publicly downloadable. Add it locally.')
                 # Missing author information must not discard an otherwise valid post screenshot.
                 try:
-                    author_selectors = {'X': '[data-testid="User-Name"] a', 'Facebook': 'h2 a, h3 a, strong a', 'Instagram': 'header a', 'Telegram': '.tgme_widget_message_author_name', 'Threads': 'header a'}
-                    avatar_selectors = {'X': '[data-testid="Tweet-User-Avatar"] img', 'Facebook': 'svg image', 'Instagram': 'header img', 'Telegram': '.tgme_widget_message_user_photo img', 'Threads': 'header img'}
+                    author_selectors = {'X': '[data-testid="User-Name"] a', 'Facebook': 'h2 a, h3 a, strong a', 'Instagram': 'header a', 'Telegram': '.tgme_widget_message_owner_name, .tgme_widget_message_author_name', 'Threads': 'header a'}
+                    avatar_selectors = {'X': '[data-testid="Tweet-User-Avatar"] img', 'Facebook': 'svg image', 'Instagram': 'header img', 'Telegram': '.tgme_widget_message_user_photo', 'Threads': 'header img'}
                     author = loc.locator(author_selectors[platform]).first
                     if author.count(): extracted['name'] = author.inner_text(timeout=1000).strip()[:100]
                     avatar = loc.locator(avatar_selectors[platform]).first
                     if avatar.count():
-                        avatar_url = avatar.evaluate('(el)=>el.currentSrc || el.src || el.getAttribute("href") || el.getAttribute("xlink:href")')
+                        avatar_url = avatar.evaluate(r"el=>el.querySelector('img')?.src||el.currentSrc||el.src||getComputedStyle(el).backgroundImage.match(/url\(['\"]?(https:[^)'\"]+)/)?.[1]") if platform=='Telegram' else avatar.evaluate('(el)=>el.currentSrc || el.src || el.getAttribute("href") || el.getAttribute("xlink:href")')
                         if avatar_url: extracted['avatar_data'] = image_data(avatar_url)
                 except Exception:
                     pass

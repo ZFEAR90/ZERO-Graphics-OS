@@ -4,11 +4,11 @@ with scene('bullet-persistence') as s:
  p=s.page;s.post('Post body');s.value('bullets','Independent editorial text')
  for flip in [False,True]:
   p.evaluate('(v)=>setFlipped(v)',flip)
-  for choice in ['roll','hidden','bullet','roll']:
-   s.value('postTextPlacement',choice)
-   if choice=='bullet':assert p.locator('#bullets').input_value()=='Post body'
+  for choice in [True,False,True]:
+   p.locator('#showPostText').set_checked(choice)
+   assert p.locator('#bullets').input_value()=='Independent editorial text'
    assert p.locator('#showBullets').is_checked() and p.evaluate("getBBox('bullet').w>0")
-  assert p.locator('#bullets').input_value()=='Post body'
+  assert p.locator('#bullets').input_value()=='Independent editorial text'
   s.value('showBullets',False);assert p.evaluate("getBBox('bullet').w===0");s.value('showBullets',True)
   original=p.locator('#bullets').input_value();p.locator('#useWholePost').click();assert not p.locator('#showBullets').is_checked() and p.locator('#bullets').input_value()==original
   assert p.evaluate("getBBox('source').w>600&&getBBox('bullet').w===0")

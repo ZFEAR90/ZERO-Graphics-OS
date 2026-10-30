@@ -23,12 +23,13 @@ try:
     samples=[page.evaluate('(t)=>zeWholeBelowPositions(100,180,600,260,t)',t) for t in [0,duration*.6,duration-1,duration]]
     assert samples[1]['text']['y']<samples[0]['text']['y'] and samples[1]['media']['y']<samples[0]['media']['y']
     for sample in samples:assert abs(sample['text']['y']-samples[0]['text']['y']-(sample['media']['y']-samples[0]['media']['y']))<.01,samples
-    assert samples[-1]['media']==dict(x=100,y=180,w=600,h=260) and samples[-1]==samples[-2],samples
+    for sample in samples:assert sample['media']['y']>=sample['text']['y']+sample['text']['h']+11.99,sample
+    assert samples[-1]['media']['h']<260 and samples[-1]['media']['y']>180,samples
   # Painted text is safe during shared travel; media may occupy the permitted lower part.
   data=page.evaluate('''(()=>{const old=zeDrawSocialText;let changed=0,outside=0;for(const t of [2.04,5,15,30,45,50]){setT(t);const a=c.getImageData(0,0,1920,1080).data;zeDrawSocialText=()=>{};draw();const b=c.getImageData(0,0,1920,1080).data;zeDrawSocialText=old;for(let i=0;i<a.length;i+=4)if(a[i]!==b[i]||a[i+1]!==b[i+1]||a[i+2]!==b[i+2]||a[i+3]!==b[i+3]){changed++;if(Math.floor(i/4/1920)>=zeBroadcastBounds().bottom*2)outside++}}draw();return {changed,outside}})()''');assert data['changed']>0 and data['outside']==0,data
   with page.expect_download() as output:page.locator('#saveJson').click()
   output.value.save_as('/tmp/ze-beta276-below.json');saved=json.loads(Path('/tmp/ze-beta276-below.json').read_text());assert saved['project']=='Main roll' and saved['postArrangement']['resolved']=='below' and saved['postArrangement']['textScroll']=='together'
-  page.locator('#postTextPlacement').select_option('hidden');assert not page.evaluate('zeWholeBelowMotion()') and page.evaluate('zeSocialRegions(100,180,600,260).media.y===180')
-  page.locator('#postTextPlacement').select_option('roll');page.locator('#wholeFrameArrangement').select_option('right');assert not page.evaluate('zeWholeBelowMotion()')
+  page.locator('#postTextPlacement').select_option('hidden',force=True);assert not page.evaluate('zeWholeBelowMotion()') and page.evaluate('zeSocialRegions(100,180,600,260).media.y===180')
+  page.locator('#postTextPlacement').select_option('roll',force=True);page.locator('#wholeFrameArrangement').select_option('right');assert not page.evaluate('zeWholeBelowMotion()')
   assert not errors and not page.evaluate('state.renderError'),errors;browser.close();print('Wide below-text post moves text/media together, stops centered before end at 8/50s, supports flip, safe text and Hide/right overrides: passed',flush=True)
 finally:server.shutdown();server.server_close()

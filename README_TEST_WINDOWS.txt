@@ -25,11 +25,19 @@ OFFLINE MODE
 OFFLINE_MAIN_ROLL.bat opens the editor without Python. It supports manual
 photos/video, editing and browser rendering. It does NOT start URL importing.
 
-LATEST TESTING ADJUSTMENTS (OCTOBER 30)
-Main + visible bullet: imported text goes into the bullet, and only media
-appears in the roll. Fit is the default so the complete image is visible.
-Fill remains available. Including text inside the roll is a manual option;
-text and media then scroll together unless speaker-safe mode is selected.
+LATEST TESTING ADJUSTMENTS
+Imported original post text is shown inside the roll. Use Show post text
+inside the roll to hide/show it without changing external bulletin text.
+Use post text in bullets is an explicit one-time copy only.
+Fit sizes media to its allocated area; Fill and manual framing remain.
+Main, Adaptive, Whole frame and Dedicated 9:16 are retained. Balanced card
+and Portrait beside post text have been removed.
+Whole: right-side media stays stationary while text scrolls. Below-text
+media scrolls with the text, with no automatic centering/repositioning.
+Switching to Whole preserves your selected right/below arrangement.
+Telegram text-only posts use the original body inside the roll. The channel
+photo is a profile image, not a post attachment. Live access remains subject
+to Telegram and local network restrictions.
 Bullet pages prefer complete paragraphs, numbered points and sentences.
 Oversized sentences may still need clause/word splits to fit safely.
 Long numbered lists automatically pin their introductory heading on a

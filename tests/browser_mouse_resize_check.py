@@ -9,7 +9,7 @@ with scene('mouse-resize') as s:
   s.value('flip',flip)
   before=s.boxes()['source'];resize('source','e',-50,0);after=s.boxes()['source'];assert after['w']<before['w']-20,(before,after)
   assert abs(after['h']-before['h'])<1
-  assert p.evaluate("zeSocialRegions(0,0,300,300).text===null&&document.getElementById('postMediaFit').value==='fit'")
+  assert p.evaluate("zeSocialRegions(0,0,300,300).text!==null&&document.getElementById('postMediaFit').value==='fit'")
   p.locator('#undoEdit').click();assert abs(s.boxes()['source']['w']-before['w'])<1
   p.locator('#redoEdit').click();assert abs(s.boxes()['source']['w']-after['w'])<1
   p.locator('#resetMouseSizes').click()
@@ -19,7 +19,7 @@ with scene('mouse-resize') as s:
   saved=p.evaluate('zeProjectData()');p.locator('#resetMouseSizes').click();p.evaluate('async data=>zeApplyProject(data)',saved);assert abs(s.boxes()['bullet']['w']-after['w'])<1
   p.locator('#resetMouseSizes').click()
  p.locator('#useWholePost').click();before=p.evaluate('zeSocialTextDocument(240).lines.length');resize('source','se',-80,-30)
- assert p.evaluate("state.layers.source.size.w>0&&zeScrollTogether()")
+ assert p.evaluate("state.layers.source.size.w>0&&!zeScrollTogether()")
  assert p.evaluate('zeSocialTextDocument(240).lines.length')!=before
  assert p.evaluate("(()=>{const s=getBBox('source'),h=getBBox('identity'),k=h.w/R.identity.w,l=zeNativePostLayout(c);return [l.avatar,l.name,l.handle].every(b=>{const x=h.x+(b.x-R.identity.x)*k,y=h.y+(b.y-R.identity.y)*k;return x>=s.x&&x+b.w*k<=s.x+s.w&&y>=s.y&&y+b.h*k<=s.y+s.h})})()")
  s.value('mouseResize',False);p.wait_for_function("!document.querySelector('.mouse-resize-handle')")

@@ -37,7 +37,8 @@ try:
   result=page.evaluate('''()=>{const d=zeSocialTextDocument(200);c.save();const line=d.lines.find(l=>!l.final&&l.direction==='rtl');c.font=line.style;const prepared=justifyLine(c,line.text,360,'kashida',1),last=d.lines.at(-1),natural=justifyLine(c,last.text,360,'none',1);c.restore();return {width:prepared.total,kashida:prepared.words.join('').includes('ـ'),last:last.final,natural:natural.total}}''')
   assert abs(result['width']-360)<1 and result['kashida'] and result['last'] and result['natural']<360,result
   movement=page.evaluate('''()=>{let seen=[];const oldT=zeDrawSocialText,oldM=zeDrawPostMediaRegion;zeDrawSocialText=(ctx,b)=>seen.push({kind:'text',y:b.y});zeDrawPostMediaRegion=(ctx,b)=>seen.push({kind:'media',y:b.y});for(const t of [7,20])zeDrawSocialPost(c,0,100,600,250,t);zeDrawSocialText=oldT;zeDrawPostMediaRegion=oldM;return seen}''')
-  assert abs((movement[2]['y']-movement[0]['y'])-(movement[3]['y']-movement[1]['y']))<.001 and movement[2]['y']<movement[0]['y'],movement
+  assert movement[3]['y']==movement[1]['y'],movement
+  page.locator('#wholeFrameArrangement').select_option('below');movement=page.evaluate('''()=>{const a=zeWholeBelowPositions(0,100,600,250,7),b=zeWholeBelowPositions(0,100,600,250,20);return {dy:b.text.y-a.text.y,dm:b.media.y-a.media.y}}''');assert movement['dy']<0 and abs(movement['dy']-movement['dm'])<.001;page.locator('#wholeFrameArrangement').select_option('right')
   page.locator('#showBullets').check();assert page.evaluate("getBBox('bullet').w")>0;page.locator('#showBullets').uncheck()
   page.evaluate("setT(5)");page.locator('#canvas').screenshot(path='/tmp/beta278-whole.png')
   assert page.locator('#postBody').input_value()==arabic

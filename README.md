@@ -1,3 +1,16 @@
+## Latest recovery continuation
+
+Work continues from `c4b0bbd` on `ze-os-v07-beta278-recovery`; main is unchanged.
+
+- **Show post text inside the roll** replaces the placement dropdown. Imports and toggles preserve the independent external bulletin; the copy-to-bullets button is a one-time explicit action.
+- Main, Adaptive, Whole frame and Dedicated 9:16 share bounded, separate text/media allocations. Fit/Fill and per-item manual framing remain. Balanced card and Portrait beside post text are removed; old project settings migrate them to Adaptive.
+- Whole-frame right-side media stays fixed. Below-text media scrolls with the original text, retaining its allocated size instead of moving to a new centered layout. Switching presentations preserves the selected arrangement.
+- Telegram widget parsing keeps the full original body and treats channel photos as profiles. Only actual widget attachments become post media. Live Telegram access is unverified in this cloud because its network proxy denies t.me.
+
+Validation: **22 unit tests and 43 browser suites passed**, including the 384-case owner acceptance matrix. See [validation evidence](validation/owner-continuation.json) and [settled Whole frame](demo/pending-adjustments/Whole_Right.png). Live Telegram retrieval and native Windows execution remain unverified.
+
+Windows testing: download `downloads/Main_roll_test.zip`, extract it completely into a new folder, close the old helper, and run `TEST_MAIN_ROLL.bat`. Windows launchers are covered by static/unit checks; this Linux environment cannot execute them natively.
+
 # ZE OS — Main roll V0.7, Test Beta 2.7.8
 
 V0.7 is the active baseline. This branch contains the testable HTML editor and its local public-post importer.

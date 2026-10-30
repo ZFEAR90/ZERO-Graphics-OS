@@ -44,8 +44,8 @@ try:
      a=g[name];assert a['x']>=source['x']+8 and a['y']>=source['y']+8 and a['x']+a['w']<=source['x']+source['w']-8 and a['y']+a['h']<=source['y']+source['h']-8,g
     assert page.evaluate('headerLayout(c).platform.w')==66
     page.evaluate("v=>{state.layers.source.scale=v.source;document.getElementById('avatarScale').value=v.avatar;document.getElementById('labelScale').value=v.label;document.getElementById('headerGroupScale').value=v.group;draw()}",old)
-  page.locator('#postTextPlacement').select_option('hidden');assert geometry()['avatar']==first['avatar']
-  page.locator('#postTextPlacement').select_option('roll');page.locator('#displayname').fill('اسم عربي قابل للتحرير');page.locator('#account').fill('@EditedAccount');page.evaluate('setT(5)');assert page.evaluate('headerLayout(c).nameText')=='اسم عربي قابل للتحرير'
+  page.locator('#postTextPlacement').select_option('hidden',force=True);assert geometry()['avatar']==first['avatar']
+  page.locator('#postTextPlacement').select_option('roll',force=True);page.locator('#displayname').fill('اسم عربي قابل للتحرير');page.locator('#account').fill('@EditedAccount');page.evaluate('setT(5)');assert page.evaluate('headerLayout(c).nameText')=='اسم عربي قابل للتحرير'
   with page.expect_download() as output:page.locator('#saveJson').click()
   output.value.save_as('/tmp/ze-beta277-native.json');saved=json.loads(Path('/tmp/ze-beta277-native.json').read_text());assert saved['headerAnchor']=='native-post-top-left' and saved['socialPost']['accountPinned'] and saved['socialPost']['accountStyle']=='plain native row'
   page.locator('#useMainRoll').click();calls=page.evaluate('''(()=>{const old=headerLabel;let calls=0;headerLabel=(...args)=>{calls++;old(...args)};draw();headerLabel=old;return calls})()''');assert calls>0

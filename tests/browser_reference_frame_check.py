@@ -21,7 +21,7 @@ try:
   for kind,src in [('video','/fixtures/portrait.mp4'),('video','/fixtures/landscape.mp4'),('image','/fixtures/photo.png'),('image',None)]:
    page.evaluate('''async(v)=>{let url=v.src;if(!url){const c=document.createElement('canvas');c.width=c.height=400;const x=c.getContext('2d');x.fillStyle='#168fb5';x.fillRect(0,0,400,400);url=c.toDataURL()}zeCommitPost(await zePreparePost({text:v.text,attachments:[{type:v.kind,url}]}));setT(5)}''',dict(kind=kind,src=src,text=text))
    if kind=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postMediaFit').input_value()=='fit' and page.locator('#postTextPlacement').input_value()=='bullet'
+   assert page.locator('#postMediaFit').input_value()=='fit' and page.locator('#postTextPlacement').input_value()=='roll'
    for flip in [False,True]:
     page.evaluate('(flip)=>setFlipped(flip)',flip)
     expected=page.evaluate('getBBox("source")')
@@ -29,7 +29,7 @@ try:
     for fitting in ['fill','fit']:
      page.locator('#postMediaFit').select_option(fitting)
      for placement in ['bullet','roll','hidden']:
-      page.locator('#postTextPlacement').select_option(placement)
+      page.locator('#postTextPlacement').select_option(placement,force=True)
       boxes=page.evaluate('zeSafeLayout()');s,b,h=[boxes[key] for key in ['source','bullet','identity']];safe=page.evaluate('zeBroadcastBounds()')
       assert all(abs(s[k]-expected[k])<.01 for k in ['x','y','w','h']),(src,flip,fitting,placement,boxes)
       assert b['y']+b['h']<=safe['bottom']+.01 and h['y']+h['h']<=b['y']-11.99,boxes
@@ -37,7 +37,7 @@ try:
       dimensions=page.evaluate('''(()=>{const i=zePrimaryMedia(),p=zeProtectedPlacement({width:i.width,height:i.height},365,372,i);return {iw:i.width,ih:i.height,...p}})()''')
       if fitting=='fill':assert dimensions['w']>=365-.01 and dimensions['h']>=372-.01,dimensions
       else:assert dimensions['w']<=365+.01 and dimensions['h']<=372+.01 and abs(dimensions['scale']-dimensions['base'])<.00001,dimensions
-    page.locator('#postTextPlacement').select_option('bullet');page.locator('#postMediaFit').select_option('fill')
+    page.locator('#postTextPlacement').select_option('bullet',force=True);page.locator('#postMediaFit').select_option('fill')
    print(src or 'square generated photo','same frame, two flips, Fill/Fit and three text choices: passed',flush=True)
   # Painting rather than only dimensions: Fit retains both red/blue edges; Fill crops them.
   assert page.evaluate('''(()=>{const frame=document.createElement('canvas');frame.width=800;frame.height=200;const c=frame.getContext('2d');c.fillStyle='green';c.fillRect(0,0,800,200);c.fillStyle='red';c.fillRect(0,0,80,200);c.fillStyle='blue';c.fillRect(720,0,80,200);const out=document.createElement('canvas');out.width=out.height=400;const x=out.getContext('2d'),item={};let colors={};for(const mode of ['fill','fit']){document.getElementById('postMediaFit').value=mode;x.clearRect(0,0,400,400);zeDrawFramedMedia(x,frame,0,0,400,400,item);colors[mode]=[...x.getImageData(5,200,1,1).data,...x.getImageData(395,200,1,1).data]}document.getElementById('postMediaFit').value='fill';return colors.fill[1]===128&&colors.fill[5]===128&&colors.fit[0]===255&&colors.fit[6]===255})()''')

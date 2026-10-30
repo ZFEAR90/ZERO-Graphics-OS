@@ -29,10 +29,10 @@ try:
   page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/portrait.mp4'));page.wait_for_function('zePost.active')
   page.locator('#postBody').fill('تقرير عن التطورات الجديدة. https://t.co/abc\n\nرابط آخر www.example.com/story\nنص أصلي بلا رابط t.co/XYZ')
   assert page.evaluate("zeCleanPostText(document.getElementById('postBody').value)")=='تقرير عن التطورات الجديدة.\n\nرابط آخر\nنص أصلي بلا رابط'
-  page.locator('#postTextPlacement').select_option('roll');page.locator('#postScrollMode').select_option('fixed')
+  page.locator('#postTextPlacement').select_option('roll',force=True);page.locator('#postScrollMode').select_option('fixed')
   strings=page.evaluate('''(()=>{const proto=CanvasRenderingContext2D.prototype,old=proto.fillText,text=[];proto.fillText=function(s,...args){text.push(s);return old.call(this,s,...args)};try{zePost.doc=null;zePostDocument()}finally{proto.fillText=old}return text})()''');assert strings and all('http' not in s and 't.co/' not in s and 'www.' not in s for s in strings)
-  page.locator('#postTextPlacement').select_option('bullet')
-  for mode in ['focus','balanced','beside']:
+  page.locator('#postTextPlacement').select_option('bullet',force=True)
+  for mode in ['focus','portrait']:
    page.locator('#portraitLayout').select_option(mode,force=True)
    for flip in [False,True]:
     page.evaluate('(v)=>{document.getElementById("protectLowerThird").checked=false;state.screenOffsets={identity:{x:0,y:0},source:{x:0,y:0},bullet:{x:0,y:0}};setFlipped(v);setT(5)}',flip)
@@ -47,8 +47,8 @@ try:
   check_pixels();print('Imported bulletin text never enters lower third, including tall black panels',flush=True)
   # Every wider fixed-media card places its independently scrolling caption first.
   for filename in ['photo.png','landscape.mp4']:
-   page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures'/filename));page.wait_for_function('(name)=>zePost.items.length===1 && zePost.items[0].label===name',arg=filename);page.locator('#postBody').fill('هذه فقرة فوق الصورة وليست تحتها. '*12);page.locator('#postTextPlacement').select_option('roll');page.locator('#postScrollMode').select_option('fixed')
-   positions=page.evaluate('''(()=>{const ctx=document.createElement('canvas').getContext('2d'),oldFit=fit,oldDoc=zeDrawPostDocument;let media=null,caption=null;fit=(c,im,x,y,w,h)=>{media={x,y,w,h};oldFit(c,im,x,y,w,h)};zeDrawPostDocument=(c,x,y,w,h,t)=>{caption={x,y,w,h};oldDoc(c,x,y,w,h,t)};try{zeDrawPost(ctx,0,0,400,300,5)}finally{fit=oldFit;zeDrawPostDocument=oldDoc}return {media,caption}})()''');assert positions['caption']['y']+positions['caption']['h']<positions['media']['y'],positions
+   page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures'/filename));page.wait_for_function('(name)=>zePost.items.length===1 && zePost.items[0].label===name',arg=filename);page.locator('#postBody').fill('هذه فقرة فوق الصورة وليست تحتها. '*12);page.locator('#postTextPlacement').select_option('roll',force=True);page.locator('#postScrollMode').select_option('fixed')
+   positions=page.evaluate('''(()=>{const ctx=document.createElement('canvas').getContext('2d'),oldFit=fit,oldDoc=zeDrawSocialText;let media=null,caption=null;fit=(c,im,x,y,w,h)=>{media={x,y,w,h};oldFit(c,im,x,y,w,h)};zeDrawSocialText=(c,b,t)=>{caption=b;oldDoc(c,b,t)};try{zeDrawPost(ctx,0,0,400,300,5)}finally{fit=oldFit;zeDrawSocialText=oldDoc}return {media,caption}})()''');assert positions['caption']['y']+positions['caption']['h']<positions['media']['y'],positions
   # Explicit manual protection must keep its face rectangle visible.
   result=page.evaluate('''(()=>{const frame={width:360,height:640},item={framing:{zoom:140,protectFace:true,face:{x:0,y:0,w:100,h:100}}},full=zeProtectedPlacement(frame,240,300,item);if(full.scale!==full.base)throw Error('Full frame cropped');for(const face of [{x:20,y:5,w:60,h:55},{x:80,y:0,w:20,h:25},{x:0,y:70,w:25,h:30}])for(const target of [[240,300],[400,200],[140,400]]){item.framing.face=face;const p=zeProtectedPlacement(frame,...target,item),f=p.face;if(p.x+f.x*p.w<-.001||p.y+f.y*p.h<-.001||p.x+(f.x+f.w)*p.w>target[0]+.001||p.y+(f.y+f.h)*p.h>target[1]+.001)throw Error('Protected face clipped')}return true})()''');assert result
   page.get_by_text('Framing / protect face',exact=True).click()

@@ -27,13 +27,12 @@ try:
   page.locator('#advancedPostMediaList details').evaluate('(el)=>el.open=true')
   field=page.get_by_role('spinbutton',name='Face left for landscape.mp4');field.fill('20');field.press('Tab');assert page.evaluate('zePost.items[0].framing.protectFace&&zePost.items[0].framing.face.x===20')
   page.locator('#mainTab').click();page.locator('#useWholePost').click();assert not page.locator('#showBullets').is_checked()
-  page.locator('#openMediaDetails').click();pin=page.get_by_role('checkbox',name='Keep landscape.mp4 visible while post scrolls');assert not pin.is_checked();pin.check();assert page.locator('#postScrollMode').input_value()=='fixed'
-  page.locator('#mainTab').click();page.locator('#useWholePost').click();assert page.locator('#postScrollMode').input_value()=='fixed' # Active presentation preserves overrides.
-  page.locator('#openMediaDetails').click();pin.uncheck();assert page.locator('#postScrollMode').input_value()=='together'
-  page.locator('#mainTab').click()
+  page.locator('#openMediaDetails').click();pin=page.get_by_role('checkbox',name='Keep landscape.mp4 visible while post scrolls');assert pin.is_checked() and pin.is_disabled();assert not page.evaluate('zeScrollTogether()')
+  page.locator('#mainTab').click();page.locator('#postBody').fill('Editable original post body. '*50);page.locator('#wholeFrameArrangement').select_option('below');assert page.evaluate('zeScrollTogether()')
+  page.locator('#useWholePost').click();assert page.locator('#wholeFrameArrangement').input_value()=='below'
   print('Main essentials, Advanced geometry/framing/colors, regenerated media controls, speaker toggle and active-layout overrides: passed',flush=True)
   # Hidden text uses the same sharp, centered media renderer even in retained Advanced layouts.
-  for layout in ['reference','social','focus','balanced','beside']:
+  for layout in ['reference','social','focus','portrait']:
    for flip in [False,True]:
     paint=page.evaluate("""v=>{document.getElementById('portraitLayout').value=v.layout;zeSocialControls(true);document.getElementById('postTextPlacement').value='hidden';document.getElementById('postContentMode').value='all';setFlipped(v.flip);const out=document.createElement('canvas');out.width=600;out.height=300;const ctx=out.getContext('2d'),filters=[],filter=Object.getOwnPropertyDescriptor(CanvasRenderingContext2D.prototype,'filter');Object.defineProperty(ctx,'filter',{get(){return filter.get.call(ctx)},set(value){filters.push(value);filter.set.call(ctx,value)}});zeDrawPost(ctx,0,0,600,300,5);const a=ctx.getImageData(0,0,600,300).data;return {filters,painted:Array.from(a).some((v,i)=>i%4===3&&v>0)}}""",dict(layout=layout,flip=flip))
     assert paint['painted'] and not any('blur' in f for f in paint['filters']),(layout,flip,paint)

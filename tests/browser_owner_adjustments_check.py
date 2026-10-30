@@ -3,11 +3,11 @@ from browser_support import scene, ROOT
 with scene('owner-adjustments') as s:
  p=s.page;s.post('هذه مقدمة خبرية كاملة.\n\nهذه فقرة ثانية كاملة.',('landscape.mp4',));s.all_controls()
  assert p.locator('#linkImport').get_attribute('open') is not None
- assert p.locator('#postTextPlacement').input_value()=='bullet'
+ assert p.locator('#postTextPlacement').input_value()=='roll'
  assert p.locator('#postScrollMode').input_value()=='together'
  assert p.locator('#postMediaFit').input_value()=='fit'
- assert p.evaluate("zePostRollText()===''&&zeSocialRegions(100,100,400,300).text===null")
- assert p.locator('#bullets').input_value()==p.locator('#postBody').input_value()
+ assert p.evaluate("!!zePostRollText()&&zeSocialRegions(100,100,400,300).text!==null")
+ assert p.locator('#bullets').input_value()!=p.locator('#postBody').input_value()
  assert p.evaluate('''()=>{const im=document.createElement('canvas');im.width=800;im.height=200;const x=im.getContext('2d');x.fillStyle='green';x.fillRect(0,0,800,200);x.fillStyle='red';x.fillRect(0,0,100,200);x.fillStyle='blue';x.fillRect(700,0,100,200);const out=document.createElement('canvas');out.width=280;out.height=360;const ctx=out.getContext('2d');zeDrawCleanMedia(ctx,im,0,0,280,360,zePost.items[0],true);const left=ctx.getImageData(5,180,1,1).data,right=ctx.getImageData(275,180,1,1).data;return left[0]===255&&right[2]===255&&ctx.getImageData(140,5,1,1).data[3]===0}''')
  # Complete sentences should move to the next page instead of splitting at the capacity line.
  result=p.evaluate('''()=>{const b={font:18,wrap:260,baseline:20,lineHeight:30,h:120,w:280};const sentences=['This sentence describes the first event in full.','This sentence describes the second event in full.','This sentence describes the third event in full.'];const pages=zePaginateBullet(sentences.join(' '),b);return {pages,sentences,fits:pages.every(v=>zeBulletLineCount(v,b)<=zeBulletLineCapacity(b))}}''')
@@ -36,7 +36,7 @@ with scene('owner-adjustments') as s:
  assert p.locator('#bullets').input_value()==source
  # Main's manual text-in-roll option must share motion, with Whole also defaulting to it.
  s.value('postTextPlacement','roll');assert p.evaluate('zeScrollTogether()')
- p.locator('#useWholePost').click();assert p.evaluate('zeScrollTogether()&&!document.getElementById("showBullets").checked')
+ p.locator('#useWholePost').click();assert p.evaluate('!zeScrollTogether()&&!document.getElementById("showBullets").checked')
  # Actual background imports drive the panel color; manual choice is persistent and reversible.
  p.locator('#backgroundFile').set_input_files(str(ROOT/'tests/fixtures/photo.png'));p.wait_for_function('zeSolo.palette!==null');old=p.locator('#panelColor').input_value()
  p.locator('#backgroundFile').set_input_files(str(ROOT/'tests/fixtures/portrait.png'));p.wait_for_function('(old)=>document.getElementById("panelColor").value!==old',arg=old)

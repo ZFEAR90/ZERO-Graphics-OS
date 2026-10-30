@@ -15,7 +15,7 @@ try:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source');assert page.locator('#portraitLayout').input_value()=='reference'
   text='نص المنشور الحقيقي يبقى في الرول عند إخفاء الفيديو، مع الاحتفاظ بموقع الإطار وهويته. '
-  for layout in ['reference','focus','balanced','beside','social']:
+  for layout in ['reference','focus','portrait','social']:
    page.locator('#portraitLayout').select_option(layout,force=True)
    for filename in ['landscape.mp4','portrait.mp4']:
     page.evaluate('''async(v)=>{zeCommitPost(await zePreparePost({text:v.text.repeat(10),attachments:[{type:'video',url:'/fixtures/'+v.file}]}));setT(5)}''',dict(text=text,file=filename))
@@ -36,8 +36,8 @@ try:
     print(layout,filename,'stable frame/header/side after Include videos off/on, with original text fallback: passed',flush=True)
    # Individual media exclusion and explicit hiding use the same policy.
    page.get_by_role('checkbox',name='Include Video 1',exact=True).uncheck();assert page.evaluate('!!zePostRollText()')
-   page.locator('#postTextPlacement').select_option('hidden');assert page.evaluate('zePostRollText()===""')
-   page.get_by_role('checkbox',name='Include Video 1',exact=True).check();page.locator('#postTextPlacement').select_option('roll')
+   page.locator('#postTextPlacement').select_option('hidden',force=True);assert page.evaluate('zePostRollText()===""')
+   page.get_by_role('checkbox',name='Include Video 1',exact=True).check();page.locator('#postTextPlacement').select_option('roll',force=True)
   # New text-only imports still use the prior larger text-only solo treatment.
   page.locator('#portraitLayout').select_option('reference',force=True);page.locator('#showBullets').uncheck()
   page.evaluate('''async(text)=>zeCommitPost(await zePreparePost({text,attachments:[]}))''',text)

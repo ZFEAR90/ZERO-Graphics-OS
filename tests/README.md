@@ -18,7 +18,7 @@ The runner executes the exact unit-test discovery command requested by the owner
 | Capacity-based grouping, blank lines, timing, final page | `browser_bullet_grouping_check.py` |
 | Independent bulletin text; Whole automatic hide/Main restore | `browser_bullet_persistence_check.py` |
 | Text-only centering and retained media geometry | `browser_text_only_recenter_check.py` |
-| Whole text/media shared roll and optional speaker pin | `browser_whole_shared_scroll_check.py` |
+| Whole fixed right media / shared below-text roll | `browser_whole_shared_scroll_check.py` |
 | Reflow at different Whole frame sizes | `browser_whole_resize_check.py` |
 | Joining-safe kashida, final lines and source immutability | `browser_post_justification_check.py` |
 | Native account containment, padding, pinning and side platform | `browser_native_account_check.py` |
@@ -44,3 +44,7 @@ Unit mocks and controlled local URL responses are identified as fixtures. Passin
 ### October 30 owner examples
 
 `browser_owner_adjustments_check.py` tests Main media-only/Fit import defaults, shared movement selection, sentence/numbered-point preservation, stationary title pixels in both flips, normal-bullet reset without source edits, actual background-driven panel color and manual locking. `browser_mouse_resize_check.py` uses real pointer handles to resize each group, verifies width/height independently, reflow, native-account containment, mandatory text safety, Undo/Redo/reset and JSON round trips. Existing auto-post/reference/post-layout checks deliberately replace old roll-text/Fill defaults with bullet/Fit; optional fixed-media and Fill assertions remain.
+
+Owner continuation acceptance: `browser_pending_adjustments_check.py` covers 384 combinations of retained layout, flip, media shape, allocation size, Fit/Fill and text toggle. `test_telegram.py` verifies full text extraction and profile/media separation without live network access.
+
+Development dependency installation: `.venv/bin/python -m pip install -r requirements-dev.txt`. Telegram browser capture separation is also exercised by `browser_telegram_capture_check.py`.

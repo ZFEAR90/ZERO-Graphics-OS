@@ -14,7 +14,7 @@ try:
  with sync_playwright() as p:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1920,'height':1080});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(f'http://127.0.0.1:{server.server_port}/ZE_OS_Mouwajaha_V07.html');page.wait_for_function('state.stvLoaded && assets.source')
-  assert page.locator('#postTextPlacement').input_value()=='bullet' and page.locator('#postScrollMode').input_value()=='together'
+  assert page.locator('#postTextPlacement').input_value()=='roll' and page.locator('#postScrollMode').input_value()=='together'
   assert page.locator('#portraitLayout').input_value()=='reference' and page.locator('#socialMediaPosition').input_value()=='auto'
   assert page.locator('#portraitLayout').evaluate('(el)=>!!el.closest("#advancedOptions")')
   assert not page.locator('#portraitLayout').is_visible();page.locator('#openRollLayouts').click();assert page.locator('#portraitLayout').is_visible();page.locator('#mainTab').click()
@@ -23,10 +23,10 @@ try:
   for filename,type_,position in [('portrait.mp4','video','right'),('portrait.png','image','right'),('landscape.mp4','video','below'),('photo.png','image','below'),(None,'image','below')]:
    page.evaluate(r'''async(v)=>{let url=v.file?'/fixtures/'+v.file:null;if(!url){const c=document.createElement('canvas');c.width=c.height=400;c.getContext('2d').fillRect(0,0,400,400);url=c.toDataURL()}zeCommitPost(await zePreparePost({text:(v.text.repeat(3)+'\n\n').repeat(5),attachments:[{type:v.type,url}]}));setT(5)}''',dict(file=filename,type=type_,text=text))
    if type_=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
-   assert page.locator('#postTextPlacement').input_value()=='bullet' and not page.locator('#postScrollMode').is_disabled()
-   assert page.locator('#bullets').input_value()==page.locator('#postBody').input_value()
+   assert page.locator('#postTextPlacement').input_value()=='roll' and not page.locator('#postScrollMode').is_disabled()
+   assert page.locator('#bullets').input_value()=='نص تحريري مستقل عن المنشور'
    # Optional fixed-media text presentation retains its previous coverage.
-   page.locator('#postTextPlacement').select_option('roll');page.locator('#postScrollMode').select_option('fixed')
+   page.locator('#postTextPlacement').select_option('roll',force=True);page.locator('#postScrollMode').select_option('fixed')
    for flip in [False,True]:
     page.evaluate('(v)=>setFlipped(v)',flip);before=page.evaluate('zeSafeLayout()');s=before['source'];assert s['w']==baseline['w'] and s['h']==baseline['h']
     assert page.evaluate('zeAutoPostPosition()')==position
@@ -45,7 +45,7 @@ try:
      if fitting=='fit':assert dimensions['w']<=365+.01 and dimensions['h']<=372+.01
      else:assert dimensions['w']>=365-.01 and dimensions['h']>=372-.01
     page.locator('#postMediaFit').select_option('fill');page.locator('#postContentMode').select_option('all')
-    page.locator('#postTextPlacement').select_option('hidden');assert page.evaluate('zeSocialRegions(100,100,365,372).text===null');page.locator('#postTextPlacement').select_option('roll')
+    page.locator('#postTextPlacement').select_option('hidden',force=True);assert page.evaluate('zeSocialRegions(100,100,365,372).text===null');page.locator('#postTextPlacement').select_option('roll',force=True)
    print(filename or 'square photo','fixed screenshot size, default inside-roll text, automatic',position,', scroll and centered media Fill/Fit: passed',flush=True)
   # Validate centering from painted media pixels (Fit is rendered by the contain path).
   assert page.evaluate('''(()=>{const frame=document.createElement('canvas');frame.width=800;frame.height=200;frame.getContext('2d').fillRect(0,0,800,200);const out=document.createElement('canvas');out.width=365;out.height=372;const ctx=out.getContext('2d');document.getElementById('postMediaFit').value='fit';zeDrawFramedMedia(ctx,frame,0,0,365,372,{});const data=ctx.getImageData(0,0,365,372).data;let l=365,r=0,t=372,b=0;for(let y=0;y<372;y++)for(let x=0;x<365;x++)if(data[(y*365+x)*4+3]>128){l=Math.min(l,x);r=Math.max(r,x);t=Math.min(t,y);b=Math.max(b,y)}document.getElementById('postMediaFit').value='fill';return Math.abs((l+r)/2-182)<1&&Math.abs((t+b)/2-185.5)<1&&t>0&&b<371})()''')

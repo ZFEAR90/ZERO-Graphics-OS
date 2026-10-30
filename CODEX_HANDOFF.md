@@ -1,3 +1,15 @@
+# Latest owner continuation from c4b0bbd
+
+The owner explicitly authorized the pending corrections after checking GitHub. The remote recovery branch was verified at `c4b0bbd74ce02c42aad2577e61c0bcf20729c76d` before editing. Work stays on `ze-os-v07-beta278-recovery`; main is untouched.
+
+Implemented: visible **Show post text inside the roll** toggle; independent external bulletin retained on import, toggle and post edits; explicit one-time copy remains available. Main, Adaptive, Whole and Dedicated 9:16 are retained; Balanced/Beside are removed from selection and old projects migrate them to Adaptive. All retained structured renderers use disjoint bounded text/media allocations with Fit/Fill and manual framing. Whole right-side media is stationary; below-text media shares document travel without the old recentering endpoint. Existing right/below selection survives entering Whole. Arrangement determines Whole motion, so conflicting speaker/scroll controls are disabled there.
+
+Telegram metadata and Chromium capture both use the public embed widget. The full original body (including line breaks) is extracted; profile imagery is excluded from actual post attachments, including large avatars and nested profile image elements. Original post text is inside the roll; editorial bullets stay independent. The real example `https://t.me/alichoeib1970/19404` is blocked by this cloud proxy (CONNECT 403); live retrieval is unverified. Controlled metadata and actual Chromium widget fixtures exercise both paths.
+
+Install development/test dependencies with `.venv/bin/python -m pip install -r requirements-dev.txt`. The standalone regression runner remains `tests/run_regression.py`. `browser_pending_adjustments_check.py` adds 384 layout/flip/shape/size/Fit-Fill/toggle cases and representative entrance captures. `browser_telegram_capture_check.py` covers actual Chromium extraction from controlled widget HTML. Validation evidence is recorded in `validation/owner-continuation.json` after completion. Do not treat the historical sections below as the latest UI/motion policy.
+
+Build the Windows package using `.venv/bin/python tools/build_windows_package.py downloads/Main_roll_test.zip`. The archive contains the connected launcher and exact current editor/importer files, with per-file SHA256 checksums. Users should extract all files into a new folder, close old helper windows, and run `TEST_MAIN_ROLL.bat`. Windows execution itself is not verified on this Linux host.
+
 # Current continuation — Beta 2.7.8 recovery
 
 The owner supplied the Universal Main roll continuation on October 29, 2026, authorizing reconstruction and implementation beyond the historical scope below. Read [RECOVERY_BETA278.md](RECOVERY_BETA278.md) first. Work is on `ze-os-v07-beta278-recovery`, from `e1e4830ef214a93a6c823b18543349791b4f9f3f`; keep main untouched. The failed environment was not recovered. Compare and preserve any subsequently supplied recovery files before further work. V0.7 alone remains approved. The older “wait for edits” text below records historical context and is superseded by this continuation.

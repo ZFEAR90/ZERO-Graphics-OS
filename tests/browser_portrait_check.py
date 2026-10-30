@@ -24,7 +24,7 @@ try:
   page.wait_for_function('zePost.active')
   page.locator('#postBody').fill('هذه فقرة توضيحية طويلة قابلة للتمرير وتبقى الصورة كاملة في كل وضع. '*30)
   page.evaluate('setT(5)')
-  for mode in ['focus', 'balanced', 'beside']:
+  for mode in ['focus', 'portrait']:
    page.locator('#portraitLayout').select_option(mode,force=True)
    page.wait_for_timeout(80)
    for flip in [False, True]:
@@ -33,7 +33,7 @@ try:
     s, h, b = (data['boxes'][n] for n in ['source', 'identity', 'bullet']); a = data['area']
     assert s['x'] >= a['x'] and s['x']+s['w'] <= a['x']+a['w']
     assert b['y']+b['h'] <= a['bottom']+.01 and h['y']+h['h'] <= a['bottom']+.01
-    if mode == 'focus':
+    if mode in ['focus','portrait']:
      assert abs((min(b['x'],s['x'])+max(b['x']+b['w'],s['x']+s['w']))/2-480)<.01 and s['h']>=420
      assert a['top'] < s['y']+s['h'] <= 508 and b['w'] <= 280 and h['w'] < 310
      assert b['x'] > s['x']+s['w'] if flip else b['x']+b['w'] < s['x']
@@ -48,7 +48,7 @@ try:
      targets.append(page.evaluate('''(t)=>{const ctx=document.createElement('canvas').getContext('2d'),original=fit;let target=null;fit=(c,frame,x,y,w,h)=>{target={x,y,w,h};original(c,frame,x,y,w,h)};try{zeDrawPost(ctx,100,100,400,300,t)}finally{fit=original}return target}''', t))
     assert targets[0] and all(v==targets[0] for v in targets), (mode, targets)
     assert targets[0]['h']>230
-    assert page.evaluate('zePostDocument();zePost.blocks.length===0')
+    assert page.evaluate('zeSocialRegions(100,100,400,300).text.x+zeSocialRegions(100,100,400,300).text.w<zeSocialRegions(100,100,400,300).media.x')
    if mode=='beside':
     page.locator('#rollLanguage').select_option('ltr'); left=page.evaluate('zeRollDirection()'); assert left=='ltr'
     page.locator('#rollLanguage').select_option('rtl'); assert page.evaluate('zeRollDirection()')=='rtl'
@@ -91,12 +91,12 @@ try:
   assert not page.locator('#protectLowerThird').is_checked()
   page.locator('#sourceFile').set_input_files(str(root/'tests/fixtures/photo.png'))
   page.wait_for_function('zePost.items.length===1 && zePost.items[0].type==="image"')
-  page.locator('#postBody').fill('A longer editable caption. '*20)
+  page.locator('#postBody').fill('A longer editable caption. '*20);page.locator('#postScrollMode').select_option('fixed')
   page.evaluate('setFlipped(false);setT(5)')
   assert page.evaluate('getBBox("bullet").h>180 && getBBox("bullet").y+getBBox("bullet").h<=zeBroadcastBounds().bottom+.01')
   assert page.evaluate('zePostDocument();zePost.blocks.length===0 && zeFixedPostMedia().includes(zePost.items[0])')
   photo=page.evaluate('''(()=>{const ctx=document.createElement('canvas').getContext('2d'),old=fit;let bounds=null;fit=(c,im,x,y,w,h)=>{bounds={w,h};old(c,im,x,y,w,h)};try{zeDrawPost(ctx,0,0,400,300,25)}finally{fit=old}return bounds})()''')
-  assert photo['w']==400 and photo['h']>200
+  region=page.evaluate('zeSocialRegions(0,0,400,300).media');assert photo['w']==region['w'] and photo['h']==region['h']
   page.locator('#respectSafeArea').click()
   assert page.evaluate('getBBox("bullet").y+getBBox("bullet").h<=zeBroadcastBounds().bottom')
   assert page.evaluate('getBBox("source").y+getBBox("source").h<=zeBroadcastBounds().bottom')
