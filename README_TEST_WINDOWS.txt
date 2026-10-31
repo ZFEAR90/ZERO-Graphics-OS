@@ -28,19 +28,30 @@ OFFLINE MODE
 OFFLINE_MAIN_ROLL.bat opens the editor without Python. It supports manual
 photos/video, editing and browser rendering. It does NOT start URL importing.
 
-LATEST TESTING ADJUSTMENTS
-Imported original post text is shown inside the roll. Use Show post text
-inside the roll to hide/show it without changing external bulletin text.
-Use post text in bullets is an explicit one-time copy only.
-Fit sizes media to its allocated area; Fill and manual framing remain.
-Main, Adaptive, Whole frame and Dedicated 9:16 are retained. Balanced card
-and Portrait beside post text have been removed.
-Whole: right-side media stays stationary while text scrolls. Below-text
-media scrolls with the text, with no automatic centering/repositioning.
-Switching to Whole preserves your selected right/below arrangement.
-Telegram text-only posts use the original body inside the roll. The channel
-photo is a profile image, not a post attachment. Live access remains subject
-to Telegram and local network restrictions.
+LATEST POST-REVIEW ADJUSTMENTS
+Main imports the complete editable post inside the roll: account row,
+post text, then media aligned to the same post width. Media only / Text only
+remain available. Profile picture and account name have independent switches
+for Main; these switches do not change Whole frame mode.
+Post text is kept below the decorative top strap and pinned account area.
+Text-above media uses its full natural width and proportions. Text and media
+move together only when the complete document exceeds the visible roll.
+Whole keeps stationary right-side media and shared below-text scrolling;
+its side platform tile is about 15 percent larger.
+Missing account photos show a name initial instead of a blank circle.
+Current platform vector logos are bundled locally; links identify the platform.
+
+SCREENSHOT IMPORT
+Below URL import, choose Import post screenshot. The local reader extracts
+English/Arabic text and proposes platform, account and image crops. Review
+and correct these fields, drag the profile/post-image crops as necessary,
+then choose Import reviewed screenshot post. External bullets are preserved.
+Use the connected editor opened by TEST_MAIN_ROLL.bat for automatic reading.
+The models and logos are bundled in assets; screenshots are not uploaded.
+Automatic detection is best effort: check the text, identity and crop borders.
+A screenshot cannot recover original video/audio. The offline HTML supports
+manual text/crop review; automatic reading needs the local editor connection.
+
 Bullet pages prefer complete paragraphs, numbered points and sentences.
 Oversized sentences may still need clause/word splits to fit safely.
 Long numbered lists automatically pin their introductory heading on a

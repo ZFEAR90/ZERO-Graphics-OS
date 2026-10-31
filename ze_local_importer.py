@@ -25,7 +25,7 @@ from urllib.parse import urlparse, parse_qs, urljoin
 from html import unescape
 
 ROOT=Path(__file__).resolve().parent
-KNOWN=("x.com","twitter.com","facebook.com","fb.watch","instagram.com","t.me","telegram.me","threads.net")
+KNOWN=("x.com","twitter.com","facebook.com","fb.watch","instagram.com","t.me","telegram.me","threads.net","threads.com")
 IMAGE_HOSTS=("pbs.twimg.com","twimg.com","fbcdn.net","cdninstagram.com","cdninstagram.net","instagram.com","telegram.org","cdn-telegram.org","telesco.pe","telegram-cdn.org","t.me","scontent.cdninstagram.com")
 VIDEO_HOSTS=("video.twimg.com","fbcdn.net","cdninstagram.com","cdninstagram.net","cdn-telegram.org","telegram-cdn.org","telesco.pe")
 MEDIA_ROOT=ROOT/'.ze_media'
@@ -104,7 +104,7 @@ def image_data(url):
 
 def platform_for(url):
     h=urlparse(url).hostname.lower().removeprefix('www.')
-    for platform,domains in [('X',('x.com','twitter.com')),('Facebook',('facebook.com','fb.watch')),('Instagram',('instagram.com',)),('Telegram',('t.me','telegram.me')),('Threads',('threads.net',))]:
+    for platform,domains in [('X',('x.com','twitter.com')),('Facebook',('facebook.com','fb.watch')),('Instagram',('instagram.com',)),('Telegram',('t.me','telegram.me')),('Threads',('threads.net','threads.com'))]:
         if allowed(h,domains):return platform
     return 'Unknown'
 
@@ -224,6 +224,17 @@ def fetch_metadata(url):
                 break
         except (ValueError, TypeError): pass
     platform=platform_for(url)
+    # Identity-specific elements only: an OG post preview is not an account avatar.
+    selectors={
+        'X':'[data-testid="Tweet-User-Avatar"] img, img[src*="profile_images/"]',
+        'Facebook':'[data-testid="post_author_avatar"] img, img[alt*="profile picture" i], img[alt*="profile photo" i]',
+        'Instagram':'header img, img[alt*="profile picture" i]',
+        'Threads':'header img, img[alt*="profile picture" i]',
+    }
+    if not avatar and platform in selectors:
+        scope=doc.select_one('article, [role=article]') or doc
+        profile=scope.select_one(selectors[platform])
+        if profile: avatar=urljoin(url,profile.get('src') or profile.get('data-src') or '')
     seg=[x for x in urlparse(url).path.split('/') if x]
     handle=seg[1] if platform=='Telegram' and len(seg)>1 and seg[0]=='s' else (seg[0] if seg else '')
     if platform=='Facebook' and handle in ('posts','watch','reel','permalink.php','share','photo.php','story.php','login','login.php'):handle=''
@@ -235,7 +246,7 @@ def fetch_metadata(url):
     if avatar: output['avatar_data'] = image_data(avatar)
     if platform=='X' and not description:
         raise RuntimeError(x_failure)
-    if image and platform != 'Telegram':
+    if image and platform != 'Telegram' and image != avatar:
         output['media_data']=image_data(image)
     if output.get('media_data'):
         output['attachments']=[{'type':'image','data_url':output['media_data']}]
@@ -252,6 +263,7 @@ def fetch_metadata(url):
     # Telegram OG images can be channel avatars. Only widget attachments are post media.
     if platform=='Telegram':
         node=doc.select_one('.tgme_widget_message_user_photo img') or doc.select_one('.tgme_widget_message_user_photo')
+        if node and not node.get('src'): node=node.select_one('[style*="background-image"]') or node
         avatar_url = node.get('src') if node else ''
         if node and not avatar_url:
             match=re.search(r"url\(['\"]?(https://[^)'\"]+)",node.get('style',''))
@@ -328,7 +340,7 @@ def screenshot_public_post(url):
                 extracted = {'screenshot_data': 'data:image/png;base64,'+base64.b64encode(pic).decode()}
                 # Keep attachments separate from the flattened screenshot where the page exposes them.
                 extracted['attachments']=[]
-                image_urls=loc.locator('img').evaluate_all('(nodes)=>nodes.filter(im=>im.naturalWidth>=240 && im.naturalHeight>=120 && !im.closest("header,h2,h3,.tgme_widget_message_user_photo")).map(im=>im.currentSrc||im.src).slice(0,8)')
+                image_urls=loc.locator('img').evaluate_all('(nodes)=>nodes.filter(im=>im.naturalWidth>=240 && im.naturalHeight>=120 && !im.closest("header,h2,h3,.tgme_widget_message_user_photo,[data-testid=Tweet-User-Avatar],[data-testid=post_author_avatar]") && !/profile|avatar|صورة الملف/i.test(im.alt||"") && !/profile_images|profile_pic/i.test(im.currentSrc||im.src)).map(im=>im.currentSrc||im.src).slice(0,8)')
                 if platform=='Telegram':
                     image_urls=loc.locator('.tgme_widget_message_photo_wrap').evaluate_all(r"nodes=>nodes.map(el=>getComputedStyle(el).backgroundImage).map(value=>value.match(/url\(['\"]?(https:[^)'\"]+)/)?.[1]).filter(Boolean).slice(0,8)")
                     text=loc.locator('.tgme_widget_message_text').first
@@ -348,7 +360,7 @@ def screenshot_public_post(url):
                     if author.count(): extracted['name'] = author.inner_text(timeout=1000).strip()[:100]
                     avatar = loc.locator(avatar_selectors[platform]).first
                     if avatar.count():
-                        avatar_url = avatar.evaluate(r"el=>el.querySelector('img')?.src||el.currentSrc||el.src||getComputedStyle(el).backgroundImage.match(/url\(['\"]?(https:[^)'\"]+)/)?.[1]") if platform=='Telegram' else avatar.evaluate('(el)=>el.currentSrc || el.src || el.getAttribute("href") || el.getAttribute("xlink:href")')
+                        avatar_url = avatar.evaluate(r"el=>{const node=el.querySelector('img')||el.querySelector('[style*=\"background-image\"]')||el;return node.currentSrc||node.src||getComputedStyle(node).backgroundImage.match(/url\(['\"]?(https:[^)'\"]+)/)?.[1]}") if platform=='Telegram' else avatar.evaluate('(el)=>el.currentSrc || el.src || el.getAttribute("href") || el.getAttribute("xlink:href")')
                         if avatar_url: extracted['avatar_data'] = image_data(avatar_url)
                 except Exception:
                     pass

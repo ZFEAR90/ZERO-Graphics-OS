@@ -1,3 +1,15 @@
+# Latest owner post-review instructions (October 31, 2026)
+
+The owner authorized the accumulated screenshot-reported corrections, then clarified that Main defaults to the entire editable post as though captured from the source: profile/name row, original text, then media aligned to the post width. Main retains Media only / Text only plus independent profile-picture and account-name toggles. These new account toggles DO NOT control Whole frame. The external bulletin stays independent.
+
+Current changes also protect all post text below the decorative strap/account viewport, use proportional full-width media below text, and scroll only the document overflow. Whole retains stationary right media and shared below-text document motion, with its external platform tile enlarged from 66 to 76 base units. Preserve the original V0.7 entrance, Flip orientation and manual controls.
+
+Profile extraction handles Telegram's nested CSS avatar and identity-scoped avatar nodes on other platforms. Missing profiles get Unicode account initials. X/Facebook/Instagram/Telegram/Threads logos are bundled from Simple Icons 16.36.0, with brand-source references and integrity information in assets/vendor-sources.json. Threads recognizes both threads.net and threads.com.
+
+Screenshot import appears below URL import. It uses the bundled Tesseract.js 7.0.0 plus matching core 7.0.0 and English/Arabic models, locally in the browser. Review/correct the detected platform/name/handle/text and profile/media crop outlines before applying. This is best-effort recognition and crop proposal, not guaranteed semantic reconstruction of any screenshot. Video/audio cannot be recovered. Automatic reading needs the HTTP editor opened by START_ZE_OS.bat; file:// mode supports manual review/cropping. Never upload screenshots to an external recognition service.
+
+New acceptance checks: tests/browser_owner_post_review_check.py (actual painted strap clearance, Main-only independent account controls, natural media overflow, bundled logos and initials), tests/browser_screenshot_import_check.py (real offline Arabic/English recognition, crop review and import), and tests/test_offline_assets.py. The full runner is tests/run_regression.py. Windows ZIP builder includes all assets and licenses. Source remains on ze-os-v07-beta278-recovery; main must remain untouched. Earlier sections below are historical.
+
 # Latest owner continuation from c4b0bbd
 
 The owner explicitly authorized the pending corrections after checking GitHub. The remote recovery branch was verified at `c4b0bbd74ce02c42aad2577e61c0bcf20729c76d` before editing. Work stays on `ze-os-v07-beta278-recovery`; main is untouched.

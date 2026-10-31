@@ -48,3 +48,5 @@ Unit mocks and controlled local URL responses are identified as fixtures. Passin
 Owner continuation acceptance: `browser_pending_adjustments_check.py` covers 384 combinations of retained layout, flip, media shape, allocation size, Fit/Fill and text toggle. `test_telegram.py` verifies full text extraction and profile/media separation without live network access.
 
 Development dependency installation: `.venv/bin/python -m pip install -r requirements-dev.txt`. Telegram browser capture separation is also exercised by `browser_telegram_capture_check.py`.
+
+Latest post-review: `browser_owner_post_review_check.py` checks actual strap-safe text pixels, complete Main posts, independent account toggles that do not affect Whole, natural media proportions and overflow-only scrolling. `browser_screenshot_import_check.py` runs the bundled Arabic/English recognition in Chromium with no external requests, then reviews/imports separate profile and post-media crops. `test_offline_assets.py` verifies local model/engine/logo integrity.

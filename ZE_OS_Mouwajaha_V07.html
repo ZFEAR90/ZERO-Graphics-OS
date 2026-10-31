@@ -76,10 +76,10 @@
 يشكل المسلمون نحو 6% من سكان أوروبا، ونحو 9 إلى 10% من سكان فرنسا
 
 المواطنون يعانون بسبب ارتفاع الأسعار والضرائب</textarea><details class="paragraph-controls" open><summary>Paragraph timing &amp; output</summary><label class="check"><input id="transparentOutput" type="checkbox">Transparent background (no loop)</label><label class="label" for="videoDuration">Overall video length (seconds)</label><input id="videoDuration" type="number" min="5" max="600" step="0.04" value="50"><label class="label" for="paragraphTransition">Line exit / slide time (seconds)</label><input id="paragraphTransition" type="number" min="0.2" max="2" step="0.04" value="0.64"><p class="micro">Lines enter and exit in a staggered wave. The next paragraph overlaps the exit in cleared space; Flip reverses the direction. The final paragraph stays until the video ends. Auto fits reading length; editing seconds sets a manual hold.</p><div class="rowwrap"><button id="autoParagraphs" type="button" class="tinyaction">Reset holds to Auto</button><button id="fitParagraphVideo" type="button" class="tinyaction">Use estimated total</button></div><div id="paragraphTimings"></div><p id="paragraphTimingStatus" class="micro timing-summary" role="status" aria-live="polite"></p></details></div></details><details class="control-panel" data-panel="postmedia"><summary><span>Post photos, video &amp; audio</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content">
-<label class="label" for="postContentMode">Roll content</label><select id="postContentMode"><option value="all">Use text placement + selected media</option><option value="media">Media only in roll</option><option value="text">Text only</option></select>
+<label class="label" for="postContentMode">Roll content</label><select id="postContentMode"><option value="all">Complete post · text and media</option><option value="media">Media only in roll</option><option value="text">Text only</option></select>
 <label class="check"><input checked="" id="postPhotos" type="checkbox"/>Include photos</label><label class="check"><input checked="" id="postVideos" type="checkbox"/>Include videos</label>
 <div id="postMediaList"></div><label class="check"><input id="postAudio" type="checkbox"/>Include post audio (when available)</label><p class="micro">Enable the explicit hidden-video audio option to keep sound when its picture is hidden. Uncheck an individual media item to remove both its picture and sound.</p><label class="label" for="postVolume">Audio volume</label><input id="postVolume" max="100" min="0" style="width:100%" type="range" value="100"/>
-<label class="check"><input id="mouseResize" type="checkbox" checked/>Temporary test: resize roll and bullets with mouse</label><button id="resetMouseSizes" type="button">Reset mouse sizes</button><p class="micro">Pause, select a roll or bullet panel, then drag its edge or corner handles. Text reflows and media follows the frame.</p><label class="check"><input type="checkbox" id="showPostText" checked/>Show post text inside the roll</label><select id="postTextPlacement" hidden aria-hidden="true"><option value="roll">Inside the roll</option><option value="bullet">Legacy bullet placement</option><option value="hidden">Hide post text</option></select><div class="rowwrap"><button id="copyPostToBullets" type="button">Use post text in bullets</button></div><label class="label" for="postScrollMode">When text is inside the roll</label><select id="postScrollMode"><option value="fixed">Keep media visible · scroll text</option><option value="together" selected>Scroll text and media together</option></select><label class="label" for="postMediaFit">Media fitting</label><select id="postMediaFit"><option value="fill">Fill frame (crop edges)</option><option value="fit" selected>Fit whole image (no crop)</option></select><p class="micro">Fill covers the current frame; Fit keeps the entire picture visible. Choose Inside the roll above to include post text, or Bullet panel / Hide post text for media without a caption.</p><p class="micro" id="postPlacementStatus">Main imports post text into the bullet panel. Choose Inside the roll to include it with the media. Custom bulletin text remains editable.</p><label class="label" for="postBody">Post text</label><textarea id="postBody" rows="4"></textarea>
+<label class="check"><input id="mouseResize" type="checkbox" checked/>Temporary test: resize roll and bullets with mouse</label><button id="resetMouseSizes" type="button">Reset mouse sizes</button><p class="micro">Pause, select a roll or bullet panel, then drag its edge or corner handles. Text reflows and media follows the frame.</p><label class="check"><input type="checkbox" id="showPostText" checked/>Show post text inside the roll</label><div id="mainPostAccountControls"><input type="checkbox" id="showRollAccount" checked hidden/><label class="check"><input type="checkbox" id="showRollProfile" checked/>Show profile picture inside the roll</label><label class="check"><input type="checkbox" id="showRollName" checked/>Show account name inside the roll</label></div><select id="postTextPlacement" hidden aria-hidden="true"><option value="roll">Inside the roll</option><option value="bullet">Legacy bullet placement</option><option value="hidden">Hide post text</option></select><div class="rowwrap"><button id="copyPostToBullets" type="button">Use post text in bullets</button></div><label class="label" for="postScrollMode">When text is inside the roll</label><select id="postScrollMode"><option value="fixed">Keep media visible · scroll text</option><option value="together" selected>Scroll text and media together</option></select><label class="label" for="postMediaFit">Media fitting</label><select id="postMediaFit"><option value="fill">Fill frame (crop edges)</option><option value="fit" selected>Fit whole image (no crop)</option></select><p class="micro">Complete posts keep image proportions and scroll only when they overflow. Media-only content uses Fill/Fit. External bullet text stays independent.</p><p class="micro" id="postPlacementStatus">Main imports post text into the bullet panel. Choose Inside the roll to include it with the media. Custom bulletin text remains editable.</p><label class="label" for="postBody">Post text</label><textarea id="postBody" rows="4"></textarea>
 <label class="check"><input disabled="" id="postScreenshot" type="checkbox"/>Use original captured screenshot</label>
 <label class="label" for="postFiles">Add original photos, video or audio</label><input accept="image/*,video/*,audio/*" id="postFiles" multiple="" type="file"/>
 <p class="micro" id="postMediaStatus" role="status">Import a post or add media files. Unchecking an item removes it from the roll and keeps it available to restore. Media inside a flattened screenshot cannot be edited separately.</p></div></details><details class="control-panel" data-panel="placement"><summary><span>Composition position</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label" for="compositionY">Whole composition · up / down (pixels)</label><div class="composition-move"><button id="compositionUp" type="button">Up</button><input hidden="" id="compositionX" type="number" value="0"/><input id="compositionY" max="600" min="-600" step="10" type="number" value="0"/><button id="compositionDown" type="button">Down</button><button id="compositionReset" type="button">Reset</button></div><p class="micro" id="compositionMoveStatus">Moves the roll, bullets and account header together.</p></div></details></div><div aria-labelledby="advancedTab" class="editor-tab-panel" hidden="" id="advancedOptions" role="tabpanel"><details class="control-panel" data-panel="rolllayouts" id="rollLayoutPanel"><summary><span>Roll layout &amp; media arrangement</span><svg aria-hidden="true" class="panel-chevron" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label" for="portraitLayout">Roll frame layout</label><select id="portraitLayout"><option value="reference">Main roll · fixed reference frame (default)</option><option value="social">Whole roll frame · side platform</option><option value="focus">Adaptive roll · size to media</option><option value="portrait">Dedicated 9:16 · centered portrait</option></select><p class="micro">Fixed reference frame keeps the screenshot dimensions for every post. Adaptive roll sizes the frame to the media, using the earlier centered portrait and native wide-card treatments. Dedicated 9:16 keeps the centered portrait treatment.</p><div id="socialLayoutOptions" hidden=""><label class="label" for="socialMediaPosition">Media inside the post</label><select id="socialMediaPosition"><option value="auto">Auto · portrait right / wide below</option><option value="below">Below post text</option><option value="right">Right side · text on left</option></select><label class="label" for="socialTextSize">Post text size (1080p pixels)</label><input id="socialTextSize" type="number" min="28" max="64" step="2" value="44"/><p class="micro">Auto puts tall 9:16 media on the right with post text on the left, and wide or square media below the text. Long text scrolls independently. Media-only content is centered with Fill/Fit. Main roll uses shape-based Auto. Whole roll frame defaults to media on the right and text on the left; Below remains an optional override.</p></div></div></details><details class="control-panel" data-panel="layout"><summary><span>Detailed layout &amp; selection</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="check"><input checked="" id="showSelection" type="checkbox"/>Show selection outlines</label><p class="micro">Drag a group in the preview. Shift-click adds groups; Select all moves the full composition.</p><label class="label">Layer layout</label><div class="rowwrap"><button class="tinyaction" id="selectIdentity">Account group</button><button class="tinyaction" id="selectSource">Roll + account</button><button class="tinyaction" id="selectBullet">Bullet panel</button><button class="tinyaction" id="selectAll">Select all</button></div><div class="micro">Select a layer and drag in preview, or adjust its coordinates below. Flip relocates the full groups without reversing text.</div><label class="label">Source position</label><select id="position"><option value="original">Original position — source right</option><option value="mirrored">Mirrored — source left</option></select><label class="label">Selected layer: <b id="selectedLayer" style="color:#ffabb6">source</b></label><div class="scalegrid"><label>X offset<input id="layerX" step="1" type="number" value="0"/></label><label>Y offset<input id="layerY" step="1" type="number" value="0"/></label><label>Size %<input id="layerScale" max="250" min="20" step="1" type="number" value="100"/></label></div><label class="label" for="headerGroupScale">Logo, profile &amp; name group size (%)</label><input id="headerGroupScale" type="number" min="30" max="150" step="1" value="85"><p class="micro">Same size across media formats. On the TV-logo side the group is 5% smaller, with safe top clearance.</p><label class="label">Identity element scales</label><div class="scalegrid"><label>Platform %<input id="platformScale" max="250" min="30" type="number" value="100"/></label><label>Avatar %<input id="avatarScale" max="250" min="30" type="number" value="100"/></label><label>Account %<input id="labelScale" max="250" min="30" type="number" value="100"/></label></div><label class="label">When bullets are hidden, center and resize roll</label><select id="soloWidth"><option value="auto">Auto (media aspect ratio)</option><option value="compact">Compact portrait</option><option value="wide">Wider article / video</option></select><label class="label">Source fit</label><select id="soloFit"><option value="contain">Contain · do not crop</option><option value="cover">Cover · fill source panel</option></select><p class="micro">The account/logo follows the centered source. Flip changes positions only—letters and images are never mirrored.</p></div></details><details class="control-panel" data-panel="media"><summary><span>Background loop</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Background loop (MP4 / MOV / WebM)</label><input accept="video/*,image/*" id="backgroundFile" type="file"/><span class="filetag" id="backgroundPath">Default: first clean frame from uploaded broadcast reference</span></div></details><details class="control-panel" data-panel="typography"><summary><span>Arabic typography</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><label class="label">Load licensed STV font from your PC</label><input accept=".ttf,.otf,.woff,.woff2,font/*" id="stvFont" type="file"/><span class="filetag" id="stvStatus">Supplied STV Regular + Bold · loading locally</span><label class="label">Justification mode</label><select id="justifyMode"><option selected="" value="kashida">Full justify + controlled Kashida</option><option value="word">Full justify with word spacing</option><option value="none">Right aligned — no justification</option></select><label class="label">Kashida level</label><input id="kashidaStrength" max="100" min="0" step="5" style="width:100%;accent-color:#cf304a" type="range" value="75"/><label class="label">Text size (STV when loaded)</label><input id="fontSize" max="29" min="14" step=".5" style="width:100%;accent-color:#cf304a" type="range" value="20.5"/><span class="micro" id="fontLabel">20.5px</span></div></details><details class="control-panel" data-panel="animation"><summary><span>Animation</span><svg aria-hidden="true" class="panel-chevron" viewbox="0 0 16 16"><path d="m6 3 5 5-5 5"></path></svg></summary><div class="panel-content"><div class="motion-settings" id="proMotionPanel">
@@ -105,6 +105,7 @@
 <div class="track"><div class="bar"></div><div class="event" style="left:.28%"><label>Identity</label></div><div class="event" style="left:1.12%"><label>Roll reveal</label></div><div class="event" style="left:2.10%"><label>Mask complete</label></div><div class="event" style="left:2.85%"><label>Bullet</label></div><div class="event" style="left:14%"><label>Scroll / next paragraph</label></div><div class="head" id="head" style="left:0"></div></div>
 <div class="timelinelegend"><span>00:00</span><span>00:10</span><span>00:20</span><span>00:30</span><span>00:40</span><span>00:50</span><span>01:00</span><span>01:11.48</span></div>
 </footer></div>
+<script src="assets/platform-logos.js"></script>
 <script>
 function zeNewSelect(id,label,options,anchor){const box=document.createElement('label');box.className='label';box.textContent=label;const select=document.createElement('select');select.id=id;for(const [value,text] of options){const o=document.createElement('option');o.value=value;o.textContent=text;select.append(o)}box.append(select);document.getElementById(anchor).parentElement.append(box)}
 zeNewSelect('bulletSplitMode','Bullet grouping',[['auto','Auto · keep together when it fits'],['blank','Split at blank lines']],'bullets');
@@ -362,10 +363,10 @@ function identity(ctx,t){
  if(t>.36){ctx.save();ctx.globalAlpha=zeSmooth(clamp((t-.36)/.20));centeredScaled(ctx,p.x,p.y,p.w,p.h,.2+.8*zeSmooth(clamp((t-.36)/.32)),()=>{
   if(assets.platform)fit(ctx,assets.platform,p.x+5,p.y+5,p.w-10,p.h-10);else shapeX(ctx,p.x+p.w/2,p.y+p.h/2,p.w*.74);
  });ctx.restore()}
- if(zeSocialMode())return; // Full post account row is painted inside the post, not as the animated broadcast header.
+ if(zeSocialMode()||zeEmbeddedHeader()&&zeReferenceSize()&&state.postActive)return; // Full post account row is painted inside the post, not as the animated broadcast header.
  centeredScaled(ctx,a.x,a.y,a.w,a.h,zeSampleTrack('avatar',t),()=>{
   rr(ctx,a.x,a.y,a.w,a.h,2,'#222025');rr(ctx,a.x+2,a.y+2,a.w-4,a.h-4,2,zeElementColor('identityBorder'));
-  if(assets.avatar){ctx.save();ctx.globalAlpha=zeSmooth(clamp((t-.48)/.32));roundedClip(ctx,a.x+2,a.y+2,a.w-4,a.h-4,1);cover(ctx,assets.avatar,a.x+2,a.y+2,a.w-4,a.h-4);ctx.restore()}
+  if(zeAccountImage()){ctx.save();ctx.globalAlpha=zeSmooth(clamp((t-.48)/.32));roundedClip(ctx,a.x+2,a.y+2,a.w-4,a.h-4,1);cover(ctx,zeAccountImage(),a.x+2,a.y+2,a.w-4,a.h-4);ctx.restore()}
  });
  headerLabel(ctx,l.name,l.nameText,l.font(21,l.arabic),t,.58,1.03,true);
  headerLabel(ctx,l.handle,l.handleText,l.font(18,/[\u0600-\u06ff]/.test(l.handleText)),t,.68,1.44,false);
@@ -773,7 +774,7 @@ const zeOriginalSelect=selectLayer;
 selectLayer=function(name){if(name==='bullet'&&zeNoBullets())name='source';return zeOriginalSelect(name)};
 function zeRecognizePlatform(url){
  try{let u=new URL(url),h=u.hostname.toLowerCase().replace(/^www\./,'');
- let platform=h==='x.com'||h==='twitter.com'?'X':h==='facebook.com'||h==='m.facebook.com'||h==='fb.watch'?'Facebook':h==='instagram.com'?'Instagram':h==='t.me'||h==='telegram.me'?'Telegram':h==='threads.net'?'Threads':null;
+ let platform=h==='x.com'||h==='twitter.com'?'X':h==='facebook.com'||h==='m.facebook.com'||h==='fb.watch'?'Facebook':h==='instagram.com'?'Instagram':h==='t.me'||h==='telegram.me'?'Telegram':(h==='threads.net'||h==='threads.com')?'Threads':null;
  let paths=u.pathname.split('/').filter(Boolean),account='';
  if(platform==='X'||platform==='Instagram'||platform==='Threads')account=paths[0]||'';
  if(platform==='Telegram')account=paths[0]==='s'?paths[1]:(paths[0]||'');
@@ -783,18 +784,21 @@ function zeRecognizePlatform(url){
 }
 function zeSetStatus(str,ok=false){$('importStatus').textContent=str;$('importStatus').className='micro '+(ok?'good-inline':'warn-inline')}
 function zePlatformCanvas(name){
- const canv=document.createElement('canvas');canv.width=200;canv.height=200;const g=canv.getContext('2d');
- g.clearRect(0,0,200,200);
- g.fillStyle=name==='X'?'#111114':name==='Facebook'?'#1762ce':name==='Instagram'?'#a82d82':name==='Telegram'?'#198bc3':'#23242a';g.fillRect(0,0,200,200);
- g.textAlign='center';g.textBaseline='middle';g.fillStyle='white';g.font=`bold ${name==='Instagram'?78:118}px Arial`;
- g.fillText(name==='Facebook'?'f':name==='Telegram'?'➤':name==='Instagram'?'◎':name==='Threads'?'@':'𝕏',100,111);
- return canv;
+ const canv=document.createElement('canvas');canv.width=canv.height=200;const g=canv.getContext('2d'),logo=typeof zePlatformLogos!=='undefined'?zePlatformLogos[name]:null;
+ g.fillStyle=['Facebook','Telegram'].includes(name)?'#fff':logo?.color||'#20242a';if(name==='Instagram'){const gradient=g.createLinearGradient(0,200,200,0);gradient.addColorStop(0,'#feda75');gradient.addColorStop(.4,'#fa7e1e');gradient.addColorStop(.7,'#d62976');gradient.addColorStop(1,'#4f5bd5');g.fillStyle=gradient}g.fillRect(0,0,200,200);
+ if(logo){g.translate(25,25);g.scale(150/24,150/24);g.fillStyle=['Facebook','Telegram'].includes(name)?logo.color:'#fff';g.fill(new Path2D(logo.path))}return canv;
+}
+function zeAccountImage(){
+ if(assets.avatar)return assets.avatar;
+ const name=($('displayname').value||$('account').value||'?').replace(/^@/,'').trim(),initial=Array.from(name).find(ch=>/[\p{L}\p{N}]/u.test(ch))||'?',key=name+'|'+zeSolo.postPlatform;
+ if(zeAccountImage.cached?.key===key)return zeAccountImage.cached.image;
+ const image=document.createElement('canvas');image.width=image.height=160;const ctx=image.getContext('2d');ctx.fillStyle=({Telegram:'#349bd3',Facebook:'#0866ff',Instagram:'#c13584',X:'#24262b',Threads:'#24262b'})[zeSolo.postPlatform]||'#64748b';ctx.fillRect(0,0,160,160);ctx.fillStyle='#fff';ctx.font='bold 88px ZEOSSTV, Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(initial.toLocaleUpperCase(),80,86);zeAccountImage.cached={key,image};return image;
 }
 function zeApplyDetection(z){
  if(!z.platform)return false;
  zeSolo.postUrl=z.url;zeSolo.postPlatform=z.platform;assets.platform=zePlatformCanvas(z.platform);
  if(z.account){$('account').value='@'+z.account;$('displayname').value=z.account.replaceAll('_',' ')}
- $('platformPath').textContent='Auto-detected '+z.platform+' logo';draw();return true;
+ $('platformPath').textContent='Bundled '+z.platform+' logo · works offline';draw();return true;
 }
 async function zeLoadDataImage(data,kind){return new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{assets[kind]=im;resolve(im)};im.onerror=reject;im.src=data})}
 function zeWrapPostText(data){
@@ -876,7 +880,7 @@ $('importPost').onclick=async()=>{
   assets.avatar=avatar;
   if(source){assets.source=source;assets.sourceBottom=null;zeCommitPost(prepared)}
   const missing=[];
-  if(!avatar)missing.push('profile photo');if(!data.name)missing.push('display name');
+  if(!avatar)avatarWarning+='Account initial used because the profile photo was unavailable. ';if(!data.name)missing.push('display name');
   const details=(missing.length?'Unavailable: '+missing.join(', ')+'. Set these manually. ':'')+avatarWarning;
   zeSetStatus((prepared?($('postScreenshot').checked?'Original post capture loaded. ':'Editable post text and selected media loaded. '):'Post account details loaded. ')+details+(data.capture_warning?' Screenshot: '+data.capture_warning+' ':'')+'Verify against the source.',!missing.length);
   draw();
@@ -1102,13 +1106,26 @@ function zeDrawPost(ctx,x,y,w,h,t){
  }
 }
 
+function zeInlinePostAccount(ctx,x,y,w){
+ const profile=$('showRollAccount').checked&&$('showRollProfile').checked,name=$('showRollAccount').checked&&$('showRollName').checked;if(!profile&&!name)return 0;
+ const scale=Math.min(1,w/320)*zeMouseContentScale('source'),avatar=profile?Math.min(w*.18,34*scale*clamp(val('avatarScale')/100,.3,2.5)):0,font=13*scale*clamp(val('labelScale')/100,.3,2.5),height=Math.max(avatar,name?font*2.5:0)+14,tx=x+(profile?avatar+9:0);
+ if(profile){ctx.save();ctx.beginPath();ctx.arc(x+avatar/2,y+avatar/2+4,avatar/2,0,Math.PI*2);ctx.clip();cover(ctx,zeAccountImage(),x,y+4,avatar,avatar);ctx.restore()}
+ if(name){const label=$('displayname').value,handle=$('account').value,maxWidth=Math.max(1,w-(tx-x)-5),nameFont=`bold ${font}px ZEOSSTV, Arial`,handleFont=`${font*.8}px Arial`;ctx.save();ctx.font=nameFont;const nw=Math.min(maxWidth,ctx.measureText(label).width+2);ctx.font=handleFont;const hw=Math.min(maxWidth,ctx.measureText(handle).width+2);ctx.restore();zeDrawNativePostLabel(ctx,{x:tx,y:y+3,w:nw,h:font*1.5},label,nameFont,'#20252b');
+ zeDrawNativePostLabel(ctx,{x:tx,y:y+font*1.5+3,w:hw,h:font},handle,handleFont,'#66707b')}return height;
+}
+function zeRollContentBounds(x,y,w,h){
+ const source=getBBox('source'),strapBottom=!zeSocialMode()?source.y-8+Math.min(28,source.h*.07):y-8,top=Math.max(y,strapBottom+8);
+ return {x,y:top,w,h:Math.max(1,h-(top-y))};
+}
 const zeOldArticleFit=zeArticleFit;
 zeArticleFit=function(ctx,x,y,w,h,t){
  if(!zePost.active){if(zeSocialMode()){zeDrawNativePostAccount(ctx);const band=zeSocialBand();return zeOldArticleFit(ctx,x,y+band,w,Math.max(1,h-band),t)}return zeOldArticleFit(ctx,x,y,w,h,t)}
  ctx.save();roundedClip(ctx,x,y,w,h,5);ctx.fillStyle='#fff';ctx.fillRect(x,y,w,h);
- if(zeSocialMode()){zeDrawNativePostAccount(ctx);const band=zeSocialBand();if($('postScreenshot').checked)zeDrawPost(ctx,x,y+band,w,Math.max(1,h-band),t);else zeDrawSocialPost(ctx,x,y+band,w,Math.max(1,h-band),t)}
- else{const band=zeEmbeddedHeader()?zeEmbeddedBand():0,bodyY=y+band,bodyHeight=Math.max(1,h-band);if(zeReferenceSize()&&!$('postScreenshot').checked)zeDrawSocialPost(ctx,x,bodyY,w,bodyHeight,t);else if(zeSafeRollText()){const textHeight=Math.max(0,Math.min(bodyHeight,zeTextSafeBottom()-2-bodyY));zeDrawPostDocument(ctx,x,bodyY,w,textHeight,t)}else zeDrawPost(ctx,x,bodyY,w,bodyHeight,t)}
- ctx.restore();
+ const body=zeRollContentBounds(x,y,w,h);let band=0;
+ if(zeSocialMode()){zeDrawNativePostAccount(ctx);band=zeSocialBand()}
+ else if(zeReferenceSize()&&!$('postScreenshot').checked)band=zeInlinePostAccount(ctx,body.x+8,body.y+3,body.w-16);
+ else if(zeEmbeddedHeader())band=zeEmbeddedBand();
+ const by=body.y+band,bh=Math.max(1,body.h-band);ctx.save();roundedClip(ctx,body.x,by,body.w,bh,3);zeDrawPost(ctx,body.x,by,body.w,bh,t);ctx.restore();ctx.restore();
 };
 function zePrimaryMedia(){return $('postScreenshot').checked?null:zeVisualItems()[0]||null}
 function zeEmbeddedHeader(){return !zeSocialMode()&&!!state.postActive&&zeNoBullets()&&(zeReferenceSize()||!!zeFramePrimaryMedia()&&!zeLayoutPortraitMedia())}
@@ -1220,7 +1237,7 @@ function zeVisibleBounds(name,b){
 }
 function zeSafeLayout(){
  const raw=Object.fromEntries(['identity','source','bullet'].map(name=>[name,zeBeforeSafeBBox(name)])),area=zeBroadcastBounds(),protect=$('protectLowerThird').checked,pad=10;
- const signature=JSON.stringify([raw,state.layers,area,protect,val('headerGroupScale'),val('compositionX'),val('compositionY'),state.screenOffsets,zePost.active,$('portraitLayout').value,$('postContentMode').value,$('postTextPlacement').value,$('postScrollMode').value,$('postScreenshot').checked,$('allowMediaOverlap').checked,zeLayoutPortraitMedia()?.ratio,zeRollDirection(),$('account').value,$('displayname').value,val('platformScale'),val('avatarScale'),val('labelScale'),zeSocialMode()]);
+ const signature=JSON.stringify([raw,state.layers,area,protect,val('headerGroupScale'),val('compositionX'),val('compositionY'),state.screenOffsets,zePost.active,$('portraitLayout').value,$('postContentMode').value,$('postTextPlacement').value,$('postScrollMode').value,$('postScreenshot').checked,$('showRollAccount').checked,$('showRollProfile').checked,$('showRollName').checked,$('allowMediaOverlap').checked,zeLayoutPortraitMedia()?.ratio,zeRollDirection(),$('account').value,$('displayname').value,val('platformScale'),val('avatarScale'),val('labelScale'),zeSocialMode()]);
  if(zeSafeLayout.cached?.signature===signature)return zeSafeLayout.cached.boxes;
  const boxes=structuredClone(raw),visible=names=>names.filter(name=>boxes[name].w>0),extent=names=>{const bs=visible(names).map(n=>zeVisibleBounds(n,boxes[n]));return {l:Math.min(...bs.map(b=>b.x)),r:Math.max(...bs.map(b=>b.x+b.w)),t:Math.min(...bs.map(b=>b.y)),b:Math.max(...bs.map(b=>b.y+b.h))}};
  const limit=(value,min,max)=>min<=max?clamp(value,min,max):max;
@@ -1422,7 +1439,7 @@ function zeEditorTab(advanced){
 $('mainTab').onclick=()=>zeEditorTab(false);$('advancedTab').onclick=()=>zeEditorTab(true);
 for(const id of ['mainTab','advancedTab'])$(id).addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const advanced=event.key==='End'||event.key==='ArrowRight';zeEditorTab(advanced);$(advanced?'advancedTab':'mainTab').focus()}});
 const zeUndoStack=[],zeRedoStack=[];
-const zeHistoryFields=['headerGroupScale','compositionX','compositionY','layerX','layerY','layerScale','platformScale','avatarScale','labelScale','flip','position','showBullets','protectLowerThird','broadcastTop','lowerThirdGap','lowerThirdTop','breakingNewsTop','lowerThirdMode','soloWidth','portraitLayout','allowMediaOverlap','rollLanguage','socialMediaPosition','socialTextSize','postContentMode','postTextPlacement','showPostText','postScrollMode'];
+const zeHistoryFields=['headerGroupScale','compositionX','compositionY','layerX','layerY','layerScale','platformScale','avatarScale','labelScale','flip','position','showBullets','protectLowerThird','broadcastTop','lowerThirdGap','lowerThirdTop','breakingNewsTop','lowerThirdMode','soloWidth','portraitLayout','allowMediaOverlap','rollLanguage','socialMediaPosition','socialTextSize','postContentMode','postTextPlacement','showPostText','showRollAccount','showRollProfile','showRollName','postScrollMode'];
 function zeLayoutSnapshot(){return {layers:structuredClone(state.layers),offsets:structuredClone(state.screenOffsets),selected:state.selected,selection:[...state.selectedLayers],values:Object.fromEntries(zeHistoryFields.filter(id=>!['layerX','layerY','layerScale'].includes(id)).map(id=>[id,$(id).type==='checkbox'?$(id).checked:$(id).value]))}}
 const zeTransformKey=snapshot=>JSON.stringify([snapshot.layers,snapshot.offsets,snapshot.values]);
 function zeUpdateHistory(label){$('undoEdit').disabled=!zeUndoStack.length;$('redoEdit').disabled=!zeRedoStack.length;if(label)$('historyStatus').textContent=label}
@@ -1454,7 +1471,7 @@ function zeNativePostScale(){
  const requested=clamp(val('headerGroupScale')/100,.3,1.5)*.84*(state.layers.identity?.scale||1)*(center<W/2-30?.95:1),source=zeSocialRequestedSource();return Math.min(requested,Math.max(.05,(source.w*365/402-30)/(52*clamp(val('avatarScale')/100,.3,2.5)+32)),Math.max(.05,(source.h*372/398-32)/Math.max(52*clamp(val('avatarScale')/100,.3,2.5),45*clamp(val('labelScale')/100,.3,2.5))));
 }
 function zeNativePostLayout(ctx){
- const k=zeNativePostScale(),source=zeSocialRequestedSource(),innerWidth=source.w*365/402,inset=(source.w-innerWidth)/2+10,ps=clamp(val('platformScale')/100,.3,2.5),vs=clamp(val('avatarScale')/100,.3,2.5),ls=clamp(val('labelScale')/100,.3,2.5),aw=52*vs,pw=66*ps,gap=8;
+ const k=zeNativePostScale(),source=zeSocialRequestedSource(),innerWidth=source.w*365/402,inset=(source.w-innerWidth)/2+10,ps=clamp(val('platformScale')/100,.3,2.5),vs=clamp(val('avatarScale')/100,.3,2.5),ls=clamp(val('labelScale')/100,.3,2.5),aw=52*vs,pw=76*ps,gap=8;
  const nameText=$('displayname').value||' ',handleText=$('account').value||' ',arabic=/[\u0600-\u06ff]/.test(nameText),font=(size,rtl)=>`${size===17?'bold ':''}${size*ls}px ${rtl?'ZEOSSTV, STV, Tahoma, Arial':'Arial'}`,maxWidth=Math.max(24,(innerWidth-20)/k-aw-gap);
  ctx.save();ctx.font=font(17,arabic);const nw=Math.min(maxWidth,ctx.measureText(nameText).width+2);ctx.font=font(14,/[\u0600-\u06ff]/.test(handleText));const hw=Math.min(maxWidth,ctx.measureText(handleText).width+2);ctx.restore();
  return {platform:{x:R.identity.x+(flipped()?(-inset-12)/k-pw:(source.w+12-inset)/k),y:R.identity.y+(aw-pw)/2,w:pw,h:pw},avatar:{x:R.identity.x,y:R.identity.y,w:aw,h:aw},name:{x:R.identity.x+aw+gap,y:R.identity.y,w:nw,h:24*ls},handle:{x:R.identity.x+aw+gap,y:R.identity.y+27*ls,w:hw,h:18*ls},nameText,handleText,font,arabic};
@@ -1472,7 +1489,7 @@ function zeDrawNativePostLabel(ctx,b,text,font,color){
 }
 function zeDrawNativePostAccount(ctx){
  const head=getBBox('identity'),k=head.w/R.identity.w,l=zeNativePostLayout(ctx),a=l.avatar;
- ctx.save();ctx.translate(head.x,head.y);ctx.scale(k,k);ctx.translate(-R.identity.x,-R.identity.y);ctx.beginPath();ctx.arc(a.x+a.w/2,a.y+a.h/2,a.w/2,0,Math.PI*2);ctx.save();ctx.clip();ctx.fillStyle='#eceff2';ctx.fillRect(a.x,a.y,a.w,a.h);if(assets.avatar)cover(ctx,assets.avatar,a.x,a.y,a.w,a.h);ctx.restore();
+ ctx.save();ctx.translate(head.x,head.y);ctx.scale(k,k);ctx.translate(-R.identity.x,-R.identity.y);ctx.beginPath();ctx.arc(a.x+a.w/2,a.y+a.h/2,a.w/2,0,Math.PI*2);ctx.save();ctx.clip();ctx.fillStyle='#eceff2';ctx.fillRect(a.x,a.y,a.w,a.h);if(zeAccountImage())cover(ctx,zeAccountImage(),a.x,a.y,a.w,a.h);ctx.restore();
  zeDrawNativePostLabel(ctx,l.name,l.nameText,l.font(17,l.arabic),$('nameTextOverride').checked?zeElementColor('nameText'):'#20252b');
  zeDrawNativePostLabel(ctx,l.handle,l.handleText,l.font(14,/[\u0600-\u06ff]/.test(l.handleText)),$('handleTextOverride').checked?zeElementColor('handleText'):'#66707b');ctx.restore();
 }
@@ -1487,7 +1504,7 @@ function zeSocialTextDocument(width){
 }
 function zeAutoPostPosition(){
  const items=zeVisualItems(),primary=items[0];if(!primary)return 'text';if(!zePostRollText())return 'media';
- return zeSocialMode()||primary.width/primary.height<.8?'right':'below';
+ return zeSocialMode()?'right':zeReferenceSize()?'below':primary.width/primary.height<.8?'right':'below';
 }
 function zeResolvedPostPosition(){const auto=zeAutoPostPosition();return auto==='right'||auto==='below'?($('socialMediaPosition').value==='auto'?auto:$('socialMediaPosition').value):auto}
 function zeSocialRegions(x,y,w,h){
@@ -1499,20 +1516,25 @@ function zeSocialRegions(x,y,w,h){
  if(textBox)textBox.h=Math.max(0,Math.min(textBox.h,zeTextSafeBottom()-2-textBox.y));
  return {text:textBox,media:mediaBox,items:media};
 }
-function zeDrawSocialText(ctx,b,t){
+function zeDrawSocialText(ctx,b,t,viewport=null){
  if(!b||b.h<1)return;const doc=zeSocialTextDocument(b.w),progress=zeSmooth(clamp((t-val('scrollStart'))/Math.max(.1,val('scrollDuration')))),offset=Math.min(Math.max(0,doc.height-b.h),Math.max(0,doc.height-b.h)*progress*val('scrollDistance')/100);
- ctx.save();const transform=ctx.getTransform(),safeY=(zeTextSafeBottom()*ctx.canvas.width/W-transform.f)/transform.d;ctx.beginPath();ctx.rect(b.x,b.y,b.w,Math.max(0,Math.min(b.h,safeY-b.y-2)));ctx.clip();roundedClip(ctx,b.x,b.y,b.w,b.h,3);ctx.drawImage(doc.canvas,b.x,b.y-offset,b.w,doc.height);ctx.restore();
+ ctx.save();if(viewport){ctx.beginPath();ctx.rect(viewport.x,viewport.y,viewport.w,viewport.h);ctx.clip()}const transform=ctx.getTransform(),safeY=(zeTextSafeBottom()*ctx.canvas.width/W-transform.f)/transform.d;ctx.beginPath();ctx.rect(b.x,b.y,b.w,Math.max(0,Math.min(b.h,safeY-b.y-2)));ctx.clip();roundedClip(ctx,b.x,b.y,b.w,b.h,3);ctx.drawImage(doc.canvas,b.x,b.y-offset,b.w,doc.height);ctx.restore();
 }
 function zeWholeBelowMotion(){
  const media=zeVisualItems(),position=zeResolvedPostPosition();
  return zeScrollTogether()&&position==='below'&&!!zePostRollText()&&media.length>0;
 }
+function zeBelowDocumentGeometry(x,y,w,h){
+ const text=zePostRollText(),doc=text?zeSocialTextDocument(w):{height:0},item=zeVisualItems()[0],ratio=item?item.width/item.height:1,gap=text&&item?12:0;
+ const mediaHeight=item?w/ratio:0,mediaWidth=item?w:0,total=doc.height+gap+mediaHeight;
+ return {text:{x,y,w,h:doc.height},media:{x:x+(w-mediaWidth)/2,y:y+doc.height+gap,w:mediaWidth,h:mediaHeight},total,overflow:Math.max(0,total-h)};
+}
 function zeWholeBelowPositions(x,y,w,h,t){
- const regions=zeSocialRegions(x,y,w,h),doc=zeSocialTextDocument(w),gap=12,start=val('scrollStart'),available=Math.max(.1,timeline(DURATION)-val('sourceTiming')-state.speed-start),duration=Math.min(Math.max(.1,val('scrollDuration')),available),progress=zeSmooth(clamp((t-start)/duration)),travel=Math.max(0,doc.height-regions.text.h),offset=Math.min(travel,travel*progress*val('scrollDistance')/100);
- return {text:{x,y:y-offset,w,h:doc.height},media:{...regions.media,y:y+doc.height+gap-offset},progress,offset};
+ const geometry=zeBelowDocumentGeometry(x,y,w,h),start=val('scrollStart'),available=Math.max(.1,timeline(DURATION)-val('sourceTiming')-state.speed-start),duration=Math.min(Math.max(.1,val('scrollDuration')),available),progress=zeSmooth(clamp((t-start)/duration)),offset=Math.min(geometry.overflow,geometry.overflow*progress*val('scrollDistance')/100);
+ return {...geometry,text:{...geometry.text,y:geometry.text.y-offset},media:{...geometry.media,y:geometry.media.y-offset},progress,offset};
 }
 function zeDrawWholeBelow(ctx,x,y,w,h,t){
- const boxes=zeWholeBelowPositions(x,y,w,h,t);ctx.save();roundedClip(ctx,x,y,w,h,3);zeDrawSocialText(ctx,boxes.text,0);zeDrawPostMediaRegion(ctx,boxes.media,t,zeVisualItems(),true);ctx.restore();
+ const boxes=zeWholeBelowPositions(x,y,w,h,t),viewport={x,y,w,h};ctx.save();roundedClip(ctx,x,y,w,h,3);zeDrawSocialText(ctx,boxes.text,0,viewport);zeDrawPostMediaRegion(ctx,boxes.media,t,zeVisualItems(),true);ctx.restore();
 }
 function zeDrawSocialPost(ctx,x,y,w,h,t){
  if(zeWholeBelowMotion()){zeDrawWholeBelow(ctx,x,y,w,h,t);return}
@@ -1524,12 +1546,13 @@ let zeSocialPrevious=null;
 function zeSocialControls(changed){
  const social=zeSocialMode();if(changed&&social&&!zeSocialPrevious){zeSocialPrevious={show:$('showBullets').checked,text:$('postTextPlacement').value,mode:$('postContentMode').value,scroll:$('postScrollMode').value,arrangement:$('socialMediaPosition').value};$('showBullets').checked=false;$('postTextPlacement').value='roll';if($('postContentMode').value==='media')$('postContentMode').value='all';$('postScrollMode').value='together'}
  else if(changed&&!social&&zeSocialPrevious){$('showBullets').checked=zeSocialPrevious.show;$('postTextPlacement').value=zeSocialPrevious.text;$('postContentMode').value=zeSocialPrevious.mode;$('postScrollMode').value=zeSocialPrevious.scroll;$('socialMediaPosition').value=zeSocialPrevious.arrangement;zeSocialPrevious=null}
- for(const [id,on] of [['useMainRoll',!social],['useWholePost',social]]){$(id).setAttribute('aria-pressed',String(on));$(id).classList.toggle('primary',on)}$('postPresentationStatus').textContent=social?'Whole roll frame: account pinned inside; media right and text left. Right-side media stays fixed; bottom media scrolls with text.':'Main roll: reference-sized roll beside the bullet panel. Post text and media arrange automatically inside it.';$('socialMediaPosition').querySelector('[value=auto]').textContent=social?'Default · media right / text left':'Auto · portrait right / wide below';$('wholeFrameControls').hidden=!social;$('wholeFrameArrangement').value=$('socialMediaPosition').value==='below'?'below':'right';$('socialLayoutOptions').hidden=false;$('showBullets').disabled=false;if(changed&&social&&state.selected==='bullet')selectLayer('source');zeRefreshMediaList();zeSelectionControls();zeUpdatePostPlacementUI();
+ for(const [id,on] of [['useMainRoll',!social],['useWholePost',social]]){$(id).setAttribute('aria-pressed',String(on));$(id).classList.toggle('primary',on)}$('postPresentationStatus').textContent=social?'Whole roll frame: account pinned inside; media right and text left. Right-side media stays fixed; bottom media scrolls with text.':'Main roll: reference-sized roll beside the bullet panel. Post text and media arrange automatically inside it.';$('socialMediaPosition').querySelector('[value=auto]').textContent=social?'Default · media right / text left':'Auto · portrait right / wide below';$('wholeFrameControls').hidden=!social;$('mainPostAccountControls').hidden=!zeReferenceSize();$('wholeFrameArrangement').value=$('socialMediaPosition').value==='below'?'below':'right';$('socialLayoutOptions').hidden=false;$('showBullets').disabled=false;if(changed&&social&&state.selected==='bullet')selectLayer('source');zeRefreshMediaList();zeSelectionControls();zeUpdatePostPlacementUI();
 }
 for(const id of ['socialMediaPosition','socialTextSize'])$(id).addEventListener('change',()=>{if(id==='socialTextSize')$('socialTextSize').value=clamp(Number($('socialTextSize').value)||44,28,64);zeSocialControls(false);zeInvalidatePost()});
 
 $('portraitLayout').onchange=()=>{zeSocialControls(true);zePost.doc=null;zeParagraphModel.cache=null;zeUpdateParagraphEditor();zeUpdateSafePreview();draw();requestAnimationFrame(draw)};
 $('postTextPlacement').onchange=zePlacementChanged;
+for(const id of ['showRollAccount','showRollProfile','showRollName'])$(id).onchange=()=>{zePost.doc=null;zePost.socialDoc=null;zeUpdateSafePreview();draw()};
 $('showPostText').onchange=()=>{$('postTextPlacement').value=$('showPostText').checked?'roll':'hidden';zePlacementChanged()};
 $('copyPostToBullets').onclick=()=>{zeCopyPostToBullets();zePost.bulletLinked=false};
 $('postScrollMode').onchange=()=>{zeRefreshMediaList();zeInvalidatePost()};$('postMediaFit').onchange=zeInvalidatePost;
@@ -1675,4 +1698,5 @@ function zeUpdateResizeHandles(){
 }
 requestAnimationFrame(zeUpdateResizeHandles);
 
-</script></body></html>
+</script><script src="assets/screenshot-import.js"></script>
+</body></html>

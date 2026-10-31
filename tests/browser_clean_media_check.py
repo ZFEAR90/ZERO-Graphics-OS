@@ -18,7 +18,7 @@ try:
    if whole:page.locator('#useWholePost').click()
    for placement in ['roll','hidden']:
     page.locator('#postTextPlacement').select_option(placement,force=True)
-    report=page.evaluate('''(()=>{const old=zeDrawCleanMedia,calls=[];zeDrawCleanMedia=(ctx,im,x,y,w,h,item,center)=>{calls.push({x,y,w,h,center});old(ctx,im,x,y,w,h,item,center)};setT(5);zeDrawCleanMedia=old;return {calls,box:getBBox('source'),hidden:!zePostRollText()}})()''');assert report['calls'] and report['calls'][0]['center']==(placement=='hidden'),report
+    report=page.evaluate('''(()=>{const old=zeDrawCleanMedia,calls=[];zeDrawCleanMedia=(ctx,im,x,y,w,h,item,center)=>{calls.push({x,y,w,h,center});old(ctx,im,x,y,w,h,item,center)};setT(5);zeDrawCleanMedia=old;return {calls,box:getBBox('source'),hidden:!zePostRollText(),below:zeWholeBelowMotion()}})()''');assert report['calls'] and report['calls'][0]['center']==(placement=='hidden' or report['below']),report
     if placement=='hidden':assert report['calls'][0]['w']>report['box']['w']*.85,report
    page.locator('#postTextPlacement').select_option('roll',force=True)
   assert not errors and not page.evaluate('state.renderError'),errors;browser.close();print('Protected media centers when text is hidden; no editor-generated blur with text; Main/Whole full-body centering and sharp media: passed',flush=True)

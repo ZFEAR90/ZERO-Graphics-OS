@@ -1,3 +1,17 @@
+## Latest post-review build
+
+Main defaults to the complete editable post: account profile/name, original post text and media aligned below it. Select **Media only** or **Text only**, or switch the profile and account name independently. The external bulletin remains independent. These account switches apply to Main, not Whole frame.
+
+Post text stays below the top strap/account row. Below-text media fills the post width at its original proportions; text/media scroll together only by the amount overflowing the viewport. Whole retains fixed right-side media and shared below-text motion, with a larger platform tile.
+
+**Import post screenshot**, below URL import, reads Arabic/English locally and offers editable platform/account/text and profile/media crop review. Automatic recognition is best effort; verify and correct its result. It requires the connected local editor; screenshots are not uploaded. It cannot recover original video/audio. Platform logos and recognition models are bundled, and missing profile images fall back to account initials.
+
+Download `downloads/Main_roll_test.zip`, extract the entire folder including `assets`, close the old helper, and run `TEST_MAIN_ROLL.bat`. See `validation/post-review.json` for the latest validation record. Live social retrieval and native Windows execution remain unverified in this Linux environment.
+
+Validated: **26 unit tests and 45 browser suites passed**. [Main complete post](demo/post-review/Main_Complete_Post.png) · [Whole below / Fill](demo/post-review/Whole_Below_Fill.png). The previews use generated screenshot fixtures.
+
+## Earlier builds
+
 Startup repair: the Windows launcher now restores missing pip in an existing `.venv` with bundled `ensurepip`, then installs and verifies importer dependencies. If Python cannot bootstrap pip, it explains how to repair the Python installation.
 
 ## Latest recovery continuation

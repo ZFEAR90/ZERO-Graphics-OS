@@ -20,7 +20,7 @@ try:
   assert not page.locator('#portraitLayout').is_visible();page.locator('#openRollLayouts').click();assert page.locator('#portraitLayout').is_visible();page.locator('#mainTab').click()
   baseline=page.evaluate('zeVisibleBounds("source",getBBox("source"))');page.locator('#bullets').fill('نص تحريري مستقل عن المنشور')
   text='نص المنشور العربي يبقى داخل الرول. يتحرك النص الطويل داخل مساحة مستقلة بينما تبقى الصورة والفيديو ظاهرين. '
-  for filename,type_,position in [('portrait.mp4','video','right'),('portrait.png','image','right'),('landscape.mp4','video','below'),('photo.png','image','below'),(None,'image','below')]:
+  for filename,type_,position in [('portrait.mp4','video','below'),('portrait.png','image','below'),('landscape.mp4','video','below'),('photo.png','image','below'),(None,'image','below')]:
    page.evaluate(r'''async(v)=>{let url=v.file?'/fixtures/'+v.file:null;if(!url){const c=document.createElement('canvas');c.width=c.height=400;c.getContext('2d').fillRect(0,0,400,400);url=c.toDataURL()}zeCommitPost(await zePreparePost({text:(v.text.repeat(3)+'\n\n').repeat(5),attachments:[{type:v.type,url}]}));setT(5)}''',dict(file=filename,type=type_,text=text))
    if type_=='video':page.wait_for_function('zePost.items[0].el.readyState>=2 && !zePost.items[0].el.seeking')
    assert page.locator('#postTextPlacement').input_value()=='roll' and not page.locator('#postScrollMode').is_disabled()

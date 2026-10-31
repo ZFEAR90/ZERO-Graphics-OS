@@ -1,0 +1,93 @@
+{
+  "base_commit": "d0e5d5a190755cf8f5916650d179eb20d9e1dd8a",
+  "branch": "ze-os-v07-beta278-recovery",
+  "unit_tests": {
+    "passed": 26,
+    "failed": 0,
+    "note": "Full runner unit pass plus the final 26-test rerun, including the additional cross-platform profile fixture."
+  },
+  "browser_suites": {
+    "passed": 45,
+    "failed": 0,
+    "skipped": 0,
+    "unrun": 0,
+    "names": [
+      "browser_auto_post_check.py",
+      "browser_bullet_grouping_check.py",
+      "browser_bullet_persistence_check.py",
+      "browser_capture_check.py",
+      "browser_check.py",
+      "browser_clean_media_check.py",
+      "browser_composition_check.py",
+      "browser_drag_undo_check.py",
+      "browser_editing_check.py",
+      "browser_final_adjustments_check.py",
+      "browser_handoff_check.py",
+      "browser_header_anchor_check.py",
+      "browser_importer_connection_check.py",
+      "browser_media_check.py",
+      "browser_media_only_layout_check.py",
+      "browser_media_sequence_check.py",
+      "browser_media_toggle_check.py",
+      "browser_motion_check.py",
+      "browser_mouse_resize_check.py",
+      "browser_native_account_check.py",
+      "browser_owner_adjustments_check.py",
+      "browser_owner_post_review_check.py",
+      "browser_palette_check.py",
+      "browser_paragraph_check.py",
+      "browser_pending_adjustments_check.py",
+      "browser_portrait_check.py",
+      "browser_post_justification_check.py",
+      "browser_post_layout_check.py",
+      "browser_project_roundtrip_check.py",
+      "browser_recovery_check.py",
+      "browser_reference_frame_check.py",
+      "browser_safe_area_check.py",
+      "browser_screenshot_import_check.py",
+      "browser_social_layout_check.py",
+      "browser_solo_text_safe_check.py",
+      "browser_speaker_check.py",
+      "browser_telegram_capture_check.py",
+      "browser_text_only_recenter_check.py",
+      "browser_video_end_check.py",
+      "browser_video_sequence_check.py",
+      "browser_whole_below_check.py",
+      "browser_whole_resize_check.py",
+      "browser_whole_shared_scroll_check.py",
+      "browser_workspace_check.py",
+      "browser_workspace_cleanup_check.py"
+    ]
+  },
+  "checks": [
+    "Actual Arabic/English screenshot recognition in Chromium with no external HTTP(S) requests.",
+    "Reviewed screenshot account/text/profile/post-media crops imported through normal post pipeline; bulletin preserved.",
+    "Main independent profile/name switches do not change Whole native account.",
+    "Painted text pixels stay below the top strap across all retained layouts.",
+    "Below media keeps original proportions and full post width; only overflow scrolls; fitting posts stay stationary.",
+    "Whole external platform tile enlarged from 66 to 76 base units.",
+    "Five bundled vector logos and visible Unicode initial fallbacks.",
+    "Telegram nested CSS and image avatar variants verified in metadata and actual Chromium capture.",
+    "Existing 151-frame proxy-motion, media/audio, masking, layout, undo and JSON checks passed.",
+    "ZIP CRC and file SHA256 match current editor, importer, instructions and offline assets."
+  ],
+  "package": {
+    "path": "downloads/Main_roll_test.zip",
+    "bytes": 12033637,
+    "files": 31,
+    "sha256": "f305a911b978c802789d8fd59e9934499db3545e5872674e8bae9f7ecbed04df"
+  },
+  "source_sha256": {
+    "ZE_OS_Mouwajaha_V07.html": "98b564da9247fbc91abe4ce7683e1cfe91a5d00efbcb2ca84d186d08ff176d00",
+    "ze_local_importer.py": "db336632eabcaebad263d1cb750f62e6082c0bb4150f9aeb1ac5d864a7cd4c48",
+    "assets/screenshot-import.js": "3487b28a56548ee9dfd2fa57b6dc78c5022718ba3c39268c5a7e2b8824f4214d",
+    "assets/platform-logos.js": "cef42a4292325f5e8e73e6fa6fdcb1ad9c3892534ce5abb936bf50525f925fea",
+    "assets/vendor-sources.json": "3e72b55a5abe115f55b4456458c768fecdb4f1f8e91865ac783b901e4a797786"
+  },
+  "limits": [
+    "Screenshot recognition/platform detection/media-region proposals are best effort and require review; original video/audio cannot be recovered.",
+    "Automatic screenshot reading needs the local HTTP editor, while file:// retains manual review/cropping.",
+    "Native Windows execution and real platform retrieval remain unverified on this Linux/cloud proxy.",
+    "Motion verification uses the existing V0.7 reference proxy, not unavailable full-resolution broadcast footage."
+  ]
+}

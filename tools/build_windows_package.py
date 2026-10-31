@@ -3,6 +3,7 @@ from pathlib import Path
 import zipfile,hashlib,json,sys
 ROOT=Path(__file__).resolve().parents[1]
 FILES=['TEST_MAIN_ROLL.bat','START_ZE_OS.bat','OFFLINE_MAIN_ROLL.bat','INSTALL_CAPTURE_BROWSER.bat','README_TEST_WINDOWS.txt','ZE_OS_Mouwajaha_V07.html','ze_local_importer.py','requirements.txt']
+FILES += sorted(path.relative_to(ROOT).as_posix() for path in (ROOT/'assets').rglob('*') if path.is_file())
 def build(target):
  target=Path(target);target.parent.mkdir(parents=True,exist_ok=True);manifest={'version':'0.7-beta2.7.8','default_launcher':'TEST_MAIN_ROLL.bat','mode':'connected URL importer','files':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in FILES}}
  with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
